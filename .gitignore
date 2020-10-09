@@ -1,2 +1,5 @@
 /composer.lock
 vendor/
+/.phpcs.xml
+/phpcs.xml
+.cache/phpcs.cache

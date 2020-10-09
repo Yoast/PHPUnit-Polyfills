@@ -11,6 +11,8 @@ cache:
     - $HOME/.composer/cache/files
     # Cache directory for more recent Composer versions.
     - $HOME/.cache/composer/files
+    # Cache CI tooling cache files.
+    - .cache
 
 php:
   - 5.6
@@ -23,10 +25,22 @@ php:
 
 # Define the stages used.
 stages:
+  - name: sniff
   - name: test
 
 jobs:
   fast_finish: true
+  include:
+    #### SNIFF STAGE ####
+    - stage: sniff
+      php: 7.4
+      script:
+        # Validate the composer.json file.
+        # @link https://getcomposer.org/doc/03-cli.md#validate
+        - composer validate --no-check-all --strict
+
+        # Check the code style of the code base.
+        - composer check-cs
 
   allow_failures:
     # Allow failures for unstable builds.

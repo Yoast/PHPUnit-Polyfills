@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Coding Standard for PHPUnit Polyfills" xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
+    <description>Check the code of PHPUnit Polyfills.</description>
+
+    <!--
+    #############################################################################
+    COMMAND LINE ARGUMENTS
+    https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+    #############################################################################
+    -->
+
+    <file>.</file>
+
+    <!-- Only check PHP files. -->
+    <arg name="extensions" value="php"/>
+
+    <!-- Show progress, show the error codes for each message (source). -->
+    <arg value="ps"/>
+
+    <!-- Strip the filepaths down to the relevant bit. -->
+    <arg name="basepath" value="./"/>
+
+    <!-- Check up to 8 files simultaneously. -->
+    <arg name="parallel" value="8"/>
+
+	<!-- Cache the results between runs. -->
+	<arg name="cache" value="./.cache/phpcs.cache"/>
+
+
+	<!--
+	#############################################################################
+	USE THE YoastCS RULESET
+	#############################################################################
+	-->
+
+	<!-- Support PHP 5.6 or higher. -->
+	<config name="testVersion" value="5.6-"/>
+
+	<rule ref="Yoast">
+		<!-- Duplicate classes is by design and part of the cross-version compatibility mechanism. -->
+		<exclude name="Generic.Classes.DuplicateClassName"/>
+
+		<!-- Exclude some rules which conflicts with the naming conventions used in PHPUnit. -->
+		<exclude name="Yoast.Files.FileName"/>
+		<exclude name="WordPress.NamingConventions.ValidVariableName"/>
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
+
+		<!-- Exclude some rules which are irrelevant.
+			 The code in this package is not run in the context of a WordPress plugin. -->
+		<exclude name="WordPress.DB"/>
+		<exclude name="WordPress.Security"/>
+		<exclude name="WordPress.WP"/>
+		<exclude name="Yoast.Yoast.AlternativeFunctions"/>
+	</rule>
+
+	<!-- Enforce PSR1 compatible namespaces. -->
+	<rule ref="PSR1.Classes.ClassDeclaration"/>
+
+
+	<!--
+	#############################################################################
+	SNIFF SPECIFIC CONFIGURATION
+	#############################################################################
+	-->
+
+	<rule ref="Yoast.NamingConventions.NamespaceName">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="Yoast\PHPUnitPolyfills"/>
+			</property>
+			<property name="src_directory" type="array">
+				<element value="src"/>
+			</property>
+		</properties>
+	</rule>
+
+</ruleset>
