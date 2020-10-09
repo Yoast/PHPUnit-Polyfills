@@ -31,6 +31,11 @@
         "php-parallel-lint/php-console-highlighter": "^0.5",
         "yoast/yoastcs": "^2.0.0"
     },
+    "autoload-dev" : {
+        "psr-4": {
+            "Yoast\\PHPUnitPolyfills\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-main": "1.x-dev",
@@ -46,6 +51,15 @@
         ],
         "fix-cs": [
             "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
+        ],
+        "test": [
+            "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
+        ],
+        "coverage": [
+            "@php ./vendor/phpunit/phpunit/phpunit"
+        ],
+        "coverage-local": [
+            "@php ./vendor/phpunit/phpunit/phpunit --coverage-html ./build/coverage-html"
         ]
     }
 }

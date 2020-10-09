@@ -67,3 +67,6 @@ install:
 script:
   # Lint PHP files against parse errors.
   - composer lint
+
+  # Run the unit tests.
+  - composer test
