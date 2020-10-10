@@ -12,6 +12,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Features](#features)
+    - [Polyfills](#polyfills)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -66,6 +67,14 @@ By default, PHPUnit supports four ways of calling assertions:
 The polyfills in this library support the first two ways of calling the assertions as those are the most commonly used type of assertion calls.
 
 For the polyfills to work, a test class is **required** to be a (grand-)child of the PHPUnit native `TestCase` class.
+
+### Polyfills
+
+#### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
+
+Polyfills the `TestCase::expectExceptionObject()` method to test all aspects of an `Exception` by passing an object to the method.
+
+This method was introduced in PHPUnit 6.4.0.
 
 
 Contributing
