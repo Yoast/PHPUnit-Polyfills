@@ -92,6 +92,16 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to the `Assert::assertInternalType()` and `Assert::assertNotInternalType()` methods, which were soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
+#### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains`
+
+Polyfills the following methods:
+|                                                    |                                                       |
+|----------------------------------------------------|-------------------------------------------------------|
+| `Assert::assertStringContainsString()`             | `Assert::assertStringNotContainsString()`             |
+| `Assert::assertStringContainsStringIgnoringCase()` | `Assert::assertStringNotContainsStringIgnoringCase()` |
+
+These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertContains()` and `Assert::assertNotContains()` with string haystacks. Passing string haystacks to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
+
 
 Contributing
 -------
