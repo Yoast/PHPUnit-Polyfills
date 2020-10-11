@@ -102,6 +102,17 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertContains()` and `Assert::assertNotContains()` with string haystacks. Passing string haystacks to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
+#### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations`
+
+Polyfills the following methods:
+|                                        |                                           |
+|----------------------------------------|-------------------------------------------|
+| `Assert::assertEqualsCanonicalizing()` | `Assert::assertNotEqualsCanonicalizing()` |
+| `Assert::assertEqualsIgnoringCase()`   | `Assert::assertNotEqualsIgnoringCase()`   |
+| `Assert::assertEqualsWithDelta()`      | `Assert::assertNotEqualsWithDelta()`      |
+
+These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertEquals()` and `Assert::assertNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
+
 
 Contributing
 -------
