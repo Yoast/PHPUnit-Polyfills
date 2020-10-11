@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
@@ -28,6 +29,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject':
 					self::loadExpectExceptionObject();
 					return true;
+
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertIsType':
+					self::loadAssertIsType();
+					return true;
 			}
 
 			return false;
@@ -48,6 +53,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 6.4.0.
 			require_once __DIR__ . '/src/Polyfills/ExpectExceptionObject_Empty.php';
+		}
+
+		/**
+		 * Load the AssertIsType polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertIsType() {
+			if ( \method_exists( Assert::class, 'assertIsArray' ) === false ) {
+				// PHPUnit < 7.5.0.
+				require_once __DIR__ . '/src/Polyfills/AssertIsType.php';
+				return;
+			}
+
+			// PHPUnit >= 7.5.0.
+			require_once __DIR__ . '/src/Polyfills/AssertIsType_Empty.php';
 		}
 	}
 

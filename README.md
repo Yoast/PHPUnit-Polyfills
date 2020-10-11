@@ -76,6 +76,22 @@ Polyfills the `TestCase::expectExceptionObject()` method to test all aspects of 
 
 This method was introduced in PHPUnit 6.4.0.
 
+#### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
+
+Polyfills the following methods:
+|                                 |                                 |                               |
+|---------------------------------|---------------------------------|-------------------------------|
+| `Assert::assertIsArray()`       | `Assert::assertIsBool()`        | `Assert::assertIsFloat()`     |
+| `Assert::assertIsInt()`         | `Assert::assertIsNumeric()`     | `Assert::assertIsObject()`    |
+| `Assert::assertIsResource()`    | `Assert::assertIsString()`      | `Assert::assertIsScalar()`    |
+| `Assert::assertIsCallable()`    | `Assert::assertIsIterable()`    |                               |
+| `Assert::assertIsNotArray()`    | `Assert::assertIsNotBool()`     | `Assert::assertIsNotFloat()`  |
+| `Assert::assertIsNotInt()`      | `Assert::assertIsNotNumeric()`  | `Assert::assertIsNotObject()` |
+| `Assert::assertIsNotResource()` | `Assert::assertIsNotString()`   | `Assert::assertIsNotScalar()` |
+| `Assert::assertIsNotCallable()` | `Assert::assertIsNotIterable()` |                               |
+
+These methods were introduced in PHPUnit 7.5.0 as alternatives to the `Assert::assertInternalType()` and `Assert::assertNotInternalType()` methods, which were soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
+
 
 Contributing
 -------
