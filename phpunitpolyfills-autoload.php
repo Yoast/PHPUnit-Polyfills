@@ -49,6 +49,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches':
 					self::loadExpectExceptionMessageMatches();
 					return true;
+
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations':
+					self::loadAssertFileEqualsSpecializations();
+					return true;
 			}
 
 			return false;
@@ -188,6 +192,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 8.4.0.
 			require_once __DIR__ . '/src/Polyfills/ExpectExceptionMessageMatches_Empty.php';
+		}
+
+		/**
+		 * Load the AssertFileEqualsSpecializations polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertFileEqualsSpecializations() {
+			if ( \method_exists( Assert::class, 'assertFileEqualsIgnoringCase' ) === false ) {
+				// PHPUnit < 8.5.0.
+				require_once __DIR__ . '/src/Polyfills/AssertFileEqualsSpecializations.php';
+				return;
+			}
+
+			// PHPUnit >= 8.5.0.
+			require_once __DIR__ . '/src/Polyfills/AssertFileEqualsSpecializations_Empty.php';
 		}
 	}
 
