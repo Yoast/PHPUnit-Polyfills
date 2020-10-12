@@ -41,6 +41,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations':
 					self::loadAssertEqualsSpecializations();
 					return true;
+
+				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException':
+					self::loadExpectPHPException();
+					return true;
 			}
 
 			return false;
@@ -112,6 +116,57 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 7.5.0.
 			require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations_Empty.php';
+		}
+
+		/**
+		 * Load the ExpectPHPException polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * Includes aliasing any PHPUnit native classes needed for this functionality
+		 * which aren't available under their namespaced name in PHPUnit 5.x.
+		 *
+		 * @return void
+		 */
+		public static function loadExpectPHPException() {
+			/*
+			 * Alias the PHPUnit 5 Error classes to their PHPUnit >= 6 name.
+			 *
+			 * {@internal The `class_exists` wrappers are needed to play nice with
+			 * PHPUnit bootstrap files of test suites implementing this library
+			 * which may be creating cross-version compatibility in a similar manner.}}
+			 */
+			if ( \class_exists( 'PHPUnit_Framework_Error' ) === true
+				&& \class_exists( 'PHPUnit\Framework\Error\Error' ) === false
+			) {
+				\class_alias( 'PHPUnit_Framework_Error', 'PHPUnit\Framework\Error\Error' );
+			}
+
+			if ( \class_exists( 'PHPUnit_Framework_Error_Warning' ) === true
+				&& \class_exists( 'PHPUnit\Framework\Error\Warning' ) === false
+			) {
+				\class_alias( 'PHPUnit_Framework_Error_Warning', 'PHPUnit\Framework\Error\Warning' );
+			}
+
+			if ( \class_exists( 'PHPUnit_Framework_Error_Notice' ) === true
+				&& \class_exists( 'PHPUnit\Framework\Error\Notice' ) === false
+			) {
+				\class_alias( 'PHPUnit_Framework_Error_Notice', 'PHPUnit\Framework\Error\Notice' );
+			}
+
+			if ( \class_exists( 'PHPUnit_Framework_Error_Deprecated' ) === true
+				&& \class_exists( 'PHPUnit\Framework\Error\Deprecated' ) === false
+			) {
+				\class_alias( 'PHPUnit_Framework_Error_Deprecated', 'PHPUnit\Framework\Error\Deprecated' );
+			}
+
+			if ( \method_exists( TestCase::class, 'expectErrorMessage' ) === false ) {
+				// PHPUnit < 8.4.0.
+				require_once __DIR__ . '/src/Polyfills/ExpectPHPException.php';
+				return;
+			}
+
+			// PHPUnit >= 8.4.0.
+			require_once __DIR__ . '/src/Polyfills/ExpectPHPException_Empty.php';
 		}
 	}
 

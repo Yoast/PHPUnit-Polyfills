@@ -74,4 +74,17 @@
 		</properties>
 	</rule>
 
+
+	<!--
+	#############################################################################
+	SELECTIVE EXCLUSIONS
+	Exclude specific files for specific sniffs and/or exclude sub-groups in sniffs.
+	#############################################################################
+	-->
+
+	<!-- Make some allowances for test files. -->
+	<rule ref="WordPress.PHP.DevelopmentFunctions">
+		<exclude-pattern>/tests/*\.php$</exclude-pattern>
+	</rule>
+
 </ruleset>

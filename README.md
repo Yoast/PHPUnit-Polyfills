@@ -113,6 +113,19 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertEquals()` and `Assert::assertNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
+#### PHPUnit < 8.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException`
+
+Polyfills the following methods:
+|                       |                              |                                     |
+|-----------------------|------------------------------|-------------------------------------|
+| `expectError()`       | `expectErrorMessage()`       | `expectErrorMessageMatches()`       |
+| `expectWarning()`     | `expectWarningMessage()`     | `expectWarningMessageMatches()`     |
+| `expectNotice()`      | `expectNoticeMessage()`      | `expectNoticeMessageMatches()`      |
+| `expectDeprecation()` | `expectDeprecationMessage()` | `expectDeprecationMessageMatches()` |
+
+These method were introduced in PHPUnit 8.4.0 as alternatives to using `TestCase::expectException()` et al for expecting PHP native errors, warnings and notices.
+Using `TestCase::expectException*()` for testing PHP native notices was soft deprecated in PHPUnit 8.4.0, hard deprecated (warning) in PHPUnit 9.0.0 and (will be) removed in PHPUnit 10.0.0.
+
 
 Contributing
 -------
