@@ -53,6 +53,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations':
 					self::loadAssertFileEqualsSpecializations();
 					return true;
+
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames':
+					self::loadAssertionRenames();
+					return true;
 			}
 
 			return false;
@@ -209,6 +213,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 8.5.0.
 			require_once __DIR__ . '/src/Polyfills/AssertFileEqualsSpecializations_Empty.php';
+		}
+
+		/**
+		 * Load the AssertionRenames polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertionRenames() {
+			if ( \method_exists( Assert::class, 'assertMatchesRegularExpression' ) === false ) {
+				// PHPUnit < 9.1.0.
+				require_once __DIR__ . '/src/Polyfills/AssertionRenames.php';
+				return;
+			}
+
+			// PHPUnit >= 9.1.0.
+			require_once __DIR__ . '/src/Polyfills/AssertionRenames_Empty.php';
 		}
 	}
 

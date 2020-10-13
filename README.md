@@ -145,6 +145,23 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 8.5.0 as alternatives to using `Assert::assertFileEquals()` and `Assert::assertFileNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was hard deprecated in PHPUnit 8.5.0 and removed in PHPUnit 9.0.0.
 
+### PHPUnit < 9.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames`
+
+Polyfills the following renamed methods:
+* `Assert::assertIsNotReadable()`, introduced as alternative for `Assert::assertNotIsReadable()`.
+* `Assert::assertIsNotWritable()`, introduced as alternative for `Assert::assertNotIsWritable()`.
+* `Assert::assertDirectoryDoesNotExist()`, introduced as alternative for `Assert::assertDirectoryNotExists()`.
+* `Assert::assertDirectoryIsNotReadable()`, introduced as alternative for `Assert::assertDirectoryNotIsReadable()`.
+* `Assert::assertDirectoryIsNotWritable()`, introduced as alternative for `Assert::assertDirectoryNotIsWritable()`.
+* `Assert::assertFileDoesNotExist()`, introduced as alternative for `Assert::assertFileNotExists()`.
+* `Assert::assertFileIsNotReadable()`, introduced as alternative for `Assert::assertFileNotIsReadable()`.
+* `Assert::assertFileIsNotWritable()`, introduced as alternative for `Assert::assertFileNotIsWritable()`.
+* `Assert::assertMatchesRegularExpression()`, introduced as alternative for `Assert::assertRegExp()`.
+* `Assert::assertDoesNotMatchRegularExpression()`, introduced as alternative for `Assert::assertNotRegExp()`.
+
+These methods were introduced in PHPUnit 9.1.0.
+The original methods these new methods replace were hard deprecated in PHPUnit 9.1.0 and (will be) removed in PHPUnit 10.0.0.
+
 
 Contributing
 -------
