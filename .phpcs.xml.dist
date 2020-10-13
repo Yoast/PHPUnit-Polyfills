@@ -82,9 +82,19 @@
 	#############################################################################
 	-->
 
+	<!-- The TestCase for PHPUnit 8+ will only ever be loaded on PHP 7.2+. -->
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.voidFound">
+		<exclude-pattern>/src/TestCases/TestCasePHPUnitGte8\.php$</exclude-pattern>
+	</rule>
+
 	<!-- Make some allowances for test files. -->
 	<rule ref="WordPress.PHP.DevelopmentFunctions">
 		<exclude-pattern>/tests/*\.php$</exclude-pattern>
+	</rule>
+
+	<!-- Covers annotations are in the test classes, not the trait. -->
+	<rule ref="Yoast.Commenting.TestsHaveCoversTag.Missing">
+		<exclude-pattern>/tests/TestCases/TestCaseTestTrait\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>

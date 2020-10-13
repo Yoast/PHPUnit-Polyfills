@@ -13,6 +13,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 * [Installation](#installation)
 * [Features](#features)
     - [Polyfills](#polyfills)
+    - [TestCases](#testcases)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -162,6 +163,103 @@ Polyfills the following renamed methods:
 These methods were introduced in PHPUnit 9.1.0.
 The original methods these new methods replace were hard deprecated in PHPUnit 9.1.0 and (will be) removed in PHPUnit 10.0.0.
 
+
+### TestCases
+
+PHPUnit 8.0.0 introduced a `void` return type declaration to the "fixture" methods - `setUpBeforeClass()`, `setUp()`, `tearDown()` and `tearDownAfterClass()`.
+As the `void` return type was not introduced until PHP 7.1, this makes it more difficult to create cross-version compatible tests when using fixtures, due to signature mismatches.
+
+This library contains two basic `TestCase` options to overcome this issue.
+
+#### Option 1: `Yoast\PHPUnitPolyfills\TestCases\TestCase`
+
+This `TestCase` overcomes the signature mismatch by having two versions. The correct one will be loaded depending on the PHPUnit version being used.
+
+When using this `TestCase`, if an individual test, or another `TestCase` which extends this `TestCase`, needs to overload any of the "fixture" methods, it should do so by using a snake_case variant of the original fixture method name, i.e. `set_up_before_class()`, `set_up()`, `tear_down()` and `tear_down_after_class()`.
+
+The snake_case methods will automatically be called by PHPUnit.
+
+IMPORTANT: The snake_case methods should **not** call the PHPUnit parent, i.e. do **not** use `parent::setUp()` from within an overloaded `set_up()` method.
+If necessary, _DO_ call `parent::set_up()`.
+
+```php
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
+class MyTest extends TestCase {
+    public static function set_up_before_class() {
+        parent::set_up_before_class();
+
+        // Set up a database connection or other fixture which needs to be available.
+    }
+
+    protected function set_up() {
+        parent::set_up();
+
+        // Set up function mocks which need to be available for all tests in this class.
+    }
+
+    protected function tear_down() {
+        // Any clean up needed related to `set_up()`.
+
+        parent::tear_down();
+    }
+
+    public static function tear_down_after_class() {
+        // Close database connection and other clean up related to `set_up_before_class()`.
+
+        parent::tear_down_after_class();
+    }
+}
+```
+
+#### Option 2: `Yoast\PHPUnitPolyfills\TestCases\XTestCase`
+
+This `TestCase` overcomes the signature mismatch by using the PHPUnit `@before[Class]` and `@after[Class]` annotations in combination with different methods names, i.e. `setUpFixturesBeforeClass()`, `setUpFixtures()`, `tearDownFixtures()` and `tearDownFixturesAfterClass()`.
+
+When using this TestCase, overloaded fixture methods need to use the `@beforeClass`, `@before`, `@after` and `@afterClass` annotations.
+The naming of the overloaded methods is open as long as the method names don't conflict with the PHPUnit native method names.
+
+```php
+use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
+
+class MyTest extends XTestCase {
+    /**
+     * @beforeClass
+     */
+    public static function setUpFixturesBeforeClass() {
+        parent::setUpFixturesBeforeClass();
+
+        // Set up a database connection or other fixture which needs to be available.
+    }
+
+    /**
+     * @before
+     */
+    protected function setUpFixtures() {
+        parent::setUpFixtures();
+
+        // Set up function mocks which need to be available for all tests in this class.
+    }
+
+    /**
+     * @after
+     */
+    protected function tearDownFixtures() {
+        // Any clean up needed related to `setUpFixtures()`.
+
+        parent::tearDownFixtures();
+    }
+
+    /**
+     * @afterClass
+     */
+    public static function tearDownFixturesAfterClass() {
+        // Close database connection and other clean up related to `setUpFixturesBeforeClass()`.
+
+        parent::tearDownFixturesAfterClass();
+    }
+}
+```
 
 Contributing
 -------

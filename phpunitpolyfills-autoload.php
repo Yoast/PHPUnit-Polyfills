@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills;
 
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Runner\Version as PHPUnit_Version;
 
 if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
@@ -56,6 +57,14 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames':
 					self::loadAssertionRenames();
+					return true;
+
+				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
+					self::loadTestCase();
+					return true;
+
+				case 'Yoast\PHPUnitPolyfills\TestCases\XTestCase':
+					require_once __DIR__ . '/src/TestCases/XTestCase.php';
 					return true;
 			}
 
@@ -230,6 +239,24 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 9.1.0.
 			require_once __DIR__ . '/src/Polyfills/AssertionRenames_Empty.php';
+		}
+
+		/**
+		 * Load the appropriate TestCase class based on the PHPUnit version being used.
+		 *
+		 * @return void
+		 */
+		public static function loadTestCase() {
+			if ( \class_exists( PHPUnit_Version::class ) === false
+				|| \version_compare( PHPUnit_Version::id(), '8.0.0', '<' )
+			) {
+				// PHPUnit < 8.0.0.
+				require_once __DIR__ . '/src/TestCases/TestCasePHPUnitLte7.php';
+				return;
+			}
+
+			// PHPUnit >= 8.0.0.
+			require_once __DIR__ . '/src/TestCases/TestCasePHPUnitGte8.php';
 		}
 	}
 
