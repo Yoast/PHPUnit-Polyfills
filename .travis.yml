@@ -53,6 +53,9 @@ before_install:
 
 
 install:
+  # Temporarily rollback the Composer version.
+  # This can be removed once YoastCS 2.0.3 has been released.
+  - travis_retry composer self-update 1.10.16
   # Set up environment using Composer.
   - |
     if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
