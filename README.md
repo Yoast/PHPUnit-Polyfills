@@ -14,6 +14,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 * [Features](#features)
     - [Polyfills](#polyfills)
     - [TestCases](#testcases)
+* [Using this library](#using-this-library)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -260,6 +261,40 @@ class MyTest extends XTestCase {
     }
 }
 ```
+
+Using this library
+-------
+
+Each of the polyfills has been setup as a trait and can be imported and `use`d in any test file which extends the PHPUnit native `TestCase` class.
+
+If the polyfill is not needed for the particular PHPUnit version on which the tests are being run, the autoloader
+will automatically load an empty trait with that same name, so you can safely use these traits in tests which
+need to be PHPUnit cross-version compatible.
+
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+
+class FooTest extends TestCase
+{
+    use AssertIsType;
+
+    public function testSomething()
+    {
+        $this->assertIsBool( $maybeBool );
+        self::assertIsNotIterable( $maybeIterable );
+    }
+}
+```
+
+Alternatively, you can use one of the [`TestCase` classes](#testcases) provided by this library instead of using the PHPUnit native `TestCase` class.
+
+In that case, all polyfills will be available whenever needed.
+
 
 Contributing
 -------
