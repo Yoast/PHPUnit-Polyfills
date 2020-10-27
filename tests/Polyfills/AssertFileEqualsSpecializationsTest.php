@@ -14,15 +14,15 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 
 	use AssertFileEqualsSpecializations;
 
-	const PATH_TO_EXPECTED = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_Expected.txt';
+	const PATH_TO_EXPECTED = '/Fixtures/AssertFileEqualsSpecialization_Expected.txt';
 
-	const PATH_TO_EQUALS = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_Equals.txt';
+	const PATH_TO_EQUALS = '/Fixtures/AssertFileEqualsSpecialization_Equals.txt';
 
-	const PATH_TO_NOT_EQUALS = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_NotEquals.txt';
+	const PATH_TO_NOT_EQUALS = '/Fixtures/AssertFileEqualsSpecialization_NotEquals.txt';
 
-	const PATH_TO_EQUALS_CI = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_EqualsCI.txt';
+	const PATH_TO_EQUALS_CI = '/Fixtures/AssertFileEqualsSpecialization_EqualsCI.txt';
 
-	const PATH_TO_NOT_EQUALS_CI = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_NotEqualsCI.txt';
+	const PATH_TO_NOT_EQUALS_CI = '/Fixtures/AssertFileEqualsSpecialization_NotEqualsCI.txt';
 
 	/**
 	 * Verify availability of the assertFileEqualsCanonicalizing() method.
@@ -30,7 +30,9 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertFileEqualsCanonicalizing() {
-		$this->assertFileEqualsCanonicalizing( self::PATH_TO_EXPECTED, self::PATH_TO_EQUALS );
+		$expected = __DIR__ . self::PATH_TO_EXPECTED;
+		$input    = __DIR__ . self::PATH_TO_EQUALS;
+		$this->assertFileEqualsCanonicalizing( $expected, $input );
 	}
 
 	/**
@@ -39,7 +41,9 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertFileEqualsIgnoringCase() {
-		self::assertFileEqualsIgnoringCase( self::PATH_TO_EXPECTED, self::PATH_TO_EQUALS_CI );
+		$expected = __DIR__ . self::PATH_TO_EXPECTED;
+		$input    = __DIR__ . self::PATH_TO_EQUALS_CI;
+		self::assertFileEqualsIgnoringCase( $expected, $input );
 	}
 
 	/**
@@ -48,7 +52,9 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertFileNotEqualsCanonicalizing() {
-		static::assertFileNotEqualsCanonicalizing( self::PATH_TO_EXPECTED, self::PATH_TO_NOT_EQUALS );
+		$expected = __DIR__ . self::PATH_TO_EXPECTED;
+		$input    = __DIR__ . self::PATH_TO_NOT_EQUALS;
+		static::assertFileNotEqualsCanonicalizing( $expected, $input );
 	}
 
 	/**
@@ -57,7 +63,9 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertFileNotEqualsIgnoringCase() {
-		$this->assertFileNotEqualsIgnoringCase( self::PATH_TO_EXPECTED, self::PATH_TO_NOT_EQUALS_CI );
+		$expected = __DIR__ . self::PATH_TO_EXPECTED;
+		$input    = __DIR__ . self::PATH_TO_NOT_EQUALS_CI;
+		$this->assertFileNotEqualsIgnoringCase( $expected, $input );
 	}
 
 	/**
@@ -66,7 +74,7 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringEqualsFileCanonicalizing() {
-		static::assertStringEqualsFileCanonicalizing( self::PATH_TO_EXPECTED, "testing 123\n" );
+		static::assertStringEqualsFileCanonicalizing( __DIR__ . self::PATH_TO_EXPECTED, "testing 123\n" );
 	}
 
 	/**
@@ -75,7 +83,7 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringEqualsFileIgnoringCase() {
-		self::assertStringEqualsFileIgnoringCase( self::PATH_TO_EXPECTED, "Testing 123\n" );
+		self::assertStringEqualsFileIgnoringCase( __DIR__ . self::PATH_TO_EXPECTED, "Testing 123\n" );
 	}
 
 	/**
@@ -84,7 +92,7 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotEqualsFileCanonicalizing() {
-		$this->assertStringNotEqualsFileCanonicalizing( self::PATH_TO_EXPECTED, "test 123\n" );
+		$this->assertStringNotEqualsFileCanonicalizing( __DIR__ . self::PATH_TO_EXPECTED, "test 123\n" );
 	}
 
 	/**
@@ -93,6 +101,6 @@ class AssertFileEqualsSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotEqualsFileIgnoringCase() {
-		$this->assertStringNotEqualsFileIgnoringCase( self::PATH_TO_EXPECTED, "Test 123\n" );
+		$this->assertStringNotEqualsFileIgnoringCase( __DIR__ . self::PATH_TO_EXPECTED, "Test 123\n" );
 	}
 }

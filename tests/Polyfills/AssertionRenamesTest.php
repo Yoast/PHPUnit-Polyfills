@@ -16,17 +16,14 @@ class AssertionRenamesTest extends TestCase {
 	use AssertionRenames;
 	use AssertIsType;
 
-	const NOT_EXISTENT_FILE = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
-
-	const NOT_EXISTENT_DIR = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
-
 	/**
 	 * Verify availability of the assertIsNotReadable() method.
 	 *
 	 * @return void
 	 */
 	public function testAssertIsNotReadable() {
-		$this->assertIsNotReadable( self::NOT_EXISTENT_FILE );
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
+		$this->assertIsNotReadable( $path );
 	}
 
 	/**
@@ -35,7 +32,8 @@ class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertIsNotWritable() {
-		self::assertIsNotWritable( self::NOT_EXISTENT_DIR );
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
+		self::assertIsNotWritable( $path );
 	}
 
 	/**
@@ -44,7 +42,8 @@ class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertDirectoryDoesNotExist() {
-		static::assertDirectoryDoesNotExist( self::NOT_EXISTENT_DIR );
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
+		static::assertDirectoryDoesNotExist( $path );
 	}
 
 	/**
@@ -99,7 +98,8 @@ class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertFileDoesNotExist() {
-		static::assertFileDoesNotExist( self::NOT_EXISTENT_FILE );
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
+		static::assertFileDoesNotExist( $path );
 	}
 
 	/**
