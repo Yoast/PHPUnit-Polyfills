@@ -109,4 +109,13 @@ trait TestCaseTestTrait {
 	public function testAvailabilityAssertionRenamesTrait() {
 		$this->assertMatchesRegularExpression( '/foo/', 'foobar' );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [9].
+	 *
+	 * @return void
+	 */
+	public function testAssertNan() {
+		self::assertNan( \acos( 8 ) );
+	}
 }

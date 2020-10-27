@@ -74,6 +74,15 @@ For the polyfills to work, a test class is **required** to be a (grand-)child of
 
 ### Polyfill traits
 
+#### PHPUnit < 5.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType`
+
+Polyfills the following methods:
+|                          |                            |                       |
+|--------------------------|----------------------------|-----------------------|
+| `Assert::assertFinite()` | `Assert::assertInfinite()` | `Assert::assertNan()` |
+
+These methods were introduced in PHPUnit 5.0.0.
+
 #### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
 
 Polyfills the `TestCase::expectExceptionObject()` method to test all aspects of an `Exception` by passing an object to the method.
