@@ -12,7 +12,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Features](#features)
-    - [Polyfills](#polyfills)
+    - [Polyfill traits](#polyfill-traits)
     - [TestCases](#testcases)
 * [Using this library](#using-this-library)
 * [Contributing](#contributing)
@@ -70,7 +70,7 @@ The polyfills in this library support the first two ways of calling the assertio
 
 For the polyfills to work, a test class is **required** to be a (grand-)child of the PHPUnit native `TestCase` class.
 
-### Polyfills
+### Polyfill traits
 
 #### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
 
@@ -308,7 +308,7 @@ class FooTest extends TestCase
     public function testSomething()
     {
         $this->assertIsBool( $maybeBool );
-        self::assertIsNotIterable( $maybeIterable );
+        self::assertMatchesRegularExpression( $pattern, $string, $message );
     }
 }
 ```
