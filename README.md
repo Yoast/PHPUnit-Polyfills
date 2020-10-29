@@ -296,6 +296,22 @@ Alternatively, you can use one of the [`TestCase` classes](#testcases) provided 
 
 In that case, all polyfills will be available whenever needed.
 
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
+class FooTest extends TestCase
+{
+    public function testSomething()
+    {
+        $this->assertIsBool( $maybeBool );
+        self::assertIsNotIterable( $maybeIterable );
+    }
+}
+```
 
 Contributing
 -------
