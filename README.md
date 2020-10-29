@@ -180,8 +180,8 @@ When using this `TestCase`, if an individual test, or another `TestCase` which e
 
 The snake_case methods will automatically be called by PHPUnit.
 
-IMPORTANT: The snake_case methods should **not** call the PHPUnit parent, i.e. do **not** use `parent::setUp()` from within an overloaded `set_up()` method.
-If necessary, _DO_ call `parent::set_up()`.
+> **IMPORTANT:** The snake_case methods should **not** call the PHPUnit parent, i.e. do **not** use `parent::setUp()` from within an overloaded `set_up()` method.
+> If necessary, _DO_ call `parent::set_up()`.
 
 ```php
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
@@ -261,6 +261,7 @@ class MyTest extends XTestCase {
     }
 }
 ```
+
 
 Using this library
 -------
