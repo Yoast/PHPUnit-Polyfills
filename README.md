@@ -1,8 +1,8 @@
 PHPUnit Polyfills
 =====================================================
 
-[![Latest Stable Version](https://poser.pugx.org/yoast/phpunit-polyfills/v/stable)](https://packagist.org/packages/yoast/phpunit-polyfills)
-[![Travis Build Status](https://travis-ci.com/Yoast/PHPUnit-Polyfills.svg?branch=master)](https://travis-ci.com/Yoast/PHPUnit-Polyfills/branches)
+[![Version](https://poser.pugx.org/yoast/phpunit-polyfills/version)](//packagist.org/packages/yoast/phpunit-polyfills)
+[![Travis Build Status](https://travis-ci.com/Yoast/PHPUnit-Polyfills.svg?branch=main)](https://travis-ci.com/Yoast/PHPUnit-Polyfills/branches)
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/yoast/phpunit-polyfills.svg?maxAge=3600)](https://packagist.org/packages/yoast/phpunit-polyfills)
 [![License: BSD3](https://poser.pugx.org/yoast/phpunit-polyfills/license)](https://github.com/Yoast/PHPUnit-Polyfills/blob/master/LICENSE)
 
