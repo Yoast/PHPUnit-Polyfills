@@ -15,13 +15,11 @@ cache:
     - .cache
 
 php:
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4
-  - "nightly"
+  - "7.0"
+  - "7.1"
+  - "7.2"
+  - "7.3"
+  - "7.4"
 
 # Define the stages used.
 stages:
@@ -33,7 +31,7 @@ jobs:
   include:
     #### SNIFF STAGE ####
     - stage: sniff
-      php: 7.4
+      php: "7.4"
       script:
         # Validate the composer.json file.
         # @link https://getcomposer.org/doc/03-cli.md#validate
@@ -41,6 +39,23 @@ jobs:
 
         # Check the code style of the code base.
         - composer check-cs
+
+    #### TEST STAGE ####
+    - stage: test
+      php: "5.6"
+      script:
+        # Lint PHP files against parse errors.
+        - composer lint-lt71
+
+        # Run the unit tests.
+        - composer test
+
+    - stage: test
+      php: "nightly"
+      install:
+        # Set up environment using Composer.
+        # Not all PHPUnit dependencies have stable releases yet allowing for PHP 8.0.
+        - travis_retry composer install --no-interaction --ignore-platform-reqs
 
   allow_failures:
     # Allow failures for unstable builds.
@@ -54,25 +69,12 @@ before_install:
 
 install:
   # Set up environment using Composer.
-  - |
-    if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
-      # Not all PHPUnit dependencies have stable releases yet allowing for PHP 8.0.
-      travis_retry composer install --no-interaction --ignore-platform-reqs
-    else
-      # Do a normal dev install in all other cases.
-      travis_retry composer install --no-interaction
-    fi
+  - travis_retry composer update --no-interaction
 
 
 script:
   # Lint PHP files against parse errors.
-  - |
-    if [[ ${TRAVIS_PHP_VERSION:0:1} != "5" ]]; then
-      composer lint
-    else
-      # Special case for PHP < 7.0.
-      composer lint-lt71
-    fi
+  - composer lint
 
   # Run the unit tests.
   - composer test
