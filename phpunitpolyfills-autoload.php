@@ -63,9 +63,21 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadTestCase();
 					return true;
 
-				case 'Yoast\PHPUnitPolyfills\TestCases\XTestCase':
-					require_once __DIR__ . '/src/TestCases/XTestCase.php';
-					return true;
+				/*
+				 * Handles:
+				 * - Yoast\PHPUnitPolyfills\TestCases\XTestCase
+				 */
+				default:
+					$file = \realpath(
+						__DIR__ . \DIRECTORY_SEPARATOR
+						. 'src' . \DIRECTORY_SEPARATOR
+						. \strtr( \substr( $class, 23 ), '\\', \DIRECTORY_SEPARATOR ) . '.php'
+					);
+
+					if ( \file_exists( $file ) === true ) {
+						require_once $file;
+						return true;
+					}
 			}
 
 			return false;
