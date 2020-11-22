@@ -16,7 +16,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  * Basic test case for use with PHPUnit <= 7.
  *
  * This test case uses renamed (snakecase) methods for the `setUpBeforeClass()`, `setUp()`,
- * `tearDown()` and `tearDownAfterClass()` methods to get round the signature change in PHPUnit 8.
+ * `assertPreConditions()`, `assertPostConditions()`, `tearDown()` and `tearDownAfterClass()`
+ * methods to get round the signature change in PHPUnit 8.
  *
  * When using this TestCase, the snakecase method names need to be used to overload a fixture method.
  */
@@ -44,6 +45,8 @@ abstract class TestCase extends PHPUnit_TestCase {
 	}
 
 	/**
+	 * Sets up the fixture, for example, open a network connection.
+	 *
 	 * This method is called before each test.
 	 *
 	 * @return void
@@ -54,6 +57,32 @@ abstract class TestCase extends PHPUnit_TestCase {
 	}
 
 	/**
+	 * Performs assertions shared by all tests of a test case.
+	 *
+	 * This method is called before the execution of a test starts and after setUp() is called.
+	 *
+	 * @return void
+	 */
+	protected function assertPreConditions() {
+		parent::assertPreConditions();
+		$this->assert_pre_conditions();
+	}
+
+	/**
+	 * Performs assertions shared by all tests of a test case.
+	 *
+	 * This method is called before the execution of a test ends and before tearDown() is called.
+	 *
+	 * @return void
+	 */
+	protected function assertPostConditions() {
+		parent::assertPostConditions();
+		$this->assert_post_conditions();
+	}
+
+	/**
+	 * Tears down the fixture, for example, close a network connection.
+	 *
 	 * This method is called after each test.
 	 *
 	 * @return void
@@ -83,6 +112,8 @@ abstract class TestCase extends PHPUnit_TestCase {
 	public static function set_up_before_class() {}
 
 	/**
+	 * Sets up the fixture, for example, open a network connection.
+	 *
 	 * This method is called before each test.
 	 *
 	 * @return void
@@ -90,6 +121,26 @@ abstract class TestCase extends PHPUnit_TestCase {
 	protected function set_up() {}
 
 	/**
+	 * Performs assertions shared by all tests of a test case.
+	 *
+	 * This method is called before the execution of a test starts and after set_up() is called.
+	 *
+	 * @return void
+	 */
+	protected function assert_pre_conditions() {}
+
+	/**
+	 * Performs assertions shared by all tests of a test case.
+	 *
+	 * This method is called before the execution of a test ends and before tear_down() is called.
+	 *
+	 * @return void
+	 */
+	protected function assert_post_conditions() {}
+
+	/**
+	 * Tears down the fixture, for example, close a network connection.
+	 *
 	 * This method is called after each test.
 	 *
 	 * @return void

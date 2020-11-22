@@ -176,7 +176,7 @@ This library contains two basic `TestCase` options to overcome this issue.
 
 This `TestCase` overcomes the signature mismatch by having two versions. The correct one will be loaded depending on the PHPUnit version being used.
 
-When using this `TestCase`, if an individual test, or another `TestCase` which extends this `TestCase`, needs to overload any of the "fixture" methods, it should do so by using a snake_case variant of the original fixture method name, i.e. `set_up_before_class()`, `set_up()`, `tear_down()` and `tear_down_after_class()`.
+When using this `TestCase`, if an individual test, or another `TestCase` which extends this `TestCase`, needs to overload any of the "fixture" methods, it should do so by using a snake_case variant of the original fixture method name, i.e. `set_up_before_class()`, `set_up()`, `assert_pre_conditions()`, `assert_post_conditions()`, `tear_down()` and `tear_down_after_class()`.
 
 The snake_case methods will automatically be called by PHPUnit.
 
@@ -197,6 +197,18 @@ class MyTest extends TestCase {
         parent::set_up();
 
         // Set up function mocks which need to be available for all tests in this class.
+    }
+
+    protected function assert_pre_conditions() {
+        parent::assert_pre_conditions();
+
+        // Perform assertions shared by all tests of a test case (before the test).
+    }
+
+    protected function assert_post_conditions() {
+        // Performs assertions shared by all tests of a test case (after the test).
+
+        parent::assert_post_conditions();
     }
 
     protected function tear_down() {
