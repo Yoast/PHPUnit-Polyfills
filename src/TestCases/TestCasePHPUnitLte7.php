@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\TestCases;
 
 use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
+use Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
@@ -23,6 +24,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 abstract class TestCase extends PHPUnit_TestCase {
 
+	use AssertAttributeHelper;
 	use AssertEqualsSpecializations;
 	use AssertFileEqualsSpecializations;
 	use AssertionRenames;

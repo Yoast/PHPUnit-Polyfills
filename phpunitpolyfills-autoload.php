@@ -65,6 +65,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 				/*
 				 * Handles:
+				 * - Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper
 				 * - Yoast\PHPUnitPolyfills\TestCases\XTestCase
 				 */
 				default:

@@ -13,6 +13,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 * [Installation](#installation)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
+    - [Helper traits](#helper-traits)
     - [TestCases](#testcases)
 * [Using this library](#using-this-library)
 * [Contributing](#contributing)
@@ -165,6 +166,38 @@ These methods were introduced in PHPUnit 9.1.0.
 The original methods these new methods replace were hard deprecated in PHPUnit 9.1.0 and (will be) removed in PHPUnit 10.0.0.
 
 
+### Helper traits
+
+#### `Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`
+
+Helper to work around the removal of the `assertAttribute*()` methods.
+
+The `assertAttribute*()` methods were deprecated in PHPUnit 8.x and removed in PHPUnit 9.0.
+
+Public properties can still be tested by accessing them directly:
+```php
+$this->assertSame( 'value', $obj->propertyName );
+```
+
+Protected and private properties can no longer be tested using PHPUnit native functionality.
+The reasoning for the removal of these assertion methods is that _private and protected properties are an implementation detail and should not be tested directly, but via methods in the class_.
+
+It is strongly recommended to refactor your tests, and if needs be, your classes to adhere to this.
+
+However, if for some reason the value of `protected` or `private` properties still needs to be tested, this helper can be used to get access to their value and attributes.
+
+The trait contains two helper methods:
+* `public static getProperty( object $classInstance, string $propertyName ) : ReflectionProperty`
+* `public static getPropertyValue( object $classInstance, string $propertyName ) : mixed`
+
+```php
+// Test the value of a protected or private property.
+$this->assertSame( 'value', $this->getPropertyValue( $objInstance, $propertyName ) );
+
+// Retrieve a ReflectionProperty object to test other details of the property.
+self::assertSame( $propertyName, self::getProperty( $objInstance, $propertyName )->getName() );
+```
+
 ### TestCases
 
 PHPUnit 8.0.0 introduced a `void` return type declaration to the "fixture" methods - `setUpBeforeClass()`, `setUp()`, `tearDown()` and `tearDownAfterClass()`.
@@ -278,7 +311,7 @@ class MyTest extends XTestCase {
 Using this library
 -------
 
-Each of the polyfills has been setup as a trait and can be imported and `use`d in any test file which extends the PHPUnit native `TestCase` class.
+Each of the polyfills and helpers has been setup as a trait and can be imported and `use`d in any test file which extends the PHPUnit native `TestCase` class.
 
 If the polyfill is not needed for the particular PHPUnit version on which the tests are being run, the autoloader
 will automatically load an empty trait with that same name, so you can safely use these traits in tests which
@@ -306,7 +339,7 @@ class FooTest extends TestCase
 
 Alternatively, you can use one of the [`TestCase` classes](#testcases) provided by this library instead of using the PHPUnit native `TestCase` class.
 
-In that case, all polyfills will be available whenever needed.
+In that case, all polyfills and helpers will be available whenever needed.
 
 ```php
 <?php
