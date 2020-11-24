@@ -83,6 +83,17 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 5.0.0.
 
+#### PHPUnit < 5.2.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectException`
+
+Polyfills the following methods:
+|                                   |                                            |
+|-----------------------------------|--------------------------------------------|
+| `TestCase::expectException()`     | `TestCase::expectExceptionMessage()`       |
+| `TestCase::expectExceptionCode()` | `TestCase::expectExceptionMessageRegExp()` |
+
+These methods were introduced in PHPUnit 5.2.0 as alternatives to the `Testcase::setExpectedException()` method which was deprecated in PHPUnit 5.2.0 and the `Testcase::setExpectedExceptionRegExp()` method which was deprecated in 5.6.0.
+Both these methods were removed in PHPUnit 6.0.0.
+
 #### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
 
 Polyfills the `TestCase::expectExceptionObject()` method to test all aspects of an `Exception` by passing an object to the method.
@@ -425,6 +436,46 @@ class FooTest extends TestCase
     }
 }
 ```
+
+### Use with PHPUnit < 5.7.0
+
+If your library still needs to support PHP 5.5 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
+
+To prevent "conflicting method names" errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
+
+You will need to make sure to `use` any additional traits needed for the polyfills to work.
+
+| PHPUnit   | When `use`-ing this trait       | You also need to `use` this trait |
+|-----------|---------------------------------|-----------------------------------|
+| 4.8 < 5.2 | `ExpectExceptionObject`         | `ExpectException`                 |
+| 4.8 < 5.2 | `ExpectPHPException`            | `ExpectException`                 |
+| 4.8 < 5.2 | `ExpectExceptionMessageMatches` | `ExpectException`                 |
+
+
+_**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
+
+Code example testing for a PHP native warning in a test which needs to be able to run on PHPUnit 4.8:
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+
+class FooTest extends TestCase
+{
+    use ExpectException;
+    use ExpectPHPException;
+
+    public function testSomething()
+    {
+        $this->expectWarningMessage( 'A non-numeric value encountered' );
+    }
+}
+```
+
 
 Contributing
 -------

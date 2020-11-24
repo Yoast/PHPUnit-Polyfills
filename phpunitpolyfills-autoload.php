@@ -31,6 +31,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertNumericType();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectException':
+					self::loadExpectException();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject':
 					self::loadExpectExceptionObject();
 					return true;
@@ -108,6 +112,39 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 5.0.0.
 			require_once __DIR__ . '/src/Polyfills/AssertNumericType_Empty.php';
+		}
+
+		/**
+		 * Load the ExpectException polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadExpectException() {
+			/*
+			 * Alias the PHPUnit 4/5 Exception class used to its PHPUnit >= 6 name.
+			 *
+			 * This allow for catching the potential exceptions thrown by the methods
+			 * polyfilled in a cross-version compatible way.
+			 *
+			 * {@internal The `class_exists` wrappers are needed to play nice with
+			 * PHPUnit bootstrap files of test suites implementing this library
+			 * which may be creating cross-version compatibility in a similar manner.}}
+			 */
+			if ( \class_exists( 'PHPUnit_Framework_Exception' ) === true
+				&& \class_exists( 'PHPUnit\Framework\Exception' ) === false
+			) {
+				\class_alias( 'PHPUnit_Framework_Exception', 'PHPUnit\Framework\Exception' );
+			}
+
+			if ( \method_exists( TestCase::class, 'expectException' ) === false ) {
+				// PHPUnit < 5.2.0.
+				require_once __DIR__ . '/src/Polyfills/ExpectException.php';
+				return;
+			}
+
+			// PHPUnit >= 5.2.0.
+			require_once __DIR__ . '/src/Polyfills/ExpectException_Empty.php';
 		}
 
 		/**

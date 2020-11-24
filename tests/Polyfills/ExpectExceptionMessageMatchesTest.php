@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
 /**
@@ -13,6 +14,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  */
 class ExpectExceptionMessageMatchesTest extends TestCase {
 
+	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionMessageMatches;
 
 	/**
@@ -23,7 +25,7 @@ class ExpectExceptionMessageMatchesTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionMessageMatches() {
-		$this->expectException( Exception::class );
+		$this->expectException( Exception::class ); // Needed for PHPUnit 4.x/5.x.
 		$this->expectExceptionMessageMatches( '`^a poly[a-z]+ [a-zA-Z0-9_]+ me(s){2}age$`i' );
 
 		throw new Exception( 'A polymorphic exception message' );
