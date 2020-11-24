@@ -83,8 +83,20 @@
 	-->
 
 	<!-- The TestCase for PHPUnit 8+ will only ever be loaded on PHP 7.2+. -->
+	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.voidFound">
 		<exclude-pattern>/src/TestCases/TestCasePHPUnitGte8\.php$</exclude-pattern>
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
+	</rule>
+
+	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
+	<rule ref="PHPCompatibility.Interfaces.NewInterfaces.throwableFound">
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
+	</rule>
+
+	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.floatFound">
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
 	</rule>
 
 	<!-- Make some allowances for test files. -->

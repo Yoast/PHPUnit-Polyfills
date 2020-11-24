@@ -50,7 +50,7 @@
             "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --exclude vendor --exclude .git"
         ],
         "lint-lt71": [
-            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php"
+            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php"
         ],
         "check-cs": [
             "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs"

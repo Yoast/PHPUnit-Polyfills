@@ -15,6 +15,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
     - [Polyfill traits](#polyfill-traits)
     - [Helper traits](#helper-traits)
     - [TestCases](#testcases)
+    - [TestListener](#testlistener)
 * [Using this library](#using-this-library)
 * [Contributing](#contributing)
 * [License](#license)
@@ -303,6 +304,64 @@ class MyTest extends XTestCase {
         // Close database connection and other clean up related to `setUpFixturesBeforeClass()`.
 
         parent::tearDownFixturesAfterClass();
+    }
+}
+```
+
+### TestListener
+
+The method signatures in the PHPUnit `TestListener` interface have changed a number of times across versions.
+Additionally, the use of the TestListener principle has been deprecated in PHPUnit 7 in favour of using the [TestRunner hook interfaces](https://phpunit.readthedocs.io/en/9.3/extending-phpunit.html#extending-the-testrunner).
+Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.
+
+If your test suite does not need to support PHPUnit < 7, it is strongly recommended to use the TestRunner hook interfaces extensions instead.
+
+However, for test suites that still need to support PHPUnit 6 or lower, implementing the `TestListener` interface is the only viable option.
+
+#### `Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation`
+
+This `TestListenerDefaultImplementation` trait overcomes the signature mismatches by having multiple versions and loading the correct one depending on the PHPUnit version being used.
+
+Similar to the `TestCase` implementation, snake_case methods without type declarations are used to get round the signature mismatches. The snake_case methods will automatically be called.
+
+| PHPUnit native method name | Replacement                             | Notes                                     |
+|----------------------------|-----------------------------------------|-------------------------------------------|
+| `addError()`               | `add_error($test, $e, $time)`           |                                           |
+| `addWarning()`             | `add_warning($test, $e, $time)`         | Introduced in PHPUnit 6.                  |
+| `addFailure()`             | `add_failure($test, $e, $time)`         |                                           |
+| `addIncompleteTest()`      | `add_incomplete_test($test, $e, $time)` |                                           |
+| `addRiskyTest()`           | `add_risky_test($test, $e, $time)`      | Support appears to be flaky on PHPUnit 5. |
+| `addSkippedTest()`         | `add_skipped_test($test, $e, $time)`    |                                           |
+| `startTestSuite()`         | `start_test_suite($suite)`              |                                           |
+| `endTestSuite()`           | `end_test_suite($suite)`                |                                           |
+| `startTest()`              | `start_test($test)`                     |                                           |
+| `endTest()`                | `end_test($test, $time)`                |                                           |
+
+Implementations of the `TestListener` interface may be using any of the following patterns:
+```php
+// PHPUnit < 6.
+class MyTestListener extends \PHPUnit_Framework_BaseTestListener {}
+
+// PHPUnit 6.
+class MyTestListener extends \PHPUnit\Framework\BaseTestListener {}
+
+// PHPUnit 7+.
+class MyTestListener implements \PHPUnit\Framework\TestListener {
+    use \PHPUnit\Framework\TestListenerDefaultImplementation;
+}
+```
+
+Replace these with:
+```php
+use PHPUnit\Framework\TestListener;
+use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
+
+class MyTestListener implements TestListener {
+    use TestListenerDefaultImplementation;
+
+    // Implement any of the snakecase methods, for example:
+    public function add_error( $test, $e, $time ) {
+        // Do something when PHPUnit encounters an error.
     }
 }
 ```
