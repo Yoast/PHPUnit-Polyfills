@@ -101,6 +101,7 @@
 
 	<!-- The @throws tags in the docblocks are correct, but the sniff can't analyse this correctly. -->
 	<rule ref="Squiz.Commenting.FunctionCommentThrowTag.Missing">
+		<exclude-pattern>/src/Polyfills/AssertFileDirectory\.php$</exclude-pattern>
 		<exclude-pattern>/src/Polyfills/ExpectException\.php$</exclude-pattern>
 	</rule>
 

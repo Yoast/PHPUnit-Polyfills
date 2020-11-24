@@ -94,6 +94,21 @@ Polyfills the following methods:
 These methods were introduced in PHPUnit 5.2.0 as alternatives to the `Testcase::setExpectedException()` method which was deprecated in PHPUnit 5.2.0 and the `Testcase::setExpectedExceptionRegExp()` method which was deprecated in 5.6.0.
 Both these methods were removed in PHPUnit 6.0.0.
 
+#### PHPUnit < 5.6.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory`
+
+Polyfills the following methods:
+|                                       |                                          |
+|---------------------------------------|------------------------------------------|
+| `Assert::assertIsReadable()`          | `Assert::assertNotIsReadable()`          |
+| `Assert::assertIsWritable()`          | `Assert::assertNotIsWritable()`          |
+| `Assert::assertDirectoryExists()`     | `Assert::assertDirectoryNotExists()`     |
+| `Assert::assertDirectoryIsReadable()` | `Assert::assertDirectoryNotIsReadable()` |
+| `Assert::assertDirectoryIsWritable()` | `Assert::assertDirectoryNotIsWritable()` |
+| `Assert::assertFileIsReadable()`      | `Assert::assertFileNotIsReadable()`      |
+| `Assert::assertFileIsWritable()`      | `Assert::assertFileNotIsWritable()`      |
+
+These methods were introduced in PHPUnit 5.6.0.
+
 #### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
 
 Polyfills the `TestCase::expectExceptionObject()` method to test all aspects of an `Exception` by passing an object to the method.
@@ -450,7 +465,7 @@ You will need to make sure to `use` any additional traits needed for the polyfil
 | 4.8 < 5.2 | `ExpectExceptionObject`         | `ExpectException`                 |
 | 4.8 < 5.2 | `ExpectPHPException`            | `ExpectException`                 |
 | 4.8 < 5.2 | `ExpectExceptionMessageMatches` | `ExpectException`                 |
-
+| 4.8 < 5.6 | `AssertionRenames`              | `AssertFileDirectory`             |
 
 _**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
 

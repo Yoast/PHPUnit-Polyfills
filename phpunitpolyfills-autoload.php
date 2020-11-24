@@ -35,6 +35,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadExpectException();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory':
+					self::loadAssertFileDirectory();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject':
 					self::loadExpectExceptionObject();
 					return true;
@@ -145,6 +149,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 5.2.0.
 			require_once __DIR__ . '/src/Polyfills/ExpectException_Empty.php';
+		}
+
+		/**
+		 * Load the AssertFileDirectory polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertFileDirectory() {
+			if ( \method_exists( Assert::class, 'assertIsReadable' ) === false ) {
+				// PHPUnit < 5.6.0.
+				require_once __DIR__ . '/src/Polyfills/AssertFileDirectory.php';
+				return;
+			}
+
+			// PHPUnit >= 5.6.0.
+			require_once __DIR__ . '/src/Polyfills/AssertFileDirectory_Empty.php';
 		}
 
 		/**
