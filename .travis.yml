@@ -42,6 +42,10 @@ jobs:
         # Check the code style of the code base.
         - composer check-cs
 
+    - stage: test
+      php: 5.5
+      dist: trusty
+
   allow_failures:
     # Allow failures for unstable builds.
     - php: "nightly"

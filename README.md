@@ -24,8 +24,8 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 Requirements
 -------------------------------------------
 
-* PHP 5.6 or higher.
-* PHPUnit 5.7 - 9.x (automatically required via Composer).
+* PHP 5.5 or higher.
+* PHPUnit 4.8 - 9.x (automatically required via Composer).
 
 
 Installation
@@ -53,7 +53,7 @@ This library is set up to allow for creating PHPUnit cross-version compatible te
 
 This library offers a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
-### Write your tests for PHPUnit 9.x and run them on PHPUnit 5.7 - 9.x
+### Write your tests for PHPUnit 9.x and run them on PHPUnit 4.8 - 9.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 

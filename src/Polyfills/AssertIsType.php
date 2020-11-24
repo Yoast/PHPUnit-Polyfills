@@ -142,7 +142,7 @@ trait AssertIsType {
 	 *
 	 * {@internal Support for `iterable` was only added to the `Assert::assertInternalType()` method
 	 * in PHPUnit 7.1.0, so this polyfill can't use that functionality until the minimum supported
-	 * PHPUnit version of this library would be PHPUnit 7.1.0. (Currently 5.7.0).
+	 * PHPUnit version of this library would be PHPUnit 7.1.0.}
 	 *
 	 * @link https://github.com/sebastianbergmann/phpunit/pull/3035 PR which added support for `is_iterable`
 	 *                                                              to `Assert::assertInternalType()`.
@@ -289,7 +289,7 @@ trait AssertIsType {
 	 *
 	 * {@internal Support for `iterable` was only added to the `Assert::assertNotInternalType()` method
 	 * in PHPUnit 7.1.0, so this polyfill can't use that functionality until the minimum supported
-	 * PHPUnit version of this library would be PHPUnit 7.1.0. (Currently 5.7.0).
+	 * PHPUnit version of this library would be PHPUnit 7.1.0.}
 	 *
 	 * @link https://github.com/sebastianbergmann/phpunit/pull/3035 PR which added support for `is_iterable`
 	 *                                                              to `Assert::assertNotInternalType()`.
