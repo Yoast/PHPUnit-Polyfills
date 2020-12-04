@@ -21,6 +21,7 @@ php:
   - 7.2
   - 7.3
   - 7.4
+  - 8.0
   - "nightly"
 
 # Define the stages used.
@@ -58,14 +59,7 @@ before_install:
 
 install:
   # Set up environment using Composer.
-  - |
-    if [[ $TRAVIS_PHP_VERSION == "nightly" ]]; then
-      # Not all PHPUnit dependencies have stable releases yet allowing for PHP 8.0.
-      travis_retry composer install --no-interaction --ignore-platform-reqs
-    else
-      # Do a normal dev install in all other cases.
-      travis_retry composer install --no-interaction
-    fi
+  - travis_retry composer install --no-interaction
 
 
 script:
