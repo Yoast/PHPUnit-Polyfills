@@ -299,7 +299,7 @@ class MyTest extends TestCase {
 This `TestCase` overcomes the signature mismatch by using the PHPUnit `@before[Class]` and `@after[Class]` annotations in combination with different methods names, i.e. `setUpFixturesBeforeClass()`, `setUpFixtures()`, `tearDownFixtures()` and `tearDownFixturesAfterClass()`.
 
 When using this TestCase, overloaded fixture methods need to use the `@beforeClass`, `@before`, `@after` and `@afterClass` annotations.
-The naming of the overloaded methods is open as long as the method names don't conflict with the PHPUnit native method names.
+The naming of the overloaded methods is open as long as the method names don't conflict with the PHPUnit native method names. However, if you do use the method names `setUpFixturesBeforeClass()`, `setUpFixtures()`, `tearDownFixtures()` and `tearDownFixturesAfterClass()` then visibility must be `public` to match the parent method signatures in `XTestCase`.
 
 ```php
 use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
@@ -317,7 +317,7 @@ class MyTest extends XTestCase {
     /**
      * @before
      */
-    protected function setUpFixtures() {
+    protected function mySetUpFixtures() {
         parent::setUpFixtures();
 
         // Set up function mocks which need to be available for all tests in this class.
@@ -326,7 +326,7 @@ class MyTest extends XTestCase {
     /**
      * @after
      */
-    protected function tearDownFixtures() {
+    protected function myTearDownFixtures() {
         // Any clean up needed related to `setUpFixtures()`.
 
         parent::tearDownFixtures();
