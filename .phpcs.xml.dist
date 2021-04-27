@@ -33,9 +33,6 @@
 	#############################################################################
 	-->
 
-	<!-- Support PHP 5.6 or higher. -->
-	<config name="testVersion" value="5.6-"/>
-
 	<rule ref="Yoast">
 		<!-- Duplicate classes is by design and part of the cross-version compatibility mechanism. -->
 		<exclude name="Generic.Classes.DuplicateClassName"/>
