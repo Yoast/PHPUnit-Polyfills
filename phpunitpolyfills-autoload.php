@@ -16,17 +16,17 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		/**
 		 * Loads a class.
 		 *
-		 * @param string $class The name of the class to load.
+		 * @param string $className The name of the class to load.
 		 *
 		 * @return bool
 		 */
-		public static function load( $class ) {
+		public static function load( $className ) {
 			// Only load classes belonging to this library.
-			if ( \stripos( $class, 'Yoast\PHPUnitPolyfills' ) !== 0 ) {
+			if ( \stripos( $className, 'Yoast\PHPUnitPolyfills' ) !== 0 ) {
 				return false;
 			}
 
-			switch ( $class ) {
+			switch ( $className ) {
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType':
 					self::loadAssertNumericType();
 					return true;
@@ -89,7 +89,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					$file = \realpath(
 						__DIR__ . \DIRECTORY_SEPARATOR
 						. 'src' . \DIRECTORY_SEPARATOR
-						. \strtr( \substr( $class, 23 ), '\\', \DIRECTORY_SEPARATOR ) . '.php'
+						. \strtr( \substr( $className, 23 ), '\\', \DIRECTORY_SEPARATOR ) . '.php'
 					);
 
 					if ( \file_exists( $file ) === true ) {
