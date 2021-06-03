@@ -1,0 +1,60 @@
+name: Test
+
+on:
+  # Run on all pushes and on all pull requests.
+  push:
+  pull_request:
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+jobs:
+  #### TEST STAGE ####
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+        experimental: [false]
+
+        include:
+          - php: '8.1'
+            experimental: true
+
+    name: "Tests: PHP ${{ matrix.php }}"
+
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies for PHP < 8.1
+        if: ${{ matrix.php < 8.1 }}
+        uses: "ramsey/composer-install@v1"
+
+      # For PHP 8.1 and above, we need to install with ignore platform reqs as not all dependencies allow it yet.
+      - name: Install Composer dependencies for PHP >= 8.1
+        if: ${{ matrix.php >= 8.1 }}
+        uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: --ignore-platform-reqs
+
+      - name: "Lint PHP files against parse errors - PHP < 7.0"
+        if: ${{ matrix.php < 7.0 }}
+        run: composer lint-lt71
+
+      - name: "Lint PHP files against parse errors - PHP >= 7.0"
+        if: ${{ matrix.php >= 7.0 }}
+        run: composer lint
+
+      - name: Run the unit tests
+        run: composer test
