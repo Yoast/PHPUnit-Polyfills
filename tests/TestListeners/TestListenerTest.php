@@ -42,7 +42,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	protected function set_up() {
-		if ( \class_exists( TestResult::class ) ) {
+		if ( \class_exists( '\PHPUnit\Framework\TestResult' ) ) {
 			// PHPUnit 6.0.0+.
 			$this->result = new TestResult();
 		}

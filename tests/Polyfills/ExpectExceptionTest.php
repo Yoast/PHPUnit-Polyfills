@@ -31,7 +31,7 @@ class ExpectExceptionTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectException() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 
 		throw new Exception( 'message' );
 	}
@@ -44,7 +44,7 @@ class ExpectExceptionTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionCode() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 		$this->expectExceptionCode( 404 );
 
 		throw new Exception( '', 404 );
@@ -79,7 +79,7 @@ class ExpectExceptionTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionMessage() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 		$this->expectExceptionMessage( 'message' );
 
 		throw new Exception( 'message' );
@@ -95,7 +95,7 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionMessageException() {
 		$regex = '`^Argument #1 \([^)]+\) of [^:]+::expectExceptionMessage\(\) must be a string`';
-		if ( \class_exists( PHPUnit_Version::class ) === true
+		if ( \class_exists( '\PHPUnit\Runner\Version' ) === true
 			&& \version_compare( PHPUnit_Version::id(), '7.0.0', '>=' )
 		) {
 			$regex = '`^Argument 1 passed to [^:]+::expectExceptionMessage\(\) must be of the type string`';
@@ -121,7 +121,7 @@ class ExpectExceptionTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionMessageAndCode() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 		$this->expectExceptionMessage( 'message' );
 		$this->expectExceptionCode( 404 );
 
@@ -137,7 +137,7 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionMessageAndCodeFailOnCode() {
 		$test = new ThrowExceptionTestCase( 'test' );
-		$test->expectException( Exception::class );
+		$test->expectException( '\Exception' );
 		$test->expectExceptionMessage( 'A runtime error occurred' );
 		$test->expectExceptionCode( 404 );
 
@@ -160,7 +160,7 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionMessageAndCodeFailOnMsg() {
 		$test = new ThrowExceptionTestCase( 'test' );
-		$test->expectException( Exception::class );
+		$test->expectException( '\Exception' );
 		$test->expectExceptionMessage( 'message' );
 		$test->expectExceptionCode( 999 );
 
@@ -188,7 +188,7 @@ class ExpectExceptionTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionMessageRegExp() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 		$this->expectExceptionMessageRegExp( '/^foo/' );
 
 		throw new Exception( 'foobar' );
@@ -248,7 +248,7 @@ class ExpectExceptionTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionMessageRegExpAndCode() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 		$this->expectExceptionMessageRegExp( '/^foo/' );
 		$this->expectExceptionCode( 404 );
 
@@ -270,7 +270,7 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionMessageRegExpAndCodeFailOnCode() {
 		$test = new ThrowExceptionTestCase( 'test' );
-		$test->expectException( Exception::class );
+		$test->expectException( '\Exception' );
 		$test->expectExceptionMessageRegExp( '/^A runtime/' );
 		$test->expectExceptionCode( 404 );
 
@@ -299,7 +299,7 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionMessageRegExpAndCodeFailOnMsg() {
 		$test = new ThrowExceptionTestCase( 'test' );
-		$test->expectException( Exception::class );
+		$test->expectException( '\Exception' );
 		$test->expectExceptionMessageRegExp( '/^foo/' );
 		$test->expectExceptionCode( 999 );
 

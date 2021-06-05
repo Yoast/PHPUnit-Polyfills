@@ -26,7 +26,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 Requirements
 -------------------------------------------
 
-* PHP 5.5 or higher.
+* PHP 5.4 or higher.
 * PHPUnit 4.8 - 9.x (automatically required via Composer).
 
 
@@ -456,7 +456,7 @@ class FooTest extends TestCase
 
 ### Use with PHPUnit < 5.7.0
 
-If your library still needs to support PHP 5.5 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
+If your library still needs to support PHP < 5.6 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
 
 To prevent "conflicting method names" errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
 
