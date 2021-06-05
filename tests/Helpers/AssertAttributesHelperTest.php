@@ -2,7 +2,6 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Helpers;
 
-use ReflectionException;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures\ClassWithProperties;
 
@@ -66,7 +65,7 @@ class AssertAttributesHelperTest extends TestCase {
 	 * @return void
 	 */
 	public function testOriginalStateDynamicProperty() {
-		$this->expectException( ReflectionException::class );
+		$this->expectException( '\ReflectionException' );
 
 		$this->getPropertyValue( $this->instance, 'dynamic' );
 	}
@@ -113,7 +112,10 @@ class AssertAttributesHelperTest extends TestCase {
 	public function testPropertyValueOnceSetDynamicProperty() {
 		$this->instance->setProperties();
 
-		$this->assertInstanceOf( ClassWithProperties::class, $this->getPropertyValue( $this->instance, 'dynamic' ) );
+		$this->assertInstanceOf(
+			'\Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures\ClassWithProperties',
+			$this->getPropertyValue( $this->instance, 'dynamic' )
+		);
 		$this->assertFalse( $this->getProperty( $this->instance, 'dynamic' )->isDefault() );
 	}
 }

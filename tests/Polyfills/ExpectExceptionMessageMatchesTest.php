@@ -25,7 +25,7 @@ class ExpectExceptionMessageMatchesTest extends TestCase {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testExpectExceptionMessageMatches() {
-		$this->expectException( Exception::class ); // Needed for PHPUnit 4.x/5.x.
+		$this->expectException( '\Exception' ); // Needed for PHPUnit 4.x/5.x.
 		$this->expectExceptionMessageMatches( '`^a poly[a-z]+ [a-zA-Z0-9_]+ me(s){2}age$`i' );
 
 		throw new Exception( 'A polymorphic exception message' );

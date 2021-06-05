@@ -2,8 +2,6 @@
 
 namespace Yoast\PHPUnitPolyfills;
 
-use PHPUnit\Framework\Assert;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 
 if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
@@ -108,7 +106,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertNumericType() {
-			if ( \method_exists( Assert::class, 'assertNan' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertNan' ) === false ) {
 				// PHPUnit < 5.0.0.
 				require_once __DIR__ . '/src/Polyfills/AssertNumericType.php';
 				return;
@@ -141,7 +139,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				\class_alias( 'PHPUnit_Framework_Exception', 'PHPUnit\Framework\Exception' );
 			}
 
-			if ( \method_exists( TestCase::class, 'expectException' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectException' ) === false ) {
 				// PHPUnit < 5.2.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectException.php';
 				return;
@@ -158,7 +156,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertFileDirectory() {
-			if ( \method_exists( Assert::class, 'assertIsReadable' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertIsReadable' ) === false ) {
 				// PHPUnit < 5.6.0.
 				require_once __DIR__ . '/src/Polyfills/AssertFileDirectory.php';
 				return;
@@ -175,7 +173,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadExpectExceptionObject() {
-			if ( \method_exists( TestCase::class, 'expectExceptionObject' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectExceptionObject' ) === false ) {
 				// PHPUnit < 6.4.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectExceptionObject.php';
 				return;
@@ -192,7 +190,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertIsType() {
-			if ( \method_exists( Assert::class, 'assertIsArray' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertIsArray' ) === false ) {
 				// PHPUnit < 7.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertIsType.php';
 				return;
@@ -209,7 +207,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertStringContains() {
-			if ( \method_exists( Assert::class, 'assertStringContainsString' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertStringContainsString' ) === false ) {
 				// PHPUnit < 7.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertStringContains.php';
 				return;
@@ -226,7 +224,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertEqualsSpecializations() {
-			if ( \method_exists( Assert::class, 'assertEqualsWithDelta' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertEqualsWithDelta' ) === false ) {
 				// PHPUnit < 7.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations.php';
 				return;
@@ -277,7 +275,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				\class_alias( 'PHPUnit_Framework_Error_Deprecated', 'PHPUnit\Framework\Error\Deprecated' );
 			}
 
-			if ( \method_exists( TestCase::class, 'expectErrorMessage' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectErrorMessage' ) === false ) {
 				// PHPUnit < 8.4.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectPHPException.php';
 				return;
@@ -294,7 +292,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadExpectExceptionMessageMatches() {
-			if ( \method_exists( TestCase::class, 'expectExceptionMessageMatches' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectExceptionMessageMatches' ) === false ) {
 				// PHPUnit < 8.4.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectExceptionMessageMatches.php';
 				return;
@@ -311,7 +309,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertFileEqualsSpecializations() {
-			if ( \method_exists( Assert::class, 'assertFileEqualsIgnoringCase' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertFileEqualsIgnoringCase' ) === false ) {
 				// PHPUnit < 8.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertFileEqualsSpecializations.php';
 				return;
@@ -328,7 +326,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertionRenames() {
-			if ( \method_exists( Assert::class, 'assertMatchesRegularExpression' ) === false ) {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertMatchesRegularExpression' ) === false ) {
 				// PHPUnit < 9.1.0.
 				require_once __DIR__ . '/src/Polyfills/AssertionRenames.php';
 				return;
@@ -344,7 +342,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestCase() {
-			if ( \class_exists( PHPUnit_Version::class ) === false
+			if ( \class_exists( '\PHPUnit\Runner\Version' ) === false
 				|| \version_compare( PHPUnit_Version::id(), '8.0.0', '<' )
 			) {
 				// PHPUnit < 8.0.0.
@@ -362,7 +360,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestListenerDefaultImplementation() {
-			if ( \class_exists( PHPUnit_Version::class ) === false ) {
+			if ( \class_exists( '\PHPUnit\Runner\Version' ) === false ) {
 				/*
 				 * Alias one particular PHPUnit 4/5 class to its PHPUnit >= 6 name.
 				 *
