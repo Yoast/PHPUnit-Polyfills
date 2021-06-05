@@ -49,4 +49,40 @@ class AssertStringContainsTest extends TestCase {
 	public function testAssertStringNotContainsStringIgnoringCase() {
 		$this->assertStringNotContainsStringIgnoringCase( 'Baz', 'foobar' );
 	}
+
+	/**
+	 * Verify availability of the assertStringContainsString() method with empty string.
+	 *
+	 * @return void
+	 */
+	public function testAssertStringContainsEmptyString() {
+		$this->assertStringContainsString( '', 'foobar' );
+	}
+
+	/**
+	 * Verify availability of the assertStringContainsStringIgnoringCase() method with empty string.
+	 *
+	 * @return void
+	 */
+	public function testAssertStringContainsEmptyStringIgnoringCase() {
+		self::assertStringContainsStringIgnoringCase( '', 'foobar' );
+	}
+
+	/**
+	 * Verify availability of the assertStringNotContainsString() method with empty string.
+	 *
+	 * @return void
+	 */
+	public function testAssertStringNotContainsEmptyString() {
+		self::assertStringNotContainsString( '', 'foobar' );
+	}
+
+	/**
+	 * Verify availability of the assertStringNotContainsStringIgnoringCase() method with empty string.
+	 *
+	 * @return void
+	 */
+	public function testAssertStringNotContainsEmptyStringIgnoringCase() {
+		$this->assertStringNotContainsStringIgnoringCase( '', 'foobar' );
+	}
 }

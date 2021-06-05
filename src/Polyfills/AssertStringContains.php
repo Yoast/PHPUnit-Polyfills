@@ -24,6 +24,12 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringContainsString( $needle, $haystack, $message = '' ) {
+		// Replicate fix added to PHPUnit 6.4.2.
+		if ( '' === $needle ) {
+			static::assertTrue( true, $message );
+			return;
+		}
+
 		static::assertContains( $needle, $haystack, $message );
 	}
 
@@ -37,6 +43,12 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringContainsStringIgnoringCase( $needle, $haystack, $message = '' ) {
+		// Replicate fix added to PHPUnit 6.4.2.
+		if ( '' === $needle ) {
+			static::assertTrue( true, $message );
+			return;
+		}
+
 		static::assertContains( $needle, $haystack, $message, true );
 	}
 
@@ -50,6 +62,12 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringNotContainsString( $needle, $haystack, $message = '' ) {
+		// Replicate fix added to PHPUnit 6.4.2.
+		if ( '' === $needle ) {
+			static::assertTrue( true, $message );
+			return;
+		}
+
 		static::assertNotContains( $needle, $haystack, $message );
 	}
 
@@ -63,6 +81,12 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringNotContainsStringIgnoringCase( $needle, $haystack, $message = '' ) {
+		// Replicate fix added to PHPUnit 6.4.2.
+		if ( '' === $needle ) {
+			static::assertTrue( true, $message );
+			return;
+		}
+
 		static::assertNotContains( $needle, $haystack, $message, true );
 	}
 }
