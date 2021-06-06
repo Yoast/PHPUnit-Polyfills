@@ -69,7 +69,7 @@ class ExpectExceptionTest extends TestCase {
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertMatchesRegularExpression(
 			'`^Argument #1 \([^)]+\) of [^:]+::expectExceptionCode\(\) must be a integer or string`',
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -110,7 +110,7 @@ class ExpectExceptionTest extends TestCase {
 
 		$this->assertSame( 1, $result->errorCount() );
 		$this->assertSame( 1, \count( $result ) );
-		$this->assertMatchesRegularExpression( $regex, $test->getStatusMessage() );
+		$this->assertMatchesRegularExpression( $regex, $this->getMessageContent( $test ) );
 	}
 
 	/**
@@ -149,7 +149,7 @@ class ExpectExceptionTest extends TestCase {
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			'Failed asserting that 999 is equal to expected exception code 404.',
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -173,7 +173,7 @@ class ExpectExceptionTest extends TestCase {
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			"Failed asserting that exception message 'A runtime error occurred' contains 'message'.",
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -284,7 +284,7 @@ class ExpectExceptionTest extends TestCase {
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			'Failed asserting that 999 is equal to expected exception code 404.',
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -314,7 +314,27 @@ class ExpectExceptionTest extends TestCase {
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			"Failed asserting that exception message 'A runtime error occurred' matches '/^foo/'.",
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
+	}
+
+	/**
+	 * Helper method to retrieve the status message in a PHPUnit cross-version compatible manner.
+	 *
+	 * @param TestCase $test The test object.
+	 *
+	 * @return string
+	 */
+	private function getMessageContent( $test ) {
+		if ( \method_exists( $test, 'getStatusMessage' ) === false ) {
+			// PHPUnit >= 10.0.0.
+			return $test->status()->message();
+		}
+		else {
+			// PHPUnit < 10.0.0.
+			return $test->getStatusMessage();
+		}
+
+		return '';
 	}
 }
