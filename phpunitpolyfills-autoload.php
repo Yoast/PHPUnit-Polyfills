@@ -342,7 +342,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestCase() {
-			if ( \class_exists( '\PHPUnit\Runner\Version' ) === false
+			if ( \class_exists( '\PHPUnit_Runner_Version' ) === true
 				|| \version_compare( PHPUnit_Version::id(), '8.0.0', '<' )
 			) {
 				// PHPUnit < 8.0.0.
@@ -360,7 +360,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestListenerDefaultImplementation() {
-			if ( \class_exists( '\PHPUnit\Runner\Version' ) === false ) {
+			if ( \class_exists( '\PHPUnit_Runner_Version' ) === true ) {
 				/*
 				 * Alias one particular PHPUnit 4/5 class to its PHPUnit >= 6 name.
 				 *
