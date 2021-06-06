@@ -64,7 +64,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	 *
 	 * @return void
 	 */
-	public function setUpFixtures() {
+	protected function setUpFixtures() {
 		parent::setUp();
 	}
 
@@ -77,7 +77,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDownFixtures() {
+	protected function tearDownFixtures() {
 		parent::tearDown();
 	}
 
