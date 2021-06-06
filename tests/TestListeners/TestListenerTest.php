@@ -53,7 +53,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testError() {
-		$test = new TestError();
+		$test = new TestError( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -72,7 +72,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testWarning() {
-		$test = new Warning();
+		$test = new Warning( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -86,7 +86,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testFailure() {
-		$test = new Failure();
+		$test = new Failure( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -100,7 +100,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testIncomplete() {
-		$test = new Incomplete();
+		$test = new Incomplete( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -118,7 +118,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testRisky() {
-		$test = new Risky();
+		$test = new Risky( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -132,7 +132,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testSkipped() {
-		$test = new Skipped();
+		$test = new Skipped( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -146,7 +146,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testStartStop() {
-		$test = new Success();
+		$test = new Success( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
