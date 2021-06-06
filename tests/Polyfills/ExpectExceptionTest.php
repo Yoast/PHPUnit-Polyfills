@@ -95,9 +95,7 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionMessageException() {
 		$regex = '`^Argument #1 \([^)]+\) of [^:]+::expectExceptionMessage\(\) must be a string`';
-		if ( \class_exists( '\PHPUnit\Runner\Version' ) === true
-			&& \version_compare( PHPUnit_Version::id(), '7.0.0', '>=' )
-		) {
+		if ( \version_compare( PHPUnit_Version::id(), '7.0.0', '>=' ) ) {
 			$regex = '`^Argument 1 passed to [^:]+::expectExceptionMessage\(\) must be of the type string`';
 			if ( \PHP_MAJOR_VERSION === 8 ) {
 				$regex = '`^[^:]+::expectExceptionMessage\(\): Argument \#1 \([^)]+\) must be of type string`';

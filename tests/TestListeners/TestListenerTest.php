@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners;
 
 use PHPUnit\Framework\TestResult;
-use PHPUnit_Framework_TestResult;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Failure;
 use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Incomplete;
@@ -42,15 +41,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	protected function set_up() {
-		if ( \class_exists( '\PHPUnit\Framework\TestResult' ) ) {
-			// PHPUnit 6.0.0+.
-			$this->result = new TestResult();
-		}
-		else {
-			// PHPUnit < 6.0.0.
-			$this->result = new PHPUnit_Framework_TestResult();
-		}
-
+		$this->result   = new TestResult();
 		$this->listener = new TestListenerImplementation();
 
 		$this->result->addListener( $this->listener );
