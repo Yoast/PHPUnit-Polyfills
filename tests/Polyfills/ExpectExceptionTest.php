@@ -5,6 +5,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 use Exception;
 use PHPUnit\Framework\Exception as PHPUnit_Exception;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestResult;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
@@ -61,7 +62,8 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionCodeException() {
 		$test   = new InvalidExceptionCodeTestCase( 'test' );
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->errorCount() );
 		$this->assertSame( 1, \count( $result ) );
@@ -103,7 +105,8 @@ class ExpectExceptionTest extends TestCase {
 		}
 
 		$test   = new InvalidExceptionMessageTestCase( 'test' );
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->errorCount() );
 		$this->assertSame( 1, \count( $result ) );
@@ -139,7 +142,8 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessage( 'A runtime error occurred' );
 		$test->expectExceptionCode( 404 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
@@ -162,7 +166,8 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessage( 'message' );
 		$test->expectExceptionCode( 999 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
@@ -272,7 +277,8 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessageRegExp( '/^A runtime/' );
 		$test->expectExceptionCode( 404 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
@@ -301,7 +307,8 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessageRegExp( '/^foo/' );
 		$test->expectExceptionCode( 999 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
