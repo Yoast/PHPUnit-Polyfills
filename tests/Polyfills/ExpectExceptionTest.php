@@ -5,6 +5,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 use Exception;
 use PHPUnit\Framework\Exception as PHPUnit_Exception;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestResult;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
@@ -61,13 +62,14 @@ class ExpectExceptionTest extends TestCase {
 	 */
 	public function testExpectExceptionCodeException() {
 		$test   = new InvalidExceptionCodeTestCase( 'test' );
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->errorCount() );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertMatchesRegularExpression(
 			'`^Argument #1 \([^)]+\) of [^:]+::expectExceptionCode\(\) must be a integer or string`',
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -103,11 +105,12 @@ class ExpectExceptionTest extends TestCase {
 		}
 
 		$test   = new InvalidExceptionMessageTestCase( 'test' );
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->errorCount() );
 		$this->assertSame( 1, \count( $result ) );
-		$this->assertMatchesRegularExpression( $regex, $test->getStatusMessage() );
+		$this->assertMatchesRegularExpression( $regex, $this->getMessageContent( $test ) );
 	}
 
 	/**
@@ -139,13 +142,14 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessage( 'A runtime error occurred' );
 		$test->expectExceptionCode( 404 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			'Failed asserting that 999 is equal to expected exception code 404.',
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -162,13 +166,14 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessage( 'message' );
 		$test->expectExceptionCode( 999 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			"Failed asserting that exception message 'A runtime error occurred' contains 'message'.",
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -272,13 +277,14 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessageRegExp( '/^A runtime/' );
 		$test->expectExceptionCode( 404 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			'Failed asserting that 999 is equal to expected exception code 404.',
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
 	}
 
@@ -301,13 +307,34 @@ class ExpectExceptionTest extends TestCase {
 		$test->expectExceptionMessageRegExp( '/^foo/' );
 		$test->expectExceptionCode( 999 );
 
-		$result = $test->run();
+		$result = new TestResult();
+		$test->run( $result );
 
 		$this->assertSame( 1, $result->failureCount() );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			"Failed asserting that exception message 'A runtime error occurred' matches '/^foo/'.",
-			$test->getStatusMessage()
+			$this->getMessageContent( $test )
 		);
+	}
+
+	/**
+	 * Helper method to retrieve the status message in a PHPUnit cross-version compatible manner.
+	 *
+	 * @param TestCase $test The test object.
+	 *
+	 * @return string
+	 */
+	private function getMessageContent( $test ) {
+		if ( \method_exists( $test, 'getStatusMessage' ) === false ) {
+			// PHPUnit >= 10.0.0.
+			return $test->status()->message();
+		}
+		else {
+			// PHPUnit < 10.0.0.
+			return $test->getStatusMessage();
+		}
+
+		return '';
 	}
 }
