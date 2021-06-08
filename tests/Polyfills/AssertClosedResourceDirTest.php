@@ -26,6 +26,7 @@ class AssertClosedResourceDirTest extends AssertClosedResourceTestCase {
 		$resource = \opendir( __DIR__ . '/Fixtures/' );
 		\closedir( $resource );
 
+		$this->assertFalse( static::shouldClosedResourceAssertionBeSkipped( $resource ) );
 		$this->assertIsClosedResource( $resource );
 	}
 
@@ -51,6 +52,7 @@ class AssertClosedResourceDirTest extends AssertClosedResourceTestCase {
 	public function testAssertIsNotClosedResourceWithOpenResource() {
 		$resource = \opendir( __DIR__ . '/Fixtures/' );
 
+		$this->assertFalse( static::shouldClosedResourceAssertionBeSkipped( $resource ) );
 		self::assertIsNotClosedResource( $resource );
 
 		\closedir( $resource );

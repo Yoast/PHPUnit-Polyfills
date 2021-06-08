@@ -2,24 +2,25 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
 /**
  * Functionality test for the functions polyfilled by the AssertClosedResource trait.
  *
- * Resource type: gd
- * Extension:     gd
+ * Resource type: xml
+ * Extension:     libxml
  *
- * Note: the return value of the GD functions has changed in PHP 8.0 from `resource`
- * to `GdImage` (object), which is why the tests will be skipped on PHP >= 8.0.
+ * Note: the return value of the XML Parser functions has changed in PHP 8.0 from `resource`
+ * to `XMLParser` (object), which is why the tests will be skipped on PHP >= 8.0.
  *
  * @covers \Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  *
- * @requires extension gd
+ * @requires extension libxml
  * @requires PHP < 8.0
  */
-class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
+class AssertClosedResourceXmlParserTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 
@@ -29,10 +30,16 @@ class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
 	 * @return void
 	 */
 	public function testAssertIsClosedResourceWithClosedResource() {
-		$resource = \imagecreate( 1, 1 );
-		\imagedestroy( $resource );
+		$resource = \xml_parser_create();
+		\xml_parser_free( $resource );
 
-		$this->assertIsClosedResource( $resource );
+		if ( ResourceHelper::isIncompatiblePHPForLibXMLResources() === false ) {
+			$this->assertIsClosedResource( $resource );
+			return;
+		}
+
+		// Incompatible PHP version. Verify that assertion skipping is advised.
+		$this->assertTrue( static::shouldClosedResourceAssertionBeSkipped( $resource ) );
 	}
 
 	/**
@@ -42,12 +49,11 @@ class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
 	 * @return void
 	 */
 	public function testAssertIsClosedResourceWithOpenResource() {
-		$resource = \imagecreate( 1, 1 );
+		$resource = \xml_parser_create();
 
-		$this->assertFalse( static::shouldClosedResourceAssertionBeSkipped( $resource ) );
 		$this->isClosedResourceExpectExceptionOnOpenResource( $resource );
 
-		\imagedestroy( $resource );
+		\xml_parser_free( $resource );
 	}
 
 	/**
@@ -56,11 +62,11 @@ class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
 	 * @return void
 	 */
 	public function testAssertIsNotClosedResourceWithOpenResource() {
-		$resource = \imagecreate( 1, 1 );
+		$resource = \xml_parser_create();
 
 		self::assertIsNotClosedResource( $resource );
 
-		\imagedestroy( $resource );
+		\xml_parser_free( $resource );
 	}
 
 	/**
@@ -70,10 +76,15 @@ class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
 	 * @return void
 	 */
 	public function testAssertIsNotClosedResourceWithClosedResource() {
-		$resource = \imagecreate( 1, 1 );
-		\imagedestroy( $resource );
+		$resource = \xml_parser_create();
+		\xml_parser_free( $resource );
 
-		$this->assertFalse( static::shouldClosedResourceAssertionBeSkipped( $resource ) );
-		$this->isNotClosedResourceExpectExceptionOnClosedResource( $resource );
+		if ( ResourceHelper::isIncompatiblePHPForLibXMLResources() === false ) {
+			$this->isNotClosedResourceExpectExceptionOnClosedResource( $resource );
+			return;
+		}
+
+		// Incompatible PHP version. Verify that assertion skipping is advised.
+		$this->assertTrue( static::shouldClosedResourceAssertionBeSkipped( $resource ) );
 	}
 }

@@ -17,6 +17,9 @@
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="false">
             <directory suffix=".php">./src/</directory>
+            <exclude>
+                <file>src/Polyfills/AssertClosedResource_Empty.php</file>
+            </exclude>
         </whitelist>
     </filter>
 
