@@ -45,6 +45,8 @@
 		<!-- Exclude some rules which are irrelevant.
 			 The code in this package is not run in the context of a WordPress plugin. -->
 		<exclude name="WordPress.DB"/>
+		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_var_export"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.system_calls_popen"/>
 		<exclude name="WordPress.Security"/>
 		<exclude name="WordPress.WP"/>
 		<exclude name="Yoast.Yoast.AlternativeFunctions"/>
@@ -78,6 +80,18 @@
 	Exclude specific files for specific sniffs and/or exclude sub-groups in sniffs.
 	#############################################################################
 	-->
+
+	<!-- Deliberately empty Catch statements. -->
+	<rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedCatch">
+		<exclude-pattern>/src/Helpers/ResourceHelper\.php$</exclude-pattern>
+		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
+	</rule>
+
+	<!-- Targetted error silencing. This is okay. -->
+	<rule ref="WordPress.PHP.NoSilencedErrors">
+		<exclude-pattern>/src/Helpers/ResourceHelper\.php$</exclude-pattern>
+		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
+	</rule>
 
 	<!-- The TestCase for PHPUnit 8+ will only ever be loaded on PHP 7.2+. -->
 	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->

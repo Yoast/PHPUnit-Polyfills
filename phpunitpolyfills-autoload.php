@@ -69,6 +69,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertionRenames();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource':
+					self::loadAssertClosedResource();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
 					self::loadTestCase();
 					return true;
@@ -80,6 +84,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				/*
 				 * Handles:
 				 * - Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper
+				 * - Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
 				 * - Yoast\PHPUnitPolyfills\TestCases\XTestCase
 				 * - Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
 				 */
@@ -334,6 +339,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 9.1.0.
 			require_once __DIR__ . '/src/Polyfills/AssertionRenames_Empty.php';
+		}
+
+		/**
+		 * Load the AssertClosedResource polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertClosedResource() {
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertIsClosedResource' ) === false ) {
+				// PHPUnit < 9.3.0.
+				require_once __DIR__ . '/src/Polyfills/AssertClosedResource.php';
+				return;
+			}
+
+			// PHPUnit >= 9.3.0.
+			require_once __DIR__ . '/src/Polyfills/AssertClosedResource_Empty.php';
 		}
 
 		/**

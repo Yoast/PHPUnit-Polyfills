@@ -203,6 +203,15 @@ Polyfills the following renamed methods:
 These methods were introduced in PHPUnit 9.1.0.
 The original methods these new methods replace were hard deprecated in PHPUnit 9.1.0 and (will be) removed in PHPUnit 10.0.0.
 
+#### PHPUnit < 9.3.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource`
+
+Polyfills the following methods:
+|                                    |                                       |
+|------------------------------------|---------------------------------------|
+| `Assert::assertIsClosedResource()` | `Assert::assertIsNotClosedResource()` |
+
+These methods were introduced in PHPUnit 9.3.0.
+
 
 ### Helper traits
 
