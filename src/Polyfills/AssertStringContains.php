@@ -10,7 +10,15 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  * Use of Assert::assertContains() and Assert::assertNotContains() with string haystacks was
  * deprecated in PHPUnit 7.5.0 and removed in PHPUnit 9.0.0.
  *
+ * Note: this polyfill accounts for a bug in PHPUnit < 6.4.2.
+ * Prior to PHPUnit 6.4.2, when the $needle was an empty string, a PHP native
+ * "mb_strpos(): Empty delimiter" warning would be thrown, which would result
+ * in the test failing.
+ * This polyfill prevents that warning and emulates the PHPUnit >= 6.4.2 behaviour.
+ *
  * @link https://github.com/sebastianbergmann/phpunit/issues/3422
+ * @link https://github.com/sebastianbergmann/phpunit/issues/2520
+ * @link https://github.com/sebastianbergmann/phpunit/pull/2778
  */
 trait AssertStringContains {
 
@@ -24,9 +32,9 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringContainsString( $needle, $haystack, $message = '' ) {
-		// Replicate fix added to PHPUnit 6.4.2.
-		if ( self::needsEmptyStringFix( $needle, false ) ) {
-			self::markTestSkipped( 'Asserting a string contains an empty string, which always "exists" in any other string.');
+		if ( $needle === '' ) {
+			static::assertSame( $needle, $needle, $message );
+			return;
 		}
 
 		static::assertContains( $needle, $haystack, $message );
@@ -42,9 +50,9 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringContainsStringIgnoringCase( $needle, $haystack, $message = '' ) {
-		// Replicate fix added to PHPUnit 6.4.2.
-		if ( self::needsEmptyStringFix( $needle, false ) ) {
-			self::markTestSkipped( 'Asserting a string contains an empty string, which always "exists" in any other string.');
+		if ( $needle === '' ) {
+			static::assertSame( $needle, $needle, $message );
+			return;
 		}
 
 		static::assertContains( $needle, $haystack, $message, true );
@@ -60,9 +68,12 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringNotContainsString( $needle, $haystack, $message = '' ) {
-		// Replicate fix added to PHPUnit 6.4.2.
-		if ( self::needsEmptyStringFix( $needle, true ) ) {
-			self::markTestSkipped( 'Asserting a string contains an empty string, which always "exists" in any other string.');
+		if ( $needle === '' ) {
+			if ( $message === '' ) {
+				$message = "Failed asserting that '{$haystack}' does not contain \"{$needle}\".";
+			}
+
+			static::fail( $message );
 		}
 
 		static::assertNotContains( $needle, $haystack, $message );
@@ -78,54 +89,14 @@ trait AssertStringContains {
 	 * @return void
 	 */
 	public static function assertStringNotContainsStringIgnoringCase( $needle, $haystack, $message = '' ) {
-		// Replicate fix added to PHPUnit 6.4.2.
-		if ( self::needsEmptyStringFix( $needle, true ) ) {
-			self::markTestSkipped( 'Asserting a string contains an empty string, which always "exists" in any other string.');
+		if ( $needle === '' ) {
+			if ( $message === '' ) {
+				$message = "Failed asserting that '{$haystack}' does not contain \"{$needle}\".";
+			}
+
+			static::fail( $message );
 		}
 
 		static::assertNotContains( $needle, $haystack, $message, true );
-	}
-
-	/**
-	 * Decide if a fix for an empty needle string is needed.
-	 *
-	 * PHPUnit 6.4.2 added a fix to gracefully handle the case when an empty string was passed to
-	 * `assertStringContainsString()` and variant assertions. Versions earlier than that gave a "mb_strpos(): Empty
-	 * delimiter" error instead.
-	 *
-	 * If the needle string is empty, and the PHPUnit version is found to be lower than 6.4.2, or 6.4.2 or above and
-	 * part of a NotContains assertion, then return true, which will result in tests marked as skipped.
-	 *
-	 * To not have tests marked as skipped, test authors should ensure the needle string
-	 * passed to the assertion is not empty.
-	 *
-	 * @param string $needle_string String that should be looked for in haystack string.
-	 * @param bool   $is_negative   Whether assertion is negative i.e. NotContains
-	 *
-	 * @return bool True unless the needle string is empty, or PHPUnit is 6.4.2 or later, or
-	 *              PHPUnit version can't be identified.
-	 */
-	protected static function needsEmptyStringFix( $needle_string, $is_negative ) {
-		if ( '' !== $needle_string ) {
-			return false;
-		}
-
-		$phpunit_version = '';
-		if ( class_exists( 'PHPUnit\Runner\Version' ) ) {
-			$phpunit_version = \PHPUnit\Runner\Version::id();
-		} elseif ( class_exists( 'PHPUnit_Runner_Version' ) ) {
-			$phpunit_version = \PHPUnit_Runner_Version::id();
-		}
-
-		// If the version can't be identified, assume everything is good.
-		if ( '' === $phpunit_version ) {
-			return false;
-		}
-
-		if ( ! $is_negative && version_compare( $phpunit_version, '6.4.2', '>=' ) ) {
-			return false;
-		}
-
-		return true;
 	}
 }
