@@ -1,0 +1,60 @@
+<?php
+
+namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
+
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
+
+/**
+ * Helper functions for the functionality tests for the polyfills in the AssertClosedResource trait.
+ */
+abstract class AssertClosedResourceTestCase extends TestCase {
+
+	use AssertClosedResource;
+	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
+	use ExpectExceptionMessageMatches;
+
+	/**
+	 * Helper method: Verify that an exception is thrown when `assertIsClosedResource()` is passed an open resource.
+	 *
+	 * @param resource $actual The resource under test.
+	 *
+	 * @return void
+	 */
+	public function isClosedResourceExpectExceptionOnOpenResource( $actual ) {
+		$pattern   = '`^Failed asserting that .+? is of type "resource \(closed\)"`';
+		$exception = 'PHPUnit\Framework\AssertionFailedError';
+		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+			// PHPUnit < 6.
+			$exception = 'PHPUnit_Framework_AssertionFailedError';
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$this->assertIsClosedResource( $actual );
+	}
+
+	/**
+	 * Helper method: Verify that an exception is thrown when `assertIsNotClosedResource()` is passed a closed resource.
+	 *
+	 * @param resource $actual The resource under test.
+	 *
+	 * @return void
+	 */
+	public function isNotClosedResourceExpectExceptionOnClosedResource( $actual ) {
+		$msg       = 'Failed asserting that NULL is not of type "resource (closed)"';
+		$exception = 'PHPUnit\Framework\AssertionFailedError';
+		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+			// PHPUnit < 6.
+			$exception = 'PHPUnit_Framework_AssertionFailedError';
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessage( $msg );
+
+		self::assertIsNotClosedResource( $actual );
+	}
+}

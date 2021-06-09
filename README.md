@@ -203,6 +203,40 @@ Polyfills the following renamed methods:
 These methods were introduced in PHPUnit 9.1.0.
 The original methods these new methods replace were hard deprecated in PHPUnit 9.1.0 and (will be) removed in PHPUnit 10.0.0.
 
+#### PHPUnit < 9.3.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource`
+
+Polyfills the following methods:
+|                                    |                                       |
+|------------------------------------|---------------------------------------|
+| `Assert::assertIsClosedResource()` | `Assert::assertIsNotClosedResource()` |
+
+These methods were introduced in PHPUnit 9.3.0.
+
+Additionally, this trait contains a helper method `shouldClosedResourceAssertionBeSkipped()`.
+
+Due to some bugs in PHP itself, the "is closed resource" determination cannot always be done reliably, most notably for the `libxml` extension.
+
+This helper function can determine whether or not the current "value under test" in combination with the PHP version on which the test is being run is affected by these bugs.
+:warning: The PHPUnit native implementation of these assertions is also affected by these bugs!
+The `shouldClosedResourceAssertionBeSkipped()` helper method is therefore available cross-version.
+
+Usage examples:
+```php
+// Example: skipping the test completely.
+if ( $this->shouldClosedResourceAssertionBeSkipped( $actual ) === true ) {
+    $this->markTestSkipped('assertIs[Not]ClosedResource() cannot determine whether this resource is'
+        . ' open or closed due to bugs in PHP (PHP ' . \PHP_VERSION . ').');
+}
+
+// Example: selectively skipping the assertion.
+if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
+    $this->assertIsClosedResource( $actual );
+}
+```
+
+> :point_right: While this polyfill is tested extensively, testing for these kind of bugs exhaustively is _hard_.
+> Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues/new/choose) found and include a clear code sample to reproduce the issue.
+
 
 ### Helper traits
 
