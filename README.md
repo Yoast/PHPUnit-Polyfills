@@ -44,10 +44,6 @@ To update this package, run:
 composer update --dev yoast/phpunit-polyfills --with-dependencies
 ```
 
-This package can also be used when running tests via a PHPUnit Phar file.
-In that case, make sure that the `phpunitpolyfills-autoload.php` file is explicitly `require`d in the test bootstrap file.
-(Not necessary when the Composer `vendor/autoload.php` file is used as, or `require`d in, the test bootstrap.)
-
 
 Why use the PHPUnit Polyfills?
 -------------------------------------------
@@ -548,6 +544,14 @@ For frequently used, removed PHPUnit functionality, "helpers" may be provided. T
 |---------|-----------------------|-----------|------------------------|
 | 9.0.0   | `assertArraySubset()` | [#1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1) | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1).
 | 9.0.0   | `assertAttribute*()`  | [#2](https://github.com/Yoast/PHPUnit-Polyfills/issues/2) | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.
+
+
+### Q: Can this library be used when the tests are being run via a PHPUnit Phar file ?
+
+Yes, this package can also be used when running tests via a PHPUnit Phar file.
+
+In that case, make sure that the `phpunitpolyfills-autoload.php` file is explicitly `require`d in the test bootstrap file.
+(Not necessary when the Composer `vendor/autoload.php` file is used as, or `require`d in, the test bootstrap.)
 
 
 Contributing
