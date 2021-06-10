@@ -48,16 +48,14 @@ composer update --dev yoast/phpunit-polyfills --with-dependencies
 Why use the PHPUnit Polyfills?
 -------------------------------------------
 
-This library is set up to allow for creating PHPUnit cross-version compatible tests.
-
-This library offers a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
+This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
 ### Write your tests for PHPUnit 9.x and run them on PHPUnit 4.8 - 9.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
-This puts the burden of upgrading to use the syntax of newer PHPUnit versions at the point when you want to start running your tests on a newer version.
-By doing so, dropping support for an older PHPUnit version becomes as simple as removing it from the version constraint in your `composer.json` file.
+This puts the burden of upgrading to use the syntax of newer PHPUnit versions at the point when you want to _start_ running your tests on a newer version.
+By doing so, dropping support for an older PHPUnit version becomes as straight-forward as removing it from the version constraint in your `composer.json` file.
 
 
 Using this library
@@ -113,8 +111,8 @@ class FooTest extends TestCase
 ### Supported ways of calling the assertions
 
 By default, PHPUnit supports four ways of calling assertions:
-1. As a method in the `TestCase` class - `$this->assertSomething()`.
-2. Statically as a method in the `TestCase` class - `self/static/parent::assertSomething()`.
+1. **As a method in the `TestCase` class - `$this->assertSomething()`.**
+2. **Statically as a method in the `TestCase` class - `self/static/parent::assertSomething()`.**
 3. Statically as a method of the `Assert` class - `Assert::assertSomething()`.
 4. As a global function - `assertSomething()`.
 
