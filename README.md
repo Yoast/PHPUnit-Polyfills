@@ -25,14 +25,14 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 
 
 Requirements
--------------------------------------------
+------------
 
 * PHP 5.4 or higher.
 * PHPUnit 4.8 - 9.x (automatically required via Composer).
 
 
 Installation
--------------------------------------------
+------------
 
 To install this package, run:
 ```bash
@@ -46,7 +46,7 @@ composer update --dev yoast/phpunit-polyfills --with-dependencies
 
 
 Why use the PHPUnit Polyfills?
--------------------------------------------
+------------------------------
 
 This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
@@ -59,7 +59,7 @@ By doing so, dropping support for an older PHPUnit version becomes as straight-f
 
 
 Using this library
--------
+------------------
 
 Each of the polyfills and helpers has been setup as a trait and can be imported and `use`d in any test file which extends the PHPUnit native `TestCase` class.
 
@@ -161,7 +161,7 @@ class FooTest extends TestCase
 
 
 Features
--------------------------------------------
+--------
 
 ### Polyfill traits
 
@@ -275,7 +275,7 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 8.5.0 as alternatives to using `Assert::assertFileEquals()` and `Assert::assertFileNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was hard deprecated in PHPUnit 8.5.0 and removed in PHPUnit 9.0.0.
 
-### PHPUnit < 9.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames`
+#### PHPUnit < 9.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames`
 
 Polyfills the following renamed methods:
 * `Assert::assertIsNotReadable()`, introduced as alternative for `Assert::assertNotIsReadable()`.
@@ -306,7 +306,8 @@ Additionally, this trait contains a helper method `shouldClosedResourceAssertion
 Due to some bugs in PHP itself, the "is closed resource" determination cannot always be done reliably, most notably for the `libxml` extension.
 
 This helper function can determine whether or not the current "value under test" in combination with the PHP version on which the test is being run is affected by these bugs.
-:warning: The PHPUnit native implementation of these assertions is also affected by these bugs!
+
+> :warning: The PHPUnit native implementation of these assertions is also affected by these bugs!
 The `shouldClosedResourceAssertionBeSkipped()` helper method is therefore available cross-version.
 
 Usage examples:
@@ -472,7 +473,8 @@ class MyTest extends XTestCase {
 
 The method signatures in the PHPUnit `TestListener` interface have changed a number of times across versions.
 Additionally, the use of the TestListener principle has been deprecated in PHPUnit 7 in favour of using the [TestRunner hook interfaces](https://phpunit.readthedocs.io/en/9.3/extending-phpunit.html#extending-the-testrunner).
-Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
+
+> Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
 
 If your test suite does not need to support PHPUnit < 7, it is strongly recommended to use the TestRunner hook interfaces extensions instead.
 
@@ -528,11 +530,11 @@ class MyTestListener implements TestListener {
 
 
 Frequently Asked Questions
--------
+--------------------------
 
 ### Q: Will this package polyfill functionality which was removed from PHPUnit ?
 
-As a rule of thumb, removed functionality will not be polyfilled in this package.
+As a rule of thumb, removed functionality will **not** be polyfilled in this package.
 
 For frequently used, removed PHPUnit functionality, "helpers" may be provided. These _helpers_ are only intended as an interim solution to allow users of this package more time to refactor their tests away from the removed functionality.
 
@@ -553,7 +555,7 @@ In that case, make sure that the `phpunitpolyfills-autoload.php` file is explici
 
 
 Contributing
--------
+------------
 Contributions to this project are welcome. Clone the repo, branch off from `develop`, make your changes, commit them and send in a pull request.
 
 If you are unsure whether the changes you are proposing would be welcome, please open an issue first to discuss your proposal.
