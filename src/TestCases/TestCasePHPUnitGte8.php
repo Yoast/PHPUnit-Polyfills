@@ -26,7 +26,7 @@ abstract class TestCase extends PHPUnit_TestCase {
 	use AssertClosedResource;
 	use AssertFileEqualsSpecializations;
 	use AssertionRenames;
-    use EqualToSpecializations;
+	use EqualToSpecializations;
 	use ExpectExceptionMessageMatches;
 	use ExpectPHPException;
 

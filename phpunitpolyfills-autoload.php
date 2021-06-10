@@ -73,9 +73,9 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertClosedResource();
 					return true;
 
-                case 'Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations':
-                    self::loadEqualToSpecializations();
-                    return true;
+				case 'Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations':
+					self::loadEqualToSpecializations();
+					return true;
 
 				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
 					self::loadTestCase();
@@ -362,22 +362,22 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			require_once __DIR__ . '/src/Polyfills/AssertClosedResource_Empty.php';
 		}
 
-        /**
-         * Load the EqualToSpecializations polyfill or an empty trait with the same name
-         * if a PHPUnit version is used which already contains this functionality.
-         *
-         * @return void
-         */
+		/**
+		 * Load the EqualToSpecializations polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
 		public static function loadEqualToSpecializations() {
-            if ( \method_exists( '\PHPUnit\Framework\Assert', 'equalToWithDelta' ) === false ) {
-                // PHPUnit < 9.0.0.
-                require_once __DIR__ . '/src/Polyfills/EqualToSpecializations.php';
-                return;
-            }
+			if ( \method_exists( '\PHPUnit\Framework\Assert', 'equalToWithDelta' ) === false ) {
+				// PHPUnit < 9.0.0.
+				require_once __DIR__ . '/src/Polyfills/EqualToSpecializations.php';
+				return;
+			}
 
-            // PHPUnit >= 9.0.0.
-            require_once __DIR__ . '/src/Polyfills/EqualToSpecializations_Empty.php';
-        }
+			// PHPUnit >= 9.0.0.
+			require_once __DIR__ . '/src/Polyfills/EqualToSpecializations_Empty.php';
+		}
 
 		/**
 		 * Load the appropriate TestCase class based on the PHPUnit version being used.

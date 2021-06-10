@@ -40,7 +40,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	use AssertIsType;
 	use AssertNumericType;
 	use AssertStringContains;
-    use EqualToSpecializations;
+	use EqualToSpecializations;
 	use ExpectException;
 	use ExpectExceptionMessageMatches;
 	use ExpectExceptionObject;

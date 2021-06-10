@@ -14,15 +14,15 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  */
 trait EqualToSpecializations {
 
-    public static function equalToCanonicalizing($value) {
-        return static::equalTo($value, 0.0, 10, true, false);
-    }
+	public static function equalToCanonicalizing( $value ) {
+		return static::equalTo( $value, 0.0, 10, true, false );
+	}
 
-    public static function equalToIgnoringCase($value) {
-        return static::equalTo($value, 0.0, 10, false, true);
-    }
+	public static function equalToIgnoringCase( $value ) {
+		return static::equalTo( $value, 0.0, 10, false, true );
+	}
 
-    public static function equalToWithDelta($value, $delta) {
-        return static::equalTo($value, $delta, 10, false, false);
-    }
+	public static function equalToWithDelta( $value, $delta ) {
+		return static::equalTo( $value, $delta, 10, false, false );
+	}
 }
