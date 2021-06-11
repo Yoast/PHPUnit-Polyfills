@@ -244,7 +244,7 @@ if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
 
 Helper to work around the removal of the `assertAttribute*()` methods.
 
-The `assertAttribute*()` methods were deprecated in PHPUnit 8.x and removed in PHPUnit 9.0.
+The `assertAttribute*()` methods were deprecated in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
 Public properties can still be tested by accessing them directly:
 ```php
@@ -383,7 +383,7 @@ class MyTest extends XTestCase {
 
 The method signatures in the PHPUnit `TestListener` interface have changed a number of times across versions.
 Additionally, the use of the TestListener principle has been deprecated in PHPUnit 7 in favour of using the [TestRunner hook interfaces](https://phpunit.readthedocs.io/en/9.3/extending-phpunit.html#extending-the-testrunner).
-Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.
+Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
 
 If your test suite does not need to support PHPUnit < 7, it is strongly recommended to use the TestRunner hook interfaces extensions instead.
 
@@ -541,8 +541,8 @@ For frequently used, removed PHPUnit functionality, "helpers" may be provided. T
 
 | PHPUnit | Removed               | Issue     | Remarks                |
 |---------|-----------------------|-----------|------------------------|
-| 9.0     | `assertArraySubset()` | [#1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1) | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1).
-| 9.0     | `assertAttribute*()`  | [#2](https://github.com/Yoast/PHPUnit-Polyfills/issues/2) | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.
+| 9.0.0   | `assertArraySubset()` | [#1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1) | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1).
+| 9.0.0   | `assertAttribute*()`  | [#2](https://github.com/Yoast/PHPUnit-Polyfills/issues/2) | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.
 
 
 Contributing

@@ -9,8 +9,8 @@ use ReflectionProperty;
 /**
  * Helper to work-around the removal of the `assertAttribute*()` methods.
  *
- * The `assertAttribute*()` methods were deprecated in PHPUnit 8.x and
- * removed in PHPUnit 9.0.
+ * The `assertAttribute*()` methods were deprecated in PHPUnit 8.0.0 and
+ * removed in PHPUnit 9.0.0.
  *
  * Public properties can still be tested by accessing them directly:
  * ```php
