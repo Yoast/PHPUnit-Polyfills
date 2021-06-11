@@ -2,7 +2,6 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
-use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
 
@@ -21,7 +20,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToWithDelta() {
-		self::assertThat( 2.5, $this->equalToWithDelta( 2.3, 0.5 ) );
+		$this->assertThat( 2.5, $this->equalToWithDelta( 2.3, 0.5 ) );
 	}
 
 	/**
@@ -30,7 +29,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToCanonicalizing() {
-		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
+		self::assertThat( [ 2, 3, 1 ], static::equalToCanonicalizing( [ 3, 2, 1 ] ) );
 	}
 
 	/**
@@ -39,7 +38,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToIgnoringCase() {
-		self::assertThat( 'A', $this->equalToIgnoringCase( 'a' ) );
+		self::assertThat( 'A', self::equalToIgnoringCase( 'a' ) );
 	}
 
 	/**
@@ -57,7 +56,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToCanonicalizingNegative() {
-		self::assertThat( [ 2, 3, 1 ], $this->logicalNot( $this->equalToCanonicalizing( [ 4, 2, 1 ] ) ) );
+		static::assertThat( [ 2, 3, 1 ], $this->logicalNot( static::equalToCanonicalizing( [ 4, 2, 1 ] ) ) );
 	}
 
 	/**

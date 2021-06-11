@@ -154,4 +154,13 @@ trait TestCaseTestTrait {
 
 		$this->assertIsClosedResource( $resource );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [13].
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityEqualToSpecializations() {
+		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
+	}
 }

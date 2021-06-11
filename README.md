@@ -359,6 +359,16 @@ These methods were introduced in PHPUnit 8.5.0 as alternatives to using `Assert:
 COMMENT: No documentation available (yet) for these assertions on the PHPUnit site.
 -->
 
+#### PHPUnit < 9.0.0: `Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations`
+
+Polyfills the following methods:
+|                                   |                                 |
+|-----------------------------------|---------------------------------|
+| `Assert::equalToCanonicalizing()` | `Assert::equalToIgnoringCase()` |
+| `Assert::equalToWithDelta()`      |                                 |
+
+These methods, which are typically used to verify parameters passed to Mock Objects, were introduced in PHPUnit 9.0.0 as alternatives to using `Assert::EqualTo()` with these optional parameters. Support for passing the respective optional parameters to `Assert::EqualTo()` was removed in PHPUnit 9.0.0.
+
 #### PHPUnit < 9.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames`
 
 Polyfills the following renamed methods:
