@@ -21,7 +21,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToWithDelta() {
-		Assert::assertThat( 2.5, $this->equalToWithDelta( 2.3, 0.5 ) );
+		self::assertThat( 2.5, $this->equalToWithDelta( 2.3, 0.5 ) );
 	}
 
 	/**
@@ -30,7 +30,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToCanonicalizing() {
-		Assert::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
+		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
 	}
 
 	/**
@@ -39,7 +39,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToIgnoringCase() {
-		Assert::assertThat( 'A', $this->equalToIgnoringCase( 'a' ) );
+		self::assertThat( 'A', $this->equalToIgnoringCase( 'a' ) );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToWithDeltaNegative() {
-		Assert::assertThat( 3.5, $this->logicalNot( $this->equalToWithDelta( 2.3, 0.5 ) ) );
+		self::assertThat( 3.5, $this->logicalNot( $this->equalToWithDelta( 2.3, 0.5 ) ) );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToCanonicalizingNegative() {
-		Assert::assertThat( [ 2, 3, 1 ], $this->logicalNot( $this->equalToCanonicalizing( [ 4, 2, 1 ] ) ) );
+		self::assertThat( [ 2, 3, 1 ], $this->logicalNot( $this->equalToCanonicalizing( [ 4, 2, 1 ] ) ) );
 	}
 
 	/**
@@ -66,6 +66,6 @@ class EqualToSpecializationsTest extends TestCase {
 	 * @return void
 	 */
 	public function testEqualToIgnoringCaseNegative() {
-		Assert::assertThat( 'A', $this->logicalNot( $this->equalToIgnoringCase( 'b' ) ) );
+		self::assertThat( 'A', $this->logicalNot( $this->equalToIgnoringCase( 'b' ) ) );
 	}
 }
