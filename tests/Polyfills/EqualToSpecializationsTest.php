@@ -43,7 +43,7 @@ class EqualToSpecializationsTest extends TestCase {
 	}
 
 	/**
-	 * Verify availability of the equalToWithDelta() method to correctly fail a comparison.
+	 * Verify ability of the equalToWithDelta() method to correctly fail a comparison.
 	 *
 	 * @return void
 	 */
@@ -52,7 +52,7 @@ class EqualToSpecializationsTest extends TestCase {
 	}
 
 	/**
-	 * Verify availability of the equalToCanonicalizing() method to correctly fail a comparison.
+	 * Verify ability of the equalToCanonicalizing() method to correctly fail a comparison.
 	 *
 	 * @return void
 	 */
@@ -61,7 +61,7 @@ class EqualToSpecializationsTest extends TestCase {
 	}
 
 	/**
-	 * Verify availability of the equalToIgnoringCaseNegative() method to correctly fail a comparison.
+	 * Verify ability of the equalToIgnoringCaseNegative() method to correctly fail a comparison.
 	 *
 	 * @return void
 	 */
