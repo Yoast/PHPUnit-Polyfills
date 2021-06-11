@@ -12,26 +12,27 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 
 * [Requirements](#requirements)
 * [Installation](#installation)
+* [Why use the PHPUnit Polyfills?](#why-use-the-phpunit-polyfills)
+* [Using this library](#using-this-library)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
     - [Helper traits](#helper-traits)
     - [TestCases](#testcases)
     - [TestListener](#testlistener)
-* [Using this library](#using-this-library)
 * [Frequently Asked Questions](#frequently-asked-questions)
 * [Contributing](#contributing)
 * [License](#license)
 
 
 Requirements
--------------------------------------------
+------------
 
 * PHP 5.4 or higher.
 * PHPUnit 4.8 - 9.x (automatically required via Composer).
 
 
 Installation
--------------------------------------------
+------------
 
 To install this package, run:
 ```bash
@@ -43,36 +44,124 @@ To update this package, run:
 composer update --dev yoast/phpunit-polyfills --with-dependencies
 ```
 
-This package can also be used when running tests via a PHPUnit Phar file.
-In that case, make sure that the `phpunitpolyfills-autoload.php` file is explicitly `require`d in the test bootstrap file.
-(Not necessary when the Composer `vendor/autoload.php` file is used as, or `require`d in, the test bootstrap.)
 
+Why use the PHPUnit Polyfills?
+------------------------------
 
-Features
--------------------------------------------
-
-This library is set up to allow for creating PHPUnit cross-version compatible tests.
-
-This library offers a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
+This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
 ### Write your tests for PHPUnit 9.x and run them on PHPUnit 4.8 - 9.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
-This puts the burden of upgrading to use the syntax of newer PHPUnit versions at the point when you want to start running your tests on a newer version.
-By doing so, dropping support for an older PHPUnit version becomes as simple as removing it from the version constraint in your `composer.json` file.
+This puts the burden of upgrading to use the syntax of newer PHPUnit versions at the point when you want to _start_ running your tests on a newer version.
+By doing so, dropping support for an older PHPUnit version becomes as straight-forward as removing it from the version constraint in your `composer.json` file.
+
+
+Using this library
+------------------
+
+Each of the polyfills and helpers has been setup as a trait and can be imported and `use`d in any test file which extends the PHPUnit native `TestCase` class.
+
+If the polyfill is not needed for the particular PHPUnit version on which the tests are being run, the autoloader
+will automatically load an empty trait with that same name, so you can safely use these traits in tests which
+need to be PHPUnit cross-version compatible.
+
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+
+class FooTest extends TestCase
+{
+    use AssertIsType;
+
+    public function testSomething()
+    {
+        $this->assertIsBool( $maybeBool );
+        self::assertIsNotIterable( $maybeIterable );
+    }
+}
+```
+
+Alternatively, you can use one of the [`TestCase` classes](#testcases) provided by this library instead of using the PHPUnit native `TestCase` class.
+
+In that case, all polyfills and helpers will be available whenever needed.
+
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
+class FooTest extends TestCase
+{
+    public function testSomething()
+    {
+        $this->assertIsBool( $maybeBool );
+        self::assertMatchesRegularExpression( $pattern, $string, $message );
+    }
+}
+```
 
 ### Supported ways of calling the assertions
 
 By default, PHPUnit supports four ways of calling assertions:
-1. As a method in the `TestCase` class - `$this->assertSomething()`.
-2. Statically as a method in the `TestCase` class - `self/static/parent::assertSomething()`.
+1. **As a method in the `TestCase` class - `$this->assertSomething()`.**
+2. **Statically as a method in the `TestCase` class - `self/static/parent::assertSomething()`.**
 3. Statically as a method of the `Assert` class - `Assert::assertSomething()`.
 4. As a global function - `assertSomething()`.
 
 The polyfills in this library support the first two ways of calling the assertions as those are the most commonly used type of assertion calls.
 
 For the polyfills to work, a test class is **required** to be a (grand-)child of the PHPUnit native `TestCase` class.
+
+### Use with PHPUnit < 5.7.0
+
+If your library still needs to support PHP < 5.6 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
+
+To prevent "conflicting method names" errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
+
+You will need to make sure to `use` any additional traits needed for the polyfills to work.
+
+| PHPUnit   | When `use`-ing this trait       | You also need to `use` this trait |
+|-----------|---------------------------------|-----------------------------------|
+| 4.8 < 5.2 | `ExpectExceptionObject`         | `ExpectException`                 |
+| 4.8 < 5.2 | `ExpectPHPException`            | `ExpectException`                 |
+| 4.8 < 5.2 | `ExpectExceptionMessageMatches` | `ExpectException`                 |
+| 4.8 < 5.6 | `AssertionRenames`              | `AssertFileDirectory`             |
+
+_**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
+
+Code example testing for a PHP native warning in a test which needs to be able to run on PHPUnit 4.8:
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
+
+class FooTest extends TestCase
+{
+    use ExpectException;
+    use ExpectPHPException;
+
+    public function testSomething()
+    {
+        $this->expectWarningMessage( 'A non-numeric value encountered' );
+    }
+}
+```
+
+
+Features
+--------
 
 ### Polyfill traits
 
@@ -186,7 +275,7 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 8.5.0 as alternatives to using `Assert::assertFileEquals()` and `Assert::assertFileNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was hard deprecated in PHPUnit 8.5.0 and removed in PHPUnit 9.0.0.
 
-### PHPUnit < 9.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames`
+#### PHPUnit < 9.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames`
 
 Polyfills the following renamed methods:
 * `Assert::assertIsNotReadable()`, introduced as alternative for `Assert::assertNotIsReadable()`.
@@ -217,7 +306,8 @@ Additionally, this trait contains a helper method `shouldClosedResourceAssertion
 Due to some bugs in PHP itself, the "is closed resource" determination cannot always be done reliably, most notably for the `libxml` extension.
 
 This helper function can determine whether or not the current "value under test" in combination with the PHP version on which the test is being run is affected by these bugs.
-:warning: The PHPUnit native implementation of these assertions is also affected by these bugs!
+
+> :warning: The PHPUnit native implementation of these assertions is also affected by these bugs!
 The `shouldClosedResourceAssertionBeSkipped()` helper method is therefore available cross-version.
 
 Usage examples:
@@ -383,7 +473,8 @@ class MyTest extends XTestCase {
 
 The method signatures in the PHPUnit `TestListener` interface have changed a number of times across versions.
 Additionally, the use of the TestListener principle has been deprecated in PHPUnit 7 in favour of using the [TestRunner hook interfaces](https://phpunit.readthedocs.io/en/9.3/extending-phpunit.html#extending-the-testrunner).
-Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
+
+> Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
 
 If your test suite does not need to support PHPUnit < 7, it is strongly recommended to use the TestRunner hook interfaces extensions instead.
 
@@ -438,102 +529,12 @@ class MyTestListener implements TestListener {
 ```
 
 
-Using this library
--------
-
-Each of the polyfills and helpers has been setup as a trait and can be imported and `use`d in any test file which extends the PHPUnit native `TestCase` class.
-
-If the polyfill is not needed for the particular PHPUnit version on which the tests are being run, the autoloader
-will automatically load an empty trait with that same name, so you can safely use these traits in tests which
-need to be PHPUnit cross-version compatible.
-
-```php
-<?php
-
-namespace Vendor\YourPackage\Tests;
-
-use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
-
-class FooTest extends TestCase
-{
-    use AssertIsType;
-
-    public function testSomething()
-    {
-        $this->assertIsBool( $maybeBool );
-        self::assertIsNotIterable( $maybeIterable );
-    }
-}
-```
-
-Alternatively, you can use one of the [`TestCase` classes](#testcases) provided by this library instead of using the PHPUnit native `TestCase` class.
-
-In that case, all polyfills and helpers will be available whenever needed.
-
-```php
-<?php
-
-namespace Vendor\YourPackage\Tests;
-
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
-
-class FooTest extends TestCase
-{
-    public function testSomething()
-    {
-        $this->assertIsBool( $maybeBool );
-        self::assertMatchesRegularExpression( $pattern, $string, $message );
-    }
-}
-```
-
-### Use with PHPUnit < 5.7.0
-
-If your library still needs to support PHP < 5.6 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
-
-To prevent "conflicting method names" errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
-
-You will need to make sure to `use` any additional traits needed for the polyfills to work.
-
-| PHPUnit   | When `use`-ing this trait       | You also need to `use` this trait |
-|-----------|---------------------------------|-----------------------------------|
-| 4.8 < 5.2 | `ExpectExceptionObject`         | `ExpectException`                 |
-| 4.8 < 5.2 | `ExpectPHPException`            | `ExpectException`                 |
-| 4.8 < 5.2 | `ExpectExceptionMessageMatches` | `ExpectException`                 |
-| 4.8 < 5.6 | `AssertionRenames`              | `AssertFileDirectory`             |
-
-_**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
-
-Code example testing for a PHP native warning in a test which needs to be able to run on PHPUnit 4.8:
-```php
-<?php
-
-namespace Vendor\YourPackage\Tests;
-
-use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
-
-class FooTest extends TestCase
-{
-    use ExpectException;
-    use ExpectPHPException;
-
-    public function testSomething()
-    {
-        $this->expectWarningMessage( 'A non-numeric value encountered' );
-    }
-}
-```
-
-
 Frequently Asked Questions
--------
+--------------------------
 
 ### Q: Will this package polyfill functionality which was removed from PHPUnit ?
 
-As a rule of thumb, removed functionality will not be polyfilled in this package.
+As a rule of thumb, removed functionality will **not** be polyfilled in this package.
 
 For frequently used, removed PHPUnit functionality, "helpers" may be provided. These _helpers_ are only intended as an interim solution to allow users of this package more time to refactor their tests away from the removed functionality.
 
@@ -545,8 +546,16 @@ For frequently used, removed PHPUnit functionality, "helpers" may be provided. T
 | 9.0.0   | `assertAttribute*()`  | [#2](https://github.com/Yoast/PHPUnit-Polyfills/issues/2) | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.
 
 
+### Q: Can this library be used when the tests are being run via a PHPUnit Phar file ?
+
+Yes, this package can also be used when running tests via a PHPUnit Phar file.
+
+In that case, make sure that the `phpunitpolyfills-autoload.php` file is explicitly `require`d in the test bootstrap file.
+(Not necessary when the Composer `vendor/autoload.php` file is used as, or `require`d in, the test bootstrap.)
+
+
 Contributing
--------
+------------
 Contributions to this project are welcome. Clone the repo, branch off from `develop`, make your changes, commit them and send in a pull request.
 
 If you are unsure whether the changes you are proposing would be welcome, please open an issue first to discuss your proposal.
