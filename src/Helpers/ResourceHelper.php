@@ -67,9 +67,9 @@ final class ResourceHelper {
 				if ( $resourceType === 'Unknown' ) {
 					return true;
 				}
-			} catch ( Exception $e ) {
-				// Ignore. Not a resource.
 			} catch ( TypeError $e ) {
+				// Ignore. Not a resource.
+			} catch ( Exception $e ) {
 				// Ignore. Not a resource.
 			}
 		}
@@ -97,9 +97,9 @@ final class ResourceHelper {
 			if ( $type === 'xml' && self::isIncompatiblePHPForLibXMLResources() === true ) {
 				return false;
 			}
-		} catch ( Exception $e ) {
-			// Ignore. Not a resource.
 		} catch ( TypeError $e ) {
+			// Ignore. Not a resource.
+		} catch ( Exception $e ) {
 			// Ignore. Not a resource.
 		}
 
