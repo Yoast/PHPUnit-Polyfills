@@ -59,6 +59,19 @@ class AssertClosedResourceNotResourceTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the shouldClosedResourceAssertionBeSkipped() method returns true for non-resources.
+	 *
+	 * @dataProvider dataNotResource
+	 *
+	 * @param mixed $value The value to test.
+	 *
+	 * @return void
+	 */
+	public function testShouldClosedResourceAssertionBeSkipped( $value ) {
+		$this->assertFalse( self::shouldClosedResourceAssertionBeSkipped( $value ) );
+	}
+
+	/**
 	 * Data provider
 	 *
 	 * @return array
