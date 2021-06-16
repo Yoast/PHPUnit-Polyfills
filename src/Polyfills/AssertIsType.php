@@ -155,6 +155,7 @@ trait AssertIsType {
 	public static function assertIsIterable( $actual, $message = '' ) {
 		if ( \function_exists( 'is_iterable' ) === true ) {
 			// PHP >= 7.1.
+			// phpcs:ignore PHPCompatibility.FunctionUse.NewFunctions.is_iterableFound
 			static::assertTrue( \is_iterable( $actual ), $message );
 		}
 		else {
@@ -302,6 +303,7 @@ trait AssertIsType {
 	public static function assertIsNotIterable( $actual, $message = '' ) {
 		if ( \function_exists( 'is_iterable' ) === true ) {
 			// PHP >= 7.1.
+			// phpcs:ignore PHPCompatibility.FunctionUse.NewFunctions.is_iterableFound
 			static::assertFalse( \is_iterable( $actual ), $message );
 		}
 		else {

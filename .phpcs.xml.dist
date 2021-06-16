@@ -50,6 +50,14 @@
 		<exclude name="WordPress.Security"/>
 		<exclude name="WordPress.WP"/>
 		<exclude name="Yoast.Yoast.AlternativeFunctions"/>
+	</rule>
+
+	<!-- While PHPCompatibility is already included in the Yoast ruleset, it uses
+		 the PHPCompatibilityWP ruleset, which excludes rules polyfilled by WP.
+		 Setting the severity for all PHPCompatibility rules to 5 prevents WP
+		 polyfilled functionality from not being flagged in this repo. -->
+	<rule ref="PHPCompatibility">
+		<severity>5</severity>
 
 		<!-- These PHP 7.0+ classes are polyfilled for this repo. -->
 		<exclude name="PHPCompatibility.Classes.NewClasses.errorFound"/>
