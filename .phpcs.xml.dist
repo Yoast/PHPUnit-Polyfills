@@ -50,6 +50,10 @@
 		<exclude name="WordPress.Security"/>
 		<exclude name="WordPress.WP"/>
 		<exclude name="Yoast.Yoast.AlternativeFunctions"/>
+
+		<!-- These PHP 7.0+ classes are polyfilled for this repo. -->
+		<exclude name="PHPCompatibility.Classes.NewClasses.errorFound"/>
+		<exclude name="PHPCompatibility.Classes.NewClasses.typeerrorFound"/>
 	</rule>
 
 	<!-- Enforce PSR1 compatible namespaces. -->
@@ -80,6 +84,13 @@
 	Exclude specific files for specific sniffs and/or exclude sub-groups in sniffs.
 	#############################################################################
 	-->
+
+	<!-- The polyfills for the PHP native exceptions can not have a namespace
+		 and making those the only files with a file comment would create more,
+		 not less inconsistency. -->
+	<rule ref="Yoast.Commenting.FileComment">
+		<exclude-pattern>/src/Exceptions/*Error\.php$</exclude-pattern>
+	</rule>
 
 	<!-- Deliberately empty Catch statements. -->
 	<rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedCatch">
