@@ -91,11 +91,11 @@ jobs:
           composer-options: --ignore-platform-reqs
 
       - name: "Lint PHP files against parse errors - PHP < 7.0"
-        if: ${{ matrix.php < 7.0 }}
+        if: ${{ matrix.phpunit == 'auto' && matrix.php < 7.0 }}
         run: composer lint-lt71
 
       - name: "Lint PHP files against parse errors - PHP >= 7.0"
-        if: ${{ matrix.php >= 7.0 }}
+        if: ${{ matrix.phpunit == 'auto' && matrix.php >= 7.0 }}
         run: composer lint
 
       - name: Run the unit tests
