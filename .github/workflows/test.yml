@@ -19,6 +19,38 @@ jobs:
         experimental: [false]
 
         include:
+          # Test against a version on the low-end of the PHPUnit versions supported for each PHP version.
+          # On PHP 5.4 and 5.5, only PHPUnit 4.x is supported and the lowest and the
+          # highest supported version would be the same.
+          # Using the Composer `--prefer-lowest` option is, unfortunately, not viable, as
+          # PHPUnit 4.8.36 doesn't have proper PHP restrictions, which means that it
+          # would always be installed as "low", which would break the builds for PHP 7.2+.
+          - php: '5.6'
+            phpunit: '5.7.21'
+            experimental: false
+          - php: '7.0'
+            phpunit: '5.7.27'
+            experimental: false
+          - php: '7.1'
+            phpunit: '5.7.21'
+            experimental: false
+          - php: '7.2'
+            phpunit: '6.3.1'
+            experimental: false
+          - php: '7.3'
+            phpunit: '7.2.7'
+            experimental: false
+          - php: '7.4'
+            phpunit: '8.1.6'
+            experimental: false
+          - php: '8.0'
+            phpunit: '8.5.16'
+            experimental: false
+          - php: '8.0'
+            phpunit: '9.3.0'
+            experimental: false
+
+          # Experimental builds.
           - php: '8.1'
             phpunit: 'auto'
             experimental: true
