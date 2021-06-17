@@ -341,6 +341,30 @@ class AssertObjectEqualsTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the assertObjectEquals() method throws an error when the declared return type/
+	 * the return value is not boolean.
+	 *
+	 * @return void
+	 */
+	public function testAssertObjectEqualsFailsOnNonBooleanReturnValue() {
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not return a boolean value.';
+
+		$exception = self::COMPARATOR_EXCEPTION;
+		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException' ) ) {
+			// PHPUnit > 9.4.0.
+			$msg       = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not declare bool return type.';
+			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException';
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessage( $msg );
+
+		$expected = new ValueObject( 100 );
+		$actual   = new ValueObject( 100 );
+		$this->assertObjectEquals( $expected, $actual, 'equalsNonBooleanReturnType' );
+	}
+
+	/**
 	 * Verify that the assertObjectEquals() method fails a test when a call to method
 	 * determines that the objects are not equal.
 	 *

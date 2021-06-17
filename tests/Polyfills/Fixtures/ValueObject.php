@@ -102,4 +102,15 @@ class ValueObject {
 	public function equalsParamNonExistentClassType( ClassWhichDoesntExist $other ): bool {
 		return ( $this->value === $other->value );
 	}
+
+	/**
+	 * Comparator method: incorrectly declared - non-boolean return type/value.
+	 *
+	 * @param self $other Object to compare.
+	 *
+	 * @return bool
+	 */
+	public function equalsNonBooleanReturnType( self $other ): int {
+		return ( $this->value <=> $other->value );
+	}
 }

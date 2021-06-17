@@ -146,7 +146,7 @@
 	</rule>
 
 	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 7+/8+ respectively. -->
-	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.boolFound">
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ChildValueObject\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
@@ -154,6 +154,9 @@
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType\.php$</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.Operators.NewOperators.t_spaceshipFound">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>
