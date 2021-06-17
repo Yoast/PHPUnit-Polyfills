@@ -11,6 +11,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
@@ -39,6 +40,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	use AssertionRenames;
 	use AssertIsType;
 	use AssertNumericType;
+	use AssertObjectEquals;
 	use AssertStringContains;
 	use EqualToSpecializations;
 	use ExpectException;

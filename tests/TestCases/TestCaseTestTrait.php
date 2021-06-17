@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use Exception;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
+use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
 
 /**
  * Tests for the TestCase setups.
@@ -162,5 +163,18 @@ trait TestCaseTestTrait {
 	 */
 	public function testAvailabilityEqualToSpecializations() {
 		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [14].
+	 *
+	 * @requires PHP 7.0
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityAssertObjectEquals() {
+		$expected = new ValueObject( 'test' );
+		$actual   = new ValueObject( 'test' );
+		$this->assertObjectEquals( $expected, $actual );
 	}
 }

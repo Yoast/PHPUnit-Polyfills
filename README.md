@@ -436,6 +436,24 @@ if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
 > :point_right: While this polyfill is tested extensively, testing for these kind of bugs exhaustively is _hard_.
 > Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues/new/choose) found and include a clear code sample to reproduce the issue.
 
+#### PHPUnit < 9.4.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals`
+
+Polyfills the [`Assert::assertObjectEquals()`] method to verify two (value) objects are considered equal.
+This assertion expects an object to contain a comparator method in the object itself. This comparator method is subsequently called to verify the "equalness" of the objects.
+
+The `assertObjectEquals() assertion was introduced in PHPUnit 9.4.0.
+
+> :info: Due to [limitations in how this assertion is implemented in PHPUnit] itself, it is currently not possible to create a single comparator method which will be compatible with both PHP < 7.0 and PHP 7.0 or higher.
+>
+> In effect two declarations of the same object would be needed to be compatible with PHP < 7.0 and PHP 7.0 and higher and still allow for testing the object using the `assertObjectEquals()` assertion.
+>
+> Due to this limitation, it is recommended to only use this assertion if the minimum supported PHP version of a project is PHP 7.0 or higher; or if the project does not run its tests on PHPUnit >= 9.4.0.
+
+[limitations in how this assertion is implemented in PHPUnit]: https://github.com/sebastianbergmann/phpunit/issues/4707
+
+<!--
+COMMENT: No documentation available (yet) for this assertion on the PHPUnit site.
+-->
 
 ### Helper traits
 
