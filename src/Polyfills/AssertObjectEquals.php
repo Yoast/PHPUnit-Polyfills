@@ -212,7 +212,7 @@ trait AssertObjectEquals {
 		if ( \is_bool( $result ) === false ) {
 			throw new InvalidComparisonMethodException(
 				\sprintf(
-					'%s::%s() does not return a boolean value.',
+					'Comparison method %s::%s() does not return a boolean value.',
 					\get_class( $actual ),
 					$method
 				)
