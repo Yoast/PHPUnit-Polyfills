@@ -25,12 +25,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			 * exist in PHP natively.
 			 */
 			if ( $className === 'Error' || $className === 'TypeError' ) {
-				$file = \realpath(
-					__DIR__ . \DIRECTORY_SEPARATOR
-					. 'src' . \DIRECTORY_SEPARATOR
-					. 'Exceptions' . \DIRECTORY_SEPARATOR
-					. $className . '.php'
-				);
+				$file = \realpath( __DIR__ . '/src/Exceptions/' . $className . '.php' );
 
 				if ( \file_exists( $file ) === true ) {
 					require_once $file;
@@ -119,11 +114,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				 * - Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
 				 */
 				default:
-					$file = \realpath(
-						__DIR__ . \DIRECTORY_SEPARATOR
-						. 'src' . \DIRECTORY_SEPARATOR
-						. \strtr( \substr( $className, 23 ), '\\', \DIRECTORY_SEPARATOR ) . '.php'
-					);
+					$file = \realpath( __DIR__ . '/src/' . \strtr( \substr( $className, 23 ), '\\', '/' ) . '.php' );
 
 					if ( \file_exists( $file ) === true ) {
 						require_once $file;
