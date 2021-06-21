@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners;
 
 use PHPUnit\Framework\TestResult;
-use PHPUnit_Framework_TestResult;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Failure;
 use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Incomplete;
@@ -42,15 +41,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	protected function set_up() {
-		if ( \class_exists( TestResult::class ) ) {
-			// PHPUnit 6.0.0+.
-			$this->result = new TestResult();
-		}
-		else {
-			// PHPUnit < 6.0.0.
-			$this->result = new PHPUnit_Framework_TestResult();
-		}
-
+		$this->result   = new TestResult();
 		$this->listener = new TestListenerImplementation();
 
 		$this->result->addListener( $this->listener );
@@ -62,7 +53,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testError() {
-		$test = new TestError();
+		$test = new TestError( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -81,7 +72,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testWarning() {
-		$test = new Warning();
+		$test = new Warning( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -95,7 +86,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testFailure() {
-		$test = new Failure();
+		$test = new Failure( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -109,7 +100,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testIncomplete() {
-		$test = new Incomplete();
+		$test = new Incomplete( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -127,7 +118,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testRisky() {
-		$test = new Risky();
+		$test = new Risky( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -141,7 +132,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testSkipped() {
-		$test = new Skipped();
+		$test = new Skipped( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -155,7 +146,7 @@ class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testStartStop() {
-		$test = new Success();
+		$test = new Success( 'runTest' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );

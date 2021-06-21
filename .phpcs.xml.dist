@@ -33,9 +33,6 @@
 	#############################################################################
 	-->
 
-	<!-- Support PHP 5.6 or higher. -->
-	<config name="testVersion" value="5.6-"/>
-
 	<rule ref="Yoast">
 		<!-- Duplicate classes is by design and part of the cross-version compatibility mechanism. -->
 		<exclude name="Generic.Classes.DuplicateClassName"/>
@@ -48,9 +45,23 @@
 		<!-- Exclude some rules which are irrelevant.
 			 The code in this package is not run in the context of a WordPress plugin. -->
 		<exclude name="WordPress.DB"/>
+		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_var_export"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.system_calls_popen"/>
 		<exclude name="WordPress.Security"/>
 		<exclude name="WordPress.WP"/>
 		<exclude name="Yoast.Yoast.AlternativeFunctions"/>
+	</rule>
+
+	<!-- While PHPCompatibility is already included in the Yoast ruleset, it uses
+		 the PHPCompatibilityWP ruleset, which excludes rules polyfilled by WP.
+		 Setting the severity for all PHPCompatibility rules to 5 prevents WP
+		 polyfilled functionality from not being flagged in this repo. -->
+	<rule ref="PHPCompatibility">
+		<severity>5</severity>
+
+		<!-- These PHP 7.0+ classes are polyfilled for this repo. -->
+		<exclude name="PHPCompatibility.Classes.NewClasses.errorFound"/>
+		<exclude name="PHPCompatibility.Classes.NewClasses.typeerrorFound"/>
 	</rule>
 
 	<!-- Enforce PSR1 compatible namespaces. -->
@@ -81,6 +92,25 @@
 	Exclude specific files for specific sniffs and/or exclude sub-groups in sniffs.
 	#############################################################################
 	-->
+
+	<!-- The polyfills for the PHP native exceptions can not have a namespace
+		 and making those the only files with a file comment would create more,
+		 not less inconsistency. -->
+	<rule ref="Yoast.Commenting.FileComment">
+		<exclude-pattern>/src/Exceptions/*Error\.php$</exclude-pattern>
+	</rule>
+
+	<!-- Deliberately empty Catch statements. -->
+	<rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedCatch">
+		<exclude-pattern>/src/Helpers/ResourceHelper\.php$</exclude-pattern>
+		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
+	</rule>
+
+	<!-- Targetted error silencing. This is okay. -->
+	<rule ref="WordPress.PHP.NoSilencedErrors">
+		<exclude-pattern>/src/Helpers/ResourceHelper\.php$</exclude-pattern>
+		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
+	</rule>
 
 	<!-- The TestCase for PHPUnit 8+ will only ever be loaded on PHP 7.2+. -->
 	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
@@ -113,6 +143,20 @@
 	<!-- Covers annotations are in the test classes, not the trait. -->
 	<rule ref="Yoast.Commenting.TestsHaveCoversTag.Missing">
 		<exclude-pattern>/tests/TestCases/TestCaseTestTrait\.php$</exclude-pattern>
+	</rule>
+
+	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 7+/8+ respectively. -->
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ChildValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType\.php$</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.Operators.NewOperators.t_spaceshipFound">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>

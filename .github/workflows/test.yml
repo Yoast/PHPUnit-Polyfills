@@ -1,0 +1,106 @@
+name: Test
+
+on:
+  # Run on all pushes and on all pull requests.
+  push:
+  pull_request:
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+jobs:
+  #### TEST STAGE ####
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+        phpunit: ['auto']
+        experimental: [false]
+
+        include:
+          # Test against a version on the low-end of the PHPUnit versions supported for each PHP version.
+          # On PHP 5.4 and 5.5, only PHPUnit 4.x is supported and the lowest and the
+          # highest supported version would be the same.
+          # Using the Composer `--prefer-lowest` option is, unfortunately, not viable, as
+          # PHPUnit 4.8.36 doesn't have proper PHP restrictions, which means that it
+          # would always be installed as "low", which would break the builds for PHP 7.2+.
+          - php: '5.6'
+            phpunit: '5.7.21'
+            experimental: false
+          - php: '7.0'
+            phpunit: '5.7.27'
+            experimental: false
+          - php: '7.1'
+            phpunit: '5.7.21'
+            experimental: false
+          - php: '7.2'
+            phpunit: '6.3.1'
+            experimental: false
+          - php: '7.3'
+            phpunit: '7.2.7'
+            experimental: false
+          - php: '7.4'
+            phpunit: '8.1.6'
+            experimental: false
+          - php: '8.0'
+            phpunit: '8.5.16'
+            experimental: false
+          - php: '8.0'
+            phpunit: '9.3.0'
+            experimental: false
+
+          # Experimental builds.
+          - php: '8.1'
+            phpunit: 'auto'
+            experimental: true
+
+          - php: '8.0'
+            phpunit: '^10.0'
+            experimental: true
+
+    name: "Tests: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
+
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: 'Composer: set PHPUnit version for tests'
+        if: ${{ matrix.phpunit != 'auto' }}
+        run: composer require --no-update phpunit/phpunit:"${{ matrix.phpunit }}"
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-composer-dependencies
+      - name: Install Composer dependencies for PHP < 8.1
+        if: ${{ matrix.php < 8.1 }}
+        uses: "ramsey/composer-install@v1"
+
+      # For PHP 8.1 and above, we need to install with ignore platform reqs as not all dependencies allow it yet.
+      - name: Install Composer dependencies for PHP >= 8.1
+        if: ${{ matrix.php >= 8.1 }}
+        uses: "ramsey/composer-install@v1"
+        with:
+          composer-options: --ignore-platform-reqs
+
+      - name: "Lint PHP files against parse errors - PHP < 7.0"
+        if: ${{ matrix.phpunit == 'auto' && matrix.php < 7.0 }}
+        run: composer lint-lt70
+
+      - name: "Lint PHP files against parse errors - PHP 7.x"
+        if: ${{ matrix.phpunit == 'auto' && startsWith( matrix.php, '7' ) }}
+        run: composer lint7
+
+      - name: "Lint PHP files against parse errors - PHP >= 8.0"
+        if: ${{ matrix.phpunit == 'auto' && matrix.php >= 8.0 }}
+        run: composer lint-gte80
+
+      - name: Run the unit tests
+        run: composer test

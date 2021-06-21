@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use Exception;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
+use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
 
 /**
  * Tests for the TestCase setups.
@@ -83,7 +84,7 @@ trait TestCaseTestTrait {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testAvailabilityExpectExceptionMessageMatchesTrait() {
-		$this->expectException( Exception::class );
+		$this->expectException( '\Exception' );
 		$this->expectExceptionMessageMatches( '`^a poly[a-z]+ [a-zA-Z0-9_]+ me(s){2}age$`i' );
 
 		throw new Exception( 'A polymorphic exception message' );
@@ -115,7 +116,65 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAssertNan() {
+	public function testAvailabilityAssertNumericTypeTrait() {
 		self::assertNan( \acos( 8 ) );
+	}
+
+	/**
+	 * Test availability of trait polyfilled PHPUnit methods [10].
+	 *
+	 * @return void
+	 *
+	 * @throws Exception For testing purposes.
+	 */
+	public function testAvailabilityExpectExceptionTrait() {
+		$this->expectException( '\Exception' );
+		$this->expectExceptionMessage( 'message' );
+
+		throw new Exception( 'message' );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [11].
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityAssertFileDirectory() {
+		$path = __DIR__ . \DIRECTORY_SEPARATOR;
+		$this->assertDirectoryExists( $path );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [12].
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityAssertClosedResource() {
+		$resource = \fopen( __FILE__, 'r' );
+		\fclose( $resource );
+
+		$this->assertIsClosedResource( $resource );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [13].
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityEqualToSpecializations() {
+		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [14].
+	 *
+	 * @requires PHP 7.0
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityAssertObjectEquals() {
+		$expected = new ValueObject( 'test' );
+		$actual   = new ValueObject( 'test' );
+		$this->assertObjectEquals( $expected, $actual );
 	}
 }

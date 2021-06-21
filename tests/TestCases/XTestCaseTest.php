@@ -57,7 +57,7 @@ class XTestCaseTest extends XTestCase {
 	 *
 	 * @return void
 	 */
-	public function setUpFixtures() {
+	protected function setUpFixtures() {
 		parent::setUpFixtures();
 
 		++self::$before;
@@ -70,7 +70,7 @@ class XTestCaseTest extends XTestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDownFixtures() {
+	protected function tearDownFixtures() {
 		++self::$after;
 
 		parent::tearDownFixtures();
