@@ -12,6 +12,13 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 	class Autoload {
 
 		/**
+		 * Version number.
+		 *
+		 * @var string
+		 */
+		const VERSION = '1.0.1';
+
+		/**
 		 * Loads a class.
 		 *
 		 * @param string $className The name of the class to load.
