@@ -104,4 +104,10 @@ jobs:
         run: composer lint-gte80
 
       - name: Run the unit tests
+        if: ${{ matrix.phpunit != '^10.0' }}
+        run: composer test
+
+      - name: Trial run the unit tests against PHPUnit 10.0
+        if: ${{ matrix.phpunit == '^10.0' }}
+        continue-on-error: true
         run: composer test
