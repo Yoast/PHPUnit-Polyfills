@@ -128,7 +128,7 @@ For the polyfills to work, a test class is **required** to be a (grand-)child of
 
 If your library still needs to support PHP < 5.6 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
 
-To prevent "conflicting method names" errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
+To prevent _"conflicting method names"_ errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
 
 You will need to make sure to `use` any additional traits needed for the polyfills to work.
 
@@ -433,7 +433,7 @@ if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
 }
 ```
 
-> :point_right: While this polyfill is tested extensively, testing for these kind of bugs exhaustively is _hard_.
+> :point_right: While this polyfill is tested extensively, testing for these kind of bugs _exhaustively_ is _hard_.
 > Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues/new/choose) found and include a clear code sample to reproduce the issue.
 
 #### PHPUnit < 9.4.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals`
@@ -441,19 +441,20 @@ if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
 Polyfills the [`Assert::assertObjectEquals()`] method to verify two (value) objects are considered equal.
 This assertion expects an object to contain a comparator method in the object itself. This comparator method is subsequently called to verify the "equalness" of the objects.
 
-The `assertObjectEquals() assertion was introduced in PHPUnit 9.4.0.
+The `assertObjectEquals()` assertion was introduced in PHPUnit 9.4.0.
 
-> :info: Due to [limitations in how this assertion is implemented in PHPUnit] itself, it is currently not possible to create a single comparator method which will be compatible with both PHP < 7.0 and PHP 7.0 or higher.
+> :information_source: Due to [limitations in how this assertion is implemented in PHPUnit] itself, it is currently not possible to create a single comparator method which will be compatible with both PHP < 7.0 and PHP 7.0 or higher.
 >
 > In effect two declarations of the same object would be needed to be compatible with PHP < 7.0 and PHP 7.0 and higher and still allow for testing the object using the `assertObjectEquals()` assertion.
 >
 > Due to this limitation, it is recommended to only use this assertion if the minimum supported PHP version of a project is PHP 7.0 or higher; or if the project does not run its tests on PHPUnit >= 9.4.0.
+>
+> The implementation of this assertion in the Polyfills is PHP cross-version compatible.
 
 [limitations in how this assertion is implemented in PHPUnit]: https://github.com/sebastianbergmann/phpunit/issues/4707
 
-<!--
-COMMENT: No documentation available (yet) for this assertion on the PHPUnit site.
--->
+[`Assert::assertObjectEquals()`]: https://phpunit.readthedocs.io/en/stable/assertions.html#assertobjectequals
+
 
 ### Helper traits
 
@@ -686,6 +687,30 @@ Yes, this package can also be used when running tests via a PHPUnit Phar file.
 
 In that case, make sure that the `phpunitpolyfills-autoload.php` file is explicitly `require`d in the test bootstrap file.
 (Not necessary when the Composer `vendor/autoload.php` file is used as, or `require`d in, the test bootstrap.)
+
+### Q: How can I verify the version used of the PHPUnit Polyfills library ?
+
+For complex test setups, like when the Polyfills are provided via a test suite dependency, or may already be loaded via an overarching project, it can be useful to be able to check that a version of the package is used which complies with the requirements for your test suite.
+
+As of version 1.0.1, the PHPUnit Polyfills `Autoload` class contains a version number which can be used for this purpose.
+
+Typically such a check would be done in the test suite bootstrap file and could look something like this:
+```php
+$versionRequirement = '1.0.1';
+if ( class_exists( '\Yoast\PHPUnitPolyfills\Autoload' ) === false ) {
+    require_once `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php`;
+} elseif ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
+    || version_compare( \Yoast\PHPUnitPolyfills\Autoload::VERSION, $versionRequirement, '<' )
+) {
+    echo 'Error: Version mismatch detected for the PHPUnit Polyfills. Please ensure that PHPUnit Polyfills ',
+        $versionRequirement, ' or higher is loaded.', PHP_EOL;
+    exit(1);
+} else {
+    echo 'Error: Please run `composer update` before running the tests.' . PHP_EOL;
+    echo 'You can still use a PHPUnit phar to run them, but the dependencies do need to be installed.', PHP_EOL;
+    exit(1);
+}
+```
 
 
 Contributing
