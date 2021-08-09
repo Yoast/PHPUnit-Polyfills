@@ -9,13 +9,27 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [1.0.1] - 2021-08-09
+
+### Added
+* The `Yoast\PHPUnitPolyfills\Autoload` class now contains a `VERSION` constant. Issue [#46], PR [#47], props [Pascal Birchler] for the suggestion.
+    This version constant can be used by (complex) test setups to verify that the PHPUnit Polyfills which will be loaded, comply with the version requirements for the test suite.
+
+### Changed
+* Minor documentation updates. [#43]
+
+[#43]: https://github.com/Yoast/PHPUnit-Polyfills/pull/43
+[#46]: https://github.com/Yoast/PHPUnit-Polyfills/issues/46
+[#47]: https://github.com/Yoast/PHPUnit-Polyfills/pull/47
+
+
 ## [1.0.0] - 2021-06-21
 
 ### Added
 * `Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource` trait to polyfill the `Assert::assertIsClosedResource()` and `Assert::assertIsNotClosedResource()` methods as introduced in PHPUnit 9.3.0. PR [#27].
 * `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals` trait to polyfill the `Assert::assertObjectEquals()` method as introduced in PHPUnit 9.4.0. PR [#38].
     The behaviour of the polyfill closely matches the PHPUnit native implementation, but is not 100% the same.
-    Most notably, the polyfill will check the type of the returned value from the comparator method instead of the enforcing a return type declaration of the comparator method.
+    Most notably, the polyfill will check the type of the returned value from the comparator method instead of enforcing a return type declaration for the comparator method.
 * `Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations` trait to polyfill the `Assert::equalToCanonicalizing()`, `Assert::equalToIgnoringCase()` and `Assert::equalToWithDelta()` methods as introduced in PHPUnit 9.0.0. PR [#28], props [Marc Siegrist].
 * Polyfills for the PHP native `Error` and `TypeError` classes as introduced in PHP 7.0. PR [#36].
 * README: FAQ section covering functionality removed from PHPUnit and usage with a Phar.
@@ -67,6 +81,7 @@ Initial release.
 
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[1.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/e8f8b7a73737aa9a5974bd9c73d2bd8d09f69873...0.1.0
@@ -74,3 +89,4 @@ Initial release.
 [Gary Jones]: https://github.com/GaryJones
 [Marc Siegrist]: https://github.com/mergeMarc
 [Mark Baker]: https://github.com/MarkBaker
+[Pascal Birchler]: https://github.com/swissspidy
