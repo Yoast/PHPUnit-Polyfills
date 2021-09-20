@@ -698,17 +698,19 @@ As of version 1.0.1, the PHPUnit Polyfills `Autoload` class contains a version n
 
 Typically such a check would be done in the test suite bootstrap file and could look something like this:
 ```php
-$versionRequirement = '1.0.1';
 if ( class_exists( '\Yoast\PHPUnitPolyfills\Autoload' ) === false ) {
-    require_once `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php`;
-} elseif ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
+    require_once 'vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
+}
+
+$versionRequirement = '1.0.1';
+if ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
     || version_compare( \Yoast\PHPUnitPolyfills\Autoload::VERSION, $versionRequirement, '<' )
 ) {
     echo 'Error: Version mismatch detected for the PHPUnit Polyfills. Please ensure that PHPUnit Polyfills ',
         $versionRequirement, ' or higher is loaded.', PHP_EOL;
     exit(1);
 } else {
-    echo 'Error: Please run `composer update` before running the tests.' . PHP_EOL;
+    echo 'Error: Please run `composer update -W` before running the tests.' . PHP_EOL;
     echo 'You can still use a PHPUnit phar to run them, but the dependencies do need to be installed.', PHP_EOL;
     exit(1);
 }
