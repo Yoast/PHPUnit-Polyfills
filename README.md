@@ -46,6 +46,8 @@ To update this package, run:
 composer update --dev yoast/phpunit-polyfills --with-dependencies
 ```
 
+Make sure to either use the Composer `vendor/autoload.php` file _as_ your test bootstrap file; òr require the `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php` file _in_ your test bootstrap.
+
 
 Why use the PHPUnit Polyfills?
 ------------------------------
@@ -688,6 +690,38 @@ Yes, this package can also be used when running tests via a PHPUnit Phar file.
 In that case, make sure that the `phpunitpolyfills-autoload.php` file is explicitly `require`d in the test bootstrap file.
 (Not necessary when the Composer `vendor/autoload.php` file is used as, or `require`d in, the test bootstrap.)
 
+
+### Q: How do I run my tests when the library is installed via the GitHub Actions `setup-php` action ?
+
+As of [shivammathur/setup-php](https://github.com/shivammathur/setup-php) version [2.15.0](https://github.com/shivammathur/setup-php/releases/tag/2.15.0), the PHPUnit Polyfills are available as one of the tools which can be installed directly by the Setup-PHP GitHub action.
+
+```yaml
+- name: Setup PHP with tools
+  uses: shivammathur/setup-php@v2
+  with:
+    php-version: '8.0'
+    tools: phpunit-polyfills
+```
+
+The above step will install both the PHPUnit Polyfills, as well as PHPUnit, as Composer global packages.
+
+After this step has run, you can run PHPUnit, like you would normally, by using `phpunit`.
+```yaml
+- name: Run tests
+  run: phpunit
+```
+
+:point_right: If you rely on Composer for autoloading your project files, you will still need to run `composer autoload --dev` and include the project local `vendor/autoload.php` file as/in your test bootstrap.
+
+> :mortar_board: Why this works:
+>
+> Composer will place all files in the global Composer `bin` directory in the system path and the Composer installed PHPUnit version will load the Composer global `autoload.php` file, which will automatically also load the PHPUnit Polyfills.
+
+Now you may wonder, _"what about if I explicitly request both `phpunit` as well as `phpunit-polyfills` in `tools`?"_
+
+In that case, when you run `phpunit`, the PHPUnit PHAR will not know how to locate the PHPUnit Polyfills, so you will need to do some wizardry in your test bootstrap to get things working.
+
+
 ### Q: How can I verify the version used of the PHPUnit Polyfills library ?
 
 For complex test setups, like when the Polyfills are provided via a test suite dependency, or may already be loaded via an overarching project, it can be useful to be able to check that a version of the package is used which complies with the requirements for your test suite.
@@ -696,17 +730,19 @@ As of version 1.0.1, the PHPUnit Polyfills `Autoload` class contains a version n
 
 Typically such a check would be done in the test suite bootstrap file and could look something like this:
 ```php
-$versionRequirement = '1.0.1';
 if ( class_exists( '\Yoast\PHPUnitPolyfills\Autoload' ) === false ) {
-    require_once `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php`;
-} elseif ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
+    require_once 'vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
+}
+
+$versionRequirement = '1.0.1';
+if ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
     || version_compare( \Yoast\PHPUnitPolyfills\Autoload::VERSION, $versionRequirement, '<' )
 ) {
     echo 'Error: Version mismatch detected for the PHPUnit Polyfills. Please ensure that PHPUnit Polyfills ',
         $versionRequirement, ' or higher is loaded.', PHP_EOL;
     exit(1);
 } else {
-    echo 'Error: Please run `composer update` before running the tests.' . PHP_EOL;
+    echo 'Error: Please run `composer update -W` before running the tests.' . PHP_EOL;
     echo 'You can still use a PHPUnit phar to run them, but the dependencies do need to be installed.', PHP_EOL;
     exit(1);
 }
