@@ -711,7 +711,7 @@ After this step has run, you can run PHPUnit, like you would normally, by using 
   run: phpunit
 ```
 
-:point_right: If you rely on Composer for autoloading your project files, you will still need to run `composer autoload --dev` and include the project local `vendor/autoload.php` file as/in your test bootstrap.
+:point_right: If you rely on Composer for autoloading your project files, you will still need to run `composer dump-autoload --dev` and include the project local `vendor/autoload.php` file as/in your test bootstrap.
 
 > :mortar_board: Why this works:
 >
