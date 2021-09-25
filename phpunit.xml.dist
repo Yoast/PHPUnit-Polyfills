@@ -6,6 +6,7 @@
     bootstrap="./tests/bootstrap.php"
     beStrictAboutTestsThatDoNotTestAnything="true"
     colors="true"
+    convertDeprecationsToExceptions="true"
     forceCoversAnnotation="true">
 
     <testsuites>
