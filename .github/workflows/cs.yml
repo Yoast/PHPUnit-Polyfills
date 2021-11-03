@@ -2,7 +2,7 @@ name: CS
 
 on:
   # Run on all pushes and on all pull requests.
-  push:
+#  push:
   pull_request:
   # Allow manually triggering the workflow.
   workflow_dispatch:
