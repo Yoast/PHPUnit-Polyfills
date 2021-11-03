@@ -1,6 +1,7 @@
 name: Exakat
 
 on:
+  push:
   # Only run when manually triggered.
   workflow_dispatch:
 
