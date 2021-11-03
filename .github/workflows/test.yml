@@ -91,18 +91,6 @@ jobs:
         with:
           composer-options: --ignore-platform-reqs
 
-      - name: "Lint PHP files against parse errors - PHP < 7.0"
-        if: ${{ matrix.phpunit == 'auto' && matrix.php < 7.0 }}
-        run: composer lint-lt70
-
-      - name: "Lint PHP files against parse errors - PHP 7.x"
-        if: ${{ matrix.phpunit == 'auto' && startsWith( matrix.php, '7' ) }}
-        run: composer lint7
-
-      - name: "Lint PHP files against parse errors - PHP >= 8.0"
-        if: ${{ matrix.phpunit == 'auto' && matrix.php >= 8.0 }}
-        run: composer lint-gte80
-
       - name: Run the unit tests
         if: ${{ matrix.phpunit != '^10.0' }}
         run: composer test
