@@ -22,3 +22,7 @@ jobs:
 
       - name: Exakat
         uses: docker://exakat/exakat-ga
+        with:
+          ignore_dirs: 'vendor'
+          include_dirs: '/temp'
+          project_reports: 'Code Sniffer'
