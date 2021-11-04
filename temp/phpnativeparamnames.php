@@ -7,22 +7,22 @@ use ReturnTypeWillChange;
 
 class PHPNativeNames implements ArrayAccess {
 	#[ReturnTypeWillChange]
-	public offsetExists($offset) {
+	public function offsetExists($offset) {
 		// This one has the correct parameter name.
 	}
 
 	#[ReturnTypeWillChange]
-	public offsetGet($key) {
+	public function offsetGet($key) {
 		// Incorrect param name.
 	}
 
 	#[ReturnTypeWillChange]
-	public offsetSet($offset, $newValue) {
+	public function offsetSet($offset, $newValue) {
 		// One correct, one incorrect param name.
 	}
 
 	#[ReturnTypeWillChange]
-	public offsetUnset($offset) {
+	public function offsetUnset($offset) {
 		// This one has the correct parameter name again.
 	}
 }
