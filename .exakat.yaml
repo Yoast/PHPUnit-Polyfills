@@ -1,17 +1,5 @@
 project_rulesets:
-  - CompatibilityPHP53
-  - CompatibilityPHP54
-  - CompatibilityPHP55
-  - CompatibilityPHP56
-  - CompatibilityPHP70
-  - CompatibilityPHP71
-  - CompatibilityPHP72
-  - CompatibilityPHP73
-  - CompatibilityPHP74
   - CompatibilityPHP80
-  - CompatibilityPHP81
-  - LintButWontExec
-  - Semantics
   - Typechecks
 
 project_report:
