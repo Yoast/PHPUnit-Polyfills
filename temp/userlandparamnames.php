@@ -11,5 +11,8 @@ class UserlandNamesA extends Foo {
 }
 
 class UserlandNamesB extends Foo {
-	public function bar($string, $otherdata) {}
+	public function bar($string, $otherdata) {
+		// Make sure at least one other issue is triggered.
+		var_dump(\class_exists('Dummy'));
+	}
 }
