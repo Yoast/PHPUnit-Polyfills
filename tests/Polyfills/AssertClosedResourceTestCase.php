@@ -45,7 +45,11 @@ abstract class AssertClosedResourceTestCase extends TestCase {
 	 * @return void
 	 */
 	public function isNotClosedResourceExpectExceptionOnClosedResource( $actual ) {
-		$msg       = 'Failed asserting that NULL is not of type "resource (closed)"';
+		/*
+		 * PHPUnit itself will report closed resources as `NULL` prior to Exporter 3.0.4/4.1.4.
+		 * See: https://github.com/sebastianbergmann/exporter/pull/37
+		 */
+		$pattern   = '`^Failed asserting that (resource \(closed\)|NULL) is not of type "resource \(closed\)"`';
 		$exception = 'PHPUnit\Framework\AssertionFailedError';
 		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
 			// PHPUnit < 6.
@@ -53,7 +57,7 @@ abstract class AssertClosedResourceTestCase extends TestCase {
 		}
 
 		$this->expectException( $exception );
-		$this->expectExceptionMessage( $msg );
+		$this->expectExceptionMessageMatches( $pattern );
 
 		self::assertIsNotClosedResource( $actual );
 	}
