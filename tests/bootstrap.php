@@ -48,6 +48,15 @@ else {
 }
 
 /*
+ * Define the constant because our tests are running PHPUnit test cases themselves.
+ * This will prevent some tests being marked as "risky" on old PHPUnit versions for
+ * closing buffers.
+ */
+if ( \defined( 'PHPUNIT_TESTSUITE' ) === false ) {
+	\define( 'PHPUNIT_TESTSUITE', true );
+}
+
+/*
  * Create a number of class aliases for PHPUnit native classes which have been
  * renamed over time and are only used in the unit tests.
  */
