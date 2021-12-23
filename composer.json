@@ -29,6 +29,11 @@
     "require-dev": {
         "yoast/yoastcs": "^2.2.0"
     },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
     "autoload": {
         "files": ["phpunitpolyfills-autoload.php"]
     },
