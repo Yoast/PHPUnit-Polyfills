@@ -2,9 +2,12 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures;
 
+use AllowDynamicProperties;
+
 /**
  * Fixture to test the AssertAttributeHelper.
  */
+#[AllowDynamicProperties]
 class ClassWithProperties {
 
 	/**
