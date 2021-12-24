@@ -82,18 +82,18 @@ jobs:
 
       - name: 'Composer: set PHPUnit version for tests'
         if: ${{ matrix.phpunit != 'auto' }}
-        run: composer require --no-update phpunit/phpunit:"${{ matrix.phpunit }}"
+        run: composer require --no-update phpunit/phpunit:"${{ matrix.phpunit }}" --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies for PHP < 8.2
         if: ${{ matrix.php < 8.2 }}
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
 
       # For PHP 8.2 and above, we need to install with ignore platform reqs as not all dependencies allow it yet.
       - name: Install Composer dependencies for PHP >= 8.2
         if: ${{ matrix.php >= 8.2 }}
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-reqs
 
