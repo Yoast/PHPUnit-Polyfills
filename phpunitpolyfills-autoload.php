@@ -91,6 +91,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertObjectEquals();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings':
+					self::loadAssertIgnoringLineEndings();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
 					self::loadTestCase();
 					return true;
@@ -287,6 +291,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 9.4.0.
 			require_once __DIR__ . '/src/Polyfills/AssertObjectEquals_Empty.php';
+		}
+
+		/**
+		 * Load the AssertIgnoringLineEndings polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertIgnoringLineEndings() {
+			if ( \method_exists( Assert::class, 'assertStringEqualsStringIgnoringLineEndings' ) === false ) {
+				// PHPUnit < 10.0.0.
+				require_once __DIR__ . '/src/Polyfills/AssertIgnoringLineEndings.php';
+				return;
+			}
+
+			// PHPUnit >= 10.0.0.
+			require_once __DIR__ . '/src/Polyfills/AssertIgnoringLineEndings_Empty.php';
 		}
 
 		/**
