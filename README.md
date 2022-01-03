@@ -406,6 +406,17 @@ These methods were introduced in PHPUnit 10.0.0.
 [`Assert::assertStringEqualsStringIgnoringLineEndings()`]:   https://docs.phpunit.de/en/main/assertions.html#assertstringequalsstringignoringlineendings
 [`Assert::assertStringContainsStringIgnoringLineEndings()`]: https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstringignoringlineendings
 
+#### PHPUnit < 10.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsList`
+
+Polyfills the following method:
+|                                 |
+|---------------------------------|
+| [`Assert::assertIsList()`] |
+
+This method was introduced in PHPUnit 10.0.0.
+
+[`Assert::assertIsList()`]: https://docs.phpunit.de/en/main/assertions.html#assertislist
+
 
 ### Helper traits
 

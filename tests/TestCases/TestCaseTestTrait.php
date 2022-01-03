@@ -142,4 +142,13 @@ trait TestCaseTestTrait {
 	final public function testAvailabilityAssertIgnoringLineEndings() {
 		self::assertStringContainsStringIgnoringLineEndings( "b\nc", "a\r\nb\r\nc\r\nd" );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [16].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertIsList() {
+		static::assertIsList( [ 0, 1, 2 ] );
+	}
 }
