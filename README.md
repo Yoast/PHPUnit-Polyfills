@@ -47,7 +47,7 @@ To update this package, run:
 composer update --dev yoast/phpunit-polyfills --with-dependencies
 ```
 
-Make sure to either use the Composer `vendor/autoload.php` file _as_ your test bootstrap file; òr require the `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php` file _in_ your test bootstrap.
+Make sure to either use the Composer `vendor/autoload.php` file _as_ your test bootstrap file; or require the `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php` file _in_ your test bootstrap.
 
 
 Why use the PHPUnit Polyfills?
