@@ -15,7 +15,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * @requires extension zlib
  */
-class AssertClosedResourceZlibTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceZlibTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

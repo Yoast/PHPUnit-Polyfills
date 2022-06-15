@@ -12,7 +12,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject
  */
-class ExpectExceptionObjectTest extends TestCase {
+final class ExpectExceptionObjectTest extends TestCase {
 
 	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionObject;

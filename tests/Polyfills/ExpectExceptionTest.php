@@ -19,7 +19,7 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ThrowExceptionTestCase;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\ExpectException
  */
-class ExpectExceptionTest extends TestCase {
+final class ExpectExceptionTest extends TestCase {
 
 	use AssertionRenames;
 	use ExpectException;

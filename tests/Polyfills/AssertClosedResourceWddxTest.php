@@ -22,7 +22,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.wddx_packet_startRemoved
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.wddx_packet_endRemoved
  */
-class AssertClosedResourceWddxTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceWddxTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

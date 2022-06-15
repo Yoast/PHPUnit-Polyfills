@@ -14,7 +14,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  * @covers \Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  */
-class AssertClosedResourceNotResourceTest extends TestCase {
+final class AssertClosedResourceNotResourceTest extends TestCase {
 
 	use AssertClosedResource;
 	use ExpectException; // Needed for PHPUnit < 5.2.0 support.

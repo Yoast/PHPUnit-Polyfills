@@ -10,7 +10,7 @@ use Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures\ClassWithProperties;
  *
  * @covers \Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper
  */
-class AssertAttributesHelperTest extends TestCase {
+final class AssertAttributesHelperTest extends TestCase {
 
 	/**
 	 * Instance of the ClassWithProperties class.
