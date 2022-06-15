@@ -25,7 +25,7 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
  */
-class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
+final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 
 	use AssertObjectEquals;
 	use ExpectException; // Needed for PHPUnit < 5.2.0 support.

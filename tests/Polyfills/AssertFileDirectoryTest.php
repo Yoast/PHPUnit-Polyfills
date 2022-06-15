@@ -15,7 +15,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory
  */
-class AssertFileDirectoryTest extends TestCase {
+final class AssertFileDirectoryTest extends TestCase {
 
 	use AssertFileDirectory;
 	use AssertionRenames;

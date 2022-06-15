@@ -19,7 +19,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @requires extension curl
  * @requires PHP < 8.0
  */
-class AssertClosedResourceCurlTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceCurlTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

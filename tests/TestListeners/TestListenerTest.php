@@ -14,7 +14,7 @@ use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementati
  * @covers \Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation
  * @covers \Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
  */
-class TestListenerTest extends TestCase {
+final class TestListenerTest extends TestCase {
 
 	/**
 	 * The current test result instance.

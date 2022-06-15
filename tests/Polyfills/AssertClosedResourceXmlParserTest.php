@@ -20,7 +20,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @requires extension libxml
  * @requires PHP < 8.0
  */
-class AssertClosedResourceXmlParserTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceXmlParserTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

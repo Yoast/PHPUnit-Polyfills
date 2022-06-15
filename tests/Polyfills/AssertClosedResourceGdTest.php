@@ -19,7 +19,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @requires extension gd
  * @requires PHP < 8.0
  */
-class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

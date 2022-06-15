@@ -10,7 +10,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations
  */
-class AssertEqualsSpecializationsTest extends TestCase {
+final class AssertEqualsSpecializationsTest extends TestCase {
 
 	use AssertEqualsSpecializations;
 

@@ -10,7 +10,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType
  */
-class AssertNumericTypeTest extends TestCase {
+final class AssertNumericTypeTest extends TestCase {
 
 	use AssertNumericType;
 

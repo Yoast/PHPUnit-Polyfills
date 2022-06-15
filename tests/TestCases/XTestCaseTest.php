@@ -9,7 +9,7 @@ use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
  *
  * @covers \Yoast\PHPUnitPolyfills\TestCases\XTestCase
  */
-class XTestCaseTest extends XTestCase {
+final class XTestCaseTest extends XTestCase {
 
 	use TestCaseTestTrait;
 
