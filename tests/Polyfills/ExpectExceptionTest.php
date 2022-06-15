@@ -65,7 +65,7 @@ final class ExpectExceptionTest extends TestCase {
 		$result = new TestResult();
 		$test->run( $result );
 
-		$this->assertSame( 1, $result->errorCount() );
+		$this->assertSame( 1, $this->getErrorCount( $result ) );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertMatchesRegularExpression(
 			'`^Argument #1 \([^)]+\) of [^:]+::expectExceptionCode\(\) must be a integer or string`',
@@ -108,7 +108,7 @@ final class ExpectExceptionTest extends TestCase {
 		$result = new TestResult();
 		$test->run( $result );
 
-		$this->assertSame( 1, $result->errorCount() );
+		$this->assertSame( 1, $this->getErrorCount( $result ) );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertMatchesRegularExpression( $regex, $this->getMessageContent( $test ) );
 	}
@@ -145,7 +145,7 @@ final class ExpectExceptionTest extends TestCase {
 		$result = new TestResult();
 		$test->run( $result );
 
-		$this->assertSame( 1, $result->failureCount() );
+		$this->assertSame( 1, $this->getFailureCount( $result ) );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			'Failed asserting that 999 is equal to expected exception code 404.',
@@ -169,7 +169,7 @@ final class ExpectExceptionTest extends TestCase {
 		$result = new TestResult();
 		$test->run( $result );
 
-		$this->assertSame( 1, $result->failureCount() );
+		$this->assertSame( 1, $this->getFailureCount( $result ) );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			"Failed asserting that exception message 'A runtime error occurred' contains 'message'.",
@@ -280,7 +280,7 @@ final class ExpectExceptionTest extends TestCase {
 		$result = new TestResult();
 		$test->run( $result );
 
-		$this->assertSame( 1, $result->failureCount() );
+		$this->assertSame( 1, $this->getFailureCount( $result ) );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			'Failed asserting that 999 is equal to expected exception code 404.',
@@ -310,7 +310,7 @@ final class ExpectExceptionTest extends TestCase {
 		$result = new TestResult();
 		$test->run( $result );
 
-		$this->assertSame( 1, $result->failureCount() );
+		$this->assertSame( 1, $this->getFailureCount( $result ) );
 		$this->assertSame( 1, \count( $result ) );
 		$this->assertSame(
 			"Failed asserting that exception message 'A runtime error occurred' matches '/^foo/'.",
@@ -336,5 +336,47 @@ final class ExpectExceptionTest extends TestCase {
 		}
 
 		return '';
+	}
+
+	/**
+	 * Helper method to retrieve the error count in a PHPUnit cross-version compatible manner.
+	 *
+	 * @param TestResult $result The test result object.
+	 *
+	 * @return int
+	 */
+	private function getErrorCount( $result ) {
+		if ( \method_exists( $result, 'errorCount' ) === false ) {
+			// PHPUnit >= 10.0.0.
+			return \count( $result->errors() );
+		}
+		else {
+			// PHPUnit < 10.0.0.
+			return $result->errorCount();
+		}
+
+		// Make sure the number will never match if the count could not be determined.
+		return -1;
+	}
+
+	/**
+	 * Helper method to retrieve the failure count in a PHPUnit cross-version compatible manner.
+	 *
+	 * @param TestResult $result The test result object.
+	 *
+	 * @return int
+	 */
+	private function getFailureCount( $result ) {
+		if ( \method_exists( $result, 'failureCount' ) === false ) {
+			// PHPUnit >= 10.0.0.
+			return \count( $result->failures() );
+		}
+		else {
+			// PHPUnit < 10.0.0.
+			return $result->failureCount();
+		}
+
+		// Make sure the number will never match if the count could not be determined.
+		return -1;
 	}
 }
