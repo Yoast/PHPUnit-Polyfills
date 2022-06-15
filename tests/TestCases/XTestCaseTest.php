@@ -19,7 +19,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @var int
 	 */
-	public static $beforeClass = 0;
+	private static $beforeClass = 0;
 
 	/**
 	 * Keep track of how often the PHPUnit native `setUp()` method was called/
@@ -27,7 +27,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @var int
 	 */
-	public static $before = 0;
+	private static $before = 0;
 
 	/**
 	 * Keep track of how often the PHPUnit native `tearDown()` method was called/
@@ -35,7 +35,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @var int
 	 */
-	public static $after = 0;
+	private static $after = 0;
 
 	/**
 	 * This method is called before the first test of this test class is run.

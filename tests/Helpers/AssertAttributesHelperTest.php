@@ -17,7 +17,7 @@ final class AssertAttributesHelperTest extends TestCase {
 	 *
 	 * @var ClassWithProperties
 	 */
-	public $instance;
+	private $instance;
 
 	/**
 	 * Set up the class under test.
