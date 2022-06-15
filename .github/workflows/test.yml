@@ -61,7 +61,7 @@ jobs:
             phpunit: 'auto'
             experimental: true
 
-          - php: '8.0'
+          - php: '8.1'
             phpunit: '^10.0'
             experimental: true
 
