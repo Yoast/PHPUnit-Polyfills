@@ -10,7 +10,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 	/**
 	 * Custom autoloader.
 	 */
-	class Autoload {
+	final class Autoload {
 
 		/**
 		 * Version number.
