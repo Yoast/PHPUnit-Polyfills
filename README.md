@@ -6,12 +6,13 @@ PHPUnit Polyfills
 [![Lint Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml)
 [![Test Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml)
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/yoast/phpunit-polyfills.svg?maxAge=3600)](https://packagist.org/packages/yoast/phpunit-polyfills)
-[![License: BSD3](https://poser.pugx.org/yoast/phpunit-polyfills/license)](https://github.com/Yoast/PHPUnit-Polyfills/blob/master/LICENSE)
+[![License: BSD3](https://poser.pugx.org/yoast/phpunit-polyfills/license)](https://github.com/Yoast/PHPUnit-Polyfills/blob/main/LICENSE)
 
 
 Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit cross-version compatible tests.
 
 * [Requirements](#requirements)
+    - [Autoloading](#autoloading)
 * [Installation](#installation)
 * [Why use the PHPUnit Polyfills?](#why-use-the-phpunit-polyfills)
 * [Using this library](#using-this-library)
@@ -47,7 +48,11 @@ To update this package, run:
 composer update --dev yoast/phpunit-polyfills --with-dependencies
 ```
 
-Make sure to either use the Composer `vendor/autoload.php` file _as_ your test bootstrap file; òr require the `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php` file _in_ your test bootstrap.
+### Autoloading
+
+Make sure to:
+* Either use the Composer `vendor/autoload.php` file _as_ your test bootstrap file;
+* Or require the `vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php` file _in_ your test bootstrap.
 
 
 Why use the PHPUnit Polyfills?
@@ -321,7 +326,7 @@ Polyfills the following methods:
 | `TestCase::`[`expectNotice()`]      | [`expectNoticeMessage()`]      | [`expectNoticeMessageMatches()`]      |
 | `TestCase::`[`expectDeprecation()`] | [`expectDeprecationMessage()`] | [`expectDeprecationMessageMatches()`] |
 
-These method were introduced in PHPUnit 8.4.0 as alternatives to using `TestCase::expectException()` et al for expecting PHP native errors, warnings and notices.
+These methods were introduced in PHPUnit 8.4.0 as alternatives to using `TestCase::expectException()` et al for expecting PHP native errors, warnings and notices.
 Using `TestCase::expectException*()` for testing PHP native notices was soft deprecated in PHPUnit 8.4.0, hard deprecated (warning) in PHPUnit 9.0.0 and (will be) removed in PHPUnit 10.0.0.
 
 [`expectError()`]:                     https://phpunit.readthedocs.io/en/main/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
