@@ -25,7 +25,7 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
  *
  * @requires PHP 7.0
  */
-class AssertObjectEqualsTest extends TestCase {
+final class AssertObjectEqualsTest extends TestCase {
 
 	use AssertObjectEquals;
 	use ExpectException; // Needed for PHPUnit < 5.2.0 support.

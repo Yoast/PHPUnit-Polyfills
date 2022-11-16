@@ -10,7 +10,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations
  */
-class EqualToSpecializationsTest extends TestCase {
+final class EqualToSpecializationsTest extends TestCase {
 
 	use EqualToSpecializations;
 

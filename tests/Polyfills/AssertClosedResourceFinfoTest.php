@@ -19,7 +19,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @requires extension finfo
  * @requires PHP < 8.1
  */
-class AssertClosedResourceFinfoTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceFinfoTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

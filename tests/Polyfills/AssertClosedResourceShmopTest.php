@@ -24,7 +24,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable Generic.PHP.DeprecatedFunctions.Deprecated
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.shmop_closeDeprecated
  */
-class AssertClosedResourceShmopTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceShmopTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

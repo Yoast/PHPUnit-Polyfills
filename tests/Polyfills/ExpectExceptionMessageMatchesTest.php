@@ -12,7 +12,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches
  */
-class ExpectExceptionMessageMatchesTest extends TestCase {
+final class ExpectExceptionMessageMatchesTest extends TestCase {
 
 	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionMessageMatches;

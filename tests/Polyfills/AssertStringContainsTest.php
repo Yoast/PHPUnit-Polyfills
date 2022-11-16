@@ -11,7 +11,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains
  */
-class AssertStringContainsTest extends TestCase {
+final class AssertStringContainsTest extends TestCase {
 
 	use AssertStringContains;
 	use ExpectException; // Needed for PHPUnit < 5.2.0 support.

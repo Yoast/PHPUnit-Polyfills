@@ -24,11 +24,9 @@ jobs:
 
     name: "Lint: PHP ${{ matrix.php }}"
 
-    continue-on-error: ${{ matrix.php == '8.2' }}
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -38,12 +36,15 @@ jobs:
           coverage: none
 
       - name: 'Composer: remove PHPUnit (not needed for lint)'
-        run: composer remove phpunit/phpunit --no-update
+        run: composer remove phpunit/phpunit --no-update --no-interaction
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v1"
+        uses: "ramsey/composer-install@v2"
+        with:
+          # Bust the cache at least once a month - output format: YYYY-MM-DD.
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
 
       - name: "Lint PHP files against parse errors - PHP < 7.0"
         if: ${{ matrix.php < 7.0 }}

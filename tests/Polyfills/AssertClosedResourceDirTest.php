@@ -13,7 +13,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @covers \Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  */
-class AssertClosedResourceDirTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceDirTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

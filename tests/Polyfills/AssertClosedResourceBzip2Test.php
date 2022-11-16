@@ -15,7 +15,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * @requires extension bz2
  */
-class AssertClosedResourceBzip2Test extends AssertClosedResourceTestCase {
+final class AssertClosedResourceBzip2Test extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

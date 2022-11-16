@@ -10,14 +10,14 @@ use Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures\ClassWithProperties;
  *
  * @covers \Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper
  */
-class AssertAttributesHelperTest extends TestCase {
+final class AssertAttributesHelperTest extends TestCase {
 
 	/**
 	 * Instance of the ClassWithProperties class.
 	 *
 	 * @var ClassWithProperties
 	 */
-	public $instance;
+	private $instance;
 
 	/**
 	 * Set up the class under test.

@@ -23,7 +23,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.zip_closeDeprecated
  * @phpcs:disable WordPress.PHP.NoSilencedErrors.Discouraged
  */
-class AssertClosedResourceZipTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceZipTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 

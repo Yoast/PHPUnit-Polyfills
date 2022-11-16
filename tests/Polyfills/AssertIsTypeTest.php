@@ -11,7 +11,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertIsType
  */
-class AssertIsTypeTest extends TestCase {
+final class AssertIsTypeTest extends TestCase {
 
 	use AssertIsType;
 

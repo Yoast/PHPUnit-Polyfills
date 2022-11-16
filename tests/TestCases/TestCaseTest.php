@@ -9,7 +9,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  *
  * @covers \Yoast\PHPUnitPolyfills\TestCases\TestCase
  */
-class TestCaseTest extends TestCase {
+final class TestCaseTest extends TestCase {
 
 	use TestCaseTestTrait;
 
@@ -19,7 +19,7 @@ class TestCaseTest extends TestCase {
 	 *
 	 * @var int
 	 */
-	public static $beforeClass = 0;
+	private static $beforeClass = 0;
 
 	/**
 	 * Keep track of how often the PHPUnit native `setUp()` method was called/
@@ -27,7 +27,7 @@ class TestCaseTest extends TestCase {
 	 *
 	 * @var int
 	 */
-	public static $before = 0;
+	private static $before = 0;
 
 	/**
 	 * Keep track of how often the PHPUnit native `assertPreConditions()` method was called/
@@ -35,7 +35,7 @@ class TestCaseTest extends TestCase {
 	 *
 	 * @var int
 	 */
-	public static $preConditions = 0;
+	private static $preConditions = 0;
 
 	/**
 	 * Keep track of how often the PHPUnit native `assertPostConditions()` method was called/
@@ -43,7 +43,7 @@ class TestCaseTest extends TestCase {
 	 *
 	 * @var int
 	 */
-	public static $postConditions = 0;
+	private static $postConditions = 0;
 
 	/**
 	 * Keep track of how often the PHPUnit native `tearDown()` method was called/
@@ -51,7 +51,7 @@ class TestCaseTest extends TestCase {
 	 *
 	 * @var int
 	 */
-	public static $after = 0;
+	private static $after = 0;
 
 	/**
 	 * This method is called before the first test of this test class is run.

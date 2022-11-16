@@ -22,7 +22,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable Generic.PHP.DeprecatedFunctions.Deprecated
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.enchant_broker_freeDeprecated
  */
-class AssertClosedResourceEnchantTest extends AssertClosedResourceTestCase {
+final class AssertClosedResourceEnchantTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
 
