@@ -31,7 +31,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertIsClosedResource( $value ) {
-		$pattern   = '`^Failed asserting that .+? is of type "resource \(closed\)"`s';
+		$pattern   = '`^Failed asserting that .+? is of type ["]?resource \(closed\)["]?`s';
 		$exception = 'PHPUnit\Framework\AssertionFailedError';
 		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
 			// PHPUnit < 6.
