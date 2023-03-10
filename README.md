@@ -12,10 +12,12 @@ PHPUnit Polyfills
 Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit cross-version compatible tests.
 
 * [Requirements](#requirements)
-    - [Autoloading](#autoloading)
 * [Installation](#installation)
+    - [Autoloading](#autoloading)
 * [Why use the PHPUnit Polyfills?](#why-use-the-phpunit-polyfills)
 * [Using this library](#using-this-library)
+    - [Supported ways of calling the assertions](#supported-ways-of-calling-the-assertions)
+    - [Use with PHPUnit < 5.7.0](#use-with-phpunit--570)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
     - [Helper traits](#helper-traits)
