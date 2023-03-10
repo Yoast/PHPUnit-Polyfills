@@ -763,7 +763,7 @@ if ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
 
 Contributing
 ------------
-Contributions to this project are welcome. Clone the repo, branch off from `develop`, make your changes, commit them and send in a pull request.
+Contributions to this project are welcome. Clone the repo, branch off from the oldest #.x branch the patch applies to, make your changes, commit them and send in a pull request against the correct #.x branch.
 
 If you are unsure whether the changes you are proposing would be welcome, please open an issue first to discuss your proposal.
 

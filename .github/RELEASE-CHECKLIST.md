@@ -1,7 +1,11 @@
-Template to use for release PRs from `develop` to `main`
+Template to use for release PRs from `#.x` to `main`
 ===========================================================
 
 Title: Release version x.x.x
+
+<!--
+If both a 1.x and a 2.x release are to be tagged, always tag the 1.x release first!
+-->
 
 ## Functional
 - [ ] Confirm that the most recent PHPUnit changelogs have been checked and that the library is still feature complete for those versions supported within the PHPUnit version constraints.
@@ -13,8 +17,8 @@ Title: Release version x.x.x
     Verify that a release link at the bottom of the `CHANGELOG.md` file has been added.
 - [ ] Merge this PR.
 - [ ] Make sure all CI builds are green.
-- [ ] Tag the release (careful, GH defaults to `develop`!).
-- [ ] Create a release from the tag (careful, GH defaults to `develop`!) & copy & paste the changelog to it.
+- [ ] Tag the release (careful, GH defaults to `2.x`!).
+- [ ] Create a release from the tag (careful, GH defaults to `2.x`!) & copy & paste the changelog to it.
     Make sure to copy the links to the issues and the links to the GH usernames from the bottom of the changelog!
 - [ ] Close the milestone.
 - [ ] Open a new milestone for the next release.
