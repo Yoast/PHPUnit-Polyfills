@@ -49,10 +49,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			switch ( $className ) {
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType':
-					self::loadAssertNumericType();
-					return true;
-
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectException':
 					self::loadExpectException();
 					return true;
@@ -131,23 +127,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Load the AssertNumericType polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertNumericType() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertNan' ) === false ) {
-				// PHPUnit < 5.0.0.
-				require_once __DIR__ . '/src/Polyfills/AssertNumericType.php';
-				return;
-			}
-
-			// PHPUnit >= 5.0.0.
-			require_once __DIR__ . '/src/Polyfills/AssertNumericType_Empty.php';
 		}
 
 		/**

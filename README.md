@@ -193,19 +193,6 @@ Features
 
 ### Polyfill traits
 
-#### PHPUnit < 5.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType`
-
-Polyfills the following methods:
-|                            |                              |                         |
-|----------------------------|------------------------------|-------------------------|
-| [`Assert::assertFinite()`] | [`Assert::assertInfinite()`] | [`Assert::assertNan()`] |
-
-These methods were introduced in PHPUnit 5.0.0.
-
-[`Assert::assertFinite()`]:   https://docs.phpunit.de/en/9.6/assertions.html#assertinfinite
-[`Assert::assertInfinite()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertinfinite
-[`Assert::assertNan()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertnan
-
 #### PHPUnit < 5.2.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectException`
 
 Polyfills the following methods:

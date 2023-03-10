@@ -112,15 +112,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Verify availability of trait polyfilled PHPUnit methods [9].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityAssertNumericTypeTrait() {
-		self::assertNan( \acos( 8 ) );
-	}
-
-	/**
 	 * Test availability of trait polyfilled PHPUnit methods [10].
 	 *
 	 * @return void
