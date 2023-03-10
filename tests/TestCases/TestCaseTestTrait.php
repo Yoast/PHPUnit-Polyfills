@@ -16,7 +16,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return array[]
 	 */
-	public function dataHaveFixtureMethodsBeenTriggered() {
+	public static function dataHaveFixtureMethodsBeenTriggered() {
 		return [
 			[ 1, 1, 0, 1, 0 ],
 			[ 1, 2, 1, 2, 1 ],

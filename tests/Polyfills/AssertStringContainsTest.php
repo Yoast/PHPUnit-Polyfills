@@ -148,7 +148,7 @@ final class AssertStringContainsTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function dataHaystacks() {
+	public static function dataHaystacks() {
 		return [
 			'foobar as haystack' => [ 'foobar' ],
 			'empty haystack'     => [ '' ],
