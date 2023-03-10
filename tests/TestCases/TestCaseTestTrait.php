@@ -112,16 +112,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Verify availability of trait polyfilled PHPUnit methods [11].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityAssertFileDirectory() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR;
-		$this->assertDirectoryExists( $path );
-	}
-
-	/**
 	 * Verify availability of trait polyfilled PHPUnit methods [12].
 	 *
 	 * @return void

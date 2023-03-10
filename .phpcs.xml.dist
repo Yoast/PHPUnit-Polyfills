@@ -130,11 +130,6 @@
 		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
 	</rule>
 
-	<!-- The @throws tags in the docblocks are correct, but the sniff can't analyse this correctly. -->
-	<rule ref="Squiz.Commenting.FunctionCommentThrowTag.Missing">
-		<exclude-pattern>/src/Polyfills/AssertFileDirectory\.php$</exclude-pattern>
-	</rule>
-
 	<!-- Make some allowances for test files. -->
 	<rule ref="WordPress.PHP.DevelopmentFunctions">
 		<exclude-pattern>/tests/*\.php$</exclude-pattern>

@@ -153,36 +153,6 @@ Features
 
 ### Polyfill traits
 
-#### PHPUnit < 5.6.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory`
-
-Polyfills the following methods:
-|                                         |                                            |
-|-----------------------------------------|--------------------------------------------|
-| [`Assert::assertIsReadable()`]          | [`Assert::assertNotIsReadable()`]          |
-| [`Assert::assertIsWritable()`]          | [`Assert::assertNotIsWritable()`]          |
-| [`Assert::assertDirectoryExists()`]     | [`Assert::assertDirectoryNotExists()`]     |
-| [`Assert::assertDirectoryIsReadable()`] | [`Assert::assertDirectoryNotIsReadable()`] |
-| [`Assert::assertDirectoryIsWritable()`] | [`Assert::assertDirectoryNotIsWritable()`] |
-| [`Assert::assertFileIsReadable()`]      | [`Assert::assertFileNotIsReadable()`]      |
-| [`Assert::assertFileIsWritable()`]      | [`Assert::assertFileNotIsWritable()`]      |
-
-These methods were introduced in PHPUnit 5.6.0.
-
-[`Assert::assertIsReadable()`]:             https://docs.phpunit.de/en/9.6/assertions.html#assertisreadable
-[`Assert::assertNotIsReadable()`]:          https://docs.phpunit.de/en/9.6/assertions.html#assertisreadable
-[`Assert::assertIsWritable()`]:             https://docs.phpunit.de/en/9.6/assertions.html#assertiswritable
-[`Assert::assertNotIsWritable()`]:          https://docs.phpunit.de/en/9.6/assertions.html#assertiswritable
-[`Assert::assertDirectoryExists()`]:        https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryexists
-[`Assert::assertDirectoryNotExists()`]:     https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryexists
-[`Assert::assertDirectoryIsReadable()`]:    https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryisreadable
-[`Assert::assertDirectoryNotIsReadable()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryisreadable
-[`Assert::assertDirectoryIsWritable()`]:    https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryiswritable
-[`Assert::assertDirectoryNotIsWritable()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryiswritable
-[`Assert::assertFileIsReadable()`]:         https://docs.phpunit.de/en/9.6/assertions.html#assertfileisreadable
-[`Assert::assertFileNotIsReadable()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertfileisreadable
-[`Assert::assertFileIsWritable()`]:         https://docs.phpunit.de/en/9.6/assertions.html#assertfileiswritable
-[`Assert::assertFileNotIsWritable()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertfileiswritable
-
 #### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
 
 Polyfills the [`TestCase::expectExceptionObject()`] method to test all aspects of an `Exception` by passing an object to the method.
