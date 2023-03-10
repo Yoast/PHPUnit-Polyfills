@@ -3,12 +3,12 @@ Template to use for release PRs from `develop` to `main`
 
 Title: Release version x.x.x
 
-### Functional:
+## Functional
 - [ ] Confirm that the most recent PHPUnit changelogs have been checked and that the library is still feature complete for those versions supported within the PHPUnit version constraints.
 - [ ] Update the `VERSION` constant in the `phpunitpolyfills-autoload.php` file.
 - [ ] Composer: check if any dependencies/version constraints need updating.
 
-### Release:
+## Release
 - [ ] Add changelog for the release - PR #xxx
     Verify that a release link at the bottom of the `CHANGELOG.md` file has been added.
 - [ ] Merge this PR.
@@ -20,7 +20,7 @@ Title: Release version x.x.x
 - [ ] Open a new milestone for the next release.
 - [ ] If any open PRs/issues which were milestoned for the release did not make it into the release, update their milestone.
 
-### Announce:
+## Announce
 - [ ] Tweet about the release.
 
 

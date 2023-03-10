@@ -701,7 +701,7 @@ In that case, make sure that the `phpunitpolyfills-autoload.php` file is explici
 
 ### Q: How do I run my tests when the library is installed via the GitHub Actions `setup-php` action ?
 
-As of [shivammathur/setup-php](https://github.com/shivammathur/setup-php) version [2.15.0](https://github.com/shivammathur/setup-php/releases/tag/2.15.0), the PHPUnit Polyfills are available as one of the tools which can be installed directly by the Setup-PHP GitHub action.
+As of [shivammathur/setup-php](https://github.com/shivammathur/setup-php) version [2.15.0](https://github.com/shivammathur/setup-php/releases/tag/2.15.0), the PHPUnit Polyfills are available as one of the tools which can be installed directly by the Setup-PHP GitHub action runner.
 
 ```yaml
 - name: Setup PHP with tools
@@ -746,12 +746,14 @@ $versionRequirement = '1.0.1';
 if ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
     || version_compare( \Yoast\PHPUnitPolyfills\Autoload::VERSION, $versionRequirement, '<' )
 ) {
-    echo 'Error: Version mismatch detected for the PHPUnit Polyfills. Please ensure that PHPUnit Polyfills ',
-        $versionRequirement, ' or higher is loaded.', PHP_EOL;
+    echo 'Error: Version mismatch detected for the PHPUnit Polyfills.',
+        ' Please ensure that PHPUnit Polyfills ', $versionRequirement,
+        ' or higher is loaded.', PHP_EOL;
     exit(1);
 } else {
     echo 'Error: Please run `composer update -W` before running the tests.' . PHP_EOL;
-    echo 'You can still use a PHPUnit phar to run them, but the dependencies do need to be installed.', PHP_EOL;
+    echo 'You can still use a PHPUnit phar to run them,',
+        ' but the dependencies do need to be installed.', PHP_EOL;
     exit(1);
 }
 ```
