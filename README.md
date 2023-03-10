@@ -617,7 +617,7 @@ class MyTest extends XTestCase {
 ### TestListener
 
 The method signatures in the PHPUnit `TestListener` interface have changed a number of times across versions.
-Additionally, the use of the TestListener principle has been deprecated in PHPUnit 7 in favour of using the [TestRunner hook interfaces](https://phpunit.readthedocs.io/en/9.3/extending-phpunit.html#extending-the-testrunner).
+Additionally, the use of the TestListener principle has been deprecated in PHPUnit 7 in favour of using the [TestRunner hook interfaces](https://docs.phpunit.de/en/7.5/extending-phpunit.html#extending-the-testrunner).
 
 > Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
 
@@ -687,9 +687,11 @@ For frequently used, removed PHPUnit functionality, "helpers" may be provided. T
 
 | PHPUnit | Removed               | Issue     | Remarks                |
 |---------|-----------------------|-----------|------------------------|
-| 9.0.0   | `assertArraySubset()` | [#1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1) | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1](https://github.com/Yoast/PHPUnit-Polyfills/issues/1).
-| 9.0.0   | `assertAttribute*()`  | [#2](https://github.com/Yoast/PHPUnit-Polyfills/issues/2) | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.
+| 9.0.0   | `assertArraySubset()` | [#1][issue #1] | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1]. |
+| 9.0.0   | `assertAttribute*()`  | [#2][issue #2] | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available. |
 
+[issue #1]: https://github.com/Yoast/PHPUnit-Polyfills/issues/1
+[issue #2]: https://github.com/Yoast/PHPUnit-Polyfills/issues/2
 
 ### Q: Can this library be used when the tests are being run via a PHPUnit Phar file ?
 
@@ -701,7 +703,7 @@ In that case, make sure that the `phpunitpolyfills-autoload.php` file is explici
 
 ### Q: How do I run my tests when the library is installed via the GitHub Actions `setup-php` action ?
 
-As of [shivammathur/setup-php](https://github.com/shivammathur/setup-php) version [2.15.0](https://github.com/shivammathur/setup-php/releases/tag/2.15.0), the PHPUnit Polyfills are available as one of the tools which can be installed directly by the Setup-PHP GitHub action.
+As of [shivammathur/setup-php](https://github.com/shivammathur/setup-php) version [2.15.0](https://github.com/shivammathur/setup-php/releases/tag/2.15.0), the PHPUnit Polyfills are available as one of the tools which can be installed directly by the Setup-PHP GitHub action runner.
 
 ```yaml
 - name: Setup PHP with tools
@@ -746,12 +748,14 @@ $versionRequirement = '1.0.1';
 if ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
     || version_compare( \Yoast\PHPUnitPolyfills\Autoload::VERSION, $versionRequirement, '<' )
 ) {
-    echo 'Error: Version mismatch detected for the PHPUnit Polyfills. Please ensure that PHPUnit Polyfills ',
-        $versionRequirement, ' or higher is loaded.', PHP_EOL;
+    echo 'Error: Version mismatch detected for the PHPUnit Polyfills.',
+        ' Please ensure that PHPUnit Polyfills ', $versionRequirement,
+        ' or higher is loaded.', PHP_EOL;
     exit(1);
 } else {
     echo 'Error: Please run `composer update -W` before running the tests.' . PHP_EOL;
-    echo 'You can still use a PHPUnit phar to run them, but the dependencies do need to be installed.', PHP_EOL;
+    echo 'You can still use a PHPUnit phar to run them,',
+        ' but the dependencies do need to be installed.', PHP_EOL;
     exit(1);
 }
 ```
@@ -766,4 +770,4 @@ If you are unsure whether the changes you are proposing would be welcome, please
 
 License
 -------
-This code is released under the [BSD-3-Clause License](https://opensource.org/licenses/BSD-3-Clause).
+This code is released under the [BSD-3-Clause License](LICENSE).
