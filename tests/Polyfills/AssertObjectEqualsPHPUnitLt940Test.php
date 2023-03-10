@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectNoReturnType;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType;
@@ -28,7 +27,6 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType
 final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 
 	use AssertObjectEquals;
-	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionMessageMatches;
 
 	/**

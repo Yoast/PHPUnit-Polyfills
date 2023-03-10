@@ -5,7 +5,6 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
 /**
@@ -17,7 +16,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 final class AssertClosedResourceNotResourceTest extends TestCase {
 
 	use AssertClosedResource;
-	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionMessageMatches;
 
 	/**

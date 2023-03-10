@@ -13,7 +13,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
@@ -41,7 +40,6 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	use AssertObjectEquals;
 	use AssertStringContains;
 	use EqualToSpecializations;
-	use ExpectException;
 	use ExpectExceptionMessageMatches;
 	use ExpectExceptionObject;
 	use ExpectPHPException;
