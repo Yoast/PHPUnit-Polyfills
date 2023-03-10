@@ -15,6 +15,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 * [Installation](#installation)
     - [Autoloading](#autoloading)
 * [Why use the PHPUnit Polyfills?](#why-use-the-phpunit-polyfills)
+    - [PHPUnit support](#phpunit-support)
 * [Using this library](#using-this-library)
     - [Supported ways of calling the assertions](#supported-ways-of-calling-the-assertions)
     - [Use with PHPUnit < 5.7.0](#use-with-phpunit--570)
@@ -42,7 +43,7 @@ Installation
 
 To install this package, run:
 ```bash
-composer require --dev yoast/phpunit-polyfills
+composer require --dev yoast/phpunit-polyfills:"^1.0"
 ```
 
 To update this package, run:
@@ -68,6 +69,19 @@ The polyfills have been setup to allow tests to be _forward_-compatible. What th
 
 This puts the burden of upgrading to use the syntax of newer PHPUnit versions at the point when you want to _start_ running your tests on a newer version.
 By doing so, dropping support for an older PHPUnit version becomes as straight-forward as removing it from the version constraint in your `composer.json` file.
+
+### PHPUnit support
+
+* Releases in the `1.x` series of the PHPUnit Polyfills support PHPUnit 4.8 - 9.x.
+* Releases in the `2.x` series of the PHPUnit Polyfills support PHPUnit 5.7 - 10.x.
+
+Please keep in mind that the PHPUnit Polyfills provide _forward_-compatibility.
+This means that features which PHPUnit no longer supports in PHPUnit 10.x, like expecting PHP deprecation notices or warnings, will not be supported in the PHPUnit Polyfills 2.x series.
+
+Please refer to the [PHPUnit 10 release notification] and [PHPUnit 10 changelog] to inform your decision on whether or not to upgrade (yet).
+
+[PHPUnit 10 release notification]: https://phpunit.de/announcements/phpunit-10.html
+[PHPUnit 10 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/main/ChangeLog-10.0.md
 
 
 Using this library
