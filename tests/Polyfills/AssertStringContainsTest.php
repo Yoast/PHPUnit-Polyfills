@@ -2,7 +2,9 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_AssertionFailedError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
@@ -181,10 +183,10 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return string
 	 */
 	public function getAssertionFailedExceptionName() {
-		$exception = 'PHPUnit\Framework\AssertionFailedError';
-		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+		$exception = AssertionFailedError::class;
+		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
 			// PHPUnit < 6.
-			$exception = 'PHPUnit_Framework_AssertionFailedError';
+			$exception = PHPUnit_Framework_AssertionFailedError::class;
 		}
 
 		return $exception;
