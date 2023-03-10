@@ -9,6 +9,7 @@
 /.gitignore export-ignore
 /.cache/ export-ignore
 /.github/ export-ignore
+/.markdownlint-cli2.yaml export-ignore
 /.phpcs.xml.dist export-ignore
 /phpunit.xml.dist export-ignore
 /tests/ export-ignore
