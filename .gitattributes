@@ -11,6 +11,8 @@
 /.github/ export-ignore
 /.markdownlint-cli2.yaml export-ignore
 /.phpcs.xml.dist export-ignore
+/.remarkignore export-ignore
+/.remarkrc export-ignore
 /phpunit.xml.dist export-ignore
 /tests/ export-ignore
 
