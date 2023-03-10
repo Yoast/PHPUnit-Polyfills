@@ -194,13 +194,13 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * if a PHPUnit version is used which already contains this functionality.
 		 *
 		 * Includes aliasing any PHPUnit native classes needed for this functionality
-		 * which aren't available under their namespaced name in PHPUnit 4.x/5.x.
+		 * which aren't available under their namespaced name in PHPUnit 5.x.
 		 *
 		 * @return void
 		 */
 		public static function loadExpectPHPException() {
 			/*
-			 * Alias the PHPUnit 4/5 Error classes to their PHPUnit >= 6 name.
+			 * Alias the PHPUnit 5.x Error classes to their PHPUnit >= 6 name.
 			 *
 			 * {@internal The `class_exists` wrappers are needed to play nice with
 			 * PHPUnit bootstrap files of test suites implementing this library
@@ -366,7 +366,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		public static function loadTestListenerDefaultImplementation() {
 			if ( \version_compare( self::getPHPUnitVersion(), '6.0.0', '<' ) ) {
 				/*
-				 * Alias one particular PHPUnit 4/5 class to its PHPUnit >= 6 name.
+				 * Alias one particular PHPUnit 5.x class to its PHPUnit >= 6 name.
 				 *
 				 * All other classes needed are part of the forward-compatibility layer.
 				 *

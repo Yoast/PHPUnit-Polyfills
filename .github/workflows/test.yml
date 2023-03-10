@@ -20,14 +20,12 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
+        php: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
         phpunit: ['auto']
         experimental: [false]
 
         include:
           # Test against a version on the low-end of the PHPUnit versions supported for each PHP version.
-          # On PHP 5.4 and 5.5, only PHPUnit 4.x is supported and the lowest and the
-          # highest supported version would be the same.
           # Using the Composer `--prefer-lowest` option is, unfortunately, not viable, as
           # PHPUnit 4.8.36 doesn't have proper PHP restrictions, which means that it
           # would always be installed as "low", which would break the builds for PHP 7.2+.
