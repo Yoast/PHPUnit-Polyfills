@@ -76,7 +76,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	 *
 	 * @return array
 	 */
-	public function dataNotResource() {
+	public static function dataNotResource() {
 		return [
 			'null'            => [ null ],
 			'false'           => [ false ],
