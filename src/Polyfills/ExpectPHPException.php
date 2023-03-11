@@ -27,7 +27,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectDeprecation() {
+	final public function expectDeprecation() {
 		$this->expectException( Deprecated::class );
 	}
 
@@ -38,7 +38,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectDeprecationMessage( $message ) {
+	final public function expectDeprecationMessage( $message ) {
 		$this->expectExceptionMessage( $message );
 	}
 
@@ -49,7 +49,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectDeprecationMessageMatches( $regularExpression ) {
+	final public function expectDeprecationMessageMatches( $regularExpression ) {
 		$this->expectExceptionMessageRegExp( $regularExpression );
 	}
 
@@ -58,7 +58,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectNotice() {
+	final public function expectNotice() {
 		$this->expectException( Notice::class );
 	}
 
@@ -69,7 +69,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectNoticeMessage( $message ) {
+	final public function expectNoticeMessage( $message ) {
 		$this->expectExceptionMessage( $message );
 	}
 
@@ -80,7 +80,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectNoticeMessageMatches( $regularExpression ) {
+	final public function expectNoticeMessageMatches( $regularExpression ) {
 		$this->expectExceptionMessageRegExp( $regularExpression );
 	}
 
@@ -89,7 +89,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectWarning() {
+	final public function expectWarning() {
 		$this->expectException( Warning::class );
 	}
 
@@ -100,7 +100,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectWarningMessage( $message ) {
+	final public function expectWarningMessage( $message ) {
 		$this->expectExceptionMessage( $message );
 	}
 
@@ -111,7 +111,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectWarningMessageMatches( $regularExpression ) {
+	final public function expectWarningMessageMatches( $regularExpression ) {
 		$this->expectExceptionMessageRegExp( $regularExpression );
 	}
 
@@ -120,7 +120,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectError() {
+	final public function expectError() {
 		$this->expectException( Error::class );
 	}
 
@@ -131,7 +131,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectErrorMessage( $message ) {
+	final public function expectErrorMessage( $message ) {
 		$this->expectExceptionMessage( $message );
 	}
 
@@ -142,7 +142,7 @@ trait ExpectPHPException {
 	 *
 	 * @return void
 	 */
-	public function expectErrorMessageMatches( $regularExpression ) {
+	final public function expectErrorMessageMatches( $regularExpression ) {
 		$this->expectExceptionMessageRegExp( $regularExpression );
 	}
 }

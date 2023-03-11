@@ -24,7 +24,7 @@ trait EqualToSpecializations {
 	 *
 	 * @return IsEqual|PHPUnit_Framework_Constraint_IsEqual An isEqual constraint instance.
 	 */
-	public static function equalToCanonicalizing( $value ) {
+	final public static function equalToCanonicalizing( $value ) {
 		return static::equalTo( $value, 0.0, 10, true, false );
 	}
 
@@ -35,7 +35,7 @@ trait EqualToSpecializations {
 	 *
 	 * @return IsEqual|PHPUnit_Framework_Constraint_IsEqual An isEqual constraint instance.
 	 */
-	public static function equalToIgnoringCase( $value ) {
+	final public static function equalToIgnoringCase( $value ) {
 		return static::equalTo( $value, 0.0, 10, false, true );
 	}
 
@@ -47,7 +47,7 @@ trait EqualToSpecializations {
 	 *
 	 * @return IsEqual|PHPUnit_Framework_Constraint_IsEqual An isEqual constraint instance.
 	 */
-	public static function equalToWithDelta( $value, $delta ) {
+	final public static function equalToWithDelta( $value, $delta ) {
 		return static::equalTo( $value, $delta, 10, false, false );
 	}
 }

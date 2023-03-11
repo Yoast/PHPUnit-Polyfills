@@ -20,7 +20,7 @@ trait ExpectExceptionObject {
 	 *
 	 * @return void
 	 */
-	public function expectExceptionObject( Exception $exception ) {
+	final public function expectExceptionObject( Exception $exception ) {
 		$this->expectException( \get_class( $exception ) );
 		$this->expectExceptionMessage( $exception->getMessage() );
 		$this->expectExceptionCode( $exception->getCode() );

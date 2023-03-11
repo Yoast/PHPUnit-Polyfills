@@ -23,7 +23,7 @@ trait ExpectExceptionMessageMatches {
 	 *
 	 * @return void
 	 */
-	public function expectExceptionMessageMatches( $regularExpression ) {
+	final public function expectExceptionMessageMatches( $regularExpression ) {
 		$this->expectExceptionMessageRegExp( $regularExpression );
 	}
 }
