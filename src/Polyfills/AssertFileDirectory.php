@@ -32,11 +32,12 @@ trait AssertFileDirectory {
 			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'string' );
 		}
 
-		if ( $message === '' ) {
-			$message = \sprintf( 'Failed asserting that "%s" is readable', $filename );
+		$msg = \sprintf( 'Failed asserting that "%s" is readable', $filename );
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertTrue( \is_readable( $filename ), $message );
+		static::assertTrue( \is_readable( $filename ), $msg );
 	}
 
 	/**
@@ -54,11 +55,12 @@ trait AssertFileDirectory {
 			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'string' );
 		}
 
-		if ( $message === '' ) {
-			$message = \sprintf( 'Failed asserting that "%s" is not readable', $filename );
+		$msg = \sprintf( 'Failed asserting that "%s" is not readable', $filename );
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertFalse( \is_readable( $filename ), $message );
+		static::assertFalse( \is_readable( $filename ), $msg );
 	}
 
 	/**
@@ -76,11 +78,12 @@ trait AssertFileDirectory {
 			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'string' );
 		}
 
-		if ( $message === '' ) {
-			$message = \sprintf( 'Failed asserting that "%s" is writable', $filename );
+		$msg = \sprintf( 'Failed asserting that "%s" is writable', $filename );
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertTrue( \is_writable( $filename ), $message );
+		static::assertTrue( \is_writable( $filename ), $msg );
 	}
 
 	/**
@@ -98,11 +101,12 @@ trait AssertFileDirectory {
 			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'string' );
 		}
 
-		if ( $message === '' ) {
-			$message = \sprintf( 'Failed asserting that "%s" is not writable', $filename );
+		$msg = \sprintf( 'Failed asserting that "%s" is not writable', $filename );
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertFalse( \is_writable( $filename ), $message );
+		static::assertFalse( \is_writable( $filename ), $msg );
 	}
 
 	/**
@@ -120,11 +124,12 @@ trait AssertFileDirectory {
 			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'string' );
 		}
 
-		if ( $message === '' ) {
-			$message = \sprintf( 'Failed asserting that directory "%s" exists', $directory );
+		$msg = \sprintf( 'Failed asserting that directory "%s" exists', $directory );
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertTrue( \is_dir( $directory ), $message );
+		static::assertTrue( \is_dir( $directory ), $msg );
 	}
 
 	/**
@@ -142,11 +147,12 @@ trait AssertFileDirectory {
 			throw PHPUnit_Util_InvalidArgumentHelper::factory( 1, 'string' );
 		}
 
-		if ( $message === '' ) {
-			$message = \sprintf( 'Failed asserting that directory "%s" does not exist', $directory );
+		$msg = \sprintf( 'Failed asserting that directory "%s" does not exist', $directory );
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertFalse( \is_dir( $directory ), $message );
+		static::assertFalse( \is_dir( $directory ), $msg );
 	}
 
 	/**
