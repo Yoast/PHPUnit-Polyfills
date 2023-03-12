@@ -102,14 +102,9 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotContainsStringEmptyNeedle( $haystack ) {
-		$msg       = "Failed asserting that '{$haystack}' does not contain \"\".";
-		$exception = 'PHPUnit\Framework\AssertionFailedError';
-		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
-			// PHPUnit < 6.
-			$exception = 'PHPUnit_Framework_AssertionFailedError';
-		}
+		$msg = "Failed asserting that '{$haystack}' does not contain \"\".";
 
-		$this->expectException( $exception );
+		$this->expectException( $this->getAssertionFailedExceptionName() );
 		$this->expectExceptionMessage( $msg );
 
 		self::assertStringNotContainsString( '', $haystack );
@@ -127,14 +122,9 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotContainsStringIgnoringCaseEmptyNeedle() {
-		$msg       = 'Failed asserting that \'text with whitespace\' does not contain "".';
-		$exception = 'PHPUnit\Framework\AssertionFailedError';
-		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
-			// PHPUnit < 6.
-			$exception = 'PHPUnit_Framework_AssertionFailedError';
-		}
+		$msg = 'Failed asserting that \'text with whitespace\' does not contain "".';
 
-		$this->expectException( $exception );
+		$this->expectException( $this->getAssertionFailedExceptionName() );
 		$this->expectExceptionMessage( $msg );
 
 		$this->assertStringNotContainsStringIgnoringCase( '', 'text with whitespace' );
@@ -153,5 +143,20 @@ final class AssertStringContainsTest extends TestCase {
 			'foobar as haystack' => [ 'foobar' ],
 			'empty haystack'     => [ '' ],
 		];
+	}
+
+	/**
+	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
+	 *
+	 * @return string
+	 */
+	public function getAssertionFailedExceptionName() {
+		$exception = 'PHPUnit\Framework\AssertionFailedError';
+		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+			// PHPUnit < 6.
+			$exception = 'PHPUnit_Framework_AssertionFailedError';
+		}
+
+		return $exception;
 	}
 }
