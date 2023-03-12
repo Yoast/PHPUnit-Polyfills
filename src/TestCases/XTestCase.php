@@ -14,7 +14,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * Basic test case for use with PHPUnit cross-version.
@@ -40,7 +39,6 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	use EqualToSpecializations;
 	use ExpectExceptionMessageMatches;
 	use ExpectExceptionObject;
-	use ExpectPHPException;
 
 	/**
 	 * This method is called before the first test of this test class is run.
