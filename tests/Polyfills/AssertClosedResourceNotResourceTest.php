@@ -40,6 +40,21 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the assertIsClosedResource() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @return void
+	 */
+	public function testAssertIsClosedResourceFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that .+? is of type ["]?resource \(closed\)["]?`s';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$this->assertIsClosedResource( 'text string', 'This assertion failed for reason XYZ' );
+	}
+
+	/**
 	 * Verify that the assertIsNotClosedResource() method passes the test when the variable
 	 * passed is not a resource.
 	 *
@@ -51,6 +66,24 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	 */
 	public function testAssertIsNotClosedResource( $value ) {
 		self::assertIsNotClosedResource( $value );
+	}
+
+	/**
+	 * Verify that the assertIsNotClosedResource() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @return void
+	 */
+	public function testAssertIsNotClosedResourceFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that .+? not of type ["]?resource \(closed\)["]?`s';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$resource = \opendir( __DIR__ . '/Fixtures/' );
+		\closedir( $resource );
+
+		$this->assertIsNotClosedResource( $resource, 'This assertion failed for reason XYZ' );
 	}
 
 	/**
