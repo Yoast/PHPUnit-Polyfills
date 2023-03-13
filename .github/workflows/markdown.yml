@@ -42,7 +42,7 @@ jobs:
 
       # @link https://github.com/marketplace/actions/problem-matcher-for-markdownlint-cli
       - name: Enable showing issue in PRs
-        uses: xt0rted/markdownlint-problem-matcher@v1
+        uses: xt0rted/markdownlint-problem-matcher@v2
 
       - name: Check markdown with CLI2
         run: markdownlint-cli2
