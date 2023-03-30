@@ -49,12 +49,15 @@
     },
     "scripts": {
         "lint7": [
-            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
+            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestListeners/Subscribers --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
         ],
         "lint-lt70": [
-            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php --exclude tests/Polyfills/Fixtures/ChildValueObject.php --exclude tests/Polyfills/Fixtures/ValueObject.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
+            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10.php --exclude src/TestListeners/Subscribers --exclude tests/Polyfills/Fixtures/ChildValueObject.php --exclude tests/Polyfills/Fixtures/ValueObject.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
         ],
-        "lint-gte80": [
+        "lint-80": [
+            "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestListeners/Subscribers"
+        ],
+        "lint-gte81": [
             "@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"
         ],
         "check-cs": [

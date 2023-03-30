@@ -113,21 +113,41 @@
 		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
 	</rule>
 
+	<!-- Ignore to prevent signature mismatch errors. -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed">
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10\.php$</exclude-pattern>
+	</rule>
+
 	<!-- The TestCase for PHPUnit 8+ will only ever be loaded on PHP 7.2+. -->
 	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
+	<!-- The TestListenerDefaultImplementation for PHPUnit 10+ will only ever be loaded on PHP 8.1+. -->
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.voidFound">
 		<exclude-pattern>/src/TestCases/TestCasePHPUnitGte8\.php$</exclude-pattern>
 		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10\.php$</exclude-pattern>
+		<exclude-pattern>/src/TestListeners/Subscribers/*\.php$</exclude-pattern>
 	</rule>
 
 	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
+	<!-- The TestListenerDefaultImplementation for PHPUnit 10+ will only ever be loaded on PHP 8.1+. -->
 	<rule ref="PHPCompatibility.Interfaces.NewInterfaces.throwableFound">
 		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10\.php$</exclude-pattern>
 	</rule>
 
 	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
+	<!-- The TestListenerDefaultImplementation for PHPUnit 10+ will only ever be loaded on PHP 8.1+. -->
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.floatFound">
 		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10\.php$</exclude-pattern>
+	</rule>
+
+	<!-- The TestListenerDefaultImplementation for PHPUnit 10+ will only ever be loaded on PHP 8.1+. -->
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.objectFound">
+		<exclude-pattern>/src/TestListeners/Subscribers/*\.php$</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.floatFound">
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10\.php$</exclude-pattern>
 	</rule>
 
 	<!-- Make some allowances for test files. -->
@@ -153,6 +173,11 @@
 	</rule>
 	<rule ref="PHPCompatibility.Operators.NewOperators.t_spaceshipFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+	</rule>
+
+	<!-- PHPCompatibility false positive which will be fixed in PHPCompat 10.0.0. -->
+	<rule ref="PHPCompatibility.FunctionUse.NewFunctions.hrtimeFound">
+		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>
