@@ -49,18 +49,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			switch ( $className ) {
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType':
-					self::loadAssertNumericType();
-					return true;
-
-				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectException':
-					self::loadExpectException();
-					return true;
-
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory':
-					self::loadAssertFileDirectory();
-					return true;
-
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject':
 					self::loadExpectExceptionObject();
 					return true;
@@ -131,73 +119,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Load the AssertNumericType polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertNumericType() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertNan' ) === false ) {
-				// PHPUnit < 5.0.0.
-				require_once __DIR__ . '/src/Polyfills/AssertNumericType.php';
-				return;
-			}
-
-			// PHPUnit >= 5.0.0.
-			require_once __DIR__ . '/src/Polyfills/AssertNumericType_Empty.php';
-		}
-
-		/**
-		 * Load the ExpectException polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadExpectException() {
-			/*
-			 * Alias the PHPUnit 4/5 Exception class used to its PHPUnit >= 6 name.
-			 *
-			 * This allow for catching the potential exceptions thrown by the methods
-			 * polyfilled in a cross-version compatible way.
-			 *
-			 * {@internal The `class_exists` wrappers are needed to play nice with
-			 * PHPUnit bootstrap files of test suites implementing this library
-			 * which may be creating cross-version compatibility in a similar manner.}}
-			 */
-			if ( \class_exists( 'PHPUnit_Framework_Exception' ) === true
-				&& \class_exists( 'PHPUnit\Framework\Exception' ) === false
-			) {
-				\class_alias( 'PHPUnit_Framework_Exception', 'PHPUnit\Framework\Exception' );
-			}
-
-			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectException' ) === false ) {
-				// PHPUnit < 5.2.0.
-				require_once __DIR__ . '/src/Polyfills/ExpectException.php';
-				return;
-			}
-
-			// PHPUnit >= 5.2.0.
-			require_once __DIR__ . '/src/Polyfills/ExpectException_Empty.php';
-		}
-
-		/**
-		 * Load the AssertFileDirectory polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertFileDirectory() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertIsReadable' ) === false ) {
-				// PHPUnit < 5.6.0.
-				require_once __DIR__ . '/src/Polyfills/AssertFileDirectory.php';
-				return;
-			}
-
-			// PHPUnit >= 5.6.0.
-			require_once __DIR__ . '/src/Polyfills/AssertFileDirectory_Empty.php';
 		}
 
 		/**
@@ -273,13 +194,13 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * if a PHPUnit version is used which already contains this functionality.
 		 *
 		 * Includes aliasing any PHPUnit native classes needed for this functionality
-		 * which aren't available under their namespaced name in PHPUnit 4.x/5.x.
+		 * which aren't available under their namespaced name in PHPUnit 5.x.
 		 *
 		 * @return void
 		 */
 		public static function loadExpectPHPException() {
 			/*
-			 * Alias the PHPUnit 4/5 Error classes to their PHPUnit >= 6 name.
+			 * Alias the PHPUnit 5.x Error classes to their PHPUnit >= 6 name.
 			 *
 			 * {@internal The `class_exists` wrappers are needed to play nice with
 			 * PHPUnit bootstrap files of test suites implementing this library
@@ -445,7 +366,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		public static function loadTestListenerDefaultImplementation() {
 			if ( \version_compare( self::getPHPUnitVersion(), '6.0.0', '<' ) ) {
 				/*
-				 * Alias one particular PHPUnit 4/5 class to its PHPUnit >= 6 name.
+				 * Alias one particular PHPUnit 5.x class to its PHPUnit >= 6 name.
 				 *
 				 * All other classes needed are part of the forward-compatibility layer.
 				 *

@@ -9,7 +9,7 @@ use PHPUnit_Framework_TestSuite;
 use PHPUnit_Framework_Warning;
 
 /**
- * Basic TestListener implementation for use with PHPUnit 4.x and 5.x.
+ * Basic TestListener implementation for use with PHPUnit 5.x.
  *
  * This TestListener trait uses renamed (snakecase) methods for all standard methods in
  * a TestListener to get round the method signature changes in various PHPUnit versions.
@@ -20,7 +20,7 @@ use PHPUnit_Framework_Warning;
  * {@internal While in essence this trait is no different from the PHPUnit 6.x version, this
  * version is necessary as the class/interface name type declarations used in the PHPUnit 6.x
  * file are based on the namespaced names. As both the namespaced names as well as the
- * non-namespaced names exist in PHPUnit 4.8.36+/5.7.21+, we cannot create class aliases to
+ * non-namespaced names exist in PHPUnit 5.7.21+, we cannot create class aliases to
  * get round the signature mismatch and need this trait using the old names instead.}
  */
 trait TestListenerDefaultImplementation {

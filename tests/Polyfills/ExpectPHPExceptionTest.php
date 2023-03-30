@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
@@ -13,7 +12,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
  */
 final class ExpectPHPExceptionTest extends TestCase {
 
-	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectPHPException;
 
 	/**

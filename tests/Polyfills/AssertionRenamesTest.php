@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
@@ -14,7 +13,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
  */
 final class AssertionRenamesTest extends TestCase {
 
-	use AssertFileDirectory; // Needed for PHPUnit < 5.6.0 support.
 	use AssertionRenames;
 	use AssertIsType;
 

@@ -112,39 +112,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Verify availability of trait polyfilled PHPUnit methods [9].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityAssertNumericTypeTrait() {
-		self::assertNan( \acos( 8 ) );
-	}
-
-	/**
-	 * Test availability of trait polyfilled PHPUnit methods [10].
-	 *
-	 * @return void
-	 *
-	 * @throws Exception For testing purposes.
-	 */
-	public function testAvailabilityExpectExceptionTrait() {
-		$this->expectException( '\Exception' );
-		$this->expectExceptionMessage( 'message' );
-
-		throw new Exception( 'message' );
-	}
-
-	/**
-	 * Verify availability of trait polyfilled PHPUnit methods [11].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityAssertFileDirectory() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR;
-		$this->assertDirectoryExists( $path );
-	}
-
-	/**
 	 * Verify availability of trait polyfilled PHPUnit methods [12].
 	 *
 	 * @return void

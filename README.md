@@ -18,7 +18,6 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
     - [PHPUnit support](#phpunit-support)
 * [Using this library](#using-this-library)
     - [Supported ways of calling the assertions](#supported-ways-of-calling-the-assertions)
-    - [Use with PHPUnit < 5.7.0](#use-with-phpunit--570)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
     - [Helper traits](#helper-traits)
@@ -32,8 +31,8 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 Requirements
 ------------
 
-* PHP 5.4 or higher.
-* [PHPUnit] 4.8 - 9.x (automatically required via Composer).
+* PHP 5.6 or higher.
+* [PHPUnit] 5.7 - 9.x (automatically required via Composer).
 
 [PHPUnit]: https://packagist.org/packages/phpunit/phpunit
 
@@ -63,7 +62,7 @@ Why use the PHPUnit Polyfills?
 
 This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
-### Write your tests for PHPUnit 9.x and run them on PHPUnit 4.8 - 9.x
+### Write your tests for PHPUnit 9.x and run them on PHPUnit 5.7 - 9.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
@@ -148,109 +147,11 @@ For the polyfills to work, a test class is **required** to be a (grand-)child of
 
 [four ways of calling assertions]: https://docs.phpunit.de/en/9.6/assertions.html#static-vs-non-static-usage-of-assertion-methods
 
-### Use with PHPUnit < 5.7.0
-
-If your library still needs to support PHP < 5.6 and therefore needs PHPUnit 4 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
-
-To prevent _"conflicting method names"_ errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
-
-You will need to make sure to `use` any additional traits needed for the polyfills to work.
-
-| PHPUnit   | When `use`-ing this trait       | You also need to `use` this trait |
-|-----------|---------------------------------|-----------------------------------|
-| 4.8 < 5.2 | `ExpectExceptionObject`         | `ExpectException`                 |
-| 4.8 < 5.2 | `ExpectPHPException`            | `ExpectException`                 |
-| 4.8 < 5.2 | `ExpectExceptionMessageMatches` | `ExpectException`                 |
-| 4.8 < 5.6 | `AssertionRenames`              | `AssertFileDirectory`             |
-
-_**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
-
-Code example testing for a PHP native warning in a test which needs to be able to run on PHPUnit 4.8:
-```php
-<?php
-
-namespace Vendor\YourPackage\Tests;
-
-use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
-
-class FooTest extends TestCase
-{
-    use ExpectException;
-    use ExpectPHPException;
-
-    public function testSomething()
-    {
-        $this->expectWarningMessage( 'A non-numeric value encountered' );
-    }
-}
-```
-
 
 Features
 --------
 
 ### Polyfill traits
-
-#### PHPUnit < 5.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType`
-
-Polyfills the following methods:
-|                            |                              |                         |
-|----------------------------|------------------------------|-------------------------|
-| [`Assert::assertFinite()`] | [`Assert::assertInfinite()`] | [`Assert::assertNan()`] |
-
-These methods were introduced in PHPUnit 5.0.0.
-
-[`Assert::assertFinite()`]:   https://docs.phpunit.de/en/9.6/assertions.html#assertinfinite
-[`Assert::assertInfinite()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertinfinite
-[`Assert::assertNan()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertnan
-
-#### PHPUnit < 5.2.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectException`
-
-Polyfills the following methods:
-|                                     |                                              |
-|-------------------------------------|----------------------------------------------|
-| [`TestCase::expectException()`]     | [`TestCase::expectExceptionMessage()`]       |
-| [`TestCase::expectExceptionCode()`] | [`TestCase::expectExceptionMessageRegExp()`] |
-
-These methods were introduced in PHPUnit 5.2.0 as alternatives to the `Testcase::setExpectedException()` method which was deprecated in PHPUnit 5.2.0 and the `Testcase::setExpectedExceptionRegExp()` method which was deprecated in 5.6.0.
-Both these methods were removed in PHPUnit 6.0.0.
-
-[`TestCase::expectException()`]:              https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-exceptions
-[`TestCase::expectExceptionMessage()`]:       https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-exceptions
-[`TestCase::expectExceptionCode()`]:          https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-exceptions
-[`TestCase::expectExceptionMessageRegExp()`]: https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-exceptions
-
-#### PHPUnit < 5.6.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory`
-
-Polyfills the following methods:
-|                                         |                                            |
-|-----------------------------------------|--------------------------------------------|
-| [`Assert::assertIsReadable()`]          | [`Assert::assertNotIsReadable()`]          |
-| [`Assert::assertIsWritable()`]          | [`Assert::assertNotIsWritable()`]          |
-| [`Assert::assertDirectoryExists()`]     | [`Assert::assertDirectoryNotExists()`]     |
-| [`Assert::assertDirectoryIsReadable()`] | [`Assert::assertDirectoryNotIsReadable()`] |
-| [`Assert::assertDirectoryIsWritable()`] | [`Assert::assertDirectoryNotIsWritable()`] |
-| [`Assert::assertFileIsReadable()`]      | [`Assert::assertFileNotIsReadable()`]      |
-| [`Assert::assertFileIsWritable()`]      | [`Assert::assertFileNotIsWritable()`]      |
-
-These methods were introduced in PHPUnit 5.6.0.
-
-[`Assert::assertIsReadable()`]:             https://docs.phpunit.de/en/9.6/assertions.html#assertisreadable
-[`Assert::assertNotIsReadable()`]:          https://docs.phpunit.de/en/9.6/assertions.html#assertisreadable
-[`Assert::assertIsWritable()`]:             https://docs.phpunit.de/en/9.6/assertions.html#assertiswritable
-[`Assert::assertNotIsWritable()`]:          https://docs.phpunit.de/en/9.6/assertions.html#assertiswritable
-[`Assert::assertDirectoryExists()`]:        https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryexists
-[`Assert::assertDirectoryNotExists()`]:     https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryexists
-[`Assert::assertDirectoryIsReadable()`]:    https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryisreadable
-[`Assert::assertDirectoryNotIsReadable()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryisreadable
-[`Assert::assertDirectoryIsWritable()`]:    https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryiswritable
-[`Assert::assertDirectoryNotIsWritable()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertdirectoryiswritable
-[`Assert::assertFileIsReadable()`]:         https://docs.phpunit.de/en/9.6/assertions.html#assertfileisreadable
-[`Assert::assertFileNotIsReadable()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertfileisreadable
-[`Assert::assertFileIsWritable()`]:         https://docs.phpunit.de/en/9.6/assertions.html#assertfileiswritable
-[`Assert::assertFileNotIsWritable()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertfileiswritable
 
 #### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
 
