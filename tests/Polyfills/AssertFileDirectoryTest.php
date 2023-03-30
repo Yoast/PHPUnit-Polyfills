@@ -9,6 +9,8 @@ use TypeError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
 /**
  * Availability test for the functions polyfilled by the AssertFileDirectory trait.
@@ -20,6 +22,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	use AssertFileDirectory;
 	use AssertionRenames;
 	use AssertIsType;
+	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
+	use ExpectExceptionMessageMatches;
 
 	/**
 	 * Verify availability of the assertIsReadable() method.
@@ -62,6 +66,22 @@ final class AssertFileDirectoryTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the assertIsReadable() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @return void
+	 */
+	public function testAssertIsReadableFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that ".+?" is readable`';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
+		$this->assertIsReadable( $path, 'This assertion failed for reason XYZ' );
+	}
+
+	/**
 	 * Verify availability of the assertNotIsReadable() method.
 	 *
 	 * @requires PHPUnit < 9.1.0
@@ -79,7 +99,7 @@ final class AssertFileDirectoryTest extends TestCase {
 	 * This exception was thrown until PHP 7.0.0. Since PHP 7.0.0, a PHP native TypeError will
 	 * be thrown based on the type declaration.
 	 *
-	 * @requires PHPUnit < 9.99.99
+	 * @requires PHPUnit < 10.0.0
 	 */
 	public function testAssertNotIsReadableException() {
 		try {
@@ -103,6 +123,24 @@ final class AssertFileDirectoryTest extends TestCase {
 		}
 
 		$this->fail( 'Failed to assert that the expected "invalid argument" exception was thrown' );
+	}
+
+	/**
+	 * Verify that the assertNotIsReadable() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @requires PHPUnit < 9.1.0
+	 *
+	 * @return void
+	 */
+	public function testAssertNotIsReadableFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that ".+?" is not readable`';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'Fixtures/AssertFileDirectory_Readable.txt';
+		$this->assertNotIsReadable( $path, 'This assertion failed for reason XYZ' );
 	}
 
 	/**
@@ -146,6 +184,22 @@ final class AssertFileDirectoryTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the assertIsWritable() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @return void
+	 */
+	public function testAssertIsWritableFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that ".+?" is writable`';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
+		$this->assertIsWritable( $path, 'This assertion failed for reason XYZ' );
+	}
+
+	/**
 	 * Verify availability of the assertNotIsWritable() method.
 	 *
 	 * @requires PHPUnit < 9.1.0
@@ -163,7 +217,7 @@ final class AssertFileDirectoryTest extends TestCase {
 	 * This exception was thrown until PHP 7.0.0. Since PHP 7.0.0, a PHP native TypeError will
 	 * be thrown based on the type declaration.
 	 *
-	 * @requires PHPUnit < 9.99.99
+	 * @requires PHPUnit < 10.0.0
 	 */
 	public function testAssertNotIsWritableException() {
 		try {
@@ -187,6 +241,24 @@ final class AssertFileDirectoryTest extends TestCase {
 		}
 
 		$this->fail( 'Failed to assert that the expected "invalid argument" exception was thrown' );
+	}
+
+	/**
+	 * Verify that the assertNotIsWritable() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @requires PHPUnit < 9.1.0
+	 *
+	 * @return void
+	 */
+	public function testAssertNotIsWritableFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that ".+?" is not writable`';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'Fixtures/AssertFileDirectory_Readable.txt';
+		$this->assertNotIsWritable( $path, 'This assertion failed for reason XYZ' );
 	}
 
 	/**
@@ -230,6 +302,22 @@ final class AssertFileDirectoryTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the assertDirectoryExists() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @return void
+	 */
+	public function testAssertDirectoryExistsFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that directory ".+?" exists`';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
+		$this->assertDirectoryExists( $path, 'This assertion failed for reason XYZ' );
+	}
+
+	/**
 	 * Verify availability of the assertDirectoryNotExists() method.
 	 *
 	 * @requires PHPUnit < 9.1.0
@@ -247,7 +335,7 @@ final class AssertFileDirectoryTest extends TestCase {
 	 * This exception was thrown until PHP 7.0.0. Since PHP 7.0.0, a PHP native TypeError will
 	 * be thrown based on the type declaration.
 	 *
-	 * @requires PHPUnit < 9.99.99
+	 * @requires PHPUnit < 10.0.0
 	 */
 	public function testAssertDirectoryNotExistsException() {
 		try {
@@ -271,6 +359,24 @@ final class AssertFileDirectoryTest extends TestCase {
 		}
 
 		$this->fail( 'Failed to assert that the expected "invalid argument" exception was thrown' );
+	}
+
+	/**
+	 * Verify that the assertDirectoryNotExists() method fails a test with the correct custom failure message,
+	 * when the custom $message parameter has been passed.
+	 *
+	 * @requires PHPUnit < 9.1.0
+	 *
+	 * @return void
+	 */
+	public function testAssertDirectoryNotExistsFailsWithCustomMessage() {
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that directory ".+?" does not exist`';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'Fixtures' . \DIRECTORY_SEPARATOR;
+		$this->assertDirectoryNotExists( $path, 'This assertion failed for reason XYZ' );
 	}
 
 	/**
@@ -404,5 +510,20 @@ final class AssertFileDirectoryTest extends TestCase {
 
 		\chmod( $tempFile, \octdec( '755' ) );
 		\unlink( $tempFile );
+	}
+
+	/**
+	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
+	 *
+	 * @return string
+	 */
+	public function getAssertionFailedExceptionName() {
+		$exception = 'PHPUnit\Framework\AssertionFailedError';
+		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+			// PHPUnit < 6.
+			$exception = 'PHPUnit_Framework_AssertionFailedError';
+		}
+
+		return $exception;
 	}
 }

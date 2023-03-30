@@ -25,12 +25,14 @@ trait AssertClosedResource {
 	 * @return void
 	 */
 	public static function assertIsClosedResource( $actual, $message = '' ) {
-		if ( $message === '' ) {
-			$exporter = \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ? new Exporter() : new Exporter_In_Phar();
-			$message  = \sprintf( 'Failed asserting that %s is of type "resource (closed)"', $exporter->export( $actual ) );
+		$exporter = \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ? new Exporter() : new Exporter_In_Phar();
+		$msg      = \sprintf( 'Failed asserting that %s is of type "resource (closed)"', $exporter->export( $actual ) );
+
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertTrue( ResourceHelper::isClosedResource( $actual ), $message );
+		static::assertTrue( ResourceHelper::isClosedResource( $actual ), $msg );
 	}
 
 	/**
@@ -42,16 +44,18 @@ trait AssertClosedResource {
 	 * @return void
 	 */
 	public static function assertIsNotClosedResource( $actual, $message = '' ) {
-		if ( $message === '' ) {
-			$exporter = \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ? new Exporter() : new Exporter_In_Phar();
-			$type     = $exporter->export( $actual );
-			if ( $type === 'NULL' ) {
-				$type = 'resource (closed)';
-			}
-			$message = \sprintf( 'Failed asserting that %s is not of type "resource (closed)"', $type );
+		$exporter = \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ? new Exporter() : new Exporter_In_Phar();
+		$type     = $exporter->export( $actual );
+		if ( $type === 'NULL' ) {
+			$type = 'resource (closed)';
+		}
+		$msg = \sprintf( 'Failed asserting that %s is not of type "resource (closed)"', $type );
+
+		if ( $message !== '' ) {
+			$msg = $message . \PHP_EOL . $msg;
 		}
 
-		static::assertFalse( ResourceHelper::isClosedResource( $actual ), $message );
+		static::assertFalse( ResourceHelper::isClosedResource( $actual ), $msg );
 	}
 
 	/**

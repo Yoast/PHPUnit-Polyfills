@@ -69,11 +69,12 @@ trait AssertStringContains {
 	 */
 	public static function assertStringNotContainsString( $needle, $haystack, $message = '' ) {
 		if ( $needle === '' ) {
-			if ( $message === '' ) {
-				$message = "Failed asserting that '{$haystack}' does not contain \"{$needle}\".";
+			$msg = "Failed asserting that '{$haystack}' does not contain \"\".";
+			if ( $message !== '' ) {
+				$msg = $message . \PHP_EOL . $msg;
 			}
 
-			static::fail( $message );
+			static::fail( $msg );
 		}
 
 		static::assertNotContains( $needle, $haystack, $message );
@@ -90,11 +91,12 @@ trait AssertStringContains {
 	 */
 	public static function assertStringNotContainsStringIgnoringCase( $needle, $haystack, $message = '' ) {
 		if ( $needle === '' ) {
-			if ( $message === '' ) {
-				$message = "Failed asserting that '{$haystack}' does not contain \"{$needle}\".";
+			$msg = "Failed asserting that '{$haystack}' does not contain \"\".";
+			if ( $message !== '' ) {
+				$msg = $message . \PHP_EOL . $msg;
 			}
 
-			static::fail( $message );
+			static::fail( $msg );
 		}
 
 		static::assertNotContains( $needle, $haystack, $message, true );
