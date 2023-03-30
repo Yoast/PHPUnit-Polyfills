@@ -3,6 +3,9 @@
 namespace Yoast\PHPUnitPolyfills\TestListeners;
 
 use Exception;
+use PHPUnit\Event\Code\Test as ImmutableTest;
+use PHPUnit\Event\Code\Throwable as ImmutableThrowable;
+use PHPUnit\Event\TestSuite\TestSuite as ImmutableTestSuite;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestSuite;
@@ -17,9 +20,9 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * An error occurred.
 	 *
-	 * @param Test                $test Test object.
-	 * @param Exception|Throwable $e    Instance of the error encountered.
-	 * @param float               $time Execution time of this test.
+	 * @param Test|ImmutableTest                     $test Test object.
+	 * @param Exception|Throwable|ImmutableThrowable $e    Instance of the error encountered.
+	 * @param float                                  $time Execution time of this test.
 	 *
 	 * @return void
 	 */
@@ -41,9 +44,9 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * A failure occurred.
 	 *
-	 * @param Test                 $test Test object.
-	 * @param AssertionFailedError $e    Instance of the assertion failure exception encountered.
-	 * @param float                $time Execution time of this test.
+	 * @param Test|ImmutableTest                      $test Test object.
+	 * @param AssertionFailedError|ImmutableThrowable $e    Instance of the failure encountered.
+	 * @param float                                   $time Execution time of this test.
 	 *
 	 * @return void
 	 */
@@ -52,9 +55,9 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * Incomplete test.
 	 *
-	 * @param Test                $test Test object.
-	 * @param Exception|Throwable $e    Instance of the incomplete test exception.
-	 * @param float               $time Execution time of this test.
+	 * @param Test|ImmutableTest                     $test Test object.
+	 * @param Exception|Throwable|ImmutableThrowable $e    Instance of the incomplete test exception.
+	 * @param float                                  $time Execution time of this test.
 	 *
 	 * @return void
 	 */
@@ -63,9 +66,9 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * Risky test.
 	 *
-	 * @param Test                $test Test object.
-	 * @param Exception|Throwable $e    Instance of the risky test exception.
-	 * @param float               $time Execution time of this test.
+	 * @param Test|ImmutableTest                     $test Test object.
+	 * @param Exception|Throwable|ImmutableThrowable $e    Instance of the risky test exception.
+	 * @param float                                  $time Execution time of this test.
 	 *
 	 * @return void
 	 */
@@ -74,9 +77,9 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * Skipped test.
 	 *
-	 * @param Test                $test Test object.
-	 * @param Exception|Throwable $e    Instance of the skipped test exception.
-	 * @param float               $time Execution time of this test.
+	 * @param Test|ImmutableTest                     $test Test object.
+	 * @param Exception|Throwable|ImmutableThrowable $e    Instance of the skipped test exception.
+	 * @param float                                  $time Execution time of this test.
 	 *
 	 * @return void
 	 */
@@ -85,7 +88,7 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * A test suite started.
 	 *
-	 * @param TestSuite $suite Test suite object.
+	 * @param TestSuite|ImmutableTestSuite $suite Test suite object.
 	 *
 	 * @return void
 	 */
@@ -94,7 +97,7 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * A test suite ended.
 	 *
-	 * @param TestSuite $suite Test suite object.
+	 * @param TestSuite|ImmutableTestSuite $suite Test suite object.
 	 *
 	 * @return void
 	 */
@@ -103,7 +106,7 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * A test started.
 	 *
-	 * @param Test $test Test object.
+	 * @param Test|ImmutableTest $test Test object.
 	 *
 	 * @return void
 	 */
@@ -112,8 +115,8 @@ trait TestListenerSnakeCaseMethods {
 	/**
 	 * A test ended.
 	 *
-	 * @param Test  $test Test object.
-	 * @param float $time Execution time of this test.
+	 * @param Test|ImmutableTest $test Test object.
+	 * @param float              $time Execution time of this test.
 	 *
 	 * @return void
 	 */

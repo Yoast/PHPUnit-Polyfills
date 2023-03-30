@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills;
 
+use PHPUnit\Event\Event;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
@@ -118,6 +119,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				 * - Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
 				 * - Yoast\PHPUnitPolyfills\TestCases\XTestCase
 				 * - Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
+				 * - Yoast\PHPUnitPolyfills\TestListeners\Subscribers\* (PHPUnit 10+)
 				 */
 				default:
 					$file = \realpath( __DIR__ . '/src/' . \strtr( \substr( $className, 23 ), '\\', '/' ) . '.php' );
@@ -401,8 +403,14 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				return;
 			}
 
-			// PHPUnit >= 7.0.0.
-			require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php';
+			if ( \interface_exists( Event::class ) === false ) {
+				// PHPUnit 7.0.0 < 10.0.0.
+				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php';
+				return;
+			}
+
+			// PHPUnit >= 10.0.0.
+			require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte10.php';
 		}
 
 		/**

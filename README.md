@@ -658,6 +658,71 @@ class MyTestListener implements TestListener {
 }
 ```
 
+****WIP****
+
+To be able to use the TestListener implementation cross-version, you will need to have two different entry points and PHPUnit configuration files.
+
+### PHPUnit 5 to 9
+
+```xml
+    <listeners>
+        <listener class="My\Package\Tests\DebugLogTestListener" />
+    </listeners>
+```
+
+```php
+use PHPUnit\Framework\TestListener;
+
+final class DebugLogTestListener extends LoggingTestListener implements TestListener {}
+```
+
+### PHPUnit 10
+
+```xml
+    <extensions>
+        <extension class="My\Package\Tests\DebugLogExtension" />
+    </extensions>
+```
+
+```php
+use PHPUnit\Runner\Extension\Extension;
+
+final class DebugLogExtension extends LoggingTestListener implements Extension {}
+```
+
+### Shared code binding everything together
+
+```php
+use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
+
+class LoggingTestListener
+{
+    use TestListenerDefaultImplementation;
+
+    private static $debugLog = '';
+
+    public function add_error($test, $e, $time)
+    {
+        echo self::$debugLog;
+    }
+
+    public function add_failure($test, $e, $time)
+    {
+        echo self::$debugLog;
+    }
+
+    public function start_test($test)
+    {
+        self::$debugLog = '';
+    }
+
+    public static function debugLog($str)
+    {
+        self::$debugLog .= $str . PHP_EOL;
+    }
+}
+```
+
 
 Frequently Asked Questions
 --------------------------
