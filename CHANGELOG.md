@@ -9,6 +9,36 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [1.0.5] - 2023-03-31
+
+### Fixed
+* A custom `$message` parameter passed to an assertion, will no longer overrule an emulated "assertion failed" message, but will be prefixed to it instead. PR [#97]
+    This applies to the following polyfills:
+    - `assertIsClosedResource()`
+    - `assertIsNotClosedResource()`
+    - `assertIsReadable()`
+    - `assertNotIsReadable()`
+    - `assertIsWritable()`
+    - `assertNotIsWritable()`
+    - `assertDirectoryExists()`
+    - `assertDirectoryNotExists()`
+    - `assertStringNotContainsString()`
+    - `assertStringNotContainsStringIgnoringCase()`
+
+### Changed
+* The `develop` branch has been removed. Development will now take place in the `1.x` and `2.x` branches.
+* README: links to the PHPUnit manual now point explicitly to the PHPUnit 9.x documentation. PR [#94]
+* README: new sub-section about PHPUnit version support. PR [#99]
+* README: various minor improvements. PRs [#92], [#93]
+* General housekeeping.
+
+[#92]: https://github.com/Yoast/PHPUnit-Polyfills/pull/92
+[#93]: https://github.com/Yoast/PHPUnit-Polyfills/pull/93
+[#94]: https://github.com/Yoast/PHPUnit-Polyfills/pull/94
+[#97]: https://github.com/Yoast/PHPUnit-Polyfills/pull/97
+[#99]: https://github.com/Yoast/PHPUnit-Polyfills/pull/99
+
+
 ## [1.0.4] - 2022-11-16
 
 This is a maintenance release.
@@ -126,6 +156,7 @@ Initial release.
 
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[1.0.5]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.1...1.0.2

@@ -64,7 +64,7 @@ jobs:
 
           # Experimental builds.
           - php: '8.3'
-            phpunit: 'auto'
+            phpunit: 'auto' # PHPUnit 9.x.
             experimental: true
 
           - php: '8.1'
