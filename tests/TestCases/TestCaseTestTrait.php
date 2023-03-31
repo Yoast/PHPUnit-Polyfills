@@ -16,7 +16,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return array[]
 	 */
-	public static function dataHaveFixtureMethodsBeenTriggered() {
+	final public static function dataHaveFixtureMethodsBeenTriggered() {
 		return [
 			[ 1, 1, 0, 1, 0 ],
 			[ 1, 2, 1, 2, 1 ],
@@ -31,7 +31,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @throws Exception For testing purposes.
 	 */
-	public function testAvailabilityExpectExceptionObjectTrait() {
+	final public function testAvailabilityExpectExceptionObjectTrait() {
 		$exception = new Exception( 'message', 101 );
 		$this->expectExceptionObject( $exception );
 
@@ -43,7 +43,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertIsTypeTrait() {
+	final public function testAvailabilityAssertIsTypeTrait() {
 		self::assertIsInt( self::$beforeClass );
 	}
 
@@ -52,7 +52,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertStringContainsTrait() {
+	final public function testAvailabilityAssertStringContainsTrait() {
 		$this->assertStringContainsString( 'foo', 'foobar' );
 	}
 
@@ -61,7 +61,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertEqualsSpecializationsTrait() {
+	final public function testAvailabilityAssertEqualsSpecializationsTrait() {
 		static::assertEqualsIgnoringCase( 'a', 'A' );
 	}
 
@@ -70,7 +70,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityExpectPHPExceptionTrait() {
+	final public function testAvailabilityExpectPHPExceptionTrait() {
 		$this->expectDeprecation();
 
 		\trigger_error( 'foo', \E_USER_DEPRECATED );
@@ -83,7 +83,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @throws Exception For testing purposes.
 	 */
-	public function testAvailabilityExpectExceptionMessageMatchesTrait() {
+	final public function testAvailabilityExpectExceptionMessageMatchesTrait() {
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessageMatches( '`^a poly[a-z]+ [a-zA-Z0-9_]+ me(s){2}age$`i' );
 
@@ -95,7 +95,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertFileEqualsSpecializationsTrait() {
+	final public function testAvailabilityAssertFileEqualsSpecializationsTrait() {
 		self::assertStringEqualsFileIgnoringCase(
 			\dirname( __DIR__ ) . '/Polyfills' . AssertFileEqualsSpecializationsTest::PATH_TO_EXPECTED,
 			"Testing 123\n"
@@ -107,7 +107,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertionRenamesTrait() {
+	final public function testAvailabilityAssertionRenamesTrait() {
 		$this->assertMatchesRegularExpression( '/foo/', 'foobar' );
 	}
 
@@ -116,7 +116,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertClosedResource() {
+	final public function testAvailabilityAssertClosedResource() {
 		$resource = \fopen( __FILE__, 'r' );
 		\fclose( $resource );
 
@@ -128,7 +128,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityEqualToSpecializations() {
+	final public function testAvailabilityEqualToSpecializations() {
 		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
 	}
 
@@ -139,7 +139,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertObjectEquals() {
+	final public function testAvailabilityAssertObjectEquals() {
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'test' );
 		$this->assertObjectEquals( $expected, $actual );

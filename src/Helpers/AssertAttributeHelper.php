@@ -46,7 +46,7 @@ trait AssertAttributeHelper {
 	 *
 	 * @throws ReflectionException When a non-existent property is requested.
 	 */
-	public static function getProperty( $objInstance, $propertyName ) {
+	final public static function getProperty( $objInstance, $propertyName ) {
 		$reflect  = new ReflectionObject( $objInstance );
 		$property = $reflect->getProperty( $propertyName );
 		$property->setAccessible( true );
@@ -62,7 +62,7 @@ trait AssertAttributeHelper {
 	 *
 	 * @return mixed
 	 */
-	public static function getPropertyValue( $objInstance, $propertyName ) {
+	final public static function getPropertyValue( $objInstance, $propertyName ) {
 		$property = static::getProperty( $objInstance, $propertyName );
 
 		return $property->getValue( $objInstance );
