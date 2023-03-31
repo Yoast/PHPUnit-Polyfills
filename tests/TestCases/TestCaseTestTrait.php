@@ -66,17 +66,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Test availability of trait polyfilled PHPUnit methods [5].
-	 *
-	 * @return void
-	 */
-	final public function testAvailabilityExpectPHPExceptionTrait() {
-		$this->expectDeprecation();
-
-		\trigger_error( 'foo', \E_USER_DEPRECATED );
-	}
-
-	/**
 	 * Test availability of trait polyfilled PHPUnit methods [6].
 	 *
 	 * @return void

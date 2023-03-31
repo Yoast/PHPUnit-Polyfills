@@ -233,32 +233,6 @@ These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert:
 [`Assert::assertEqualsWithDelta()`]:         https://docs.phpunit.de/en/9.6/assertions.html#assertequalswithdelta
 [`Assert::assertNotEqualsWithDelta()`]:      https://docs.phpunit.de/en/9.6/assertions.html#assertequalswithdelta
 
-#### PHPUnit < 8.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException`
-
-Polyfills the following methods:
-|                                     |                                |                                       |
-|-------------------------------------|--------------------------------|---------------------------------------|
-| `TestCase::`[`expectError()`]       | [`expectErrorMessage()`]       | [`expectErrorMessageMatches()`]       |
-| `TestCase::`[`expectWarning()`]     | [`expectWarningMessage()`]     | [`expectWarningMessageMatches()`]     |
-| `TestCase::`[`expectNotice()`]      | [`expectNoticeMessage()`]      | [`expectNoticeMessageMatches()`]      |
-| `TestCase::`[`expectDeprecation()`] | [`expectDeprecationMessage()`] | [`expectDeprecationMessageMatches()`] |
-
-These methods were introduced in PHPUnit 8.4.0 as alternatives to using `TestCase::expectException()` et al for expecting PHP native errors, warnings and notices.
-Using `TestCase::expectException*()` for testing PHP native notices was soft deprecated in PHPUnit 8.4.0, hard deprecated (warning) in PHPUnit 9.0.0 and (will be) removed in PHPUnit 10.0.0.
-
-[`expectError()`]:                     https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectErrorMessage()`]:              https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectErrorMessageMatches()`]:       https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectWarning()`]:                   https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectWarningMessage()`]:            https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectWarningMessageMatches()`]:     https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectNotice()`]:                    https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectNoticeMessage()`]:             https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectNoticeMessageMatches()`]:      https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectDeprecation()`]:               https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectDeprecationMessage()`]:        https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-[`expectDeprecationMessageMatches()`]: https://docs.phpunit.de/en/9.6/writing-tests-for-phpunit.html#testing-php-errors-warnings-and-notices
-
 #### PHPUnit < 8.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches`
 
 Polyfills the [`TestCase::expectExceptionMessageMatches()`] method.
