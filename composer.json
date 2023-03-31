@@ -68,6 +68,12 @@
         ],
         "coverage": [
             "@php ./vendor/phpunit/phpunit/phpunit"
+        ],
+        "test10": [
+            "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist --no-coverage"
+        ],
+        "coverage10": [
+            "@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist"
         ]
     }
 }

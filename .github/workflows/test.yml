@@ -108,11 +108,18 @@ jobs:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
-      - name: Run the unit tests
-        if: ${{ matrix.phpunit != '^10.0' }}
+      - name: Grab PHPUnit version
+        id: phpunit_version
+        run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> $GITHUB_OUTPUT
+
+      - name: "DEBUG: Show grabbed version"
+        run: echo ${{ steps.phpunit_version.outputs.VERSION }}
+
+      - name: "Run the unit tests (PHPUnit < 10)"
+        if: ${{ ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         run: composer test
 
-      - name: Trial run the unit tests against PHPUnit 10.0
-        if: ${{ matrix.phpunit == '^10.0' }}
+      - name: "Trial run the unit tests against PHPUnit 10.0"
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         continue-on-error: true
-        run: composer test
+        run: composer test10
