@@ -4,6 +4,7 @@
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.2/phpunit.xsd"
     backupGlobals="true"
     bootstrap="./tests/bootstrap.php"
+    beStrictAboutOutputDuringTests="true"
     beStrictAboutTestsThatDoNotTestAnything="true"
     colors="true"
     convertDeprecationsToExceptions="true"
