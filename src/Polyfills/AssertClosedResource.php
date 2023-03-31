@@ -25,7 +25,7 @@ trait AssertClosedResource {
 	 * @return void
 	 */
 	public static function assertIsClosedResource( $actual, $message = '' ) {
-		$exporter = \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ? new Exporter() : new Exporter_In_Phar();
+		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
 		$msg      = \sprintf( 'Failed asserting that %s is of type "resource (closed)"', $exporter->export( $actual ) );
 
 		if ( $message !== '' ) {
@@ -44,7 +44,7 @@ trait AssertClosedResource {
 	 * @return void
 	 */
 	public static function assertIsNotClosedResource( $actual, $message = '' ) {
-		$exporter = \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ? new Exporter() : new Exporter_In_Phar();
+		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
 		$type     = $exporter->export( $actual );
 		if ( $type === 'NULL' ) {
 			$type = 'resource (closed)';

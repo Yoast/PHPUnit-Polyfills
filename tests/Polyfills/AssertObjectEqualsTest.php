@@ -2,9 +2,18 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException;
+use PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException;
+use PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException;
+use PHPUnit\Framework\ComparisonMethodDoesNotDeclareParameterTypeException;
+use PHPUnit\Framework\ComparisonMethodDoesNotExistException;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
+use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
+use TypeError;
+use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ChildValueObject;
@@ -35,7 +44,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	 *
 	 * @var string
 	 */
-	const COMPARATOR_EXCEPTION = 'Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException';
+	const COMPARATOR_EXCEPTION = InvalidComparisonMethodException::class;
 
 	/**
 	 * Verify availability of the assertObjectEquals() method.
@@ -87,7 +96,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectEqualsFailsOnExpectedNotObject() {
-		$this->expectException( 'TypeError' );
+		$this->expectException( TypeError::class );
 
 		if ( \PHP_VERSION_ID >= 80000
 			&& \version_compare( PHPUnit_Version::id(), '9.4.0', '>=' )
@@ -111,7 +120,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectEqualsFailsOnActualNotObject() {
-		$this->expectException( 'TypeError' );
+		$this->expectException( TypeError::class );
 
 		if ( \PHP_VERSION_ID >= 80000
 			&& \version_compare( PHPUnit_Version::id(), '9.4.0', '>=' )
@@ -136,7 +145,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectEqualsFailsOnMethodNotJuggleableToString() {
-		$this->expectException( 'TypeError' );
+		$this->expectException( TypeError::class );
 
 		if ( \PHP_VERSION_ID >= 80000
 			&& \version_compare( PHPUnit_Version::id(), '9.4.0', '>=' )
@@ -165,9 +174,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::doesNotExist() does not exist.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotExistException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotExistException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotExistException';
+			$exception = ComparisonMethodDoesNotExistException::class;
 		}
 
 		$this->expectException( $exception );
@@ -187,9 +196,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsTwoParams() does not declare exactly one parameter.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotDeclareExactlyOneParameterException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException';
+			$exception = ComparisonMethodDoesNotDeclareExactlyOneParameterException::class;
 		}
 
 		$this->expectException( $exception );
@@ -209,9 +218,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsParamNotRequired() does not declare exactly one parameter.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotDeclareExactlyOneParameterException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException';
+			$exception = ComparisonMethodDoesNotDeclareExactlyOneParameterException::class;
 		}
 
 		$this->expectException( $exception );
@@ -232,9 +241,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'Parameter of comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsParamNoType() does not have a declared type.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareParameterTypeException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotDeclareParameterTypeException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareParameterTypeException';
+			$exception = ComparisonMethodDoesNotDeclareParameterTypeException::class;
 		}
 
 		$this->expectException( $exception );
@@ -257,9 +266,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'Parameter of comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion::equalsParamUnionType() does not have a declared type.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareParameterTypeException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotDeclareParameterTypeException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareParameterTypeException';
+			$exception = ComparisonMethodDoesNotDeclareParameterTypeException::class;
 		}
 
 		$this->expectException( $exception );
@@ -280,9 +289,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'is not an accepted argument type for comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsParamNonClassType().';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotAcceptParameterTypeException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException';
+			$exception = ComparisonMethodDoesNotAcceptParameterTypeException::class;
 		}
 
 		$this->expectException( $exception );
@@ -303,9 +312,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'is not an accepted argument type for comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsParamNonExistentClassType().';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotAcceptParameterTypeException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException';
+			$exception = ComparisonMethodDoesNotAcceptParameterTypeException::class;
 		}
 
 		$this->expectException( $exception );
@@ -326,9 +335,9 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'is not an accepted argument type for comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equals().';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotAcceptParameterTypeException::class ) ) {
 			// PHPUnit > 9.4.0.
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException';
+			$exception = ComparisonMethodDoesNotAcceptParameterTypeException::class;
 		}
 
 		$this->expectException( $exception );
@@ -348,10 +357,10 @@ final class AssertObjectEqualsTest extends TestCase {
 		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not return a boolean value.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException' ) ) {
+		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
 			// PHPUnit > 9.4.0.
 			$msg       = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not declare bool return type.';
-			$exception = 'PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException';
+			$exception = ComparisonMethodDoesNotDeclareBoolReturnTypeException::class;
 		}
 
 		$this->expectException( $exception );
@@ -402,10 +411,10 @@ final class AssertObjectEqualsTest extends TestCase {
 	 * @return string
 	 */
 	public function getAssertionFailedExceptionName() {
-		$exception = 'PHPUnit\Framework\AssertionFailedError';
-		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+		$exception = AssertionFailedError::class;
+		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
 			// PHPUnit < 6.
-			$exception = 'PHPUnit_Framework_AssertionFailedError';
+			$exception = PHPUnit_Framework_AssertionFailedError::class;
 		}
 
 		return $exception;

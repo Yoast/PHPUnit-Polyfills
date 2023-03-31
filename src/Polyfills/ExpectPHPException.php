@@ -2,6 +2,11 @@
 
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
+use PHPUnit\Framework\Error\Deprecated;
+use PHPUnit\Framework\Error\Error;
+use PHPUnit\Framework\Error\Notice;
+use PHPUnit\Framework\Error\Warning;
+
 /**
  * Polyfill the `TestCase::expectDeprecation*()`, `TestCase::expectNotice*()`,
  * `TestCase::expectWarning*()` and `TestCase::expectError*()` methods
@@ -23,7 +28,7 @@ trait ExpectPHPException {
 	 * @return void
 	 */
 	public function expectDeprecation() {
-		$this->expectException( '\PHPUnit\Framework\Error\Deprecated' );
+		$this->expectException( Deprecated::class );
 	}
 
 	/**
@@ -54,7 +59,7 @@ trait ExpectPHPException {
 	 * @return void
 	 */
 	public function expectNotice() {
-		$this->expectException( '\PHPUnit\Framework\Error\Notice' );
+		$this->expectException( Notice::class );
 	}
 
 	/**
@@ -85,7 +90,7 @@ trait ExpectPHPException {
 	 * @return void
 	 */
 	public function expectWarning() {
-		$this->expectException( '\PHPUnit\Framework\Error\Warning' );
+		$this->expectException( Warning::class );
 	}
 
 	/**
@@ -116,7 +121,7 @@ trait ExpectPHPException {
 	 * @return void
 	 */
 	public function expectError() {
-		$this->expectException( '\PHPUnit\Framework\Error\Error' );
+		$this->expectException( Error::class );
 	}
 
 	/**

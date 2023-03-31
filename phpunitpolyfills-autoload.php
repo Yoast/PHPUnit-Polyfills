@@ -2,6 +2,8 @@
 
 namespace Yoast\PHPUnitPolyfills;
 
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit_Runner_Version;
 
@@ -128,7 +130,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadExpectExceptionObject() {
-			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectExceptionObject' ) === false ) {
+			if ( \method_exists( TestCase::class, 'expectExceptionObject' ) === false ) {
 				// PHPUnit < 6.4.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectExceptionObject.php';
 				return;
@@ -145,7 +147,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertIsType() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertIsArray' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertIsArray' ) === false ) {
 				// PHPUnit < 7.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertIsType.php';
 				return;
@@ -162,7 +164,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertStringContains() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertStringContainsString' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertStringContainsString' ) === false ) {
 				// PHPUnit < 7.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertStringContains.php';
 				return;
@@ -179,7 +181,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertEqualsSpecializations() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertEqualsWithDelta' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertEqualsWithDelta' ) === false ) {
 				// PHPUnit < 7.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations.php';
 				return;
@@ -230,7 +232,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				\class_alias( 'PHPUnit_Framework_Error_Deprecated', 'PHPUnit\Framework\Error\Deprecated' );
 			}
 
-			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectErrorMessage' ) === false ) {
+			if ( \method_exists( TestCase::class, 'expectErrorMessage' ) === false ) {
 				// PHPUnit < 8.4.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectPHPException.php';
 				return;
@@ -247,7 +249,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadExpectExceptionMessageMatches() {
-			if ( \method_exists( '\PHPUnit\Framework\TestCase', 'expectExceptionMessageMatches' ) === false ) {
+			if ( \method_exists( TestCase::class, 'expectExceptionMessageMatches' ) === false ) {
 				// PHPUnit < 8.4.0.
 				require_once __DIR__ . '/src/Polyfills/ExpectExceptionMessageMatches.php';
 				return;
@@ -264,7 +266,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertFileEqualsSpecializations() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertFileEqualsIgnoringCase' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertFileEqualsIgnoringCase' ) === false ) {
 				// PHPUnit < 8.5.0.
 				require_once __DIR__ . '/src/Polyfills/AssertFileEqualsSpecializations.php';
 				return;
@@ -281,7 +283,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadEqualToSpecializations() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'equalToWithDelta' ) === false ) {
+			if ( \method_exists( Assert::class, 'equalToWithDelta' ) === false ) {
 				// PHPUnit < 9.0.0.
 				require_once __DIR__ . '/src/Polyfills/EqualToSpecializations.php';
 				return;
@@ -298,7 +300,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertionRenames() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertMatchesRegularExpression' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertMatchesRegularExpression' ) === false ) {
 				// PHPUnit < 9.1.0.
 				require_once __DIR__ . '/src/Polyfills/AssertionRenames.php';
 				return;
@@ -315,7 +317,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertClosedResource() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertIsClosedResource' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertIsClosedResource' ) === false ) {
 				// PHPUnit < 9.3.0.
 				require_once __DIR__ . '/src/Polyfills/AssertClosedResource.php';
 				return;
@@ -332,7 +334,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadAssertObjectEquals() {
-			if ( \method_exists( '\PHPUnit\Framework\Assert', 'assertObjectEquals' ) === false ) {
+			if ( \method_exists( Assert::class, 'assertObjectEquals' ) === false ) {
 				// PHPUnit < 9.4.0.
 				require_once __DIR__ . '/src/Polyfills/AssertObjectEquals.php';
 				return;

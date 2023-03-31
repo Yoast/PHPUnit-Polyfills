@@ -84,7 +84,7 @@ trait TestCaseTestTrait {
 	 * @throws Exception For testing purposes.
 	 */
 	public function testAvailabilityExpectExceptionMessageMatchesTrait() {
-		$this->expectException( '\Exception' );
+		$this->expectException( Exception::class );
 		$this->expectExceptionMessageMatches( '`^a poly[a-z]+ [a-zA-Z0-9_]+ me(s){2}age$`i' );
 
 		throw new Exception( 'A polymorphic exception message' );
