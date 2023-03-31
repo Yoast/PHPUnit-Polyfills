@@ -68,9 +68,6 @@
         ],
         "coverage": [
             "@php ./vendor/phpunit/phpunit/phpunit"
-        ],
-        "coverage-local": [
-            "@php ./vendor/phpunit/phpunit/phpunit --coverage-html ./build/coverage-html"
         ]
     }
 }
