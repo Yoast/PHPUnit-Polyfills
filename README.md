@@ -18,6 +18,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
     - [PHPUnit support](#phpunit-support)
 * [Using this library](#using-this-library)
     - [Supported ways of calling the assertions](#supported-ways-of-calling-the-assertions)
+    - [Use with PHPUnit < 7.5.0](#use-with-phpunit--750)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
     - [Helper traits](#helper-traits)
@@ -146,6 +147,45 @@ The polyfills in this library support the first two ways of calling the assertio
 For the polyfills to work, a test class is **required** to be a (grand-)child of the PHPUnit native `TestCase` class.
 
 [four ways of calling assertions]: https://docs.phpunit.de/en/9.6/assertions.html#static-vs-non-static-usage-of-assertion-methods
+
+### Use with PHPUnit < 7.5.0
+
+If your library still needs to support PHP < 7.1 and therefore needs PHPUnit < 7 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
+
+To prevent _"conflicting method names"_ errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
+
+You will need to make sure to `use` any additional traits needed for the polyfills to work.
+
+| PHPUnit   | When `use`-ing this trait   | You also need to `use` this trait |
+|-----------|-----------------------------|-----------------------------------|
+| 5.7 < 7.5 | `AssertIgnoringLineEndings` | `AssertStringContains`            |
+
+_**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
+
+Code example for a test using the `AssertIgnoringLineEndings` trait, which needs to be able to run on PHPUnit 5.7:
+```php
+<?php
+
+namespace Vendor\YourPackage\Tests;
+
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+
+class FooTest extends TestCase
+{
+    use AssertIgnoringLineEndings;
+    use AssertStringContains;
+
+    public function testSomething()
+    {
+        $this->assertStringContainsStringIgnoringLineEndings(
+            "something\nelse",
+            "this is something\r\nelse"
+        );
+    }
+}
+```
 
 
 Features
@@ -353,6 +393,18 @@ The `assertObjectEquals()` assertion was introduced in PHPUnit 9.4.0.
 [limitations in how this assertion is implemented in PHPUnit]: https://github.com/sebastianbergmann/phpunit/issues/4707
 
 [`Assert::assertObjectEquals()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertobjectequals
+
+#### PHPUnit < 10.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings`
+
+Polyfills the following methods:
+|                                                           |                                                             |
+|-----------------------------------------------------------|-------------------------------------------------------------|
+| [`Assert::assertStringEqualsStringIgnoringLineEndings()`] | [`Assert::assertStringContainsStringIgnoringLineEndings()`] |
+
+These methods were introduced in PHPUnit 10.0.0.
+
+[`Assert::assertStringEqualsStringIgnoringLineEndings()`]:   https://docs.phpunit.de/en/main/assertions.html#assertstringequalsstringignoringlineendings
+[`Assert::assertStringContainsStringIgnoringLineEndings()`]: https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstringignoringlineendings
 
 
 ### Helper traits

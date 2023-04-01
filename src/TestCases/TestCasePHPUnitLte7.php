@@ -7,6 +7,7 @@ use Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
@@ -30,6 +31,7 @@ abstract class TestCase extends PHPUnit_TestCase {
 	use AssertClosedResource;
 	use AssertEqualsSpecializations;
 	use AssertFileEqualsSpecializations;
+	use AssertIgnoringLineEndings;
 	use AssertionRenames;
 	use AssertIsType;
 	use AssertObjectEquals;

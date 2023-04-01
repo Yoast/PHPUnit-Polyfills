@@ -133,4 +133,13 @@ trait TestCaseTestTrait {
 		$actual   = new ValueObject( 'test' );
 		$this->assertObjectEquals( $expected, $actual );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [15].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertIgnoringLineEndings() {
+		self::assertStringContainsStringIgnoringLineEndings( "b\nc", "a\r\nb\r\nc\r\nd" );
+	}
 }
