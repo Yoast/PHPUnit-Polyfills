@@ -14,7 +14,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertIsList
  */
-class AssertIsListTest extends TestCase {
+final class AssertIsListTest extends TestCase {
 
 	use AssertIsList;
 	use ExpectExceptionMessageMatches;

@@ -10,6 +10,8 @@ use PHPUnit\Framework\Assert;
  * Introduced in PHPUnit 10.0.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/pull/4818
+ *
+ * @since 2.0.0
  */
 trait AssertIsList {
 
