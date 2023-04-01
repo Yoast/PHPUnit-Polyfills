@@ -19,7 +19,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings
  */
-class AssertIgnoringLineEndingsTest extends TestCase {
+final class AssertIgnoringLineEndingsTest extends TestCase {
 
 	use AssertIgnoringLineEndings;
 	use AssertStringContains;

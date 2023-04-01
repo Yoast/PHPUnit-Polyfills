@@ -16,6 +16,8 @@ use TypeError;
  * @link https://github.com/sebastianbergmann/phpunit/pull/4670
  * @link https://github.com/sebastianbergmann/phpunit/issues/4935
  * @link https://github.com/sebastianbergmann/phpunit/pull/5279
+ *
+ * @since 2.0.0
  */
 trait AssertIgnoringLineEndings {
 
@@ -52,7 +54,6 @@ trait AssertIgnoringLineEndings {
 				)
 			);
 		}
-
 
 		$expected = self::normalizeLineEndingsForIgnoringLineEndingsAssertions( (string) $expected );
 		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
