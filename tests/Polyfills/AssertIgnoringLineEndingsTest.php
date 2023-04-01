@@ -273,7 +273,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			&& \version_compare( PHPUnit_Version::id(), '10.0.16', '<' )
 		) {
 			// This bug was fixed in PHPUnit 10.0.16.
-			$this->markTestSkipped( 'Skipping tests on PHPUnit versions which contained the bug' );
+			$this->markTestSkipped( 'Skipping test on PHPUnit versions which contained the bug' );
 		}
 
 		$this->assertStringContainsStringIgnoringLineEndings( $needle, $haystack );
