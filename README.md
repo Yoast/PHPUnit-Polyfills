@@ -417,6 +417,18 @@ This method was introduced in PHPUnit 10.0.0.
 
 [`Assert::assertIsList()`]: https://docs.phpunit.de/en/main/assertions.html#assertislist
 
+#### PHPUnit < 10.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsList`
+
+Polyfills the following method:
+|                                       |                                          |
+|---------------------------------------|------------------------------------------|
+| [`Assert::assertObjectHasProperty()`] | [`Assert::assertObjectNotHasProperty()`] |
+
+These methods were introduced in PHPUnit 10.1.0 as alternatives to the `Assert::assertObjectHasAttribute()` and `Assert::assertObjectNotHasAttribute()` methods, which were hard deprecated (warning) in PHPUnit 9.6.1 and removed in PHPUnit 10.0.0.
+
+[`Assert::assertObjectHasProperty()`]: https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
+[`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
+
 
 ### Helper traits
 

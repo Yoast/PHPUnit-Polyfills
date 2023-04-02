@@ -99,6 +99,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertIgnoringLineEndings();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty':
+					self::loadAssertObjectProperty();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
 					self::loadTestCase();
 					return true;
@@ -329,6 +333,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 10.0.0.
 			require_once __DIR__ . '/src/Polyfills/AssertIgnoringLineEndings_Empty.php';
+		}
+
+		/**
+		 * Load the AssertObjectProperty polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertObjectProperty() {
+			if ( \method_exists( Assert::class, 'assertObjectHasProperty' ) === false ) {
+				// PHPUnit < 10.1.0.
+				require_once __DIR__ . '/src/Polyfills/AssertObjectProperty.php';
+				return;
+			}
+
+			// PHPUnit >= 10.1.0.
+			require_once __DIR__ . '/src/Polyfills/AssertObjectProperty_Empty.php';
 		}
 
 		/**
