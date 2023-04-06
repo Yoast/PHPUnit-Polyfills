@@ -59,19 +59,19 @@
 	},
 	"scripts": {
 		"lint7": [
-			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
+			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
 		],
 		"lint70": [
-			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
+			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
 		],
 		"lint-lt70": [
-			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php --exclude tests/Polyfills/Fixtures/ChildValueObject.php --exclude tests/Polyfills/Fixtures/ValueObject.php --exclude tests/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
+			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php --exclude tests/Unit/Polyfills/Fixtures/ChildValueObject.php --exclude tests/Unit/Polyfills/Fixtures/ValueObject.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Unit/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
 		],
 		"lint-gte80": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"
 		],
 		"lint-gte84": [
-			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git  --exclude tests/Polyfills/Fixtures/ValueObjectNoReturnType.php"
+			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git  --exclude tests/Unit/Polyfills/Fixtures/ValueObjectNoReturnType.php"
 		],
 		"check-cs": [
 			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --runtime-set testVersion 5.6-"

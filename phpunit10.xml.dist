@@ -17,8 +17,8 @@
     >
 
     <testsuites>
-        <testsuite name="PHPUnitPolyfills">
-            <directory suffix="Test.php">./tests/</directory>
+        <testsuite name="unit">
+            <directory suffix="Test.php">./tests/Unit/</directory>
         </testsuite>
     </testsuites>
 

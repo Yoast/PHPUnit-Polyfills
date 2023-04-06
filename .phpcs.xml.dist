@@ -93,6 +93,7 @@
 				<element key="Yoast\PHPUnitPolyfills\\" value="src/"/>
 				<element key="Yoast\PHPUnitPolyfills\Tests\\" value="tests/"/>
 			</property>
+			<property name="recommended_max_levels" value="3"/>
 		</properties>
 	</rule>
 
@@ -160,7 +161,7 @@
 
 	<!-- The use of `array` annotations/types is intentional and part of the actual test case. -->
 	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject*\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObject*\.php$</exclude-pattern>
 	</rule>
 
 	<!-- Make some allowances for test files. -->
@@ -175,26 +176,26 @@
 
 	<!-- Covers annotations are in the test classes, not the trait. -->
 	<rule ref="Yoast.Commenting.TestsHaveCoversTag.Missing">
-		<exclude-pattern>/tests/TestCases/TestCaseTestTrait\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/*\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/TestCases/TestCaseTestTrait\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/*\.php$</exclude-pattern>
 	</rule>
 
 	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 7+/8+ respectively. -->
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ChildValueObject\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ChildValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObjectUnionNoReturnType\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.Operators.NewOperators.t_spaceshipFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Unit/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>
