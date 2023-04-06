@@ -9,7 +9,7 @@ use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
  * TestListener implementation for testing the TestListener cross-version
  * TestListenerDefaultImplementation trait.
  */
-class TestListenerImplementation implements TestListener {
+class TestListenerImplementation {
 
 	use TestListenerDefaultImplementation;
 

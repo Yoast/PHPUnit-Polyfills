@@ -10,7 +10,8 @@ use Yoast\PHPUnitPolyfills\Autoload;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
 use Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods;
-use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementation;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\ExtensionEntryPoint;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerEntryPoint;
 
 /**
  * Basic test for the PHPUnit version-based TestListenerDefaultImplementation setup.
@@ -46,7 +47,7 @@ final class TestListenerTest extends TestCase {
 	 */
 	protected function set_up() {
 		$this->result   = new TestResult();
-		$this->listener = new TestListenerImplementation();
+		$this->listener = new TestListenerEntryPoint();
 
 		$this->result->addListener( $this->listener );
 	}
