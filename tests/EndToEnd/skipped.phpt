@@ -18,7 +18,7 @@ $_SERVER['argv'][] = __DIR__ . '/Fixtures/' . $configFile;
 $_SERVER['argv'][] = '--filter';
 $_SERVER['argv'][] = 'SkippedTest';
 
-require __DIR__ . '/../bootstrap.php';
+//require __DIR__ . '/../bootstrap.php';
 
 // Need toggle for different PHPUnit versions
 if (class_exists('PHPUnit_TextUI_Command')) {
