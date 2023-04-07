@@ -86,7 +86,7 @@ trait TestCaseTestTrait {
 	 */
 	final public function testAvailabilityAssertFileEqualsSpecializationsTrait() {
 		self::assertStringEqualsFileIgnoringCase(
-			\dirname( __DIR__ ) . '/Polyfills' . AssertFileEqualsSpecializationsTest::PATH_TO_EXPECTED,
+			AssertFileEqualsSpecializationsTest::PATH_TO_EXPECTED,
 			"Testing 123\n"
 		);
 	}
