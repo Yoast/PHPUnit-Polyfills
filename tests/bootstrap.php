@@ -2,7 +2,13 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests;
 
-if ( \defined( '__PHPUNIT_PHAR__' ) ) {
+use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
+use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
+
+if ( \defined( '__PHPUNIT_PHAR__' )
+	|| class_exists( Exporter_In_Phar::class )
+	|| class_exists( Exporter_In_Phar_Old::class )
+) {
 	require_once \dirname( __DIR__ ) . '/phpunitpolyfills-autoload.php';
 
 	// phpcs:disable Universal.FunctionDeclarations.NoLongClosures.ExceedsMaximum

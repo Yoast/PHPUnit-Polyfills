@@ -14,6 +14,11 @@
         <testsuite name="unit">
             <directory suffix="Test.php">./tests/Unit/</directory>
         </testsuite>
+        <testsuite name="end2end">
+            <directory suffix=".phpt">tests/EndToEnd/</directory>
+
+            <exclude>tests/EndToEnd/Fixtures</exclude>
+        </testsuite>
     </testsuites>
 
     <filter>

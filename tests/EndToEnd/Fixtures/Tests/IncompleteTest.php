@@ -1,24 +1,20 @@
 <?php
 
-namespace Yoast\PHPUnitPolyfills\Tests\Unit\TestListeners\Fixtures;
+namespace Yoast\PHPUnitPolyfills\Tests\EndToEnd\Fixtures\Tests;
 
-use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Fixture to generate an "incomplete test" to pass to the test listener.
- *
- * @requires PHPUnit 7.0
  */
-#[RequiresPhpunit( '7.0' )]
-class IncompletePHPUnitGte7 extends TestCase {
+class IncompleteTest extends TestCase {
 
 	/**
 	 * Test resulting in a test marked as incomplete.
 	 *
 	 * @return void
 	 */
-	protected function testForListener() {
+	public function testIncomplete() {
 		$this->markTestIncomplete( 'Test incomplete' );
 	}
 }

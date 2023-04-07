@@ -1,6 +1,6 @@
 <?php
 
-namespace Yoast\PHPUnitPolyfills\Tests\Unit\TestListeners\Fixtures;
+namespace Yoast\PHPUnitPolyfills\Tests\EndToEnd\Fixtures\Tests;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Warning as PHPUnit_Warning;
@@ -8,7 +8,7 @@ use PHPUnit\Framework\Warning as PHPUnit_Warning;
 /**
  * Fixture to generate a test warning to pass to the test listener.
  */
-class Warning extends TestCase {
+class WarningTest extends TestCase {
 
 	/**
 	 * Test resulting in a warning.
@@ -17,7 +17,9 @@ class Warning extends TestCase {
 	 *
 	 * @throws PHPUnit_Warning For test purposes.
 	 */
-	protected function runTest() {
-		throw new PHPUnit_Warning();
+	public function testWarning() {
+		if (\class_exists(PHPUnit_Warning::class)) {
+			throw new PHPUnit_Warning();
+		}
 	}
 }

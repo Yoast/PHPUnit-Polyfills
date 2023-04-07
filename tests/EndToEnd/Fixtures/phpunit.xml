@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.2/phpunit.xsd"
+    backupGlobals="true"
+    bootstrap="./autoload.php"
+    colors="false"
+    convertDeprecationsToExceptions="true">
+
+    <testsuites>
+        <testsuite name="TestListenerTests">
+            <directory suffix="Test.php">./Tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <listeners>
+        <listener class="Yoast\PHPUnitPolyfills\Tests\EndToEnd\TestListeners\Fixtures\TestListenerImplementation" />
+    </listeners>
+
+    <php>
+        <const name="PHPUNIT_TESTSUITE" value="true"/>
+    </php>
+
+</phpunit>

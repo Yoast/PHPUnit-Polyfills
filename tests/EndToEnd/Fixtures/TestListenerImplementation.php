@@ -1,6 +1,6 @@
 <?php
 
-namespace Yoast\PHPUnitPolyfills\Tests\Unit\TestListeners\Fixtures;
+namespace Yoast\PHPUnitPolyfills\Tests\EndToEnd\TestListeners\Fixtures;
 
 use PHPUnit\Framework\TestListener;
 use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
@@ -56,6 +56,20 @@ class TestListenerImplementation implements TestListener {
 	private $skippedCount = 0;
 
 	/**
+	 * Track how many test suites have been started.
+	 *
+	 * @var int
+	 */
+	private $startSuiteCount = 0;
+
+	/**
+	 * Track how many test suites have ended.
+	 *
+	 * @var int
+	 */
+	private $endSuiteCount = 0;
+
+	/**
 	 * Track how many tests have been started.
 	 *
 	 * @var int
@@ -106,6 +120,7 @@ class TestListenerImplementation implements TestListener {
 	 */
 	public function add_failure( $test, $e, $time ) {
 		++$this->failureCount;
+//		echo 'test failed, failure count: ', $this->failureCount;
 	}
 
 	/**
@@ -148,6 +163,28 @@ class TestListenerImplementation implements TestListener {
 	}
 
 	/**
+	 * A test suite started.
+	 *
+	 * @param TestSuite $suite Test suite object.
+	 */
+	public function start_test_suite( $suite ) {
+		++$this->startSuiteCount;
+    }
+
+	/**
+	 * A test suite ended.
+	 *
+	 * @param TestSuite $suite Test suite object.
+	 */
+	public function end_test_suite( $suite ) {
+		++$this->endSuiteCount;
+		
+		echo PHP_EOL, '=====================', PHP_EOL;
+		echo var_export($this, true), PHP_EOL;
+		echo '=====================', PHP_EOL;
+    }
+
+	/**
 	 * A test started.
 	 *
 	 * @param Test $test Test object.
@@ -168,20 +205,5 @@ class TestListenerImplementation implements TestListener {
 	 */
 	public function end_test( $test, $time ) {
 		++$this->endTestCount;
-	}
-
-	/**
-	 * Getter to retrieve the values of the properties.
-	 *
-	 * @param string $name Property name.
-	 *
-	 * @return mixed|null The property value or null if the property does not exist.
-	 */
-	public function __get( $name ) {
-		if ( isset( $this->{$name} ) ) {
-			return $this->{$name};
-		}
-
-		return null;
 	}
 }

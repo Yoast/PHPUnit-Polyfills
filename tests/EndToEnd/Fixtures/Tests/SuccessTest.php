@@ -1,20 +1,20 @@
 <?php
 
-namespace Yoast\PHPUnitPolyfills\Tests\Unit\TestListeners\Fixtures;
+namespace Yoast\PHPUnitPolyfills\Tests\EndToEnd\Fixtures\Tests;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Fixture to generate a "successfull test" to pass to the test listener.
  */
-class Success extends TestCase {
+class SuccessTest extends TestCase {
 
 	/**
 	 * Test resulting in a successfull test.
 	 *
 	 * @return void
 	 */
-	protected function runTest() {
+	public function testSuccess() {
 		$this->assertTrue( true );
 	}
 }
