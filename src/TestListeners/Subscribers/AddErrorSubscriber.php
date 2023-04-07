@@ -15,9 +15,9 @@ final class AddErrorSubscriber implements ErroredSubscriber {
 	/**
 	 * Subscriber constructor.
 	 *
-	 * @param object $handler Instance of the class which functions as the "test listener".
+	 * @param Handler $handler Instance of the class which composes a "test listener".
 	 */
-	public function __construct( private readonly object $handler ) {}
+	public function __construct( private readonly Handler $handler ) {}
 
 	/**
 	 * Trigger the test listener method equivalent to this event.

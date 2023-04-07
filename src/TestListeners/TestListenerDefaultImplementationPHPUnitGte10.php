@@ -42,18 +42,20 @@ trait TestListenerDefaultImplementation {
 	 * @param ParameterCollection $parameters    Extension ParameterCollection object.
 	 */
 	public function bootstrap( Configuration $configuration, Facade $facade, ParameterCollection $parameters ): void {
+        $handler = new Handler( $this );
+        
 		$facade->registerSubscribers(
-			new Subscribers\AddErrorSubscriber( $this ),
+			new Subscribers\AddErrorSubscriber( $handler ),
 // Note: unsure if the WarningTriggered subscriber is correct/comparable to before.
-			new Subscribers\AddWarningSubscriber( $this ),
-			new Subscribers\AddFailureSubscriber( $this ),
-			new Subscribers\AddIncompleteSubscriber( $this ),
-			new Subscribers\AddRiskySubscriber( $this ),
-			new Subscribers\AddSkippedSubscriber( $this ),
-			new Subscribers\StartTestSubscriber( $this ),
-			new Subscribers\EndTestSubscriber( $this ),
-			new Subscribers\StartTestSuiteSubscriber( $this ),
-			new Subscribers\EndTestSuiteSubscriber( $this )
+			new Subscribers\AddWarningSubscriber( $handler ),
+			new Subscribers\AddFailureSubscriber( $handler ),
+			new Subscribers\AddIncompleteSubscriber( $handler ),
+			new Subscribers\AddRiskySubscriber( $handler ),
+			new Subscribers\AddSkippedSubscriber( $handler ),
+			new Subscribers\StartTestSubscriber( $handler ),
+			new Subscribers\EndTestSubscriber( $handler ),
+			new Subscribers\StartTestSuiteSubscriber( $handler ),
+			new Subscribers\EndTestSuiteSubscriber( $handler )
 		);
 	}
 
