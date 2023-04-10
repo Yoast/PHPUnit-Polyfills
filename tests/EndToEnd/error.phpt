@@ -9,7 +9,11 @@ if ( class_exists( 'PHPUnit\Runner\Version' ) ) {
 } elseif ( class_exists( 'PHPUnit_Runner_Version' ) ) {
 	$phpunitVersion = PHPUnit_Runner_Version::id();
 }
+var_dump($phpunitVersion);
 $configFile = version_compare( $phpunitVersion, '10.0.0', '>' ) ? 'phpunit10.xml' : 'phpunit.xml';
+
+//var_dump(get_declared_classes());
+
 
 $_SERVER['argv'][] = '--do-not-cache-result';
 //$_SERVER['argv'][] = '--no-output'; // Should this stay ?
