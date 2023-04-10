@@ -1,15 +1,24 @@
 --TEST--
 TestListener test: check that the add_error() method gets called correctly.
 
+--SKIPIF--
+<?php
+if ( file_exists( __DIR__ . '/../../vendor/autoload.php' ) === false ) {
+	print 'skip: Test can only be run in a Composer installed environment as otherwise there is no accces to the PHPUnit classes.';
+}
+
 --FILE--
 <?php
+
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 $phpunitVersion = 0;
 if ( class_exists( 'PHPUnit\Runner\Version' ) ) {
 	$phpunitVersion = PHPUnit\Runner\Version::id();
 } elseif ( class_exists( 'PHPUnit_Runner_Version' ) ) {
 	$phpunitVersion = PHPUnit_Runner_Version::id();
 }
-var_dump($phpunitVersion);
+//var_dump($phpunitVersion);
 $configFile = version_compare( $phpunitVersion, '10.0.0', '>' ) ? 'phpunit10.xml' : 'phpunit.xml';
 
 //var_dump(get_declared_classes());
