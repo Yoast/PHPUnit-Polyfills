@@ -7,6 +7,14 @@ if ( file_exists( __DIR__ . '/../../vendor/autoload.php' ) === false ) {
 	print 'skip: Test can only be run in a Composer installed environment as otherwise there is no accces to the PHPUnit classes.';
 }
 
+// NOT WORKING: Make sure the Composer install is up to date for the PHP version on which the tests are being run.
+try {
+
+	require_once __DIR__ . '/../../vendor/autoload.php';
+} catch ( Exception $e ) {
+	print 'skip: Test can only be run in an up-to-date Composer installed environment. Version mismatch detected, please run `composer update`.';
+}
+
 --FILE--
 <?php
 
