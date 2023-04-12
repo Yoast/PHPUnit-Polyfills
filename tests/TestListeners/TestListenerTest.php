@@ -60,9 +60,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'TestError' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->errorCount, 'error count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 1, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 0, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 0, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 0, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
@@ -80,9 +85,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'Warning' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->warningCount, 'warning count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 0, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 1, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 0, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 0, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
@@ -94,9 +104,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'Failure' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->failureCount, 'failure count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 0, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 0, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 1, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 0, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
@@ -108,9 +123,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'Incomplete' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->incompleteCount, 'incomplete count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 0, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 0, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 0, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 1, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
@@ -127,9 +147,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'Risky' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->riskyCount, 'risky count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 0, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 0, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 0, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 0, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 1, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
@@ -141,9 +166,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'Skipped' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->skippedCount, 'skipped count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 0, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 0, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 0, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 0, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 1, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
@@ -155,8 +185,14 @@ final class TestListenerTest extends TestCase {
 		$test = $this->getTestObject( 'Success' );
 		$test->run( $this->result );
 
-		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
-		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
+		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
+		$this->assertSame( 0, $this->listener->errorCount, 'Error count failed' );
+		$this->assertSame( 0, $this->listener->warningCount, 'Warning count failed' );
+		$this->assertSame( 0, $this->listener->failureCount, 'Failure count failed' );
+		$this->assertSame( 0, $this->listener->incompleteCount, 'Incomplete count failed' );
+		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
+		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
+		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
 	}
 
 	/**
