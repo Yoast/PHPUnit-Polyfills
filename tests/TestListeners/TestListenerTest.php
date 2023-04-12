@@ -54,10 +54,14 @@ final class TestListenerTest extends TestCase {
 	/**
 	 * Test that the TestListener add_error() method is called when an exception is thrown.
 	 *
+	 * @dataProvider dataError
+	 *
+	 * @param string $class_name The name of the fixture test class to use.
+	 *
 	 * @return void
 	 */
-	public function testErrorOnException() {
-		$test = $this->getTestObject( 'TestException' );
+	public function testError( $class_name ) {
+		$test = $this->getTestObject( $class_name );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
@@ -68,6 +72,25 @@ final class TestListenerTest extends TestCase {
 		$this->assertSame( 0, $this->listener->riskyCount, 'Risky count failed' );
 		$this->assertSame( 0, $this->listener->skippedCount, 'Skipped count failed' );
 		$this->assertSame( 1, $this->listener->endTestCount, 'Test end count failed' );
+	}
+
+	/**
+	 * Data provider.
+	 *
+	 * @return array
+	 */
+	public static function dataError() {
+		return [
+			'Exception thrown'               => [ 'TestException' ],
+			'PHP Error triggered'            => [ 'PHPError' ],
+			'PHP User Error triggered'       => [ 'PHPUserError' ],
+			'PHP Warning triggered'          => [ 'PHPWarning' ],
+			'PHP User Warning triggered'     => [ 'PHPUserWarning' ],
+			'PHP Notice triggered'           => [ 'PHPNotice' ],
+			'PHP User Notice triggered'      => [ 'PHPUserNotice' ],
+			'PHP Deprecation triggered'      => [ 'PHPDeprecation' ],
+			'PHP User Deprecation triggered' => [ 'PHPUserDeprecation' ],
+		];
 	}
 
 	/**

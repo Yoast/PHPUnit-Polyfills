@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures;
 
 use Exception;
-use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -11,18 +10,17 @@ use PHPUnit\Framework\TestCase;
  *
  * @requires PHPUnit 7.0
  */
-#[CoversNothing]
-#[RequiresPhpunit( '7.0' )]
-class TestExceptionPHPUnitGte7 extends TestCase {
+class PHPNoticePHPUnitGte7 extends TestCase {
 
 	/**
-	 * Test resulting in an error.
+	 * Test resulting in a PHP notice.
 	 *
 	 * @return void
 	 *
 	 * @throws Exception For test purposes.
 	 */
 	protected function testForListener() {
-		throw new Exception();
+		// Triggers a notice in all supported PHP versions.
+		\date_default_timezone_set( 'unknown' );
 	}
 }

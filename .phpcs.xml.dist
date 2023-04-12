@@ -44,6 +44,7 @@
 
 		<!-- Exclude some rules which are irrelevant.
 			 The code in this package is not run in the context of a WordPress plugin. -->
+		<exclude name="WordPress.DateTime.RestrictedFunctions.timezone_change_date_default_timezone_set"/>
 		<exclude name="WordPress.DB"/>
 		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_var_export"/>
 		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.system_calls_popen"/>
