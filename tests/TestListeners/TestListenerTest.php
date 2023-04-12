@@ -52,12 +52,12 @@ final class TestListenerTest extends TestCase {
 	}
 
 	/**
-	 * Test that the TestListener add_error() method is called.
+	 * Test that the TestListener add_error() method is called when an exception is thrown.
 	 *
 	 * @return void
 	 */
-	public function testError() {
-		$test = $this->getTestObject( 'TestError' );
+	public function testErrorOnException() {
+		$test = $this->getTestObject( 'TestException' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'Test start count failed' );
