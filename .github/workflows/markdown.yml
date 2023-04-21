@@ -84,6 +84,7 @@ jobs:
           remark-preset-lint-markdown-style-guide
           remark-lint-checkbox-content-indent
           remark-lint-linebreak-style
+          remark-lint-no-dead-urls
           remark-lint-no-empty-url
           remark-lint-no-heading-like-paragraph
           remark-lint-no-reference-like-url
@@ -94,7 +95,6 @@ jobs:
           remark-lint-list-item-punctuation
           remark-lint-match-punctuation
           remark-lint-no-hr-after-heading
-          remark-lint-are-links-valid-alive
           remark-lint-are-links-valid-duplicate
           remark-validate-links
 
