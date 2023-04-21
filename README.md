@@ -81,7 +81,7 @@ This means that features which PHPUnit no longer supports in PHPUnit 10.x, like 
 Please refer to the [PHPUnit 10 release notification] and [PHPUnit 10 changelog] to inform your decision on whether or not to upgrade (yet).
 
 [PHPUnit 10 release notification]: https://phpunit.de/announcements/phpunit-10.html
-[PHPUnit 10 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/main/ChangeLog-10.0.md
+[PHPUnit 10 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/10.0.19/ChangeLog-10.0.md
 
 
 Using this library
