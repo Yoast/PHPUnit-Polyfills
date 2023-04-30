@@ -22,6 +22,7 @@ jobs:
       matrix:
         php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
         phpunit: ['auto']
+        coverage: [true]
         experimental: [false]
 
         include:
@@ -33,45 +34,59 @@ jobs:
           # would always be installed as "low", which would break the builds for PHP 7.2+.
           - php: '5.6'
             phpunit: '5.7.21'
+            coverage: true
             experimental: false
           - php: '7.0'
             phpunit: '5.7.27'
+            coverage: true
             experimental: false
           - php: '7.1'
             phpunit: '5.7.21'
+            coverage: true
             experimental: false
           - php: '7.2'
             phpunit: '6.3.1'
+            coverage: true
             experimental: false
           - php: '7.3'
             phpunit: '7.2.7'
+            coverage: true
             experimental: false
           - php: '7.4'
             phpunit: '8.1.6'
+            coverage: true
             experimental: false
           - php: '8.0'
             phpunit: '8.5.16'
+            # PHPUnit 8.x does not support code coverage on PHP 8.x.
+            coverage: false
             experimental: false
           - php: '8.0'
             phpunit: '9.3.0'
+            coverage: true
             experimental: false
           - php: '8.1'
             phpunit: '9.3.0'
+            coverage: true
             experimental: false
           - php: '8.2'
             phpunit: '9.3.0'
+            coverage: true
             experimental: false
 
           # Experimental builds.
           - php: '8.3'
             phpunit: 'auto' # PHPUnit 9.x.
+            coverage: false
             experimental: true
 
           - php: '8.1'
             phpunit: '^10.0'
+            coverage: false
             experimental: true
           - php: '8.2'
             phpunit: '^10.0'
+            coverage: false
             experimental: true
 
     name: "Tests: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
@@ -87,7 +102,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
-          coverage: none
+          coverage: ${{ matrix.coverage == true && 'xdebug' || 'none' }}
 
       - name: 'Composer: set PHPUnit version for tests'
         if: ${{ matrix.phpunit != 'auto' }}
@@ -111,10 +126,46 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Run the unit tests
-        if: ${{ matrix.phpunit != '^10.0' }}
+        if: ${{ matrix.coverage == false && matrix.phpunit != '^10.0' }}
         run: composer test
+
+      - name: Run the unit tests with code coverage
+        if: ${{ matrix.coverage == true && matrix.phpunit != '^10.0' }}
+        run: composer coverage
 
       - name: Trial run the unit tests against PHPUnit 10.0
         if: ${{ matrix.phpunit == '^10.0' }}
         continue-on-error: true
         run: composer test
+
+      # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
+      - name: Switch to PHP 7.4
+        if: ${{ success() && matrix.coverage == true && ( matrix.php == '5.4' || startsWith( matrix.php, '8' ) ) }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          coverage: none
+
+      # Global install is used to prevent a conflict with the local composer.lock in PHP 8.0+.
+      - name: Install Coveralls
+        if: ${{ success() && matrix.coverage == true }}
+        run: composer global require php-coveralls/php-coveralls:"^2.5.3" --no-interaction
+
+      - name: Upload coverage results to Coveralls
+        if: ${{ success() && matrix.coverage == true }}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpunit-${{ matrix.phpunit }}
+        run: php-coveralls -v -x build/logs/clover.xml
+
+  coveralls-finish:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.COVERALLS_TOKEN }}
+          parallel-finished: true
