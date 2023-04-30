@@ -29,6 +29,7 @@
             <file>src/Polyfills/AssertClosedResource_Empty.php</file>
         </exclude>
         <report>
+            <text outputFile="php://stdout" showOnlySummary="true"/>
             <clover outputFile="build/logs/clover.xml"/>
         </report>
     </coverage>
