@@ -170,6 +170,31 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	}
 
 	/**
+	 * Verify that the assertStringEqualsStringIgnoringLineEndings() method fails a test with the correct
+	 * custom failure message, when the custom $message parameter has been passed.
+	 *
+	 * @return void
+	 */
+	public function testAssertStringEqualsStringIgnoringLineEndingsFailsWithCustomMessage() {
+		$actual   = 'ab';
+		$expected = "a b\n";
+
+		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
+		$msg      = \sprintf(
+			'Failed asserting that %s is equal to "%s" ignoring line endings.',
+			$exporter->export( $actual ),
+			self::normalizeLineEndings( $expected )
+		);
+
+		$pattern = '`^This assertion failed for reason XYZ\s+' . preg_quote( $msg, '`' ) . '`s';
+
+		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectExceptionMessageMatches( $pattern );
+
+		$this->assertStringEqualsStringIgnoringLineEndings( $expected, $actual, 'This assertion failed for reason XYZ' );
+	}
+
+	/**
 	 * Verify that the assertStringContainsStringIgnoringLineEndings() method throws a TypeError
 	 * when the $needle parameter is not a scalar.
 	 *
