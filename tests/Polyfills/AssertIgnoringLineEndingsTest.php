@@ -186,7 +186,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			self::normalizeLineEndings( $expected )
 		);
 
-		$pattern = '`^This assertion failed for reason XYZ\s+' . preg_quote( $msg, '`' ) . '`s';
+		$pattern = '`^This assertion failed for reason XYZ\s+' . \preg_quote( $msg, '`' ) . '`s';
 
 		$this->expectException( $this->getAssertionFailedExceptionName() );
 		$this->expectExceptionMessageMatches( $pattern );
