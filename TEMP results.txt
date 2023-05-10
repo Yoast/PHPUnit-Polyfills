@@ -1,0 +1,55 @@
+PHPUnit 9.6.6 by Sebastian Bergmann and contributors.
+
+.                                                                   1 / 1 (100%)
+=====================
+\Yoast\PHPUnitPolyfills\Tests\EndToEnd\TestListeners\Fixtures\TestListenerImplementation::__set_state(array(
+   'errorCount' => 0,
+   'warningCount' => 0,
+   'failureCount' => 0,
+   'incompleteCount' => 0,
+   'riskyCount' => 0,
+   'skippedCount' => 0,
+   'startSuiteCount' => 3,
+   'endSuiteCount' => 1,
+   'startTestCount' => 1,
+   'endTestCount' => 1,
+))
+
+=====================
+
+=====================
+\Yoast\PHPUnitPolyfills\Tests\EndToEnd\TestListeners\Fixtures\TestListenerImplementation::__set_state(array(
+   'errorCount' => 0,
+   'warningCount' => 0,
+   'failureCount' => 0,
+   'incompleteCount' => 0,
+   'riskyCount' => 0,
+   'skippedCount' => 0,
+   'startSuiteCount' => 3,
+   'endSuiteCount' => 2,
+   'startTestCount' => 1,
+   'endTestCount' => 1,
+))
+
+=====================
+
+=====================
+\Yoast\PHPUnitPolyfills\Tests\EndToEnd\TestListeners\Fixtures\TestListenerImplementation::__set_state(array(
+   'errorCount' => 0,
+   'warningCount' => 0,
+   'failureCount' => 0,
+   'incompleteCount' => 0,
+   'riskyCount' => 0,
+   'skippedCount' => 0,
+   'startSuiteCount' => 3,
+   'endSuiteCount' => 3,
+   'startTestCount' => 1,
+   'endTestCount' => 1,
+))
+
+=====================
+
+
+Time: 00:00.014, Memory: 18.00 MB
+
+OK (1 test, 1 assertion)
