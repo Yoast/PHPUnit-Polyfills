@@ -687,6 +687,8 @@ After this step has run, you can run PHPUnit, like you would normally, by using 
   run: phpunit
 ```
 
+You [can look at this code as a reference](https://github.com/jrfnl/bug-report-reproduction-scenarios/tree/phpunit-polyfills/issue-125-setup-php-with-polyfills) for a complete Github Action setup that tests on all PHP versions that WordPress supports.
+
 :point_right: If you rely on Composer for autoloading your project files, you will still need to run `composer dump-autoload --dev` and include the project local `vendor/autoload.php` file as/in your test bootstrap.
 
 > :mortar_board: Why this works:
