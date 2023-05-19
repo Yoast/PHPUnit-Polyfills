@@ -24,7 +24,7 @@
     "remark-lint-no-unneeded-full-reference-link",
     "remark-lint-no-unused-definitions",
     ["remark-lint-strikethrough-marker", "~~"],
-    "remark-lint-table-pipe-alignment",
+    ["remark-lint-table-cell-padding", "consistent"],
     "remark-lint-heading-whitespace",
     "remark-lint-list-item-punctuation",
     "remark-lint-match-punctuation",
