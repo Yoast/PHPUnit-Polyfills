@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+    backupGlobals="true"
+    bootstrap="./tests/bootstrap.php"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    colors="true"
+    cacheDirectory=".cache/phpcs.cache"
+    requireCoverageMetadata="true"
+    displayDetailsOnTestsThatTriggerErrors="true"
+    displayDetailsOnTestsThatTriggerWarnings="true"
+    displayDetailsOnTestsThatTriggerNotices="true"
+    displayDetailsOnTestsThatTriggerDeprecations="true"
+    failOnWarning="true"
+    >
+
+    <testsuites>
+        <testsuite name="PHPUnitPolyfills">
+            <directory suffix="Test.php">./tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage includeUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src/</directory>
+        </include>
+        <exclude>
+            <file>src/Polyfills/AssertClosedResource_Empty.php</file>
+        </exclude>
+        <report>
+            <text outputFile="php://stdout" showOnlySummary="true"/>
+            <clover outputFile="build/logs/clover.xml"/>
+        </report>
+    </coverage>
+
+</phpunit>

@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
@@ -14,9 +13,12 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
  */
 final class AssertionRenamesTest extends TestCase {
 
-	use AssertFileDirectory; // Needed for PHPUnit < 5.6.0 support.
 	use AssertionRenames;
 	use AssertIsType;
+
+	const NOT_EXISTENT_FILE = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
+
+	const NOT_EXISTENT_DIR = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
 
 	/**
 	 * Verify availability of the assertIsNotReadable() method.
@@ -24,8 +26,7 @@ final class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertIsNotReadable() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
-		$this->assertIsNotReadable( $path );
+		$this->assertIsNotReadable( self::NOT_EXISTENT_FILE );
 	}
 
 	/**
@@ -34,8 +35,7 @@ final class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertIsNotWritable() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
-		self::assertIsNotWritable( $path );
+		self::assertIsNotWritable( self::NOT_EXISTENT_DIR );
 	}
 
 	/**
@@ -44,8 +44,7 @@ final class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertDirectoryDoesNotExist() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
-		static::assertDirectoryDoesNotExist( $path );
+		static::assertDirectoryDoesNotExist( self::NOT_EXISTENT_DIR );
 	}
 
 	/**
@@ -100,8 +99,7 @@ final class AssertionRenamesTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertFileDoesNotExist() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
-		static::assertFileDoesNotExist( $path );
+		static::assertFileDoesNotExist( self::NOT_EXISTENT_FILE );
 	}
 
 	/**

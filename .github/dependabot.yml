@@ -15,6 +15,8 @@ updates:
       prefix: "GH Actions:"
     labels:
       - "Type: chores/QA"
+    reviewers:
+      - "jrfnl"
 
   # Maintain dependencies for Composer.
   - package-ecosystem: "composer"
@@ -27,3 +29,5 @@ updates:
       prefix: "Composer:"
     labels:
       - "Type: chores/QA"
+    reviewers:
+      - "jrfnl"

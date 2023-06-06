@@ -14,6 +14,7 @@
 /.remarkignore export-ignore
 /.remarkrc export-ignore
 /phpunit.xml.dist export-ignore
+/phpunit10.xml.dist export-ignore
 /tests/ export-ignore
 
 #

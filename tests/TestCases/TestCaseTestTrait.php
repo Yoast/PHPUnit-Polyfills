@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use Exception;
+use stdClass;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
 
@@ -16,7 +17,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return array[]
 	 */
-	public static function dataHaveFixtureMethodsBeenTriggered() {
+	final public static function dataHaveFixtureMethodsBeenTriggered() {
 		return [
 			[ 1, 1, 0, 1, 0 ],
 			[ 1, 2, 1, 2, 1 ],
@@ -31,7 +32,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @throws Exception For testing purposes.
 	 */
-	public function testAvailabilityExpectExceptionObjectTrait() {
+	final public function testAvailabilityExpectExceptionObjectTrait() {
 		$exception = new Exception( 'message', 101 );
 		$this->expectExceptionObject( $exception );
 
@@ -43,7 +44,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertIsTypeTrait() {
+	final public function testAvailabilityAssertIsTypeTrait() {
 		self::assertIsInt( self::$beforeClass );
 	}
 
@@ -52,7 +53,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertStringContainsTrait() {
+	final public function testAvailabilityAssertStringContainsTrait() {
 		$this->assertStringContainsString( 'foo', 'foobar' );
 	}
 
@@ -61,19 +62,8 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertEqualsSpecializationsTrait() {
+	final public function testAvailabilityAssertEqualsSpecializationsTrait() {
 		static::assertEqualsIgnoringCase( 'a', 'A' );
-	}
-
-	/**
-	 * Test availability of trait polyfilled PHPUnit methods [5].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityExpectPHPExceptionTrait() {
-		$this->expectDeprecation();
-
-		\trigger_error( 'foo', \E_USER_DEPRECATED );
 	}
 
 	/**
@@ -83,8 +73,8 @@ trait TestCaseTestTrait {
 	 *
 	 * @throws Exception For testing purposes.
 	 */
-	public function testAvailabilityExpectExceptionMessageMatchesTrait() {
-		$this->expectException( '\Exception' );
+	final public function testAvailabilityExpectExceptionMessageMatchesTrait() {
+		$this->expectException( Exception::class );
 		$this->expectExceptionMessageMatches( '`^a poly[a-z]+ [a-zA-Z0-9_]+ me(s){2}age$`i' );
 
 		throw new Exception( 'A polymorphic exception message' );
@@ -95,9 +85,9 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertFileEqualsSpecializationsTrait() {
+	final public function testAvailabilityAssertFileEqualsSpecializationsTrait() {
 		self::assertStringEqualsFileIgnoringCase(
-			\dirname( __DIR__ ) . '/Polyfills' . AssertFileEqualsSpecializationsTest::PATH_TO_EXPECTED,
+			AssertFileEqualsSpecializationsTest::PATH_TO_EXPECTED,
 			"Testing 123\n"
 		);
 	}
@@ -107,41 +97,8 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertionRenamesTrait() {
+	final public function testAvailabilityAssertionRenamesTrait() {
 		$this->assertMatchesRegularExpression( '/foo/', 'foobar' );
-	}
-
-	/**
-	 * Verify availability of trait polyfilled PHPUnit methods [9].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityAssertNumericTypeTrait() {
-		self::assertNan( \acos( 8 ) );
-	}
-
-	/**
-	 * Test availability of trait polyfilled PHPUnit methods [10].
-	 *
-	 * @return void
-	 *
-	 * @throws Exception For testing purposes.
-	 */
-	public function testAvailabilityExpectExceptionTrait() {
-		$this->expectException( '\Exception' );
-		$this->expectExceptionMessage( 'message' );
-
-		throw new Exception( 'message' );
-	}
-
-	/**
-	 * Verify availability of trait polyfilled PHPUnit methods [11].
-	 *
-	 * @return void
-	 */
-	public function testAvailabilityAssertFileDirectory() {
-		$path = __DIR__ . \DIRECTORY_SEPARATOR;
-		$this->assertDirectoryExists( $path );
 	}
 
 	/**
@@ -149,7 +106,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertClosedResource() {
+	final public function testAvailabilityAssertClosedResource() {
 		$resource = \fopen( __FILE__, 'r' );
 		\fclose( $resource );
 
@@ -161,7 +118,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityEqualToSpecializations() {
+	final public function testAvailabilityEqualToSpecializations() {
 		self::assertThat( [ 2, 3, 1 ], $this->equalToCanonicalizing( [ 3, 2, 1 ] ) );
 	}
 
@@ -172,9 +129,39 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
-	public function testAvailabilityAssertObjectEquals() {
+	final public function testAvailabilityAssertObjectEquals() {
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'test' );
 		$this->assertObjectEquals( $expected, $actual );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [15].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertIgnoringLineEndings() {
+		self::assertStringContainsStringIgnoringLineEndings( "b\nc", "a\r\nb\r\nc\r\nd" );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [16].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertIsList() {
+		static::assertIsList( [ 0, 1, 2 ] );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [17].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertObjectProperty() {
+		$object       = new stdClass();
+		$object->prop = true;
+
+		self::assertObjectHasProperty( 'prop', $object );
 	}
 }

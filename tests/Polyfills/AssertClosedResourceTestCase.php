@@ -2,9 +2,10 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_AssertionFailedError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
 /**
@@ -13,7 +14,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 abstract class AssertClosedResourceTestCase extends TestCase {
 
 	use AssertClosedResource;
-	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionMessageMatches;
 
 	/**
@@ -58,10 +58,10 @@ abstract class AssertClosedResourceTestCase extends TestCase {
 	 * @return string
 	 */
 	public function getAssertionFailedExceptionName() {
-		$exception = 'PHPUnit\Framework\AssertionFailedError';
-		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+		$exception = AssertionFailedError::class;
+		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
 			// PHPUnit < 6.
-			$exception = 'PHPUnit_Framework_AssertionFailedError';
+			$exception = PHPUnit_Framework_AssertionFailedError::class;
 		}
 
 		return $exception;

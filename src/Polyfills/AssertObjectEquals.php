@@ -50,7 +50,7 @@ trait AssertObjectEquals {
 	 * @throws TypeError                        When any of the passed arguments do not meet the required type.
 	 * @throws InvalidComparisonMethodException When the comparator method does not comply with the requirements.
 	 */
-	public static function assertObjectEquals( $expected, $actual, $method = 'equals', $message = '' ) {
+	final public static function assertObjectEquals( $expected, $actual, $method = 'equals', $message = '' ) {
 		/*
 		 * Parameter input validation.
 		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill.

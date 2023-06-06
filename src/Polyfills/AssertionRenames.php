@@ -49,7 +49,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertIsNotReadable( $filename, $message = '' ) {
+	final public static function assertIsNotReadable( $filename, $message = '' ) {
 		static::assertNotIsReadable( $filename, $message );
 	}
 
@@ -61,7 +61,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertIsNotWritable( $filename, $message = '' ) {
+	final public static function assertIsNotWritable( $filename, $message = '' ) {
 		static::assertNotIsWritable( $filename, $message );
 	}
 
@@ -73,7 +73,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertDirectoryDoesNotExist( $directory, $message = '' ) {
+	final public static function assertDirectoryDoesNotExist( $directory, $message = '' ) {
 		static::assertDirectoryNotExists( $directory, $message );
 	}
 
@@ -85,7 +85,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertDirectoryIsNotReadable( $directory, $message = '' ) {
+	final public static function assertDirectoryIsNotReadable( $directory, $message = '' ) {
 		static::assertDirectoryNotIsReadable( $directory, $message );
 	}
 
@@ -97,7 +97,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertDirectoryIsNotWritable( $directory, $message = '' ) {
+	final public static function assertDirectoryIsNotWritable( $directory, $message = '' ) {
 		static::assertDirectoryNotIsWritable( $directory, $message );
 	}
 
@@ -109,7 +109,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertFileDoesNotExist( $filename, $message = '' ) {
+	final public static function assertFileDoesNotExist( $filename, $message = '' ) {
 		static::assertFileNotExists( $filename, $message );
 	}
 
@@ -121,7 +121,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertFileIsNotReadable( $file, $message = '' ) {
+	final public static function assertFileIsNotReadable( $file, $message = '' ) {
 		static::assertFileNotIsReadable( $file, $message );
 	}
 
@@ -133,7 +133,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertFileIsNotWritable( $file, $message = '' ) {
+	final public static function assertFileIsNotWritable( $file, $message = '' ) {
 		static::assertFileNotIsWritable( $file, $message );
 	}
 
@@ -146,7 +146,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertMatchesRegularExpression( $pattern, $string, $message = '' ) {
+	final public static function assertMatchesRegularExpression( $pattern, $string, $message = '' ) {
 		static::assertRegExp( $pattern, $string, $message );
 	}
 
@@ -159,7 +159,7 @@ trait AssertionRenames {
 	 *
 	 * @return void
 	 */
-	public static function assertDoesNotMatchRegularExpression( $pattern, $string, $message = '' ) {
+	final public static function assertDoesNotMatchRegularExpression( $pattern, $string, $message = '' ) {
 		static::assertNotRegExp( $pattern, $string, $message );
 	}
 }

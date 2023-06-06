@@ -2,11 +2,14 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
+use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
+use TypeError;
+use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
-use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectNoReturnType;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType;
@@ -28,7 +31,6 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType
 final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 
 	use AssertObjectEquals;
-	use ExpectException; // Needed for PHPUnit < 5.2.0 support.
 	use ExpectExceptionMessageMatches;
 
 	/**
@@ -37,7 +39,7 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	 *
 	 * @var string
 	 */
-	const COMPARATOR_EXCEPTION = 'Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException';
+	const COMPARATOR_EXCEPTION = InvalidComparisonMethodException::class;
 
 	/**
 	 * Check if these tests can run.
@@ -86,7 +88,7 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	public function testAssertObjectEqualsFailsOnExpectedNotObject() {
 		$pattern = '`^Argument 1 passed to [^\s]*assertObjectEquals\(\) must be an object, string given`';
 
-		$this->expectException( 'TypeError' );
+		$this->expectException( TypeError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$actual = new ValueObjectNoReturnType( 'test' );
@@ -101,7 +103,7 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	public function testAssertObjectEqualsFailsOnActualNotObject() {
 		$pattern = '`^Argument 2 passed to [^\s]*assertObjectEquals\(\) must be an object, string given`';
 
-		$this->expectException( 'TypeError' );
+		$this->expectException( TypeError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$expected = new ValueObjectNoReturnType( 'test' );
@@ -117,7 +119,7 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	public function testAssertObjectEqualsFailsOnMethodNotJuggleableToString() {
 		$pattern = '`^Argument 3 passed to [^\s]*assertObjectEquals\(\) must be of the type string, array given`';
 
-		$this->expectException( 'TypeError' );
+		$this->expectException( TypeError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$expected = new ValueObjectNoReturnType( 'test' );
@@ -320,10 +322,10 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	 * @return string
 	 */
 	public function getAssertionFailedExceptionName() {
-		$exception = 'PHPUnit\Framework\AssertionFailedError';
-		if ( \class_exists( 'PHPUnit_Framework_AssertionFailedError' ) ) {
+		$exception = AssertionFailedError::class;
+		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
 			// PHPUnit < 6.
-			$exception = 'PHPUnit_Framework_AssertionFailedError';
+			$exception = PHPUnit_Framework_AssertionFailedError::class;
 		}
 
 		return $exception;
