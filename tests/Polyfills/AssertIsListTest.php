@@ -49,7 +49,7 @@ final class AssertIsListTest extends TestCase {
 		return [
 			'null' => [
 				'actual' => null,
-				'type'   => 'null',
+				'type'   => '(a )?null',
 			],
 			'boolean' => [
 				'actual' => true,
@@ -73,7 +73,7 @@ final class AssertIsListTest extends TestCase {
 			],
 			'closed resource' => [
 				'actual' => $resource,
-				'type'   => ( \PHP_VERSION_ID > 70200 ) ? 'a closed resource' : 'a value of unknown type',
+				'type'   => ( \PHP_VERSION_ID > 70200 ) ? 'a (value of )?closed resource' : 'a value of unknown type',
 			],
 		];
 	}
