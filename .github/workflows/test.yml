@@ -28,8 +28,10 @@ jobs:
         include:
           # Test against a version on the low-end of the PHPUnit versions supported for each PHP version.
           # Using the Composer `--prefer-lowest` option is, unfortunately, not viable, as
-          # PHPUnit 4.8.36 doesn't have proper PHP restrictions, which means that it
-          # would always be installed as "low", which would break the builds for PHP 7.2+.
+          # it would result PHP 5.6 - 7.4 all using PHPUnit 5.7.21, which is not the intention.
+          # It also would run into trouble with PHP 8.5.12 being used on PHP 8.0+, while the
+          # 8.5.12 release still contained a bug which makes it incompatible with PHP 8.1+,
+          # even though it officially allows for it..
           - php: '5.6'
             phpunit: '5.7.21'
             coverage: true
@@ -67,29 +69,42 @@ jobs:
             phpunit: '9.3.0'
             coverage: true
             experimental: false
+          - php: '8.1'
+            # Specifically set at 10.0.12 minimum to prevent needing a toggle in the tests for something
+            # related to the ArrayIsList polyfill, but not necessarily relevant.
+            phpunit: '10.0.12'
+            coverage: true
+            experimental: false
           - php: '8.2'
             phpunit: '9.3.0'
+            coverage: true
+            experimental: false
+          - php: '8.2'
+            phpunit: '10.1.0'
             coverage: true
             experimental: false
 
           # Experimental builds.
           - php: '8.3'
-            phpunit: 'auto' # PHPUnit 9.x.
+            phpunit: '^9.6'
+            coverage: false
+            experimental: true
+          - php: '8.3'
+            phpunit: 'auto' # PHPUnit 10.x.
             coverage: false
             experimental: true
 
-          - php: '8.1'
-            phpunit: '^10.0'
-            coverage: false
-            experimental: true
           - php: '8.2'
-            phpunit: '^10.0'
+            phpunit: 'dev-main'
             coverage: false
             experimental: true
 
     name: "Tests: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
     continue-on-error: ${{ matrix.experimental }}
+
+    env:
+      EXTRA_PHPUNIT_CLIARGS: '--fail-on-deprecation --fail-on-notice'
 
     steps:
       - name: Checkout code
@@ -135,13 +150,27 @@ jobs:
         run: composer test
 
       - name: "Run the unit tests with code coverage (PHPUnit < 10)"
-        if: ${{  matrix.coverage == true && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        if: ${{ matrix.coverage == true && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
         run: composer coverage
 
-      - name: "Trial run the unit tests against PHPUnit 10.0"
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
+        # versions as otherwise the warning about these would fail the build (which to me, feels like a bug).
+      - name: "Migrate configuration (PHPUnit 10.0+)"
         continue-on-error: true
-        run: composer test10
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && steps.phpunit_version.outputs.VERSION != '10.0' }}
+        run: vendor/bin/phpunit -c phpunit10.xml.dist --migrate-configuration
+
+      - name: "Run the unit tests (PHPUnit 10.0+)"
+        if: ${{ matrix.coverage == false && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        # Don't fail the build on a test run failure against a future PHPUnit version.
+        continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
+        run: composer test10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
+
+      - name: "Run the unit tests with code coverage (PHPUnit 10.0+)"
+        if: ${{ matrix.coverage == true && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        # Don't fail the build on a test run failure against a future PHPUnit version.
+        continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
+        run: composer coverage10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
 
       # PHP Coveralls doesn't fully support PHP 8.x yet, so switch the PHP version.
       - name: Switch to PHP 7.4

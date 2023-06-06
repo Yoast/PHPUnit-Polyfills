@@ -13,6 +13,7 @@
     displayDetailsOnTestsThatTriggerWarnings="true"
     displayDetailsOnTestsThatTriggerNotices="true"
     displayDetailsOnTestsThatTriggerDeprecations="true"
+    failOnWarning="true"
     >
 
     <testsuites>
