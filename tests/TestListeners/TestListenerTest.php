@@ -13,6 +13,8 @@ use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementati
  *
  * @covers \Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation
  * @covers \Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
+ *
+ * @requires PHPUnit < 10
  */
 final class TestListenerTest extends TestCase {
 
