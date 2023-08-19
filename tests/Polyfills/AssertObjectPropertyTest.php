@@ -25,6 +25,18 @@ final class AssertObjectPropertyTest extends TestCase {
 	use ExpectExceptionMessageMatches;
 
 	/**
+	 * Check whether native PHPUnit assertions will be used or the polyfill.
+	 *
+	 * @return bool
+	 */
+	private function usesNativePHPUnitAssertion() {
+		$phpunit_version = PHPUnit_Version::id();
+		return ( \version_compare( $phpunit_version, '10.1.0', '>=' )
+			|| ( \version_compare( $phpunit_version, '9.6.11', '>=' ) && \version_compare( $phpunit_version, '10.0.0', '<' ) )
+		);
+	}
+
+	/**
 	 * Verify that the assertObjectHasProperty() method throws an error when the $propertyName parameter is not a scalar.
 	 *
 	 * @dataProvider dataAssertObjectPropertyFailsOnInvalidInputTypePropertyName
@@ -34,22 +46,21 @@ final class AssertObjectPropertyTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectHasPropertyFailsOnInvalidInputTypePropertyName( $input ) {
-		if ( \is_scalar( $input ) && \version_compare( PHPUnit_Version::id(), '10.1.0', '>=' ) ) {
+		if ( \is_scalar( $input ) && $this->usesNativePHPUnitAssertion() ) {
 			$this->markTestSkipped( 'PHPUnit native implementation relies on strict_types and when not used will accept scalar inputs' );
 		}
 
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.1.0', '>=' )
-		) {
+		$this->expectException( TypeError::class );
+
+		if ( \PHP_VERSION_ID >= 80000 && $this->usesNativePHPUnitAssertion() ) {
 			$msg = 'assertObjectHasProperty(): Argument #1 ($propertyName) must be of type string, ';
+			$this->expectExceptionMessage( $msg );
 		}
 		else {
 			// PHP 5/7.
-			$msg = 'Argument 1 passed to assertObjectHasProperty() must be of type string, ';
+			$pattern = '`^Argument 1 passed to [^\s]*assertObjectHasProperty\(\) must be of (the )?type string, `';
+			$this->expectExceptionMessageMatches( $pattern );
 		}
-
-		$this->expectException( TypeError::class );
-		$this->expectExceptionMessage( $msg );
 
 		$this->assertObjectHasProperty( $input, new stdClass() );
 	}
@@ -64,22 +75,21 @@ final class AssertObjectPropertyTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectNotHasPropertyFailsOnInvalidInputTypePropertyName( $input ) {
-		if ( \is_scalar( $input ) && \version_compare( PHPUnit_Version::id(), '10.1.0', '>=' ) ) {
+		if ( \is_scalar( $input ) && $this->usesNativePHPUnitAssertion() ) {
 			$this->markTestSkipped( 'PHPUnit native implementation relies on strict_types and when not used will accept scalar inputs' );
 		}
 
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.1.0', '>=' )
-		) {
+		$this->expectException( TypeError::class );
+
+		if ( \PHP_VERSION_ID >= 80000 && $this->usesNativePHPUnitAssertion() ) {
 			$msg = 'assertObjectNotHasProperty(): Argument #1 ($propertyName) must be of type string, ';
+			$this->expectExceptionMessage( $msg );
 		}
 		else {
 			// PHP 5/7.
-			$msg = 'Argument 1 passed to assertObjectNotHasProperty() must be of type string, ';
+			$pattern = '`^Argument 1 passed to [^\s]*assertObjectNotHasProperty\(\) must be of (the )?type string, `';
+			$this->expectExceptionMessageMatches( $pattern );
 		}
-
-		$this->expectException( TypeError::class );
-		$this->expectExceptionMessage( $msg );
 
 		$this->assertObjectNotHasProperty( $input, new stdClass() );
 	}
@@ -115,18 +125,17 @@ final class AssertObjectPropertyTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectHasPropertyFailsOnInvalidInputTypeObject( $input ) {
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.1.0', '>=' )
-		) {
+		$this->expectException( TypeError::class );
+
+		if ( \PHP_VERSION_ID >= 80000 && $this->usesNativePHPUnitAssertion() ) {
 			$msg = 'assertObjectHasProperty(): Argument #2 ($object) must be of type object, ';
+			$this->expectExceptionMessage( $msg );
 		}
 		else {
 			// PHP 5/7.
-			$msg = 'Argument 2 passed to assertObjectHasProperty() must be of type object, ';
+			$pattern = '`^Argument 2 passed to [^\s]*assertObjectHasProperty\(\) must be (of type|an) object, `';
+			$this->expectExceptionMessageMatches( $pattern );
 		}
-
-		$this->expectException( TypeError::class );
-		$this->expectExceptionMessage( $msg );
 
 		$this->assertObjectHasProperty( 'propertyName', $input );
 	}
@@ -141,18 +150,17 @@ final class AssertObjectPropertyTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertObjectNotHasPropertyFailsOnInvalidInputTypeObject( $input ) {
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.1.0', '>=' )
-		) {
+		$this->expectException( TypeError::class );
+
+		if ( \PHP_VERSION_ID >= 80000 && $this->usesNativePHPUnitAssertion() ) {
 			$msg = 'assertObjectNotHasProperty(): Argument #2 ($object) must be of type object, ';
+			$this->expectExceptionMessage( $msg );
 		}
 		else {
 			// PHP 5/7.
-			$msg = 'Argument 2 passed to assertObjectNotHasProperty() must be of type object, ';
+			$pattern = '`^Argument 2 passed to [^\s]*assertObjectNotHasProperty\(\) must be (of type|an) object, `';
+			$this->expectExceptionMessageMatches( $pattern );
 		}
-
-		$this->expectException( TypeError::class );
-		$this->expectExceptionMessage( $msg );
 
 		static::assertObjectNotHasProperty( 'propertyName', $input );
 	}

@@ -65,8 +65,8 @@ trait AssertObjectProperty {
 		}
 
 		/*
-		 * PHPUnit 9.6.1+ and PHPUnit 10.0.x.
-		 * Note: letting this polyfill code kick in for PHPUnit 9.6.1+ as well
+		 * PHPUnit 9.6.1 < 9.6.11 and PHPUnit 10.0.x.
+		 * Note: letting this polyfill code kick in for PHPUnit 9.6.1 < 9.6.11 as well
 		 * to prevent the PHPUnit deprecation notice showing.
 		 */
 		$msg  = self::assertObjectHasPropertyFailureDescription( $object );
@@ -123,8 +123,8 @@ trait AssertObjectProperty {
 		}
 
 		/*
-		 * PHPUnit 9.6.1+ and PHPUnit 10.0.x.
-		 * Note: letting this polyfill code kick in for PHPUnit 9.6.1+ as well
+		 * PHPUnit 9.6.1 < 9.6.11 and PHPUnit 10.0.x.
+		 * Note: letting this polyfill code kick in for PHPUnit 9.6.1 < 9.6.11 as well
 		 * to prevent the PHPUnit deprecation notice showing.
 		 */
 		$msg  = self::assertObjectHasPropertyFailureDescription( $object );

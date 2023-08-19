@@ -432,6 +432,8 @@ Polyfills the following method:
 
 These methods were introduced in PHPUnit 10.1.0 as alternatives to the `Assert::assertObjectHasAttribute()` and `Assert::assertObjectNotHasAttribute()` methods, which were hard deprecated (warning) in PHPUnit 9.6.1 and removed in PHPUnit 10.0.0.
 
+These methods were later backported to the PHPUnit 9 branch and included in the PHPUnit 9.6.11 release.
+
 [`Assert::assertObjectHasProperty()`]:    https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
 [`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
 
