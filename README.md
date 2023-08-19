@@ -481,6 +481,21 @@ The `assertObjectEquals()` assertion was introduced in PHPUnit 9.4.0.
 
 [`Assert::assertObjectEquals()`]: https://docs.phpunit.de/en/9.6/assertions.html#assertobjectequals
 
+#### PHPUnit < 9.6.11: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty`
+
+Polyfills the following method:
+|                                       |                                          |
+|---------------------------------------|------------------------------------------|
+| `Assert::assertObjectHasProperty()` | `Assert::assertObjectNotHasProperty()` |
+
+These methods were introduced in PHPUnit 10.1.0 as alternatives to the `Assert::assertObjectHasAttribute()` and `Assert::assertObjectNotHasAttribute()` methods, which were hard deprecated (warning) in PHPUnit 9.6.1 and removed in PHPUnit 10.0.0.
+
+These methods were later backported to the PHPUnit 9 branch and included in the PHPUnit 9.6.11 release.
+
+<!--
+COMMENT: No documentation available (yet) for these assertions on the PHPUnit site.
+-->
+
 
 ### Helper traits
 
