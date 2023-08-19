@@ -63,6 +63,17 @@ Projects which don't use any of the new or removed functionality in their test s
 [#130]: https://github.com/Yoast/PHPUnit-Polyfills/pull/130
 
 
+## [1.1.0] - 2023-08-19
+
+### Added
+* `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty` trait to polyfill the `Assert::assertObjectHasProperty()` and `Assert::assertObjectNotHasProperty()` methods as backported from PHPUnit 10.1.0 to PHPUnit 9.6.11. PR [#135].
+
+### Changed
+* General housekeeping.
+
+[#135]: https://github.com/Yoast/PHPUnit-Polyfills/pull/135
+
+
 ## [1.0.5] - 2023-03-31
 
 ### Fixed
@@ -211,6 +222,7 @@ Initial release.
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
 [2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.5...2.0.0
+[1.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.5...1.1.0
 [1.0.5]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.2...1.0.3

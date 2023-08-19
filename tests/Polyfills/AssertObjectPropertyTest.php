@@ -15,7 +15,7 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ObjectWithProperties;
 /**
  * Test for the functions polyfilled by the AssertObjectProperty trait.
  *
- * The majority of these tests test the polyfill which kicks in for PHPUnit 9.6.1 < 10.1.0.
+ * The majority of these tests test the polyfill which kicks in for PHPUnit 9.6.1 < 9.6.11 and PHPUnit 10.0.0 < 10.1.0.
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty
  */

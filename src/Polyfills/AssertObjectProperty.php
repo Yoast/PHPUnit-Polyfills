@@ -11,14 +11,13 @@ use Yoast\PHPUnitPolyfills\Autoload;
  * Polyfill the Assert::assertObjectHasProperty() and Assert::assertObjectNotHasProperty() methods,
  * which replace the Assert::assertObjectHasAttribute() and Assert::assertObjectNotHasAttribute() methods.
  *
- * Introduced in PHPUnit 10.1.0.
+ * Introduced in PHPUnit 10.1.0 and PHPUnit 9.6.11.
  *
  * The Assert::assertObjectHasAttribute() and Assert::assertObjectNotHasAttribute() methods
  * were deprecated in PHPUnit 9.6.1 and removed in PHPUnit 10.0.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/pull/5231
- *
- * @since 2.1.0
+ * @link https://github.com/sebastianbergmann/phpunit/issues/5478
  */
 trait AssertObjectProperty {
 
@@ -37,7 +36,7 @@ trait AssertObjectProperty {
 		/*
 		 * Parameter input validation.
 		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill,
-		 * including for those PHPUnit versions where we hand to a native PHPUnit alternative, as
+		 * including for those PHPUnit versions where we hand off to a native PHPUnit alternative, as
 		 * otherwise the method referenced in the error message would get very confusing and inconsistent.
 		 */
 		if ( \is_string( $propertyName ) === false ) {
@@ -95,7 +94,7 @@ trait AssertObjectProperty {
 		/*
 		 * Parameter input validation.
 		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill,
-		 * including for those PHPUnit versions where we hand to a native PHPUnit alternative, as
+		 * including for those PHPUnit versions where we hand off to a native PHPUnit alternative, as
 		 * otherwise the method referenced in the error message would get very confusing and inconsistent.
 		 */
 		if ( \is_string( $propertyName ) === false ) {

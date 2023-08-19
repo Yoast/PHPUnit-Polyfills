@@ -56,6 +56,11 @@ jobs:
             phpunit: '8.1.6'
             coverage: true
             experimental: false
+          - php: '7.4'
+            # Specifically set at 9.6.10 to test functioning on 9.x before the 9.6.11 assertObject*() backports came in.
+            phpunit: '9.6.10'
+            coverage: true
+            experimental: false
           - php: '8.0'
             phpunit: '8.5.16'
             # PHPUnit 8.x does not support code coverage on PHP 8.x.
