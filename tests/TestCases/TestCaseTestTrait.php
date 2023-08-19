@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use Exception;
+use stdClass;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
 
@@ -176,5 +177,17 @@ trait TestCaseTestTrait {
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'test' );
 		$this->assertObjectEquals( $expected, $actual );
+	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [15].
+	 *
+	 * @return void
+	 */
+	public function testAvailabilityAssertObjectProperty() {
+		$object       = new stdClass();
+		$object->prop = true;
+
+		self::assertObjectHasProperty( 'prop', $object );
 	}
 }
