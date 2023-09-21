@@ -138,7 +138,7 @@ final class AssertStringContainsTest extends TestCase {
 	 * @see testAssertStringContainsStringEmptyNeedle()    For the array format.
 	 * @see testAssertStringNotContainsStringEmptyNeedle() For the array format.
 	 *
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public static function dataHaystacks() {
 		return [
