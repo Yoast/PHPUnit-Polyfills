@@ -2,7 +2,6 @@
 
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
-use PHPUnit\Framework\Assert;
 use ReflectionObject;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Autoload;
