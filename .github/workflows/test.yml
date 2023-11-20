@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
+        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
         phpunit: ['auto']
         coverage: [true]
         experimental: [false]
@@ -78,9 +78,13 @@ jobs:
             phpunit: '9.3.0'
             coverage: true
             experimental: false
+          - php: '8.3'
+            phpunit: '9.3.0'
+            coverage: true
+            experimental: false
 
           # Experimental builds.
-          - php: '8.3'
+          - php: '8.4'
             phpunit: 'auto' # PHPUnit 9.x.
             coverage: false
             experimental: true
@@ -107,14 +111,14 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies - normal
-        if: matrix.php != '8.3'
+        if: matrix.php < '8.3'
         uses: "ramsey/composer-install@v2"
         with:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Install Composer dependencies - ignore PHP restrictions
-        if: matrix.php == '8.3'
+        if: matrix.php >= '8.3'
         uses: "ramsey/composer-install@v2"
         with:
           composer-options: --ignore-platform-req=php+
