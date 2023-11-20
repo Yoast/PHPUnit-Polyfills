@@ -104,10 +104,10 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotContainsStringEmptyNeedle( $haystack ) {
-		$msg = "Failed asserting that '{$haystack}' does not contain \"\".";
+		$pattern = "`^Failed asserting that '{$haystack}'( \[[^\]]+\]\(length: [0-9]+\))? does not contain \"\"( \[[^\]]+\]\(length: [0-9]+\))?\.`";
 
 		$this->expectException( $this->getAssertionFailedExceptionName() );
-		$this->expectExceptionMessage( $msg );
+		$this->expectExceptionMessageMatches( $pattern );
 
 		self::assertStringNotContainsString( '', $haystack );
 	}
@@ -124,10 +124,10 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotContainsStringIgnoringCaseEmptyNeedle() {
-		$msg = 'Failed asserting that \'text with whitespace\' does not contain "".';
+		$pattern = '`^Failed asserting that \'text with whitespace\'( \[[^\]]+\]\(length: [0-9]+\))? does not contain ""( \[[^\]]+\]\(length: [0-9]+\))?.`';
 
 		$this->expectException( $this->getAssertionFailedExceptionName() );
-		$this->expectExceptionMessage( $msg );
+		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringNotContainsStringIgnoringCase( '', 'text with whitespace' );
 	}
@@ -154,7 +154,7 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringNotContainsStringFailsWithCustomMessage() {
-		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that \'.+?\' does not contain ""\.`s';
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that \'.+?\'( \[[^\]]+\]\(length: [0-9]+\))? does not contain ""( \[[^\]]+\]\(length: [0-9]+\))?\.`s';
 
 		$this->expectException( $this->getAssertionFailedExceptionName() );
 		$this->expectExceptionMessageMatches( $pattern );
@@ -169,7 +169,7 @@ final class AssertStringContainsTest extends TestCase {
 	 * @return void
 	 */
 	public function testssertStringNotContainsStringIgnoringCaseFailsWithCustomMessage() {
-		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that \'.+?\' does not contain ""\.`s';
+		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that \'.+?\'( \[[^\]]+\]\(length: [0-9]+\))? does not contain ""( \[[^\]]+\]\(length: [0-9]+\))?\.`s';
 
 		$this->expectException( $this->getAssertionFailedExceptionName() );
 		$this->expectExceptionMessageMatches( $pattern );

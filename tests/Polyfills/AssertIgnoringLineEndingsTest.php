@@ -317,14 +317,15 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 */
 	public function testAssertStringContainsStringIgnoringLineEndingsFails( $needle, $haystack ) {
 		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
-		$msg      = \sprintf(
-			'Failed asserting that %s contains "%s".',
-			$exporter->export( $haystack ),
-			self::normalizeLineEndings( $needle )
+		$pattern  = \sprintf(
+			'`^Failed asserting that %1$s%3$s contains "%2$s"%3$s\.`',
+			\preg_quote( $exporter->export( $haystack ), '`' ),
+			\preg_quote( self::normalizeLineEndings( $needle ), '`' ),
+			'( \[[^\]]+\]\(length: [0-9]+\))?'
 		);
 
 		$this->expectException( $this->getAssertionFailedExceptionName() );
-		$this->expectExceptionMessage( $msg );
+		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringContainsStringIgnoringLineEndings( $needle, $haystack );
 	}
