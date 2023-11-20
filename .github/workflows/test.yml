@@ -85,15 +85,6 @@ jobs:
             coverage: false
             experimental: true
 
-          - php: '8.1'
-            phpunit: '^10.0'
-            coverage: false
-            experimental: true
-          - php: '8.2'
-            phpunit: '^10.0'
-            coverage: false
-            experimental: true
-
     name: "Tests: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
     continue-on-error: ${{ matrix.experimental }}
@@ -131,17 +122,12 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Run the unit tests
-        if: ${{ matrix.coverage == false && matrix.phpunit != '^10.0' }}
+        if: ${{ matrix.coverage == false }}
         run: composer test
 
       - name: Run the unit tests with code coverage
-        if: ${{ matrix.coverage == true && matrix.phpunit != '^10.0' }}
+        if: ${{ matrix.coverage == true }}
         run: composer coverage
-
-      - name: Trial run the unit tests against PHPUnit 10.0
-        if: ${{ matrix.phpunit == '^10.0' }}
-        continue-on-error: true
-        run: composer test
 
       # Uploading the results with PHP Coveralls v1 won't work from GH Actions, so switch the PHP version.
       - name: Switch to PHP 7.4
