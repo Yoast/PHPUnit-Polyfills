@@ -18,6 +18,9 @@ ignores:
   - "node_modules/"
   - "vendor/"
 
+# Show found files on stdout (only valid at root)
+showFound: true
+
 # Disable inline config comments.
 noInlineConfig: true
 
