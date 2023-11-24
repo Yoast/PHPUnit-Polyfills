@@ -113,7 +113,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -177,26 +177,14 @@ jobs:
         continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
         run: composer coverage10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
 
-      # PHP Coveralls doesn't fully support PHP 8.x yet, so switch the PHP version.
-      - name: Switch to PHP 7.4
-        if: ${{ success() && matrix.coverage == true && startsWith( matrix.php, '8' ) }}
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: none
-
-      # Global install is used to prevent a conflict with the local composer.lock in PHP 8.0+.
-      - name: Install Coveralls
-        if: ${{ success() && matrix.coverage == true }}
-        run: composer global require php-coveralls/php-coveralls:"^2.5.3" --no-interaction
-
       - name: Upload coverage results to Coveralls
         if: ${{ success() && matrix.coverage == true }}
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
-          COVERALLS_PARALLEL: true
-          COVERALLS_FLAG_NAME: php-${{ matrix.php }}-phpunit-${{ matrix.phpunit }}
-        run: php-coveralls -v -x build/logs/clover.xml
+        uses: coverallsapp/github-action@v2
+        with:
+          file: build/logs/clover.xml
+          format: clover
+          flag-name: php-${{ matrix.php }}-phpunit-${{ matrix.phpunit }}
+          parallel: true
 
   coveralls-finish:
     needs: test
@@ -206,5 +194,4 @@ jobs:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@v2
         with:
-          github-token: ${{ secrets.COVERALLS_TOKEN }}
           parallel-finished: true

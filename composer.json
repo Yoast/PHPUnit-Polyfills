@@ -22,7 +22,8 @@
 	"homepage": "https://github.com/Yoast/PHPUnit-Polyfills",
 	"support": {
 		"issues": "https://github.com/Yoast/PHPUnit-Polyfills/issues",
-		"source": "https://github.com/Yoast/PHPUnit-Polyfills"
+		"source": "https://github.com/Yoast/PHPUnit-Polyfills",
+		"security": "https://github.com/Yoast/PHPUnit-Polyfills/security/policy"
 	},
 	"require": {
 		"php": ">=5.6",
