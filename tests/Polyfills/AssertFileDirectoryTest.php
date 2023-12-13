@@ -40,6 +40,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	 *
 	 * This exception was thrown until PHP 7.0.0. Since PHP 7.0.0, a PHP native TypeError will
 	 * be thrown based on the type declaration.
+	 *
+	 * @return void
 	 */
 	public function testAssertIsReadableException() {
 		try {
@@ -100,6 +102,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	 * be thrown based on the type declaration.
 	 *
 	 * @requires PHPUnit < 10.0.0
+	 *
+	 * @return void
 	 */
 	public function testAssertNotIsReadableException() {
 		try {
@@ -158,6 +162,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	 *
 	 * This exception was thrown until PHP 7.0.0. Since PHP 7.0.0, a PHP native TypeError will
 	 * be thrown based on the type declaration.
+	 *
+	 * @return void
 	 */
 	public function testAssertIsWritableException() {
 		try {
@@ -218,6 +224,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	 * be thrown based on the type declaration.
 	 *
 	 * @requires PHPUnit < 10.0.0
+	 *
+	 * @return void
 	 */
 	public function testAssertNotIsWritableException() {
 		try {
@@ -276,6 +284,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	 *
 	 * This exception was thrown until PHP 7.0.0. Since PHP 7.0.0, a PHP native TypeError will
 	 * be thrown based on the type declaration.
+	 *
+	 * @return void
 	 */
 	public function testAssertDirectoryExistsException() {
 		try {
@@ -336,6 +346,8 @@ final class AssertFileDirectoryTest extends TestCase {
 	 * be thrown based on the type declaration.
 	 *
 	 * @requires PHPUnit < 10.0.0
+	 *
+	 * @return void
 	 */
 	public function testAssertDirectoryNotExistsException() {
 		try {

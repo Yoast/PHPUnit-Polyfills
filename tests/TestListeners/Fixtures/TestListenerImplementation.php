@@ -75,6 +75,8 @@ class TestListenerImplementation implements TestListener {
 	 * @param Test                $test Test object.
 	 * @param Exception|Throwable $e    Instance of the error encountered.
 	 * @param float               $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function add_error( $test, $e, $time ) {
 		++$this->errorCount;
@@ -86,6 +88,8 @@ class TestListenerImplementation implements TestListener {
 	 * @param Test    $test Test object.
 	 * @param Warning $e    Instance of the warning encountered.
 	 * @param float   $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function add_warning( $test, $e, $time ) {
 		++$this->warningCount;
@@ -97,6 +101,8 @@ class TestListenerImplementation implements TestListener {
 	 * @param Test                 $test Test object.
 	 * @param AssertionFailedError $e    Instance of the assertion failure exception encountered.
 	 * @param float                $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function add_failure( $test, $e, $time ) {
 		++$this->failureCount;
@@ -108,6 +114,8 @@ class TestListenerImplementation implements TestListener {
 	 * @param Test                $test Test object.
 	 * @param Exception|Throwable $e    Instance of the incomplete test exception.
 	 * @param float               $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function add_incomplete_test( $test, $e, $time ) {
 		++$this->incompleteCount;
@@ -119,6 +127,8 @@ class TestListenerImplementation implements TestListener {
 	 * @param Test                $test Test object.
 	 * @param Exception|Throwable $e    Instance of the risky test exception.
 	 * @param float               $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function add_risky_test( $test, $e, $time ) {
 		++$this->riskyCount;
@@ -130,6 +140,8 @@ class TestListenerImplementation implements TestListener {
 	 * @param Test                $test Test object.
 	 * @param Exception|Throwable $e    Instance of the skipped test exception.
 	 * @param float               $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function add_skipped_test( $test, $e, $time ) {
 		++$this->skippedCount;
@@ -139,6 +151,8 @@ class TestListenerImplementation implements TestListener {
 	 * A test started.
 	 *
 	 * @param Test $test Test object.
+	 *
+	 * @return void
 	 */
 	public function start_test( $test ) {
 		++$this->startTestCount;
@@ -149,6 +163,8 @@ class TestListenerImplementation implements TestListener {
 	 *
 	 * @param Test  $test Test object.
 	 * @param float $time Execution time of this test.
+	 *
+	 * @return void
 	 */
 	public function end_test( $test, $time ) {
 		++$this->endTestCount;
