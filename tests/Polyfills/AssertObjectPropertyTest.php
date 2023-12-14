@@ -2,12 +2,9 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
-use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
-use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
-use TypeError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
