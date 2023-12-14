@@ -15,7 +15,7 @@ trait TestCaseTestTrait {
 	/**
 	 * Data provider for the testHaveFixtureMethodsBeenTriggered() test.
 	 *
-	 * @return array[]
+	 * @return array<array<int>>
 	 */
 	final public static function dataHaveFixtureMethodsBeenTriggered() {
 		return [

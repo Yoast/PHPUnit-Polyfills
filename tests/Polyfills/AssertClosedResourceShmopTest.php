@@ -35,6 +35,8 @@ final class AssertClosedResourceShmopTest extends AssertClosedResourceTestCase {
 	 * while we need two.}
 	 *
 	 * @before
+	 *
+	 * @return void
 	 */
 	protected function skipOnIncompatiblePHP() {
 		if ( \PHP_VERSION_ID < 70000 || \PHP_VERSION_ID >= 80000 ) {
