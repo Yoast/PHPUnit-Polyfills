@@ -38,6 +38,10 @@ jobs:
           coverage: none
           tools: cs2pr
 
+      # YoastCS 3.0 has a PHP 7.2 minimum which conflicts with the requirements of this package.
+      - name: 'Composer: remove YoastCS'
+        run: composer remove --dev yoast/yoastcs --no-update --no-interaction
+
       - name: 'Composer: remove PHPUnit (not needed for lint)'
         run: composer remove phpunit/phpunit --no-update --no-interaction
 

@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Coding Standard for PHPUnit Polyfills" xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
-    <description>Check the code of PHPUnit Polyfills.</description>
+	<description>Check the code of PHPUnit Polyfills.</description>
 
-    <!--
-    #############################################################################
-    COMMAND LINE ARGUMENTS
-    https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
-    #############################################################################
-    -->
+	<!--
+	#############################################################################
+	COMMAND LINE ARGUMENTS
+	https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+	#############################################################################
+	-->
 
-    <file>.</file>
+	<file>.</file>
 
-    <!-- Only check PHP files. -->
-    <arg name="extensions" value="php"/>
+	<!-- Only check PHP files. -->
+	<arg name="extensions" value="php"/>
 
-    <!-- Show progress, show the error codes for each message (source). -->
-    <arg value="ps"/>
+	<!-- Show progress, show the error codes for each message (source). -->
+	<arg value="ps"/>
 
-    <!-- Strip the filepaths down to the relevant bit. -->
-    <arg name="basepath" value="./"/>
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="./"/>
 
-    <!-- Check up to 8 files simultaneously. -->
-    <arg name="parallel" value="8"/>
+	<!-- Check up to 8 files simultaneously. -->
+	<arg name="parallel" value="8"/>
 
 	<!-- Cache the results between runs. -->
 	<arg name="cache" value="./.cache/phpcs.cache"/>
@@ -49,8 +49,17 @@
 		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.system_calls_popen"/>
 		<exclude name="WordPress.Security"/>
 		<exclude name="WordPress.WP"/>
-		<exclude name="Yoast.Yoast.AlternativeFunctions"/>
+		<exclude name="Yoast.Yoast.JsonEncodeAlternative"/>
 		<exclude name="Yoast.NamingConventions.ObjectNameDepth.MaxExceeded"/>
+		<exclude name="WordPressVIPMinimum"/>
+
+		<!-- Exclude select "modern PHP" sniffs, which conflict with the minimum supported PHP version of this package. -->
+		<exclude name="Modernize.FunctionCalls.Dirname.Nested"/><!-- PHP 7.0+. -->
+		<exclude name="PSR12.Properties.ConstantVisibility"/><!-- PHP 7.1+. -->
+		<exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/><!-- PHP 7.1+. -->
+
+		<!-- As this repo is about providing assertions, "mixed" is a perfectly valid type. -->
+		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
 	</rule>
 
 	<!-- While PHPCompatibility is already included in the Yoast ruleset, it uses
@@ -66,7 +75,10 @@
 	</rule>
 
 	<!-- Enforce PSR1 compatible namespaces. -->
-	<rule ref="PSR1.Classes.ClassDeclaration"/>
+	<rule ref="PSR1.Classes.ClassDeclaration">
+		<!-- YoastCS only applies this rule to test files. Overrule it to apply to all files. -->
+		<include-pattern>*\.php</include-pattern>
+	</rule>
 
 
 	<!--
@@ -77,11 +89,9 @@
 
 	<rule ref="Yoast.NamingConventions.NamespaceName">
 		<properties>
-			<property name="prefixes" type="array">
-				<element value="Yoast\PHPUnitPolyfills"/>
-			</property>
-			<property name="src_directory" type="array">
-				<element value="src"/>
+			<property name="psr4_paths" type="array">
+				<element key="Yoast\PHPUnitPolyfills\\" value="src/"/>
+				<element key="Yoast\PHPUnitPolyfills\Tests\\" value="tests/"/>
 			</property>
 		</properties>
 	</rule>
@@ -101,16 +111,27 @@
 		<exclude-pattern>/src/Exceptions/*Error\.php$</exclude-pattern>
 	</rule>
 
+	<!-- For named parameter support, the parameters in the polyfilled assertions *must*
+		 mirror the parameter name as used in PHPUnit itself.
+		 These cannot be changed until PHPUnit itself changes the names. -->
+	<rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames.arrayFound">
+		<exclude-pattern>/src/Polyfills/AssertIsList\.php$</exclude-pattern>
+	</rule>
+	<rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames.objectFound">
+		<exclude-pattern>/src/Polyfills/AssertObjectProperty\.php$</exclude-pattern>
+	</rule>
+	<rule ref="Universal.NamingConventions.NoReservedKeywordParameterNames.stringFound">
+		<exclude-pattern>/src/Polyfills/AssertionRenames\.php$</exclude-pattern>
+	</rule>
+
 	<!-- Deliberately empty Catch statements. -->
 	<rule ref="Generic.CodeAnalysis.EmptyStatement.DetectedCatch">
 		<exclude-pattern>/src/Helpers/ResourceHelper\.php$</exclude-pattern>
-		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
 	</rule>
 
 	<!-- Targetted error silencing. This is okay. -->
 	<rule ref="WordPress.PHP.NoSilencedErrors">
 		<exclude-pattern>/src/Helpers/ResourceHelper\.php$</exclude-pattern>
-		<exclude-pattern>/src/Polyfills/AssertClosedResource*\.php$</exclude-pattern>
 	</rule>
 
 	<!-- The TestCase for PHPUnit 8+ will only ever be loaded on PHP 7.2+. -->
@@ -130,9 +151,26 @@
 		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
 	</rule>
 
+	<!-- TEST CODE -->
+
+	<!-- Final classes is irrelevant for test fixtures. -->
+	<rule ref="Universal.Classes.RequireFinalClass">
+		<exclude-pattern>/tests/*/Fixtures/*\.php$</exclude-pattern>
+	</rule>
+
+	<!-- The use of `array` annotations/types is intentional and part of the actual test case. -->
+	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject*\.php$</exclude-pattern>
+	</rule>
+
 	<!-- Make some allowances for test files. -->
 	<rule ref="WordPress.PHP.DevelopmentFunctions">
 		<exclude-pattern>/tests/*\.php$</exclude-pattern>
+	</rule>
+
+	<!-- The use of `static` in the test cases is on purpose to test support. -->
+	<rule ref="Universal.CodeAnalysis.StaticInFinalClass">
+		<exclude-pattern>/tests/*</exclude-pattern>
 	</rule>
 
 	<!-- Covers annotations are in the test classes, not the trait. -->

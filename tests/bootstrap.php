@@ -5,6 +5,7 @@ namespace Yoast\PHPUnitPolyfills\Tests;
 if ( \defined( '__PHPUNIT_PHAR__' ) ) {
 	require_once \dirname( __DIR__ ) . '/phpunitpolyfills-autoload.php';
 
+	// phpcs:disable Universal.FunctionDeclarations.NoLongClosures.ExceedsMaximum
 	\spl_autoload_register(
 		/**
 		 * Custom PSR-4 based autoloader for test helper files.
@@ -32,6 +33,7 @@ if ( \defined( '__PHPUNIT_PHAR__' ) ) {
 			return false;
 		}
 	);
+	// phpcs:enable
 }
 elseif ( \file_exists( \dirname( __DIR__ ) . '/vendor/autoload.php' ) ) {
 	/*
