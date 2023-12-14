@@ -59,6 +59,8 @@ final class ExpectExceptionTest extends TestCase {
 	 * this method as it needs union types.
 	 *
 	 * @requires PHPUnit < 7
+	 *
+	 * @return void
 	 */
 	public function testExpectExceptionCodeException() {
 		$test   = new InvalidExceptionCodeTestCase( 'test' );

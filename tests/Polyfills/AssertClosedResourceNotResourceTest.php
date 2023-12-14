@@ -102,7 +102,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	/**
 	 * Data provider
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public static function dataNotResource() {
 		return [

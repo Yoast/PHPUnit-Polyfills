@@ -45,6 +45,8 @@ trait ExpectException {
 	 * Clear any stored exception information between each test.
 	 *
 	 * @after
+	 *
+	 * @return void
 	 */
 	public function clearExceptionInfo() {
 		$this->exceptionMessage = '';

@@ -88,7 +88,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public static function dataAssertObjectPropertyFailsOnInvalidInputTypePropertyName() {
 		// Only testing closed resource to not leak an open resource.
@@ -163,7 +163,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public static function dataAssertObjectPropertyFailsOnInvalidInputTypeObject() {
 		// Only testing closed resource to not leak an open resource.
@@ -252,7 +252,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public static function dataAssertObjectPropertyDeclaredProps() {
 		return [
@@ -271,7 +271,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public static function dataAssertObjectPropertyUnavailableProps() {
 		return [
