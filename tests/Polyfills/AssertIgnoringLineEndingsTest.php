@@ -97,7 +97,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public static function dataAllLineEndingVariations() {
 		return [
@@ -116,7 +116,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public static function dataAssertStringEqualsStringIgnoringLineEndingsTypeVariations() {
 		return [
@@ -156,7 +156,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public static function dataAssertStringEqualsStringIgnoringLineEndingsFails() {
 		return [
@@ -265,7 +265,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public static function dataAssertStringContainsStringIgnoringLineEndings() {
 		return [
@@ -333,7 +333,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public static function dataAssertStringContainsStringIgnoringLineEndingsFails() {
 		return [
@@ -348,7 +348,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<mixed>>
 	 */
 	public static function dataThrowsTypeErrorOnInvalidType() {
 		return [

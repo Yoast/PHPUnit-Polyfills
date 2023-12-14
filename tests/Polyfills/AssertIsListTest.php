@@ -39,7 +39,7 @@ final class AssertIsListTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<string, mixed>>
 	 */
 	public static function dataAssertIsListFailsOnInvalidInputType() {
 		// Only testing closed resource to not leak an open resource.
@@ -83,7 +83,7 @@ final class AssertIsListTest extends TestCase {
 	 *
 	 * @dataProvider dataAssertIsListPass
 	 *
-	 * @param array $actual The value to test.
+	 * @param array<mixed> $actual The value to test.
 	 *
 	 * @return void
 	 */
@@ -94,7 +94,7 @@ final class AssertIsListTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<array<mixed>>>
 	 */
 	public static function dataAssertIsListPass() {
 		return [
@@ -122,7 +122,7 @@ final class AssertIsListTest extends TestCase {
 	 *
 	 * @dataProvider dataAssertIsListFail
 	 *
-	 * @param array $actual The value to test.
+	 * @param array<int|string, int|string> $actual The value to test.
 	 *
 	 * @return void
 	 */
@@ -136,7 +136,7 @@ final class AssertIsListTest extends TestCase {
 	/**
 	 * Data provider.
 	 *
-	 * @return array
+	 * @return array<string, array<array<int|string, int|string>>>
 	 */
 	public static function dataAssertIsListFail() {
 		return [
