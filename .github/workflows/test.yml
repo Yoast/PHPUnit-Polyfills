@@ -94,7 +94,7 @@ jobs:
             phpunit: '^9.6'
             coverage: false
             experimental: true
-          - php: '8.3'
+          - php: '8.4'
             phpunit: 'auto' # PHPUnit 10.x.
             coverage: false
             experimental: true
