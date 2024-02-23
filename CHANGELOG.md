@@ -9,6 +9,61 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [3.0.0] - 2024-09-07
+
+### PHPUnit 11 support
+
+This release updates the PHPUnit Polyfills to allow for _"writing your tests for PHPUnit 11 and running them all the way back to PHPUnit 6"_. \[*\]
+
+Please keep in mind that the PHPUnit Polyfills provide _forward_-compatibility. This means that features which PHPUnit no longer supports in PHPUnit 11.x, are also no longer supported in the 3.0 release of the PHPUnit Polyfills.
+
+Please refer to the [PHPUnit 11 release notification] and [PHPUnit 11 changelog] to inform your decision on whether or not to upgrade (yet).
+
+Projects which don't use any of the new or removed functionality in their test suite, can, of course, use the PHPUnit Polyfills 1.x, 2.x and 3.x series side-by-side, like so `composer require --dev yoast/phpunit-polyfills:"^1.0 || ^2.0 || ^3.0"`.
+
+[PHPUnit 11 release notification]: https://phpunit.de/announcements/phpunit-11.html
+[PHPUnit 11 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/11.0.10/ChangeLog-11.0.md
+
+\[*\]: _Note: Releases from the PHPUnit Polyfills 3.x branch will support running tests on PHPUnit 6.4.4 - 9.x and 11.x, but will not allow for running tests on PHPUnit 10 (for reasons explained in [#200])._
+_In practical terms, the net effect of this is that tests on PHP 8.1 will run on PHPUnit 9 instead of PHPUnit 10. Other than that, there is no impact._
+
+
+### Changelog
+
+#### Added
+* `Yoast\PHPUnitPolyfills\Polyfills\AssertArrayWithListKeys` trait to polyfill the `Assert::assertArrayIsEqualToArrayOnlyConsideringListOfKeys()`, `Assert::assertArrayIsEqualToArrayIgnoringListOfKeys()`, `Assert::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys()` and `Assert::assertArrayIsIdenticalToArrayIgnoringListOfKeys()` methods as introduced in PHPUnit 11.0.0. PR [#198].
+* `Yoast\PHPUnitPolyfills\Polyfills\ExpectUserDeprecation` trait to polyfill the `TestCase::expectUserDeprecationMessage()` and `TestCase::expectUserDeprecationMessageMatches()` methods as introduced in PHPUnit 11.0.0. PR [#200].
+    These methods can largely be seen as replacements for the `TestCase::expectDeprecationMessage()` and `TestCase::expectDeprecationMessageMatches()` methods which were removed in PHPUnit 10.0, though there are significant differences between the implementation details of the old vs the new methods. Please see the [README for full details][readme-on-expectuserdeprecation].
+* `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals` trait to polyfill the `Assert::assertObjectNotEquals()` method as introduced in PHPUnit 11.2.0. PR [#199].
+
+#### Changed
+* Composer: allow for installation of PHPUnit 11.x and removed runtime support for PHPUnit 10.x. PR [#196], [#200]
+* The assertion failure message for the `assertIsList()` method has been updated to be in sync with the latest message format as used by PHPUnit 11.3.1+. [#195]
+* The visibility of the `expectExceptionMessageMatches()` method has been changed from `public` to `protected`, in line with the same changes as per PHPUnit 11.0. [#197]
+* The `assertObjectEquals()` method polyfill now behaves the same as the PHPUnit native assertion method. PR [#192]
+    Previously a comparator method could either be compatible with PHP 5.6+ in combination with PHPUnit < 9.4.0 or with PHP 7.0+, but it wasn't possible to write a comparator method which would work in both situation due to the return type declaration requirement from PHPUnit itself. With the new PHP 7.0 minimum requirement, the return type declaration is now always required and the polyfill and the PHPUnit native method are completely aligned.
+* General housekeeping.
+
+#### Removed
+* Support for PHP < 7.0. PR [#192].
+* Support for PHPUnit < 6.4.4. PR [#193].
+* The `Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper` trait. PR [#194].
+    This "helper" was only intended as a temporary measure to buy people some more time to refactor their tests.
+* The `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject` trait which is no longer needed now support for PHPUnit < 6.4 has been dropped. PR [#193].
+
+[#192]: https://github.com/Yoast/PHPUnit-Polyfills/pull/192
+[#193]: https://github.com/Yoast/PHPUnit-Polyfills/pull/193
+[#194]: https://github.com/Yoast/PHPUnit-Polyfills/pull/194
+[#195]: https://github.com/Yoast/PHPUnit-Polyfills/pull/195
+[#196]: https://github.com/Yoast/PHPUnit-Polyfills/pull/196
+[#197]: https://github.com/Yoast/PHPUnit-Polyfills/pull/197
+[#198]: https://github.com/Yoast/PHPUnit-Polyfills/pull/198
+[#199]: https://github.com/Yoast/PHPUnit-Polyfills/pull/199
+[#200]: https://github.com/Yoast/PHPUnit-Polyfills/pull/200
+
+[readme-on-expectuserdeprecation]: https://github.com/Yoast/PHPUnit-Polyfills/tree/3.x?tab=readme-ov-file#phpunit--1100-yoastphpunitpolyfillspolyfillsexpectuserdeprecation
+
+
 ## [2.0.2] - 2024-09-07
 
 This is a maintenance release.
@@ -268,7 +323,8 @@ As of version 2.15.0 of the `shivammathur/setup-php` action for GitHub Actions, 
 Initial release.
 
 
-[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.x...HEAD
+[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.x...HEAD
+[3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...3.0.0
 [2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.2...2.0.0
