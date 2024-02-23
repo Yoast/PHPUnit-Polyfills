@@ -7,7 +7,6 @@ use PHPUnit\Framework\Attributes\AfterClass;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\Attributes\BeforeClass;
 use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
-use Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
@@ -34,7 +33,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  */
 abstract class XTestCase extends PHPUnit_TestCase {
 
-	use AssertAttributeHelper;
 	use AssertClosedResource;
 	use AssertEqualsSpecializations;
 	use AssertFileEqualsSpecializations;
