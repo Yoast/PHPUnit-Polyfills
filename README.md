@@ -582,7 +582,7 @@ class MyTest extends XTestCase {
 >
 > If you need the TestListener polyfill, it is recommended to stay on the PHPUnit Polyfills 1.x series for the time being and to watch and upvote the [related ticket][polyfill-ticket].
 >
-> The below documentation is for the PHPUnit 5.x-9.x TestListener polyfill implementation.
+> The below documentation is for the PHPUnit 6.x-9.x TestListener polyfill implementation.
 
 [polyfill-ticket]: https://github.com/Yoast/PHPUnit-Polyfills/issues/128
 
@@ -601,24 +601,21 @@ This `TestListenerDefaultImplementation` trait overcomes the signature mismatche
 
 Similar to the `TestCase` implementation, snake_case methods without type declarations are used to get round the signature mismatches. The snake_case methods will automatically be called.
 
-| PHPUnit native method name | Replacement                             | Notes                                     |
-| -------------------------- | --------------------------------------- | ----------------------------------------- |
-| `addError()`               | `add_error($test, $e, $time)`           |                                           |
-| `addWarning()`             | `add_warning($test, $e, $time)`         | Introduced in PHPUnit 6.                  |
-| `addFailure()`             | `add_failure($test, $e, $time)`         |                                           |
-| `addIncompleteTest()`      | `add_incomplete_test($test, $e, $time)` |                                           |
-| `addRiskyTest()`           | `add_risky_test($test, $e, $time)`      | Support appears to be flaky on PHPUnit 5. |
-| `addSkippedTest()`         | `add_skipped_test($test, $e, $time)`    |                                           |
-| `startTestSuite()`         | `start_test_suite($suite)`              |                                           |
-| `endTestSuite()`           | `end_test_suite($suite)`                |                                           |
-| `startTest()`              | `start_test($test)`                     |                                           |
-| `endTest()`                | `end_test($test, $time)`                |                                           |
+| PHPUnit native method name | Replacement                             |
+| -------------------------- | --------------------------------------- |
+| `addError()`               | `add_error($test, $e, $time)`           |
+| `addWarning()`             | `add_warning($test, $e, $time)`         |
+| `addFailure()`             | `add_failure($test, $e, $time)`         |
+| `addIncompleteTest()`      | `add_incomplete_test($test, $e, $time)` |
+| `addRiskyTest()`           | `add_risky_test($test, $e, $time)`      |
+| `addSkippedTest()`         | `add_skipped_test($test, $e, $time)`    |
+| `startTestSuite()`         | `start_test_suite($suite)`              |
+| `endTestSuite()`           | `end_test_suite($suite)`                |
+| `startTest()`              | `start_test($test)`                     |
+| `endTest()`                | `end_test($test, $time)`                |
 
 Implementations of the `TestListener` interface may be using any of the following patterns:
 ```php
-// PHPUnit < 6.
-class MyTestListener extends \PHPUnit_Framework_BaseTestListener {}
-
 // PHPUnit 6.
 class MyTestListener extends \PHPUnit\Framework\BaseTestListener {}
 

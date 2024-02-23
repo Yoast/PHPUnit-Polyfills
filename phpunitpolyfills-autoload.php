@@ -337,29 +337,8 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestListenerDefaultImplementation() {
-			if ( \version_compare( self::getPHPUnitVersion(), '6.0.0', '<' ) ) {
-				/*
-				 * Alias one particular PHPUnit 5.x class to its PHPUnit >= 6 name.
-				 *
-				 * All other classes needed are part of the forward-compatibility layer.
-				 *
-				 * {@internal The `class_exists` wrappers are needed to play nice with
-				 * PHPUnit bootstrap files of test suites implementing this library
-				 * which may be creating cross-version compatibility in a similar manner.}}
-				 */
-				if ( \class_exists( 'PHPUnit_Framework_Warning' ) === true
-					&& \class_exists( 'PHPUnit\Framework\Warning' ) === false
-				) {
-					\class_alias( 'PHPUnit_Framework_Warning', 'PHPUnit\Framework\Warning' );
-				}
-
-				// PHPUnit < 6.0.0.
-				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitLte5.php';
-				return;
-			}
-
 			if ( \version_compare( PHPUnit_Version::id(), '7.0.0', '<' ) ) {
-				// PHPUnit 6.0.0 < 7.0.0.
+				// PHPUnit 6.4.4 < 7.0.0.
 				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnit6.php';
 				return;
 			}

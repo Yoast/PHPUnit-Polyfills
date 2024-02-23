@@ -68,14 +68,8 @@ final class TestListenerTest extends TestCase {
 	/**
 	 * Test that the TestListener add_warning() method is called.
 	 *
-	 * Note: Prior to PHPUnit 6, PHPUnit did not have `addWarning()` support.
-	 * Interestingly enough, it does seem to work on PHPUnit 5, just don't ask me how.
-	 *
-	 * @requires PHPUnit 5
-	 *
 	 * @return void
 	 */
-	#[RequiresPhpunit( '5' )]
 	public function testWarning() {
 		$test = $this->getTestObject( 'Warning' );
 		$test->run( $this->result );
@@ -116,13 +110,8 @@ final class TestListenerTest extends TestCase {
 	/**
 	 * Test that the TestListener add_risky_test() method is called.
 	 *
-	 * Note: It appears that the PHPUnit native recording of risky tests prior to PHPUnit 6 is buggy.
-	 *
-	 * @requires PHPUnit 6
-	 *
 	 * @return void
 	 */
-	#[RequiresPhpunit( '6' )]
 	public function testRisky() {
 		$test = $this->getTestObject( 'Risky' );
 		$test->run( $this->result );
