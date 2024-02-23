@@ -37,7 +37,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			if ( $className === 'Error' || $className === 'TypeError' ) {
 				$file = \realpath( __DIR__ . '/src/Exceptions/' . $className . '.php' );
 
-				if ( \file_exists( $file ) === true ) {
+				if ( \is_string( $file ) && \file_exists( $file ) === true ) {
 					require_once $file;
 					return true;
 				}
@@ -122,7 +122,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				default:
 					$file = \realpath( __DIR__ . '/src/' . \strtr( \substr( $className, 23 ), '\\', '/' ) . '.php' );
 
-					if ( \file_exists( $file ) === true ) {
+					if ( \is_string( $file ) && \file_exists( $file ) === true ) {
 						require_once $file;
 						return true;
 					}
