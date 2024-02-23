@@ -151,7 +151,7 @@ The polyfills in this library support the first two ways of calling the assertio
 
 For the polyfills to work, a test class is **required** to be a (grand-)child of the PHPUnit native `TestCase` class.
 
-[four ways of calling assertions]: https://docs.phpunit.de/en/main/assertions.html#static-vs-non-static-usage-of-assertion-methods
+[four ways of calling assertions]: https://docs.phpunit.de/en/10.5/assertions.html#static-vs-non-static-usage-of-assertion-methods
 
 ### Use with PHPUnit < 7.5.0
 
@@ -204,7 +204,7 @@ Polyfills the [`TestCase::expectExceptionObject()`] method to test all aspects o
 
 This method was introduced in PHPUnit 6.4.0.
 
-[`TestCase::expectExceptionObject()`]: https://docs.phpunit.de/en/main/writing-tests-for-phpunit.html#testing-exceptions
+[`TestCase::expectExceptionObject()`]: https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#testing-exceptions
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
 
@@ -222,28 +222,28 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to the `Assert::assertInternalType()` and `Assert::assertNotInternalType()` methods, which were soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
-[`Assert::assertIsArray()`]:       https://docs.phpunit.de/en/main/assertions.html#assertisarray
-[`Assert::assertIsNotArray()`]:    https://docs.phpunit.de/en/main/assertions.html#assertisarray
-[`Assert::assertIsBool()`]:        https://docs.phpunit.de/en/main/assertions.html#assertisbool
-[`Assert::assertIsNotBool()`]:     https://docs.phpunit.de/en/main/assertions.html#assertisbool
-[`Assert::assertIsFloat()`]:       https://docs.phpunit.de/en/main/assertions.html#assertisfloat
-[`Assert::assertIsNotFloat()`]:    https://docs.phpunit.de/en/main/assertions.html#assertisfloat
-[`Assert::assertIsInt()`]:         https://docs.phpunit.de/en/main/assertions.html#assertisint
-[`Assert::assertIsNotInt()`]:      https://docs.phpunit.de/en/main/assertions.html#assertisint
-[`Assert::assertIsNumeric()`]:     https://docs.phpunit.de/en/main/assertions.html#assertisnumeric
-[`Assert::assertIsNotNumeric()`]:  https://docs.phpunit.de/en/main/assertions.html#assertisnumeric
-[`Assert::assertIsObject()`]:      https://docs.phpunit.de/en/main/assertions.html#assertisobject
-[`Assert::assertIsNotObject()`]:   https://docs.phpunit.de/en/main/assertions.html#assertisobject
-[`Assert::assertIsResource()`]:    https://docs.phpunit.de/en/main/assertions.html#assertisresource
-[`Assert::assertIsNotResource()`]: https://docs.phpunit.de/en/main/assertions.html#assertisresource
-[`Assert::assertIsString()`]:      https://docs.phpunit.de/en/main/assertions.html#assertisstring
-[`Assert::assertIsNotString()`]:   https://docs.phpunit.de/en/main/assertions.html#assertisstring
-[`Assert::assertIsScalar()`]:      https://docs.phpunit.de/en/main/assertions.html#assertisscalar
-[`Assert::assertIsNotScalar()`]:   https://docs.phpunit.de/en/main/assertions.html#assertisscalar
-[`Assert::assertIsCallable()`]:    https://docs.phpunit.de/en/main/assertions.html#assertiscallable
-[`Assert::assertIsNotCallable()`]: https://docs.phpunit.de/en/main/assertions.html#assertiscallable
-[`Assert::assertIsIterable()`]:    https://docs.phpunit.de/en/main/assertions.html#assertisiterable
-[`Assert::assertIsNotIterable()`]: https://docs.phpunit.de/en/main/assertions.html#assertisiterable
+[`Assert::assertIsArray()`]:       https://docs.phpunit.de/en/10.5/assertions.html#assertisarray
+[`Assert::assertIsNotArray()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertisarray
+[`Assert::assertIsBool()`]:        https://docs.phpunit.de/en/10.5/assertions.html#assertisbool
+[`Assert::assertIsNotBool()`]:     https://docs.phpunit.de/en/10.5/assertions.html#assertisbool
+[`Assert::assertIsFloat()`]:       https://docs.phpunit.de/en/10.5/assertions.html#assertisfloat
+[`Assert::assertIsNotFloat()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertisfloat
+[`Assert::assertIsInt()`]:         https://docs.phpunit.de/en/10.5/assertions.html#assertisint
+[`Assert::assertIsNotInt()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertisint
+[`Assert::assertIsNumeric()`]:     https://docs.phpunit.de/en/10.5/assertions.html#assertisnumeric
+[`Assert::assertIsNotNumeric()`]:  https://docs.phpunit.de/en/10.5/assertions.html#assertisnumeric
+[`Assert::assertIsObject()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertisobject
+[`Assert::assertIsNotObject()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertisobject
+[`Assert::assertIsResource()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertisresource
+[`Assert::assertIsNotResource()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertisresource
+[`Assert::assertIsString()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertisstring
+[`Assert::assertIsNotString()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertisstring
+[`Assert::assertIsScalar()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertisscalar
+[`Assert::assertIsNotScalar()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertisscalar
+[`Assert::assertIsCallable()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertiscallable
+[`Assert::assertIsNotCallable()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertiscallable
+[`Assert::assertIsIterable()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertisiterable
+[`Assert::assertIsNotIterable()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertisiterable
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains`
 
@@ -255,10 +255,10 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertContains()` and `Assert::assertNotContains()` with string haystacks. Passing string haystacks to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
-[`Assert::assertStringContainsString()`]:                https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstring
-[`Assert::assertStringNotContainsString()`]:             https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstring
-[`Assert::assertStringContainsStringIgnoringCase()`]:    https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstringignoringcase
-[`Assert::assertStringNotContainsStringIgnoringCase()`]: https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstringignoringcase
+[`Assert::assertStringContainsString()`]:                https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstring
+[`Assert::assertStringNotContainsString()`]:             https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstring
+[`Assert::assertStringContainsStringIgnoringCase()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstringignoringcase
+[`Assert::assertStringNotContainsStringIgnoringCase()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstringignoringcase
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations`
 
@@ -271,12 +271,12 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertEquals()` and `Assert::assertNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
-[`Assert::assertEqualsCanonicalizing()`]:    https://docs.phpunit.de/en/main/assertions.html#assertequalscanonicalizing
-[`Assert::assertNotEqualsCanonicalizing()`]: https://docs.phpunit.de/en/main/assertions.html#assertequalscanonicalizing
-[`Assert::assertEqualsIgnoringCase()`]:      https://docs.phpunit.de/en/main/assertions.html#assertequalsignoringcase
-[`Assert::assertNotEqualsIgnoringCase()`]:   https://docs.phpunit.de/en/main/assertions.html#assertequalsignoringcase
-[`Assert::assertEqualsWithDelta()`]:         https://docs.phpunit.de/en/main/assertions.html#assertequalswithdelta
-[`Assert::assertNotEqualsWithDelta()`]:      https://docs.phpunit.de/en/main/assertions.html#assertequalswithdelta
+[`Assert::assertEqualsCanonicalizing()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertequalscanonicalizing
+[`Assert::assertNotEqualsCanonicalizing()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertequalscanonicalizing
+[`Assert::assertEqualsIgnoringCase()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertequalsignoringcase
+[`Assert::assertNotEqualsIgnoringCase()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertequalsignoringcase
+[`Assert::assertEqualsWithDelta()`]:         https://docs.phpunit.de/en/10.5/assertions.html#assertequalswithdelta
+[`Assert::assertNotEqualsWithDelta()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertequalswithdelta
 
 #### PHPUnit < 8.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches`
 
@@ -285,7 +285,7 @@ Polyfills the [`TestCase::expectExceptionMessageMatches()`] method.
 This method was introduced in PHPUnit 8.4.0 to improve the name of the `TestCase::expectExceptionMessageRegExp()` method.
 The `TestCase::expectExceptionMessageRegExp()` method was soft deprecated in PHPUnit 8.4.0, hard deprecated (warning) in PHPUnit 8.5.3 and removed in PHPUnit 9.0.0.
 
-[`TestCase::expectExceptionMessageMatches()`]: https://docs.phpunit.de/en/main/writing-tests-for-phpunit.html#testing-exceptions
+[`TestCase::expectExceptionMessageMatches()`]: https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#testing-exceptions
 
 #### PHPUnit < 8.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations`
 
@@ -299,14 +299,14 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 8.5.0 as alternatives to using `Assert::assertFileEquals()` and `Assert::assertFileNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was hard deprecated in PHPUnit 8.5.0 and removed in PHPUnit 9.0.0.
 
-[`Assert::assertFileEqualsCanonicalizing()`]:          https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertFileNotEqualsCanonicalizing()`]:       https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertFileEqualsIgnoringCase()`]:            https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertFileNotEqualsIgnoringCase()`]:         https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertStringEqualsFileCanonicalizing()`]:    https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertStringNotEqualsFileCanonicalizing()`]: https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertStringEqualsFileIgnoringCase()`]:      https://docs.phpunit.de/en/main/assertions.html#assertfileequals
-[`Assert::assertStringNotEqualsFileIgnoringCase()`]:   https://docs.phpunit.de/en/main/assertions.html#assertfileequals
+[`Assert::assertFileEqualsCanonicalizing()`]:          https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertFileNotEqualsCanonicalizing()`]:       https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertFileEqualsIgnoringCase()`]:            https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertFileNotEqualsIgnoringCase()`]:         https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertStringEqualsFileCanonicalizing()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertStringNotEqualsFileCanonicalizing()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertStringEqualsFileIgnoringCase()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
+[`Assert::assertStringNotEqualsFileIgnoringCase()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertfileequals
 
 #### PHPUnit < 9.0.0: `Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations`
 
@@ -335,16 +335,16 @@ Polyfills the following renamed methods:
 These methods were introduced in PHPUnit 9.1.0.
 The original methods these new methods replace were hard deprecated in PHPUnit 9.1.0 and removed in PHPUnit 10.0.0.
 
-[`Assert::assertIsNotReadable()`]:                 https://docs.phpunit.de/en/main/assertions.html#assertisreadable
-[`Assert::assertIsNotWritable()`]:                 https://docs.phpunit.de/en/main/assertions.html#assertiswritable
-[`Assert::assertDirectoryDoesNotExist()`]:         https://docs.phpunit.de/en/main/assertions.html#assertdirectoryexists
-[`Assert::assertDirectoryIsNotReadable()`]:        https://docs.phpunit.de/en/main/assertions.html#assertdirectoryisreadable
-[`Assert::assertDirectoryIsNotWritable()`]:        https://docs.phpunit.de/en/main/assertions.html#assertdirectoryiswritable
-[`Assert::assertFileDoesNotExist()`]:              https://docs.phpunit.de/en/main/assertions.html#assertfileexists
-[`Assert::assertFileIsNotReadable()`]:             https://docs.phpunit.de/en/main/assertions.html#assertfileisreadable
-[`Assert::assertFileIsNotWritable()`]:             https://docs.phpunit.de/en/main/assertions.html#assertfileiswritable
-[`Assert::assertMatchesRegularExpression()`]:      https://docs.phpunit.de/en/main/assertions.html#assertmatchesregularexpression
-[`Assert::assertDoesNotMatchRegularExpression()`]: https://docs.phpunit.de/en/main/assertions.html#assertmatchesregularexpression
+[`Assert::assertIsNotReadable()`]:                 https://docs.phpunit.de/en/10.5/assertions.html#assertisreadable
+[`Assert::assertIsNotWritable()`]:                 https://docs.phpunit.de/en/10.5/assertions.html#assertiswritable
+[`Assert::assertDirectoryDoesNotExist()`]:         https://docs.phpunit.de/en/10.5/assertions.html#assertdirectoryexists
+[`Assert::assertDirectoryIsNotReadable()`]:        https://docs.phpunit.de/en/10.5/assertions.html#assertdirectoryisreadable
+[`Assert::assertDirectoryIsNotWritable()`]:        https://docs.phpunit.de/en/10.5/assertions.html#assertdirectoryiswritable
+[`Assert::assertFileDoesNotExist()`]:              https://docs.phpunit.de/en/10.5/assertions.html#assertfileexists
+[`Assert::assertFileIsNotReadable()`]:             https://docs.phpunit.de/en/10.5/assertions.html#assertfileisreadable
+[`Assert::assertFileIsNotWritable()`]:             https://docs.phpunit.de/en/10.5/assertions.html#assertfileiswritable
+[`Assert::assertMatchesRegularExpression()`]:      https://docs.phpunit.de/en/10.5/assertions.html#assertmatchesregularexpression
+[`Assert::assertDoesNotMatchRegularExpression()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertmatchesregularexpression
 
 #### PHPUnit < 9.3.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource`
 
@@ -355,8 +355,8 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 9.3.0.
 
-[`Assert::assertIsClosedResource()`]:    https://docs.phpunit.de/en/main/assertions.html#assertisresource
-[`Assert::assertIsNotClosedResource()`]: https://docs.phpunit.de/en/main/assertions.html#assertisresource
+[`Assert::assertIsClosedResource()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertisresource
+[`Assert::assertIsNotClosedResource()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertisresource
 
 Additionally, this trait contains a helper method `shouldClosedResourceAssertionBeSkipped()`.
 
@@ -401,7 +401,7 @@ The `assertObjectEquals()` assertion was introduced in PHPUnit 9.4.0.
 
 [limitations in how this assertion is implemented in PHPUnit]: https://github.com/sebastianbergmann/phpunit/issues/4707
 
-[`Assert::assertObjectEquals()`]: https://docs.phpunit.de/en/main/assertions.html#assertobjectequals
+[`Assert::assertObjectEquals()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertobjectequals
 
 #### PHPUnit < 10.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings`
 
@@ -412,8 +412,8 @@ Polyfills the following methods:
 
 These methods were introduced in PHPUnit 10.0.0.
 
-[`Assert::assertStringEqualsStringIgnoringLineEndings()`]:   https://docs.phpunit.de/en/main/assertions.html#assertstringequalsstringignoringlineendings
-[`Assert::assertStringContainsStringIgnoringLineEndings()`]: https://docs.phpunit.de/en/main/assertions.html#assertstringcontainsstringignoringlineendings
+[`Assert::assertStringEqualsStringIgnoringLineEndings()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertstringequalsstringignoringlineendings
+[`Assert::assertStringContainsStringIgnoringLineEndings()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstringignoringlineendings
 
 #### PHPUnit < 10.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsList`
 
@@ -424,7 +424,7 @@ Polyfills the following method:
 
 This method was introduced in PHPUnit 10.0.0.
 
-[`Assert::assertIsList()`]: https://docs.phpunit.de/en/main/assertions.html#assertislist
+[`Assert::assertIsList()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertislist
 
 #### PHPUnit < 10.1.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty`
 
@@ -437,8 +437,8 @@ These methods were introduced in PHPUnit 10.1.0 as alternatives to the `Assert::
 
 These methods were later backported to the PHPUnit 9 branch and included in the PHPUnit 9.6.11 release.
 
-[`Assert::assertObjectHasProperty()`]:    https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
-[`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
+[`Assert::assertObjectHasProperty()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertObjectHasProperty
+[`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertObjectHasProperty
 
 
 ### Helper traits
@@ -478,7 +478,7 @@ self::assertSame( $propertyName, self::getProperty( $objInstance, $propertyName 
 PHPUnit 8.0.0 introduced a `void` return type declaration to the ["fixture" methods] - `setUpBeforeClass()`, `setUp()`, `tearDown()` and `tearDownAfterClass()`.
 As the `void` return type was not introduced until PHP 7.1, this makes it more difficult to create cross-version compatible tests when using fixtures, due to signature mismatches.
 
-["fixture" methods]: https://docs.phpunit.de/en/main/fixtures.html
+["fixture" methods]: https://docs.phpunit.de/en/10.5/fixtures.html
 
 This library contains two basic `TestCase` options to overcome this issue.
 
@@ -542,10 +542,10 @@ This `TestCase` overcomes the signature mismatch by using the PHPUnit `@before[C
 When using this TestCase, overloaded fixture methods need to use the [`@beforeClass`], [`@before`], [`@after`] and [`@afterClass`] annotations.
 The naming of the overloaded methods is open as long as the method names don't conflict with the PHPUnit native method names.
 
-[`@beforeClass`]: https://docs.phpunit.de/en/main/annotations.html#beforeclass
-[`@before`]:      https://docs.phpunit.de/en/main/annotations.html#before
-[`@after`]:       https://docs.phpunit.de/en/main/annotations.html#after
-[`@afterClass`]:  https://docs.phpunit.de/en/main/annotations.html#afterclass
+[`@beforeClass`]: https://docs.phpunit.de/en/10.5/annotations.html#beforeclass
+[`@before`]:      https://docs.phpunit.de/en/10.5/annotations.html#before
+[`@after`]:       https://docs.phpunit.de/en/10.5/annotations.html#after
+[`@afterClass`]:  https://docs.phpunit.de/en/10.5/annotations.html#afterclass
 
 ```php
 use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
