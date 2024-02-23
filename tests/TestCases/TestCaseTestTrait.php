@@ -26,20 +26,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Test availability of trait polyfilled PHPUnit methods [1].
-	 *
-	 * @return void
-	 *
-	 * @throws Exception For testing purposes.
-	 */
-	final public function testAvailabilityExpectExceptionObjectTrait() {
-		$exception = new Exception( 'message', 101 );
-		$this->expectExceptionObject( $exception );
-
-		throw new Exception( 'message', 101 );
-	}
-
-	/**
 	 * Test availability of trait polyfilled PHPUnit methods [2].
 	 *
 	 * @return void
