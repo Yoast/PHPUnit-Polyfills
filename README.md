@@ -198,14 +198,6 @@ Features
 
 ### Polyfill traits
 
-#### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
-
-Polyfills the [`TestCase::expectExceptionObject()`] method to test all aspects of an `Exception` by passing an object to the method.
-
-This method was introduced in PHPUnit 6.4.0.
-
-[`TestCase::expectExceptionObject()`]: https://docs.phpunit.de/en/main/writing-tests-for-phpunit.html#testing-exceptions
-
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
 
 Polyfills the following methods:
