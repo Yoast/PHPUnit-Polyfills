@@ -7,7 +7,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
-use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty;
@@ -237,7 +236,7 @@ final class AssertObjectPropertyTest extends TestCase {
 			\preg_quote( $name, '`' )
 		);
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		static::assertObjectHasProperty( $name, new ObjectWithProperties() );
@@ -259,7 +258,7 @@ final class AssertObjectPropertyTest extends TestCase {
 			\preg_quote( $name, '`' )
 		);
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertObjectNotHasProperty( $name, new ObjectWithProperties() );
@@ -304,7 +303,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	public function testAssertObjectHasPropertyFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that object of class `';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertObjectHasProperty( 'doesNotExist', new ObjectWithProperties(), 'This assertion failed for reason XYZ' );
@@ -319,24 +318,9 @@ final class AssertObjectPropertyTest extends TestCase {
 	public function testAssertObjectNotHasPropertyFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that object of class `';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertObjectNotHasProperty( 'protectedWithDefaultValue', new ObjectWithProperties(), 'This assertion failed for reason XYZ' );
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 }

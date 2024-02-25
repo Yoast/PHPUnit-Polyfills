@@ -6,7 +6,6 @@ use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsList;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
@@ -34,7 +33,7 @@ final class AssertIsListTest extends TestCase {
 	 */
 	#[DataProvider( 'dataAssertIsListFailsOnInvalidInputType' )]
 	public function testAssertIsListFailsOnInvalidInputType( $actual, $type ) {
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( '`^Failed asserting that ' . $type . ' is a list`' );
 
 		$this->assertIsList( $actual );
@@ -133,7 +132,7 @@ final class AssertIsListTest extends TestCase {
 	 */
 	#[DataProvider( 'dataAssertIsListFail' )]
 	public function testAssertIsListFail( $actual ) {
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessage( 'Failed asserting that an array is a list' );
 
 		static::assertIsList( $actual );
@@ -191,7 +190,7 @@ final class AssertIsListTest extends TestCase {
 	public function testAssertIsListFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that an array is a list\.`';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$array = [
@@ -200,20 +199,5 @@ final class AssertIsListTest extends TestCase {
 		];
 
 		$this->assertIsList( $array, 'This assertion failed for reason XYZ' );
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 }
