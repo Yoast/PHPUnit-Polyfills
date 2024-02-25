@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
@@ -57,6 +58,7 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[Before]
 	public function maybeSkipTest() {
 		if ( \version_compare( PHPUnit_Version::id(), '9.4.0', '>=' ) ) {
 			$this->markTestSkipped( 'This test can not be run with the PHPUnit native implementation of assertObjectEquals()' );
