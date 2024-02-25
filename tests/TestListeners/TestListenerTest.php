@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use PHPUnit\Framework\TestResult;
 use Yoast\PHPUnitPolyfills\Autoload;
@@ -21,6 +22,7 @@ use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementati
  */
 #[CoversClass( TestListenerDefaultImplementation::class )]
 #[CoversClass( TestListenerSnakeCaseMethods::class )]
+#[RequiresPhpunit( '< 10' )]
 final class TestListenerTest extends TestCase {
 
 	/**
@@ -73,6 +75,7 @@ final class TestListenerTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[RequiresPhpunit( '5' )]
 	public function testWarning() {
 		$test = $this->getTestObject( 'Warning' );
 		$test->run( $this->result );
@@ -119,6 +122,7 @@ final class TestListenerTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[RequiresPhpunit( '6' )]
 	public function testRisky() {
 		$test = $this->getTestObject( 'Risky' );
 		$test->run( $this->result );

@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit_Framework_AssertionFailedError;
@@ -209,6 +210,7 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[RequiresPhp( '8.0' )]
 	public function testAssertObjectEqualsFailsOnMethodParamHasUnionTypeDeclaration() {
 		$msg = 'Parameter of comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType::equalsParamUnionType() does not have a declared type.';
 

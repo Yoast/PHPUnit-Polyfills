@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @coversNothing
  */
 #[CoversNothing]
+#[RequiresPhpunit( '7.0' )]
 class TestErrorPHPUnitGte7 extends TestCase {
 
 	/**

@@ -3,6 +3,8 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhp;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
@@ -23,6 +25,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  */
 #[CoversClass( AssertClosedResource::class )]
 #[CoversClass( ResourceHelper::class )]
+#[RequiresPhp( '< 8.0' )]
+#[RequiresPhpExtension( 'curl' )]
 final class AssertClosedResourceCurlTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
