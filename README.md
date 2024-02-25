@@ -35,7 +35,7 @@ Requirements
 ------------
 
 * PHP 7.0 or higher.
-* [PHPUnit] 5.7 - 10.x (automatically required via Composer).
+* [PHPUnit] 6.4 - 10.x (automatically required via Composer).
 
 [PHPUnit]: https://packagist.org/packages/phpunit/phpunit
 
@@ -65,7 +65,7 @@ Why use the PHPUnit Polyfills?
 
 This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
-### Write your tests for PHPUnit 10.x and run them on PHPUnit 5.7 - 10.x
+### Write your tests for PHPUnit 10.x and run them on PHPUnit 6.4 - 10.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
@@ -163,11 +163,11 @@ You will need to make sure to `use` any additional traits needed for the polyfil
 
 | PHPUnit   | When `use`-ing this trait   | You also need to `use` this trait |
 | --------- | --------------------------- | --------------------------------- |
-| 5.7 < 7.5 | `AssertIgnoringLineEndings` | `AssertStringContains`            |
+| 6.4 < 7.5 | `AssertIgnoringLineEndings` | `AssertStringContains`            |
 
 _**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
 
-Code example for a test using the `AssertIgnoringLineEndings` trait, which needs to be able to run on PHPUnit 5.7:
+Code example for a test using the `AssertIgnoringLineEndings` trait, which needs to be able to run on PHPUnit 6.4:
 ```php
 <?php
 
