@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php: ['7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
         phpunit: ['auto']
         coverage: [true]
         experimental: [false]
@@ -28,14 +28,10 @@ jobs:
         include:
           # Test against a version on the low-end of the PHPUnit versions supported for each PHP version.
           # Using the Composer `--prefer-lowest` option is, unfortunately, not viable, as
-          # it would result PHP 5.6 - 7.4 all using PHPUnit 5.7.21, which is not the intention.
+          # it would result PHP 7.0 - 7.4 all using PHPUnit 5.7.21, which is not the intention.
           # It also would run into trouble with PHP 8.5.12 being used on PHP 8.0+, while the
           # 8.5.12 release still contained a bug which makes it incompatible with PHP 8.1+,
           # even though it officially allows for it..
-          - php: '5.6'
-            phpunit: '5.7.21'
-            coverage: true
-            experimental: false
           - php: '7.0'
             phpunit: '5.7.27'
             coverage: true
@@ -211,9 +207,9 @@ jobs:
           # This should be sufficient to record the coverage for the PHAR specific code.
 
           # PHPUnit 5 is only supported for PHPUnit 5.7.21-latest.
-          - php: '5.6'
+          - php: '7.0'
             phpunit: '5.7.21'
-          - php: '5.6'
+          - php: '7.0'
             phpunit: '5'
           - php: '7.1'
             phpunit: '5.7.21'
