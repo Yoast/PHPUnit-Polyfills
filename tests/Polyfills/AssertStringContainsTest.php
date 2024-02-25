@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_AssertionFailedError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
@@ -71,6 +72,7 @@ final class AssertStringContainsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataHaystacks' )]
 	public function testAssertStringContainsStringEmptyNeedle( $haystack ) {
 		$this->assertStringContainsString( '', $haystack );
 	}
@@ -105,6 +107,7 @@ final class AssertStringContainsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataHaystacks' )]
 	public function testAssertStringNotContainsStringEmptyNeedle( $haystack ) {
 		$pattern = "`^Failed asserting that '{$haystack}'( \[[^\]]+\]\(length: [0-9]+\))? does not contain \"\"( \[[^\]]+\]\(length: [0-9]+\))?\.`";
 

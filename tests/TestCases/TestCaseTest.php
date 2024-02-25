@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
@@ -129,6 +130,7 @@ final class TestCaseTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataHaveFixtureMethodsBeenTriggered' )]
 	public function testHaveFixtureMethodsBeenTriggered(
 		$expectedBeforeClass,
 		$expectedBefore,

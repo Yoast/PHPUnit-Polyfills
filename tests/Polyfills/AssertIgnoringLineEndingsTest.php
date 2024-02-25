@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
@@ -38,6 +39,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringEqualsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg1( $input ) {
 		if ( \PHP_VERSION_ID >= 80100
 			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
@@ -65,6 +67,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringEqualsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg2( $input ) {
 		if ( \PHP_VERSION_ID >= 80100
 			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
@@ -93,6 +96,8 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAllLineEndingVariations' )]
+	#[DataProvider( 'dataAssertStringEqualsStringIgnoringLineEndingsTypeVariations' )]
 	public function testAssertStringEqualsStringIgnoringLineEndings( $expected, $actual ) {
 		self::assertStringEqualsStringIgnoringLineEndings( $expected, $actual );
 	}
@@ -141,6 +146,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertStringEqualsStringIgnoringLineEndingsFails' )]
 	public function testAssertStringEqualsStringIgnoringLineEndingsFails( $expected, $actual ) {
 
 		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndingsForTests();
@@ -207,6 +213,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringContainsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg1( $input ) {
 		if ( \PHP_VERSION_ID >= 80100
 			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
@@ -234,6 +241,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringContainsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg2( $input ) {
 		if ( \PHP_VERSION_ID >= 80100
 			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
@@ -261,6 +269,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertStringContainsStringIgnoringLineEndings' )]
 	public function testAssertStringContainsStringIgnoringLineEndings( $needle, $haystack ) {
 		$this->assertStringContainsStringIgnoringLineEndings( $needle, $haystack );
 	}
@@ -296,6 +305,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAllLineEndingVariations' )]
 	public function testAssertStringContainsStringIgnoringLineEndingsBug5279( $needle, $haystack ) {
 		if ( \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
 			&& \version_compare( PHPUnit_Version::id(), '10.0.16', '<' )
@@ -318,6 +328,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertStringContainsStringIgnoringLineEndingsFails' )]
 	public function testAssertStringContainsStringIgnoringLineEndingsFails( $needle, $haystack ) {
 		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndingsForTests();
 		$pattern  = \sprintf(

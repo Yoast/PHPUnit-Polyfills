@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit_Framework_AssertionFailedError;
@@ -47,6 +48,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyFailsOnInvalidInputTypePropertyName' )]
 	public function testAssertObjectHasPropertyFailsOnInvalidInputTypePropertyName( $input ) {
 		if ( \is_scalar( $input ) && $this->usesNativePHPUnitAssertion() ) {
 			$this->markTestSkipped( 'PHPUnit native implementation relies on strict_types and when not used will accept scalar inputs' );
@@ -76,6 +78,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyFailsOnInvalidInputTypePropertyName' )]
 	public function testAssertObjectNotHasPropertyFailsOnInvalidInputTypePropertyName( $input ) {
 		if ( \is_scalar( $input ) && $this->usesNativePHPUnitAssertion() ) {
 			$this->markTestSkipped( 'PHPUnit native implementation relies on strict_types and when not used will accept scalar inputs' );
@@ -126,6 +129,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyFailsOnInvalidInputTypeObject' )]
 	public function testAssertObjectHasPropertyFailsOnInvalidInputTypeObject( $input ) {
 		$this->expectException( TypeError::class );
 
@@ -151,6 +155,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyFailsOnInvalidInputTypeObject' )]
 	public function testAssertObjectNotHasPropertyFailsOnInvalidInputTypeObject( $input ) {
 		$this->expectException( TypeError::class );
 
@@ -197,6 +202,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyDeclaredProps' )]
 	public function testAssertObjectHasPropertyPass( $name ) {
 		$this->assertObjectHasProperty( $name, new ObjectWithProperties() );
 	}
@@ -210,6 +216,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyUnavailableProps' )]
 	public function testAssertObjectNotHasPropertyPass( $name ) {
 		self::assertObjectNotHasProperty( $name, new ObjectWithProperties() );
 	}
@@ -223,6 +230,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyUnavailableProps' )]
 	public function testAssertObjectHasPropertyFails( $name ) {
 		$pattern = \sprintf(
 			'`^Failed asserting that object of class "[^\s]*ObjectWithProperties" has (?:property|attribute) "%s"\.`',
@@ -244,6 +252,7 @@ final class AssertObjectPropertyTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataAssertObjectPropertyDeclaredProps' )]
 	public function testAssertObjectNotHasPropertyFails( $name ) {
 		$pattern = \sprintf(
 			'`^Failed asserting that object of class "[^\s]*ObjectWithProperties" does not have (?:property|attribute) "%s"\.`',
