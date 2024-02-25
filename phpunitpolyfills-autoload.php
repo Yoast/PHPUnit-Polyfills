@@ -29,22 +29,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return bool
 		 */
 		public static function load( $className ) {
-			/*
-			 * Polyfill two PHP 7.0 classes.
-			 * The autoloader will only be called for these if these classes don't already
-			 * exist in PHP natively.
-			 */
-			if ( $className === 'Error' || $className === 'TypeError' ) {
-				$file = \realpath( __DIR__ . '/src/Exceptions/' . $className . '.php' );
-
-				if ( \is_string( $file ) && \file_exists( $file ) === true ) {
-					require_once $file;
-					return true;
-				}
-
-				return false;
-			}
-
 			// Only load classes belonging to this library.
 			if ( \stripos( $className, 'Yoast\PHPUnitPolyfills' ) !== 0 ) {
 				return false;

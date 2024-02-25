@@ -67,10 +67,6 @@
 		 polyfilled functionality from not being flagged in this repo. -->
 	<rule ref="PHPCompatibility">
 		<severity>5</severity>
-
-		<!-- These PHP 7.0+ classes are polyfilled for this repo. -->
-		<exclude name="PHPCompatibility.Classes.NewClasses.errorFound"/>
-		<exclude name="PHPCompatibility.Classes.NewClasses.typeerrorFound"/>
 	</rule>
 
 	<!-- Enforce PSR1 compatible namespaces. -->
