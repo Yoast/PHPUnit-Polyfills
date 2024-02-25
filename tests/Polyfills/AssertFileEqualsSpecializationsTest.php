@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
 
@@ -10,6 +11,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations
  */
+#[CoversClass( AssertFileEqualsSpecializations::class )]
 final class AssertFileEqualsSpecializationsTest extends TestCase {
 
 	use AssertFileEqualsSpecializations;

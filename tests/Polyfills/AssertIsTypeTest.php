@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
@@ -11,6 +12,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertIsType
  */
+#[CoversClass( AssertIsType::class )]
 final class AssertIsTypeTest extends TestCase {
 
 	use AssertIsType;

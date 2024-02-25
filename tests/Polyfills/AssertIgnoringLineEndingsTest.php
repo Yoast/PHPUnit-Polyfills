@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
@@ -20,6 +21,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings
  */
+#[CoversClass( AssertIgnoringLineEndings::class )]
 final class AssertIgnoringLineEndingsTest extends TestCase {
 
 	use AssertIgnoringLineEndings;

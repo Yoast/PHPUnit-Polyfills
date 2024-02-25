@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Exceptions;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
 
@@ -10,6 +11,7 @@ use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
  *
  * @covers \Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException
  */
+#[CoversClass( InvalidComparisonMethodException::class )]
 final class InvalidComparisonMethodExceptionTest extends TestCase {
 
 	/**

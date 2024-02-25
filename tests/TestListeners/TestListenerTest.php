@@ -2,10 +2,13 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use PHPUnit\Framework\TestResult;
 use Yoast\PHPUnitPolyfills\Autoload;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
+use Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods;
 use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementation;
 
 /**
@@ -16,6 +19,8 @@ use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementati
  *
  * @requires PHPUnit < 10
  */
+#[CoversClass( TestListenerDefaultImplementation::class )]
+#[CoversClass( TestListenerSnakeCaseMethods::class )]
 final class TestListenerTest extends TestCase {
 
 	/**

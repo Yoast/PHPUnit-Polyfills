@@ -2,6 +2,8 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
 /**
@@ -24,6 +26,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable Generic.PHP.DeprecatedFunctions.Deprecated
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.shmop_closeDeprecated
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
 final class AssertClosedResourceShmopTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;

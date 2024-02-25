@@ -2,6 +2,8 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
 /**
@@ -15,6 +17,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * @requires extension bz2
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
 final class AssertClosedResourceBzip2Test extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;

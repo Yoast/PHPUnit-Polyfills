@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
 
@@ -11,6 +12,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject
  */
+#[CoversClass( ExpectExceptionObject::class )]
 final class ExpectExceptionObjectTest extends TestCase {
 
 	use ExpectExceptionObject;

@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
@@ -14,6 +15,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertIsList
  */
+#[CoversClass( AssertIsList::class )]
 final class AssertIsListTest extends TestCase {
 
 	use AssertIsList;

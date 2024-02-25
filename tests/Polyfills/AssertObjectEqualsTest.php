@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException;
 use PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException;
 use PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException;
@@ -33,6 +34,7 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
  *
  * @requires PHP 7.0
  */
+#[CoversClass( AssertObjectEquals::class )]
 final class AssertObjectEqualsTest extends TestCase {
 
 	use AssertObjectEquals;
