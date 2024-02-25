@@ -424,6 +424,25 @@ These methods were later backported to the PHPUnit 9 branch and included in the 
 [`Assert::assertObjectHasProperty()`]:    https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
 [`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
 
+#### PHPUnit < 11.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertArrayWithListKeys`
+
+Polyfills the following method:
+|                                                                      |                                                               |
+| -------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`Assert::assertArrayIsEqualToArrayOnlyConsideringListOfKeys()`]     | [`Assert::assertArrayIsEqualToArrayIgnoringListOfKeys()`]     |
+| [`Assert::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys()`] | [`Assert::assertArrayIsIdenticalToArrayIgnoringListOfKeys()`] |
+
+These methods were introduced in PHPUnit 11.0.0.
+
+This functionality resembles the functionality previously offered by the `Assert::assertArraySubset()` assertion, which was removed in PHPUnit 9.0.0, but with higher precision.
+
+Refactoring tests which still use `Assert::assertArraySubset()` to use the new assertions should be considered as an upgrade path.
+
+[`Assert::assertArrayIsEqualToArrayOnlyConsideringListOfKeys()`]:     https://docs.phpunit.de/en/main/assertions.html#assertarrayisequaltoarrayonlyconsideringlistofkeys
+[`Assert::assertArrayIsEqualToArrayIgnoringListOfKeys()`]:            https://docs.phpunit.de/en/main/assertions.html#assertarrayisequaltoarrayignoringlistofkeys
+[`Assert::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys()`]: https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayonlyconsideringlistofkeys
+[`Assert::assertArrayIsIdenticalToArrayIgnoringListOfKeys()`]:        https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayignoringlistofkeys
+
 
 ### TestCases
 
