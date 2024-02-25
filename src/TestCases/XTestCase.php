@@ -2,6 +2,10 @@
 
 namespace Yoast\PHPUnitPolyfills\TestCases;
 
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\AfterClass;
+use PHPUnit\Framework\Attributes\Before;
+use PHPUnit\Framework\Attributes\BeforeClass;
 use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
 use Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
@@ -55,6 +59,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	 *
 	 * @return void
 	 */
+	#[BeforeClass]
 	public static function setUpFixturesBeforeClass() {
 		parent::setUpBeforeClass();
 	}
@@ -68,6 +73,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	 *
 	 * @return void
 	 */
+	#[Before]
 	protected function setUpFixtures() {
 		parent::setUp();
 	}
@@ -81,6 +87,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	 *
 	 * @return void
 	 */
+	#[After]
 	protected function tearDownFixtures() {
 		parent::tearDown();
 	}
@@ -94,6 +101,7 @@ abstract class XTestCase extends PHPUnit_TestCase {
 	 *
 	 * @return void
 	 */
+	#[AfterClass]
 	public static function tearDownFixturesAfterClass() {
 		parent::tearDownAfterClass();
 	}

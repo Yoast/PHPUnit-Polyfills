@@ -2,6 +2,10 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\AfterClass;
+use PHPUnit\Framework\Attributes\Before;
+use PHPUnit\Framework\Attributes\BeforeClass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
@@ -47,6 +51,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @return void
 	 */
+	#[BeforeClass]
 	public static function setUpFixturesBeforeClass() {
 		parent::setUpFixturesBeforeClass();
 
@@ -60,6 +65,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @return void
 	 */
+	#[Before]
 	protected function setUpFixtures() {
 		parent::setUpFixtures();
 
@@ -73,6 +79,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @return void
 	 */
+	#[After]
 	protected function tearDownFixtures() {
 		++self::$after;
 
@@ -86,6 +93,7 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @return void
 	 */
+	#[AfterClass]
 	public static function tearDownFixturesAfterClass() {
 		// Reset.
 		self::$beforeClass = 0;
