@@ -54,7 +54,6 @@
 		<exclude name="WordPressVIPMinimum"/>
 
 		<!-- Exclude select "modern PHP" sniffs, which conflict with the minimum supported PHP version of this package. -->
-		<exclude name="Modernize.FunctionCalls.Dirname.Nested"/><!-- PHP 7.0+. -->
 		<exclude name="PSR12.Properties.ConstantVisibility"/><!-- PHP 7.1+. -->
 		<exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/><!-- PHP 7.1+. -->
 
@@ -179,22 +178,13 @@
 		<exclude-pattern>/tests/Polyfills/Fixtures/*\.php$</exclude-pattern>
 	</rule>
 
-	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 7+/8+ respectively. -->
-	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ChildValueObject\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 7.1+/8+ respectively. -->
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType\.php$</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.Operators.NewOperators.t_spaceshipFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>

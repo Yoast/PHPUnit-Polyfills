@@ -26,7 +26,7 @@
 		"security": "https://github.com/Yoast/PHPUnit-Polyfills/security/policy"
 	},
 	"require": {
-		"php": ">=5.6",
+		"php": ">=7.0",
 		"phpunit/phpunit": "^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0"
 	},
 	"require-dev": {
@@ -64,9 +64,6 @@
 		"lint70": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
 		],
-		"lint-lt70": [
-			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/TestCases/TestCasePHPUnitGte8.php --exclude src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php --exclude tests/Polyfills/Fixtures/ChildValueObject.php --exclude tests/Polyfills/Fixtures/ValueObject.php --exclude tests/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType.php"
-		],
 		"lint-gte80": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"
 		],
@@ -74,7 +71,7 @@
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git  --exclude tests/Polyfills/Fixtures/ValueObjectNoReturnType.php"
 		],
 		"check-cs": [
-			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --runtime-set testVersion 5.6-"
+			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --runtime-set testVersion 7.0-"
 		],
 		"fix-cs": [
 			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
@@ -95,7 +92,6 @@
 	"scripts-descriptions": {
 		"lint7": "Check the PHP files for parse errors. (PHP 7.1 - 7.4)",
 		"lint70": "Check the PHP files for parse errors. (PHP 7.0)",
-		"lint-lt70": "Check the PHP files for parse errors. (PHP < 7.0)",
 		"lint-gte80": "Check the PHP files for parse errors. (PHP 8.0 - 8.3)",
 		"lint-gte84": "Check the PHP files for parse errors. (PHP 8.4+)",
 		"check-cs": "Check the PHP files for code style violations and best practices.",

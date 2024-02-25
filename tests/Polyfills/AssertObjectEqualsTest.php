@@ -109,7 +109,7 @@ final class AssertObjectEqualsTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7 or PHP 8 with the polyfill.
+			// PHP 7 or PHP 8 with the polyfill.
 			$pattern = '`^Argument 1 passed to [^\s]*assertObjectEquals\(\) must be an object, string given`';
 			$this->expectExceptionMessageMatches( $pattern );
 		}
@@ -133,7 +133,7 @@ final class AssertObjectEqualsTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$pattern = '`^Argument 2 passed to [^\s]*assertObjectEquals\(\) must be an object, string given`';
 			$this->expectExceptionMessageMatches( $pattern );
 		}
@@ -158,7 +158,7 @@ final class AssertObjectEqualsTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$pattern = '`^Argument 3 passed to [^\s]*assertObjectEquals\(\) must be of the type string, array given`';
 			$this->expectExceptionMessageMatches( $pattern );
 		}
