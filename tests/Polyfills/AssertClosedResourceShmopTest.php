@@ -2,8 +2,8 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
-use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
@@ -24,33 +24,18 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  *
  * @requires extension shmop
+ * @requires PHP < 8.0
  *
  * @phpcs:disable Generic.PHP.DeprecatedFunctions.Deprecated
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.shmop_closeDeprecated
  */
 #[CoversClass( AssertClosedResource::class )]
 #[CoversClass( ResourceHelper::class )]
+#[RequiresPhp( '< 8.0' )]
 #[RequiresPhpExtension( 'shmop' )]
 final class AssertClosedResourceShmopTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
-
-	/**
-	 * Skip these tests on incompatible PHP versions.
-	 *
-	 * {@internal The PHPUnit `@requires` tag can only handle one `PHP` requirement,
-	 * while we need two.}
-	 *
-	 * @before
-	 *
-	 * @return void
-	 */
-	#[Before]
-	protected function skipOnIncompatiblePHP() {
-		if ( \PHP_VERSION_ID < 70000 || \PHP_VERSION_ID >= 80000 ) {
-			$this->markTestSkipped( 'This test requires PHP 7.x.' );
-		}
-	}
 
 	/**
 	 * Verify availability of the assertIsClosedResource() method.

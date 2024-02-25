@@ -8,7 +8,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
-use PHPUnit_Framework_AssertionFailedError;
 use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
 use SebastianBergmann\Exporter\Exporter;
 use stdClass;
@@ -156,7 +155,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			self::normalizeLineEndings( $expected )
 		);
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessage( $msg );
 
 		$this->assertStringEqualsStringIgnoringLineEndings( $expected, $actual );
@@ -197,7 +196,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 
 		$pattern = '`^This assertion failed for reason XYZ\s+' . \preg_quote( $msg, '`' ) . '`s';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringEqualsStringIgnoringLineEndings( $expected, $actual, 'This assertion failed for reason XYZ' );
@@ -338,7 +337,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			'( \[[^\]]+\]\(length: [0-9]+\))?'
 		);
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringContainsStringIgnoringLineEndings( $needle, $haystack );
@@ -370,21 +369,6 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			'array'   => [ [ 'a' ] ],
 			'object'  => [ new stdClass() ],
 		];
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 
 	/**

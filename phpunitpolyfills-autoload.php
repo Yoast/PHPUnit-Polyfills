@@ -5,7 +5,6 @@ namespace Yoast\PHPUnitPolyfills;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
-use PHPUnit_Runner_Version;
 
 if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
@@ -350,18 +349,11 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		/**
 		 * Retrieve the PHPUnit version id.
 		 *
-		 * As both the pre-PHPUnit 6 class, as well as the PHPUnit 6+ class contain the `id()` function,
-		 * this should work independently of whether or not another library may have aliased the class.
-		 *
 		 * @return string Version number as a string.
 		 */
 		public static function getPHPUnitVersion() {
 			if ( \class_exists( '\PHPUnit\Runner\Version' ) ) {
 				return PHPUnit_Version::id();
-			}
-
-			if ( \class_exists( '\PHPUnit_Runner_Version' ) ) {
-				return PHPUnit_Runner_Version::id();
 			}
 
 			return '0';

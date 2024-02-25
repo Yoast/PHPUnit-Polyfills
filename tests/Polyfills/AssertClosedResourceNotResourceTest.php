@@ -6,7 +6,6 @@ use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
@@ -39,7 +38,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	public function testAssertIsClosedResource( $value ) {
 		$pattern = '`^Failed asserting that .+? is of type ["]?resource \(closed\)["]?`s';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertIsClosedResource( $value );
@@ -54,7 +53,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	public function testAssertIsClosedResourceFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that .+? is of type ["]?resource \(closed\)["]?`s';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertIsClosedResource( 'text string', 'This assertion failed for reason XYZ' );
@@ -84,7 +83,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	public function testAssertIsNotClosedResourceFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that .+? not of type ["]?resource \(closed\)["]?`s';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$resource = \opendir( __DIR__ . '/Fixtures/' );
@@ -124,20 +123,5 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 			'array-not-empty' => [ [ 'key' => 'value' ] ],
 			'object'          => [ new stdClass() ],
 		];
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 }

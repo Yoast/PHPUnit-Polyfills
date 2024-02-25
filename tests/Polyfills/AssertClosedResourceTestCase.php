@@ -4,7 +4,6 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_AssertionFailedError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
@@ -26,7 +25,7 @@ abstract class AssertClosedResourceTestCase extends TestCase {
 	public function isClosedResourceExpectExceptionOnOpenResource( $actual ) {
 		$pattern = '`^Failed asserting that .+? is of type ["]?resource \(closed\)["]?`';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertIsClosedResource( $actual );
@@ -46,24 +45,9 @@ abstract class AssertClosedResourceTestCase extends TestCase {
 		 */
 		$pattern = '`^Failed asserting that (resource \(closed\)|NULL) is not of type ["]?resource \(closed\)["]?`';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		self::assertIsNotClosedResource( $actual );
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 }
