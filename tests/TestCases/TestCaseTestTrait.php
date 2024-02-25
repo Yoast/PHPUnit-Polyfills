@@ -148,4 +148,22 @@ trait TestCaseTestTrait {
 
 		self::assertObjectHasProperty( 'prop', $object );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [18].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertArrayWithListKeys() {
+		$expected = [
+			'a' => 'b',
+			'b' => 'c',
+		];
+		$actual   = [
+			'a' => 'b',
+			'b' => 'b',
+		];
+
+		self::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys( $expected, $actual, [ 'a' ] );
+	}
 }
