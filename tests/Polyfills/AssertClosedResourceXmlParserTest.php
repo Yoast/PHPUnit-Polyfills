@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
@@ -20,6 +21,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @requires extension libxml
  * @requires PHP < 8.0
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
 final class AssertClosedResourceXmlParserTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;

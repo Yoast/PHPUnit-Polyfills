@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_AssertionFailedError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
@@ -13,6 +14,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains
  */
+#[CoversClass( AssertStringContains::class )]
 final class AssertStringContainsTest extends TestCase {
 
 	use AssertStringContains;

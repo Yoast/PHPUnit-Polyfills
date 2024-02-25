@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
 use PHPUnit_Framework_AssertionFailedError;
@@ -30,6 +31,7 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
  */
+#[CoversClass( AssertObjectEquals::class )]
 final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 
 	use AssertObjectEquals;

@@ -3,9 +3,11 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
@@ -15,6 +17,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  * @covers \Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
 final class AssertClosedResourceNotResourceTest extends TestCase {
 
 	use AssertClosedResource;

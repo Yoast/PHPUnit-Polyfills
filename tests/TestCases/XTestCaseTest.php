@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
 
 /**
@@ -9,6 +10,7 @@ use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
  *
  * @covers \Yoast\PHPUnitPolyfills\TestCases\XTestCase
  */
+#[CoversClass( XTestCase::class )]
 final class XTestCaseTest extends XTestCase {
 
 	use TestCaseTestTrait;

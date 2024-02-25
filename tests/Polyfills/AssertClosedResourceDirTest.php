@@ -2,6 +2,8 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
 /**
@@ -13,6 +15,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @covers \Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
 final class AssertClosedResourceDirTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;
