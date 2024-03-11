@@ -177,4 +177,15 @@ trait TestCaseTestTrait {
 		$actual   = new ValueObject( 'different' );
 		$this->assertObjectNotEquals( $expected, $actual );
 	}
+
+	/**
+	 * Test availability of trait polyfilled PHPUnit methods [20].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityExpectUserDeprecation() {
+		$this->expectUserDeprecationMessage( 'This is a deprecation notice' );
+
+		trigger_error( 'This is a deprecation notice', E_USER_DEPRECATED );
+	}
 }

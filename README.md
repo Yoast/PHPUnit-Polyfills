@@ -440,6 +440,21 @@ Refactoring tests which still use `Assert::assertArraySubset()` to use the new a
 [`Assert::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys()`]: https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayonlyconsideringlistofkeys
 [`Assert::assertArrayIsIdenticalToArrayIgnoringListOfKeys()`]:        https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayignoringlistofkeys
 
+#### PHPUnit < 11.0.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectUserDeprecation`
+
+|                                              |                                                     |
+|----------------------------------------------|-----------------------------------------------------|
+| [`TestCase::expectUserDeprecationMessage()`] | [`TestCase::expectUserDeprecationMessageMatches()`] |
+
+These methods were introduced in PHPUnit 11.0.0.
+
+This functionality resembles the functionality previously offered by the `TestCase::expectDeprecationMessage()` and `TestCase::expectDeprecationMessageMatches()` methods, which were removed in PHPUnit 10.0.0.
+
+However, their use is slightly different and the polyfill implementation....
+
+[`TestCase::expectUserDeprecationMessage()`]: https://docs.phpunit.de/en/main/error-handling.html#expecting-deprecations-e-user-deprecated
+[`TestCase::expectUserDeprecationMessageMatches()`]: https://docs.phpunit.de/en/main/error-handling.html#expecting-deprecations-e-user-deprecated
+
 #### PHPUnit < 11.2.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals`
 
 Polyfills the [`Assert::assertObjectNotEquals()`] method to verify two (value) objects are **_not_** considered equal.
