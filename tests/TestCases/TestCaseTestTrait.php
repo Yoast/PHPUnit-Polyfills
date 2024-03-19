@@ -186,6 +186,6 @@ trait TestCaseTestTrait {
 	final public function testAvailabilityExpectUserDeprecation() {
 		$this->expectUserDeprecationMessage( 'This is a deprecation notice' );
 
-		trigger_error( 'This is a deprecation notice', E_USER_DEPRECATED );
+		\trigger_error( 'This is a deprecation notice', \E_USER_DEPRECATED );
 	}
 }
