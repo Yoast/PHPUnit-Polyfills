@@ -28,24 +28,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # This action also handles the caching of the dependencies.
-      # https://github.com/actions/setup-node
-      - name: Set up node and enable caching of dependencies
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16'
-
-      # @link https://github.com/DavidAnson/markdownlint-cli2
-      # @link https://github.com/DavidAnson/markdownlint
-      - name: Install Markdownlint CLI2
-        run: npm install -g markdownlint-cli2
-
       # @link https://github.com/marketplace/actions/problem-matcher-for-markdownlint-cli
       - name: Enable showing issue in PRs
         uses: xt0rted/markdownlint-problem-matcher@v3
 
+      # @link https://github.com/marketplace/actions/markdownlint-cli2-action
       - name: Check markdown with CLI2
-        run: markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v15
 
   remark:
     name: 'QA Markdown'
