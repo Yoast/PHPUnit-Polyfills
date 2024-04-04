@@ -125,7 +125,7 @@ trait TestCaseTestTrait {
 	/**
 	 * Verify availability of trait polyfilled PHPUnit methods [14].
 	 *
-	 * @requires PHP 7.0
+	 * @requires PHP 7.1
 	 *
 	 * @return void
 	 */
