@@ -23,6 +23,8 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionNoReturnType
  * would make a test incompatible with the PHPUnit 9.4.0+ native implementation
  * of the assertion.
  *
+ * These tests are not run on PHP 8.4+ as only PHPUnit 9.5+ is compatible with PHP 8.4.
+ *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
  */
 final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
@@ -53,6 +55,10 @@ final class AssertObjectEqualsPHPUnitLt940Test extends TestCase {
 	public function maybeSkipTest() {
 		if ( \version_compare( PHPUnit_Version::id(), '9.4.0', '>=' ) ) {
 			$this->markTestSkipped( 'This test can not be run with the PHPUnit native implementation of assertObjectEquals()' );
+		}
+
+		if ( \version_compare( \PHP_VERSION_ID, '8.3.99', '>' ) ) {
+			$this->markTestSkipped( 'This test can not be run on PHP 8.4 or higher as PHPUnit < 9.4.0 is not compatible with PHP 8.4' );
 		}
 	}
 

@@ -18,12 +18,16 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
  * Due to the use of return types in the classes under test (fixtures), these
  * tests can only run on PHP 7.0 and higher.
  *
+ * And due to the implicitly nullable parameter deprecation in PHP 8.4 requiring a
+ * nullable type for one of the tests, the minimum PHP version for running this
+ * version of the tests has been set to PHP 7.1.
+ *
  * The `AssertObjectEqualsPHPUnitLt940Test` class mirrors this test class
- * and tests the polyfill method for PHP < 7.0.
+ * and tests the polyfill method for PHP < 7.1.
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
  *
- * @requires PHP 7.0
+ * @requires PHP 7.1
  */
 final class AssertObjectEqualsTest extends TestCase {
 
