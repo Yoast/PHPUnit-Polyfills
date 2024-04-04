@@ -66,7 +66,7 @@ class ValueObject {
 	 *
 	 * @return bool
 	 */
-	public function equalsParamNotRequired( self $other = null ): bool {
+	public function equalsParamNotRequired( ?self $other = null ): bool {
 		return ( $this->value === $other->value );
 	}
 
