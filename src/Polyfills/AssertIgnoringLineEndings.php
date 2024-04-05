@@ -2,7 +2,8 @@
 
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
-use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
+use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
+use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
 use SebastianBergmann\Exporter\Exporter;
 use TypeError;
 
@@ -56,7 +57,7 @@ trait AssertIgnoringLineEndings {
 		}
 
 		$expected = self::normalizeLineEndingsForIgnoringLineEndingsAssertions( (string) $expected );
-		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
+		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndings();
 		$msg      = \sprintf(
 			'Failed asserting that %s is equal to "%s" ignoring line endings.',
 			$exporter->export( $actual ),
@@ -127,5 +128,24 @@ trait AssertIgnoringLineEndings {
 				"\r"   => "\n",
 			]
 		);
+	}
+
+	/**
+	 * Helper function to obtain an instance of the Exporter class.
+	 *
+	 * @return SebastianBergmann\Exporter\Exporter|PHPUnitPHAR\SebastianBergmann\Exporter\Exporter|PHPUnit\SebastianBergmann\Exporter\Exporter
+	 */
+	private static function getPHPUnitExporterObjectForIgnoringLineEndings() {
+		if ( \class_exists( Exporter::class ) ) {
+			// Composer install or really old PHAR files.
+			return new Exporter();
+		}
+		elseif ( \class_exists( Exporter_In_Phar::class ) ) {
+			// PHPUnit PHAR file for 8.5.38+, 9.6.19+, 10.5.17+ and 11.0.10+.
+			return new Exporter_In_Phar();
+		}
+
+		// PHPUnit PHAR file for < 8.5.38, < 9.6.19, < 10.5.17 and < 11.0.10.
+		return new Exporter_In_Phar_Old();
 	}
 }
