@@ -9,6 +9,17 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [2.0.1] - 2024-04-05
+
+### Added
+* Compatibility fixes for running tests using a PHPUnit PHAR file for PHPUnit 8.5.38+, 9.6.19+ and PHPUnit 10.5.17+. PRs [#161], [#164].
+
+### Changed
+* General housekeeping.
+
+[#164]: https://github.com/Yoast/PHPUnit-Polyfills/pull/164
+
+
 ## [2.0.0] - 2023-06-06
 
 ### PHPUnit 10 support
@@ -231,7 +242,8 @@ As of version 2.15.0 of the `shivammathur/setup-php` action for GitHub Actions, 
 Initial release.
 
 
-[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.x...HEAD
+[2.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.5...2.0.0
 [1.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.5...1.1.0
