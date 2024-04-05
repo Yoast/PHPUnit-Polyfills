@@ -190,8 +190,218 @@ jobs:
           flag-name: php-${{ matrix.php }}-phpunit-${{ matrix.phpunit }}
           parallel: true
 
+  test-phar:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          # Test against the high/low supported PHP-PHPUnit combinations.
+          #
+          # Code coverage is only run against the high/high PHP-PHPUnit combinations
+          # and very select other combinations.
+          # This should be sufficient to record the coverage for the PHAR specific code.
+
+          # PHPUnit 5 is only supported for PHPUnit 5.7.21-latest.
+          - php: '5.6'
+            phpunit: '5.7.21'
+          - php: '5.6'
+            phpunit: '5'
+          - php: '7.1'
+            phpunit: '5.7.21'
+          - php: '7.1'
+            phpunit: '5'
+            coverage: true
+
+          # PHPUnit 6 is fully supported for the officially supported PHP versions.
+          - php: '7.0'
+            phpunit: '6.0'
+          - php: '7.0'
+            phpunit: '6'
+          - php: '7.2'
+            phpunit: '6.0'
+          - php: '7.2'
+            phpunit: '6'
+            coverage: true
+
+          # PHPUnit 7 is fully supported for the officially supported PHP versions.
+          # Caveats:
+          # - PHPUnit 7.0 seems to have an issue with something related to TestListeners, so using PHPUnit 7.1 instead for "low".
+          # - PHPUnit 7 supports PHP 7.3 as of PHPUnit 7.3.0 (for our purposes).
+          - php: '7.1'
+            phpunit: '7.1'
+          - php: '7.1'
+            phpunit: '7'
+          - php: '7.3'
+            phpunit: '7.3'
+          - php: '7.3'
+            phpunit: '7'
+            coverage: true
+
+          # PHPUnit 8 is fully supported for the officially supported PHP versions.
+          # Caveats:
+          # - PHPUnit 8 supports PHP 8.0 as of PHPUnit 8.5.12 (for our purposes).
+          # - PHPUnit 8 supports PHP 8.1 as of PHPUnit 8.5.19 (for our purposes).
+          # - PHPUnit 8 supports PHP 8.2 as of PHPUnit 8.5.19 (for our purposes).
+          # - PHPUnit 8 supports PHP 8.3 as of PHPUnit 8.5.19 (for our purposes).
+          # - PHPUnit 8 does not support running code coverage on PHP 8.0 or higher.
+          - php: '7.2'
+            phpunit: '8.0'
+            coverage: true
+          - php: '7.2'
+            phpunit: '8'
+          - php: '7.4'
+            phpunit: '8'
+            coverage: true
+          - php: '8.0'
+            phpunit: '8.5.12'
+          - php: '8.3'
+            phpunit: '8.5.19'
+          - php: '8.3'
+            phpunit: '8'
+
+          # PHPUnit 9 is fully supported for the officially supported PHP versions.
+          # Caveats:
+          # - PHPUnit 9 supports PHP 8.0 as of PHPUnit 9.3.0 (for our purposes).
+          # - PHPUnit 9 supports PHP 8.1 as of PHPUnit 9.5.8 (for our purposes).
+          # - PHPUnit 9 supports PHP 8.2 as of PHPUnit 9.5.8 (for our purposes).
+          # - PHPUnit 9 supports PHP 8.3 as of PHPUnit 9.5.8 (for our purposes).
+          - php: '7.3'
+            phpunit: '9.0'
+            coverage: true
+          - php: '7.3'
+            phpunit: '9'
+          - php: '8.0'
+            phpunit: '9.3.0'
+          - php: '8.0'
+            phpunit: '9'
+          - php: '8.1'
+            phpunit: '9.5.8'
+          - php: '8.1'
+            phpunit: '9'
+          - php: '8.2'
+            phpunit: '9.5.8'
+          - php: '8.2'
+            phpunit: '9'
+          - php: '8.3'
+            phpunit: '9.5.8'
+          - php: '8.3'
+            phpunit: '9'
+            coverage: true
+
+          # PHPUnit 10 is fully supported for the officially supported PHP versions.
+          # Caveats:
+          # - PHPUnit 10 supports PHP 8.2 as of PHPUnit 9.5.8 (for our purposes).
+          # - PHPUnit 10 supports PHP 8.3 as of PHPUnit 9.5.8 (for our purposes).
+          - php: '8.1'
+            phpunit: '10.0'
+            coverage: true
+          - php: '8.1'
+            phpunit: '10'
+          - php: '8.2'
+            phpunit: '10.0'
+          - php: '8.2'
+            phpunit: '10'
+          - php: '8.3'
+            phpunit: '10.0'
+          - php: '8.3'
+            phpunit: '10'
+            coverage: true
+
+          # Experimental builds.
+          - php: '8.4'
+            phpunit: '9'
+          - php: '8.4'
+            phpunit: '10'
+
+    name: "PHAR test: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
+
+    continue-on-error: ${{ matrix.php == '8.4' }}
+
+    env:
+      EXTRA_PHPUNIT_CLIARGS: '--fail-on-deprecation --fail-on-notice'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
+          tools: phpunit:${{ matrix.phpunit }}
+          coverage: ${{ matrix.coverage && 'xdebug' || 'none' }}
+        env:
+          fail-fast: true
+
+      # YoastCS 3.0 has a PHP 7.2 minimum which conflicts with the requirements of this package.
+      - name: 'Composer: remove YoastCS'
+        run: composer remove --dev yoast/yoastcs --no-update --no-interaction
+
+      # Remove PHPUnit from the Composer install as we want to be sure the PHAR file is used.
+      - name: 'Composer: remove PHPUnit'
+        run: composer remove phpunit/phpunit --no-update --no-interaction
+
+      # Install dependencies and handle caching in one go.
+      # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
+      - name: Install Composer dependencies - normal
+        if: matrix.php != '8.4'
+        uses: "ramsey/composer-install@v3"
+        with:
+          composer-options: "--no-dev"
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
+
+      - name: Install Composer dependencies - ignore PHP restrictions
+        if: matrix.php == '8.4'
+        uses: "ramsey/composer-install@v3"
+        with:
+          composer-options: "--no-dev --ignore-platform-req=php+"
+          # Bust the cache at least once a month - output format: YYYY-MM.
+          custom-cache-suffix: $(date -u "+%Y-%m")
+
+      - name: Grab PHPUnit version
+        id: phpunit_version
+        run: echo "VERSION=$(phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> $GITHUB_OUTPUT
+
+      - name: "DEBUG: Show grabbed version"
+        run: echo ${{ steps.phpunit_version.outputs.VERSION }}
+
+      - name: "Run the unit tests (PHPUnit < 10)"
+        if: ${{ ! matrix.coverage && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: phpunit --no-coverage
+
+      - name: "Run the unit tests with code coverage (PHPUnit < 10)"
+        if: ${{ matrix.coverage && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: phpunit
+
+        # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
+        # versions as otherwise the warning about these would fail the build (which to me, feels like a bug).
+      - name: "Migrate configuration (PHPUnit 10.0+)"
+        continue-on-error: true
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && steps.phpunit_version.outputs.VERSION != '10.0' }}
+        run: phpunit -c phpunit10.xml.dist --migrate-configuration
+
+      - name: "Run the unit tests (PHPUnit 10.0+)"
+        if: ${{ ! matrix.coverage && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: phpunit -c phpunit10.xml.dist  --no-coverage ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
+
+      - name: "Run the unit tests with code coverage (PHPUnit 10.0+)"
+        if: ${{ matrix.coverage == true && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        run: phpunit -c phpunit10.xml.dist ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
+
+      - name: Upload coverage results to Coveralls
+        if: ${{ success() && matrix.coverage == true }}
+        uses: coverallsapp/github-action@v2
+        with:
+          file: build/logs/clover.xml
+          format: clover
+          flag-name: php-${{ matrix.php }}-phpunit-phar-${{ matrix.phpunit }}
+          parallel: true
+
   coveralls-finish:
-    needs: test
+    needs: [test, test-phar]
     runs-on: ubuntu-latest
 
     steps:
