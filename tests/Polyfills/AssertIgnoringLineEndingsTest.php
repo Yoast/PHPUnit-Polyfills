@@ -5,8 +5,9 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
-use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
+use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
 use PHPUnit_Framework_AssertionFailedError;
+use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
 use SebastianBergmann\Exporter\Exporter;
 use stdClass;
 use TypeError;
@@ -140,7 +141,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 */
 	public function testAssertStringEqualsStringIgnoringLineEndingsFails( $expected, $actual ) {
 
-		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
+		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndingsForTests();
 		$msg      = \sprintf(
 			'Failed asserting that %s is equal to "%s" ignoring line endings.',
 			$exporter->export( $actual ),
@@ -179,7 +180,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 		$actual   = 'ab';
 		$expected = "a b\n";
 
-		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
+		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndingsForTests();
 		$msg      = \sprintf(
 			'Failed asserting that %s is equal to "%s" ignoring line endings.',
 			$exporter->export( $actual ),
@@ -316,7 +317,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertStringContainsStringIgnoringLineEndingsFails( $needle, $haystack ) {
-		$exporter = \class_exists( Exporter::class ) ? new Exporter() : new Exporter_In_Phar();
+		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndingsForTests();
 		$pattern  = \sprintf(
 			'`^Failed asserting that %1$s%3$s contains "%2$s"%3$s\.`',
 			\preg_quote( $exporter->export( $haystack ), '`' ),
@@ -388,5 +389,26 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 				"\r"   => "\n",
 			]
 		);
+	}
+
+	/**
+	 * Helper function to obtain an instance of the Exporter class.
+	 *
+	 * Note: the helper from the trait is accessible, but may not be available if the "empty" trait is being loaded.
+	 *
+	 * @return SebastianBergmann\Exporter\Exporter|PHPUnitPHAR\SebastianBergmann\Exporter\Exporter|PHPUnit\SebastianBergmann\Exporter\Exporter
+	 */
+	private static function getPHPUnitExporterObjectForIgnoringLineEndingsForTests() {
+		if ( \class_exists( Exporter::class ) ) {
+			// Composer install or really old PHAR files.
+			return new Exporter();
+		}
+		elseif ( \class_exists( Exporter_In_Phar::class ) ) {
+			// PHPUnit PHAR file for 8.5.38+, 9.6.19+, 10.5.17+ and 11.0.10+.
+			return new Exporter_In_Phar();
+		}
+
+		// PHPUnit PHAR file for < 8.5.38, < 9.6.19, < 10.5.17 and < 11.0.10.
+		return new Exporter_In_Phar_Old();
 	}
 }
