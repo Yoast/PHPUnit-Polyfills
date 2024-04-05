@@ -63,6 +63,17 @@ Projects which don't use any of the new or removed functionality in their test s
 [#130]: https://github.com/Yoast/PHPUnit-Polyfills/pull/130
 
 
+## [1.1.1] - 2024-04-05
+
+### Added
+* Compatibility fix for running tests using a PHPUnit PHAR file for PHPUnit 8.5.38+ and PHPUnit 9.6.19+. PR [#161].
+
+### Changed
+* General housekeeping.
+
+[#161]: https://github.com/Yoast/PHPUnit-Polyfills/pull/161
+
+
 ## [1.1.0] - 2023-08-19
 
 ### Added
@@ -222,6 +233,7 @@ Initial release.
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
 [2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.5...2.0.0
+[1.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.5...1.1.0
 [1.0.5]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.0.3...1.0.4
