@@ -19,7 +19,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 *
 		 * @var string
 		 */
-		const VERSION = '2.0.0';
+		const VERSION = '2.0.1';
 
 		/**
 		 * Loads a class.
