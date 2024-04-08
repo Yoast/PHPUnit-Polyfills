@@ -34,7 +34,7 @@ jobs:
 
       # @link https://github.com/marketplace/actions/markdownlint-cli2-action
       - name: Check markdown with CLI2
-        uses: DavidAnson/markdownlint-cli2-action@v15
+        uses: DavidAnson/markdownlint-cli2-action@v16
 
   remark:
     name: 'QA Markdown'
