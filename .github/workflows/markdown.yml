@@ -50,7 +50,7 @@ jobs:
       - name: Set up node and enable caching of dependencies
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
 
       # To make the command available on CLI, it needs to be installed globally.
       - name: Install Remark CLI globally
