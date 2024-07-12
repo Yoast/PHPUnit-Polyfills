@@ -18,6 +18,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ChildValueObject;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
+use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectParamNotRequired;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
 
 /**
@@ -26,16 +27,11 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
  * Due to the use of return types in the classes under test (fixtures), these
  * tests can only run on PHP 7.0 and higher.
  *
- * And due to the implicitly nullable parameter deprecation in PHP 8.4 requiring a
- * nullable type for one of the tests, the minimum PHP version for running this
- * version of the tests has been set to PHP 7.1.
- *
- * The `AssertObjectEqualsPHPUnitLt940Test` class mirrors this test class
- * and tests the polyfill method for PHP < 7.1.
+ * The `AssertObjectEqualsPHPUnitLt940Test` class mirrors this test class.
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
  *
- * @requires PHP 7.1
+ * @requires PHP 7.0
  */
 final class AssertObjectEqualsTest extends TestCase {
 
@@ -216,10 +212,12 @@ final class AssertObjectEqualsTest extends TestCase {
 	/**
 	 * Verify that the assertObjectEquals() method throws an error when the $method is not a required parameter.
 	 *
+	 * @requires PHP 7.1
+	 *
 	 * @return void
 	 */
 	public function testAssertObjectEqualsFailsOnMethodParamNotRequired() {
-		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsParamNotRequired() does not declare exactly one parameter.';
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectParamNotRequired::equalsParamNotRequired() does not declare exactly one parameter.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
 		if ( \class_exists( ComparisonMethodDoesNotDeclareExactlyOneParameterException::class ) ) {
@@ -230,8 +228,8 @@ final class AssertObjectEqualsTest extends TestCase {
 		$this->expectException( $exception );
 		$this->expectExceptionMessage( $msg );
 
-		$expected = new ValueObject( 'test' );
-		$actual   = new ValueObject( 'test' );
+		$expected = new ValueObjectParamNotRequired( 'test' );
+		$actual   = new ValueObjectParamNotRequired( 'test' );
 		$this->assertObjectEquals( $expected, $actual, 'equalsParamNotRequired' );
 	}
 

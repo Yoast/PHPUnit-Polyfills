@@ -183,6 +183,7 @@
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ChildValueObject\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
@@ -190,7 +191,7 @@
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionNoReturnType\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
 	</rule>
 	<rule ref="PHPCompatibility.Operators.NewOperators.t_spaceshipFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObject\.php$</exclude-pattern>
