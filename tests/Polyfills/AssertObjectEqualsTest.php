@@ -20,8 +20,10 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ChildValueObject;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
+use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectNullableReturnType;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectParamNotRequired;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
+use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionReturnType;
 
 /**
  * Availability test for the function polyfilled by the AssertObjectEquals trait.
@@ -181,6 +183,100 @@ final class AssertObjectEqualsTest extends TestCase {
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'test' );
 		$this->assertObjectEquals( $expected, $actual, 'doesNotExist' );
+	}
+
+	/**
+	 * Verify that the assertObjectEquals() method throws an error when no return type is declared.
+	 *
+	 * @return void
+	 */
+	public function testAssertObjectEqualsFailsOnMissingReturnType() {
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsMissingReturnType() does not declare bool return type.';
+
+		$exception = self::COMPARATOR_EXCEPTION;
+		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
+			// PHPUnit > 9.4.0.
+			$exception = ComparisonMethodDoesNotDeclareBoolReturnTypeException::class;
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessage( $msg );
+
+		$expected = new ValueObject( 100 );
+		$actual   = new ValueObject( 100 );
+		$this->assertObjectEquals( $expected, $actual, 'equalsMissingReturnType' );
+	}
+
+	/**
+	 * Verify that the assertObjectEquals() method throws an error when the declared return type in a union, intersection or DNF type.
+	 *
+	 * @requires PHP 8.0
+	 *
+	 * @return void
+	 */
+	#[RequiresPhp( '8.0' )]
+	public function testAssertObjectEqualsFailsOnNonNamedTypeReturnType() {
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionReturnType::equalsUnionReturnType() does not declare bool return type.';
+
+		$exception = self::COMPARATOR_EXCEPTION;
+		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
+			// PHPUnit > 9.4.0.
+			$exception = ComparisonMethodDoesNotDeclareBoolReturnTypeException::class;
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessage( $msg );
+
+		$expected = new ValueObjectUnionReturnType( 100 );
+		$actual   = new ValueObjectUnionReturnType( 100 );
+		$this->assertObjectEquals( $expected, $actual, 'equalsUnionReturnType' );
+	}
+
+	/**
+	 * Verify that the assertObjectEquals() method throws an error when the declared return type is nullable.
+	 *
+	 * @requires PHP 7.1
+	 *
+	 * @return void
+	 */
+	#[RequiresPhp( '7.1' )]
+	public function testAssertObjectEqualsFailsOnNullableReturnType() {
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectNullableReturnType::equalsNullableReturnType() does not declare bool return type.';
+
+		$exception = self::COMPARATOR_EXCEPTION;
+		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
+			// PHPUnit > 9.4.0.
+			$exception = ComparisonMethodDoesNotDeclareBoolReturnTypeException::class;
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessage( $msg );
+
+		$expected = new ValueObjectNullableReturnType( 100 );
+		$actual   = new ValueObjectNullableReturnType( 100 );
+		$this->assertObjectEquals( $expected, $actual, 'equalsNullableReturnType' );
+	}
+
+	/**
+	 * Verify that the assertObjectEquals() method throws an error when the declared return type is not boolean.
+	 *
+	 * @return void
+	 */
+	public function testAssertObjectEqualsFailsOnNonBooleanReturnType() {
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not declare bool return type.';
+
+		$exception = self::COMPARATOR_EXCEPTION;
+		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
+			// PHPUnit > 9.4.0.
+			$exception = ComparisonMethodDoesNotDeclareBoolReturnTypeException::class;
+		}
+
+		$this->expectException( $exception );
+		$this->expectExceptionMessage( $msg );
+
+		$expected = new ValueObject( 100 );
+		$actual   = new ValueObject( 100 );
+		$this->assertObjectEquals( $expected, $actual, 'equalsNonBooleanReturnType' );
 	}
 
 	/**
@@ -345,30 +441,6 @@ final class AssertObjectEqualsTest extends TestCase {
 
 		$actual = new ValueObject( 'test' );
 		$this->assertObjectEquals( new stdClass(), $actual );
-	}
-
-	/**
-	 * Verify that the assertObjectEquals() method throws an error when the declared return type/
-	 * the return value is not boolean.
-	 *
-	 * @return void
-	 */
-	public function testAssertObjectEqualsFailsOnNonBooleanReturnValue() {
-		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not return a boolean value.';
-
-		$exception = self::COMPARATOR_EXCEPTION;
-		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
-			// PHPUnit > 9.4.0.
-			$msg       = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNonBooleanReturnType() does not declare bool return type.';
-			$exception = ComparisonMethodDoesNotDeclareBoolReturnTypeException::class;
-		}
-
-		$this->expectException( $exception );
-		$this->expectExceptionMessage( $msg );
-
-		$expected = new ValueObject( 100 );
-		$actual   = new ValueObject( 100 );
-		$this->assertObjectEquals( $expected, $actual, 'equalsNonBooleanReturnType' );
 	}
 
 	/**
