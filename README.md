@@ -391,17 +391,10 @@ This assertion expects an object to contain a comparator method in the object it
 
 The `assertObjectEquals()` assertion was introduced in PHPUnit 9.4.0.
 
-> :information_source: Due to [limitations in how this assertion is implemented in PHPUnit] itself, it is currently not possible to create a single comparator method which will be compatible with both PHP < 7.0 and PHP 7.0 or higher.
->
-> In effect two declarations of the same object would be needed to be compatible with PHP < 7.0 and PHP 7.0 and higher and still allow for testing the object using the `assertObjectEquals()` assertion.
->
-> Due to this limitation, it is recommended to only use this assertion if the minimum supported PHP version of a project is PHP 7.0 or higher; or if the project does not run its tests on PHPUnit >= 9.4.0.
->
-> The implementation of this assertion in the Polyfills is PHP cross-version compatible.
-
-[limitations in how this assertion is implemented in PHPUnit]: https://github.com/sebastianbergmann/phpunit/issues/4707
+> :information_source: In PHPUnit Polyfills 1.x and 2.x, the polyfill for this assertion had [some limitations][assertobjectequals-limitations]. These limitations are no longer present in PHPUnit Polyfills 3.x and the assertion now matches the PHPUnit native implementation.
 
 [`Assert::assertObjectEquals()`]: https://docs.phpunit.de/en/main/assertions.html#assertobjectequals
+[assertobjectequals-limitations]: https://github.com/Yoast/PHPUnit-Polyfills/?tab=readme-ov-file#phpunit--940-yoastphpunitpolyfillspolyfillsassertobjectequals
 
 #### PHPUnit < 10.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings`
 

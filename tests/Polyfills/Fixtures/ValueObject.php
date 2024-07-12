@@ -48,6 +48,28 @@ class ValueObject {
 	}
 
 	/**
+	 * Comparator method: incorrectly declared - missing return type.
+	 *
+	 * @param self $other Object to compare.
+	 *
+	 * @return bool
+	 */
+	public function equalsMissingReturnType( self $other ) {
+		return ( $this->value === $other->value );
+	}
+
+	/**
+	 * Comparator method: incorrectly declared - non-boolean return type/value.
+	 *
+	 * @param self $other Object to compare.
+	 *
+	 * @return bool
+	 */
+	public function equalsNonBooleanReturnType( self $other ): int {
+		return ( $this->value <=> $other->value );
+	}
+
+	/**
 	 * Comparator method: incorrectly declared - more than one parameter.
 	 *
 	 * @param ValueObject $other Object to compare.
@@ -90,16 +112,5 @@ class ValueObject {
 	 */
 	public function equalsParamNonExistentClassType( ClassWhichDoesntExist $other ): bool {
 		return ( $this->value === $other->value );
-	}
-
-	/**
-	 * Comparator method: incorrectly declared - non-boolean return type/value.
-	 *
-	 * @param self $other Object to compare.
-	 *
-	 * @return bool
-	 */
-	public function equalsNonBooleanReturnType( self $other ): int {
-		return ( $this->value <=> $other->value );
 	}
 }

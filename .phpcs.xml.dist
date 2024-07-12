@@ -178,8 +178,14 @@
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
 	</rule>
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.returnTypeFound">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectNullableReturnType\.php$</exclude-pattern>
+	</rule>
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.UnionTypeFound">
+		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionReturnType\.php$</exclude-pattern>
 	</rule>
 
 </ruleset>
