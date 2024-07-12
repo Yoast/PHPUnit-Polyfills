@@ -60,17 +60,6 @@ class ValueObject {
 	}
 
 	/**
-	 * Comparator method: incorrectly declared - parameter is not required.
-	 *
-	 * @param self|null $other Object to compare.
-	 *
-	 * @return bool
-	 */
-	public function equalsParamNotRequired( ?self $other = null ): bool {
-		return ( $this->value === $other->value );
-	}
-
-	/**
 	 * Comparator method: incorrectly declared - parameter is not typed.
 	 *
 	 * @param ValueObject $other Object to compare.
