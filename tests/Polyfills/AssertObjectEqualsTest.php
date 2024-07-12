@@ -26,17 +26,9 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
 /**
  * Availability test for the function polyfilled by the AssertObjectEquals trait.
  *
- * Due to the use of return types in the classes under test (fixtures), these
- * tests can only run on PHP 7.0 and higher.
- *
- * The `AssertObjectEqualsPHPUnitLt940Test` class mirrors this test class.
- *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
- *
- * @requires PHP 7.0
  */
 #[CoversClass( AssertObjectEquals::class )]
-#[RequiresPhp( '7.0' )]
 final class AssertObjectEqualsTest extends TestCase {
 
 	use AssertObjectEquals;
