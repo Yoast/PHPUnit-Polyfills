@@ -1,6 +1,8 @@
 parameters:
 	phpVersion: 70100 # Needs to be 70100 or higher... sigh...
 	level: 9
+	bootstrapFiles:
+		- phpstan-bootstrap.php
 	paths:
 		# Explicitly not analyzing the tests for this package as, due to the nature
 		# of this package, it would be too problematic with false positives.
@@ -13,8 +15,22 @@ parameters:
 		- src/TestCases/TestCasePHPUnitLte7.php
 		# Triggers "Referencing prefixed PHPUnit class: PHPUnitPHAR\SebastianBergmann\Exporter\Exporter." notices, which cannot be ignored.
 		- src/Polyfills/AssertClosedResource.php
+		- src/Polyfills/AssertIgnoringLineEndings.php
+	treatPhpDocTypesAsCertain: false
 
 	ignoreErrors:
+		# Level 0
+		# This is part of the functionality of this library. Ignore.
+		-
+			message: '`^Call to an undefined static method Yoast\\PHPUnitPolyfills\\TestCases\\TestCase::assertInternalType\(\)\.$`'
+			count: 1
+			path: src/TestCases/TestCasePHPUnitGte8.php
+
+		-
+			message: '`^Call to an undefined static method Yoast\\PHPUnitPolyfills\\TestCases\\XTestCase::assertInternalType\(\)\.$`'
+			count: 1
+			path: src/TestCases/XTestCase.php
+
 		# Level 5
 		-
 			# False positive, a string callback is perfectly fine, especially for static methods.

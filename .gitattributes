@@ -15,6 +15,7 @@
 .remarkignore           export-ignore
 .remarkrc               export-ignore
 phpstan.neon.dist       export-ignore
+phpstan-bootstrap.php   export-ignore
 phpunit.xml.dist        export-ignore
 phpunit10.xml.dist      export-ignore
 
