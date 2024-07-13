@@ -133,7 +133,7 @@ trait AssertIgnoringLineEndings {
 	/**
 	 * Helper function to obtain an instance of the Exporter class.
 	 *
-	 * @return SebastianBergmann\Exporter\Exporter|PHPUnitPHAR\SebastianBergmann\Exporter\Exporter|PHPUnit\SebastianBergmann\Exporter\Exporter
+	 * @return Exporter|Exporter_In_Phar|Exporter_In_Phar_Old
 	 */
 	private static function getPHPUnitExporterObjectForIgnoringLineEndings() {
 		if ( \class_exists( Exporter::class ) ) {
