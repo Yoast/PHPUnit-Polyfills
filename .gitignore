@@ -8,3 +8,4 @@ vendor/
 /phpunit10.xml
 /.phpunit.result.cache
 /build/
+phpstan.neon

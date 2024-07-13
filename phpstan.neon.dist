@@ -1,0 +1,30 @@
+parameters:
+	phpVersion: 70100 # Needs to be 70100 or higher... sigh...
+	level: 9
+	paths:
+		# Explicitly not analyzing the tests for this package as, due to the nature
+		# of this package, it would be too problematic with false positives.
+		- phpunitpolyfills-autoload.php
+		- src
+	excludePaths:
+		# Triggers "Return type mixed of method * is not covariant with return type void of method *" notices, which cannot be ignored.
+		# This exclusion can be removed once PHPUnit 8.0 is the minimum supported version
+		# (and the "drop support for older PHPUnit" task have been executed).
+		- src/TestCases/TestCasePHPUnitLte7.php
+		# Triggers "Referencing prefixed PHPUnit class: PHPUnitPHAR\SebastianBergmann\Exporter\Exporter." notices, which cannot be ignored.
+		- src/Polyfills/AssertClosedResource.php
+
+	ignoreErrors:
+		# Level 5
+		-
+			# False positive, a string callback is perfectly fine, especially for static methods.
+			message: "`^Parameter #1 \\$autoload_function of function spl_autoload_register expects callable\\(string\\): void, 'Yoast…' given\\.$`"
+			count: 1
+			path: phpunitpolyfills-autoload.php
+
+		# Level 9
+		-
+			# This is deliberate and the function call is in a try-catch with error silencing.
+			message: '`^Parameter #1 \$res of function get_resource_type expects resource, mixed given\.$`'
+			count: 1
+			path: src/Helpers/ResourceHelper.php
