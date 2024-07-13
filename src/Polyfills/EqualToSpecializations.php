@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
 use PHPUnit\Framework\Constraint\IsEqual;
+use PHPUnit_Framework_Constraint_IsEqual;
 
 /**
  * Polyfill the Assert::equalToCanonicalizing(), Assert::equalToIgnoringCase() and

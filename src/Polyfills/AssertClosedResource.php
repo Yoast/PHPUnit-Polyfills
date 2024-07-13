@@ -82,7 +82,7 @@ trait AssertClosedResource {
 	/**
 	 * Helper function to obtain an instance of the Exporter class.
 	 *
-	 * @return SebastianBergmann\Exporter\Exporter|PHPUnitPHAR\SebastianBergmann\Exporter\Exporter|PHPUnit\SebastianBergmann\Exporter\Exporter
+	 * @return Exporter|Exporter_In_Phar|Exporter_In_Phar_Old
 	 */
 	private static function getPHPUnitExporterObject() {
 		if ( \class_exists( 'SebastianBergmann\Exporter\Exporter' ) ) {
