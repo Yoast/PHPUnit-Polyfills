@@ -114,9 +114,6 @@ final class ResourceHelper {
 	 * Version ranges based on {@link https://3v4l.org/tc4fE}.
 	 * 7.0.8 - 7.0.33, 7.1.0 - 7.1.33, 7.2.0 - 7.2.34, 7.3.0 - 7.3.21, 7.4.0 - 7.4.9
 	 *
-	 * {@internal IMPORTANT: Any changes made to this function should also be made
-	 * to the function in the "empty" version of this trait.}
-	 *
 	 * @return bool
 	 */
 	public static function isIncompatiblePHPForLibXMLResources() {
