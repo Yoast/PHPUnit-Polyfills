@@ -1,7 +1,5 @@
-Template to use for release PRs from `#.x` to `main`
+Release checklist
 ===========================================================
-
-Title: Release version x.x.x
 
 <!--
 If both a 1.x and a 2.x release are to be tagged, always tag the 1.x release first!
@@ -15,9 +13,10 @@ If both a 1.x and a 2.x release are to be tagged, always tag the 1.x release fir
 ## Release
 - [ ] Add changelog for the release - PR #xxx
     Verify that a release link at the bottom of the `CHANGELOG.md` file has been added.
-- [ ] Merge this PR.
+- [ ] Merge the changelog PR.
 - [ ] Make sure all CI builds are green.
-- [ ] Tag the release (careful, GH defaults to `2.x`!).
+- [ ] Fast-forward the `main` branch to the latest `2.x` commit and push.
+- [ ] Tag the release on `main` (careful, GH defaults to `2.x`!).
 - [ ] Create a release from the tag (careful, GH defaults to `2.x`!) & copy & paste the changelog to it.
     Make sure to copy the links to the issues and the links to the GH usernames from the bottom of the changelog!
 - [ ] Close the milestone.
