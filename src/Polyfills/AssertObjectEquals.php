@@ -2,11 +2,9 @@
 
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
-use ReflectionNamedType;
-use ReflectionObject;
-use ReflectionType;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
+use Yoast\PHPUnitPolyfills\Helpers\ComparatorValidator;
 
 /**
  * Polyfill the Assert::assertObjectEquals() methods.
@@ -83,133 +81,16 @@ trait AssertObjectEquals {
 		}
 
 		/*
-		 * Comparator method validation.
+		 * Validate the comparator method requirements.
+		 *
+		 * If the method does not validate, an InvalidComparisonMethodException is thrown,
+		 * which will cause the test to error out.
 		 */
-		$reflObject = new ReflectionObject( $actual );
-
-		if ( $reflObject->hasMethod( $method ) === false ) {
-			throw new InvalidComparisonMethodException(
-				\sprintf(
-					'Comparison method %s::%s() does not exist.',
-					\get_class( $actual ),
-					$method
-				)
-			);
-		}
-
-		$reflMethod = $reflObject->getMethod( $method );
-
-		/*
-		 * Comparator method return type requirements validation.
-		 */
-		$returnTypeError = \sprintf(
-			'Comparison method %s::%s() does not declare bool return type.',
-			\get_class( $actual ),
-			$method
-		);
-
-		if ( $reflMethod->hasReturnType() === false ) {
-			throw new InvalidComparisonMethodException( $returnTypeError );
-		}
-
-		$returnType = $reflMethod->getReturnType();
-
-		if ( \class_exists( 'ReflectionNamedType' ) ) {
-			// PHP >= 7.1: guard against union/intersection return types.
-			if ( ( $returnType instanceof ReflectionNamedType ) === false ) {
-				throw new InvalidComparisonMethodException( $returnTypeError );
-			}
-		}
-		elseif ( ( $returnType instanceof ReflectionType ) === false ) {
-			/*
-			 * PHP 7.0.
-			 * Checking for `ReflectionType` will not throw an error on union types,
-			 * but then again union types are not supported on PHP 7.0.
-			 */
-			throw new InvalidComparisonMethodException( $returnTypeError );
-		}
-
-		if ( $returnType->allowsNull() === true ) {
-			throw new InvalidComparisonMethodException( $returnTypeError );
-		}
-
-		if ( \method_exists( $returnType, 'getName' ) ) {
-			// PHP 7.1+.
-			if ( $returnType->getName() !== 'bool' ) {
-				throw new InvalidComparisonMethodException( $returnTypeError );
-			}
-		}
-		elseif ( (string) $returnType !== 'bool' ) {
-			// PHP 7.0.
-			throw new InvalidComparisonMethodException( $returnTypeError );
-		}
-
-		/*
-		 * Comparator method parameter requirements validation.
-		 */
-		if ( $reflMethod->getNumberOfParameters() !== 1
-			|| $reflMethod->getNumberOfRequiredParameters() !== 1
-		) {
-			throw new InvalidComparisonMethodException(
-				\sprintf(
-					'Comparison method %s::%s() does not declare exactly one parameter.',
-					\get_class( $actual ),
-					$method
-				)
-			);
-		}
-
-		$noDeclaredTypeError = \sprintf(
-			'Parameter of comparison method %s::%s() does not have a declared type.',
-			\get_class( $actual ),
-			$method
-		);
-
-		$notAcceptableTypeError = \sprintf(
-			'%s is not an accepted argument type for comparison method %s::%s().',
-			\get_class( $expected ),
-			\get_class( $actual ),
-			$method
-		);
-
-		$reflParameter = $reflMethod->getParameters()[0];
-
-		$hasType = $reflParameter->hasType();
-		if ( $hasType === false ) {
-			throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-		}
-
-		$type = $reflParameter->getType();
-		if ( \class_exists( 'ReflectionNamedType' ) ) {
-			// PHP >= 7.1.
-			if ( ( $type instanceof ReflectionNamedType ) === false ) {
-				throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-			}
-
-			$typeName = $type->getName();
-		}
-		else {
-			/*
-			 * PHP 7.0.
-			 * Checking for `ReflectionType` will not throw an error on union types,
-			 * but then again union types are not supported on PHP 7.0.
-			 */
-			if ( ( $type instanceof ReflectionType ) === false ) {
-				throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-			}
-
-			$typeName = (string) $type;
-		}
-
-		/*
-		 * Validate that the $expected object complies with the declared parameter type.
-		 */
-		if ( $typeName === 'self' ) {
-			$typeName = \get_class( $actual );
-		}
-
-		if ( ( $expected instanceof $typeName ) === false ) {
-			throw new InvalidComparisonMethodException( $notAcceptableTypeError );
+		try {
+			ComparatorValidator::isValid( $expected, $actual, $method );
+		} catch ( InvalidComparisonMethodException $e ) {
+			// Rethrow to ensure a stack trace shows the exception comes from this method, not the helper.
+			throw $e;
 		}
 
 		/*

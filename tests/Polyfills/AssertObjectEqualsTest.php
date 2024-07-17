@@ -15,6 +15,7 @@ use PHPUnit\Runner\Version as PHPUnit_Version;
 use stdClass;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
+use Yoast\PHPUnitPolyfills\Helpers\ComparatorValidator;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ChildValueObject;
@@ -28,8 +29,10 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionReturnType;
  * Availability test for the function polyfilled by the AssertObjectEquals trait.
  *
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals
+ * @covers \Yoast\PHPUnitPolyfills\Helpers\ComparatorValidator
  */
 #[CoversClass( AssertObjectEquals::class )]
+#[CoversClass( ComparatorValidator::class )]
 final class AssertObjectEqualsTest extends TestCase {
 
 	use AssertObjectEquals;
