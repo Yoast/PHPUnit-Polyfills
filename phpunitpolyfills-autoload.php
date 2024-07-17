@@ -97,6 +97,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				/*
 				 * Handles:
 				 * - Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException
+				 * - Yoast\PHPUnitPolyfills\Helpers\ComparatorValidator
 				 * - Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
 				 * - Yoast\PHPUnitPolyfills\TestCases\XTestCase
 				 * - Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
