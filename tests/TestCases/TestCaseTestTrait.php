@@ -166,4 +166,15 @@ trait TestCaseTestTrait {
 
 		self::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys( $expected, $actual, [ 'a' ] );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [19].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertObjectNotEquals() {
+		$expected = new ValueObject( 'test' );
+		$actual   = new ValueObject( 'different' );
+		$this->assertObjectNotEquals( $expected, $actual );
+	}
 }

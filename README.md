@@ -443,6 +443,17 @@ Refactoring tests which still use `Assert::assertArraySubset()` to use the new a
 [`Assert::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys()`]: https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayonlyconsideringlistofkeys
 [`Assert::assertArrayIsIdenticalToArrayIgnoringListOfKeys()`]:        https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayignoringlistofkeys
 
+#### PHPUnit < 11.2.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals`
+
+Polyfills the [`Assert::assertObjectNotEquals()`] method to verify two (value) objects are **_not_** considered equal.
+This is the sister-method to the PHPUnit 9.4+ `Assert::assertObjectEquals()` method.
+
+This assertion expects an object to contain a comparator method in the object itself. This comparator method is subsequently called to verify the "equalness" of the objects.
+
+The `assertObjectNotEquals()` assertion was introduced in PHPUnit 11.2.0.
+
+[`Assert::assertObjectNotEquals()`]: https://docs.phpunit.de/en/main/assertions.html#assertobjectequals
+
 
 ### TestCases
 

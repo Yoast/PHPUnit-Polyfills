@@ -14,7 +14,8 @@ use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
  * This class is only intended for internal use by PHPUnit Polyfills and is not part of the public API.
  * This also means that it has no promise of backward compatibility.
  *
- * End-users should use the {@see \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals} trait instead.
+ * End-users should use the {@see \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals} and/or the
+ * {@see \Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals} trait instead.
  * ---------------------------------------------------------------------------------------------
  *
  * @internal
