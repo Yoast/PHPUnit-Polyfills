@@ -155,28 +155,28 @@ jobs:
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
 
       - name: "Run the unit tests (PHPUnit < 10)"
-        if: ${{ matrix.coverage == false && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        if: ${{ matrix.coverage == false && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && matrix.phpunit != 'dev-main' }}
         run: composer test
 
       - name: "Run the unit tests with code coverage (PHPUnit < 10)"
-        if: ${{ matrix.coverage == true && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        if: ${{ matrix.coverage == true && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && matrix.phpunit != 'dev-main' }}
         run: composer coverage
 
         # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
         # versions as otherwise the warning about these would fail the build (which to me, feels like a bug).
       - name: "Migrate configuration (PHPUnit 10.0+)"
         continue-on-error: true
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && steps.phpunit_version.outputs.VERSION != '10.0' }}
+        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '1' ) && steps.phpunit_version.outputs.VERSION != '10.0' }}
         run: vendor/bin/phpunit -c phpunit10.xml.dist --migrate-configuration
 
       - name: "Run the unit tests (PHPUnit 10.0+)"
-        if: ${{ matrix.coverage == false && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        if: ${{ matrix.coverage == false && startsWith( steps.phpunit_version.outputs.VERSION, '1' ) }}
         # Don't fail the build on a test run failure against a future PHPUnit version.
         continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
         run: composer test10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
 
       - name: "Run the unit tests with code coverage (PHPUnit 10.0+)"
-        if: ${{ matrix.coverage == true && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
+        if: ${{ matrix.coverage == true && startsWith( steps.phpunit_version.outputs.VERSION, '1' ) }}
         # Don't fail the build on a test run failure against a future PHPUnit version.
         continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
         run: composer coverage10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
