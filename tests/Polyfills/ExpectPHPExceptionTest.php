@@ -58,6 +58,8 @@ final class ExpectPHPExceptionTest extends TestCase {
 	/**
 	 * Verify availability of the expectError*() methods.
 	 *
+	 * @requires PHP < 9.0
+	 *
 	 * @return void
 	 */
 	public function testErrorCanBeExpected() {
@@ -65,6 +67,14 @@ final class ExpectPHPExceptionTest extends TestCase {
 		$this->expectErrorMessage( 'foo' );
 		$this->expectErrorMessageMatches( '/foo/' );
 
-		\trigger_error( 'foo', \E_USER_ERROR );
+		if ( \PHP_VERSION_ID < 80400 ) {
+			\trigger_error( 'foo', \E_USER_ERROR );
+		}
+		else {
+			// PHP 8.4 deprecates passing `E_USER_ERROR` to `trigger_error()`.
+			// Silence the deprecation notice (but not the error itself).
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			@\trigger_error( 'foo', \E_USER_ERROR );
+		}
 	}
 }
