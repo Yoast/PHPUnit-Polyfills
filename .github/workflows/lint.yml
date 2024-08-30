@@ -20,9 +20,9 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+        php: ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', 'nightly']
 
-    continue-on-error: ${{ matrix.php == '8.4' }}
+    continue-on-error: ${{ matrix.php == 'nightly' }}
 
     name: "Lint: PHP ${{ matrix.php }}"
 
@@ -47,14 +47,14 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies - normal
-        if: matrix.php != '8.4'
+        if: matrix.php != 'nightly'
         uses: "ramsey/composer-install@v3"
         with:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Install Composer dependencies - ignore PHP restrictions
-        if: matrix.php == '8.4'
+        if: matrix.php == 'nightly'
         uses: "ramsey/composer-install@v3"
         with:
           composer-options: --ignore-platform-req=php+
@@ -62,7 +62,7 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: "Lint PHP files against parse errors - PHP < 7.0"
-        if: ${{ matrix.php < 7.0 }}
+        if: ${{ matrix.php != 'nightly' && matrix.php < 7.0 }}
         run: composer lint-lt70
 
       - name: "Lint PHP files against parse errors - PHP 7.0"
@@ -74,9 +74,9 @@ jobs:
         run: composer lint7
 
       - name: "Lint PHP files against parse errors - PHP 8.0 - 8.3"
-        if: ${{ matrix.php >= 8.0 && matrix.php < 8.4 }}
+        if: ${{ matrix.php != 'nightly' && matrix.php >= 8.0 && matrix.php < 8.4 }}
         run: composer lint-gte80
 
       - name: "Lint PHP files against parse errors - PHP >= 8.4"
-        if: ${{ matrix.php >= 8.4 }}
+        if: ${{ matrix.php == 'nightly' || matrix.php >= 8.4 }}
         run: composer lint-gte84
