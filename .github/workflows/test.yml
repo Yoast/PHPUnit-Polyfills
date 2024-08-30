@@ -90,17 +90,17 @@ jobs:
             experimental: false
 
           # Experimental builds.
-          - php: '8.4'
+          - php: 'nightly'
             phpunit: '^9.6'
             coverage: false
             experimental: true
-          - php: '8.4'
+          - php: 'nightly'
             phpunit: 'auto' # PHPUnit 10.x.
             coverage: false
             experimental: true
 
           - php: '8.3'
-            phpunit: 'dev-main'
+            phpunit: 'dev-main' # PHPUnit 11.x
             coverage: false
             experimental: true
 
@@ -133,14 +133,14 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies - normal
-        if: matrix.php != '8.4'
+        if: matrix.php != 'nightly'
         uses: "ramsey/composer-install@v3"
         with:
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Install Composer dependencies - ignore PHP restrictions
-        if: matrix.php == '8.4'
+        if: matrix.php == 'nightly'
         uses: "ramsey/composer-install@v3"
         with:
           composer-options: --ignore-platform-req=php+
@@ -309,14 +309,14 @@ jobs:
             coverage: true
 
           # Experimental builds.
-          - php: '8.4'
+          - php: 'nightly'
             phpunit: '9'
-          - php: '8.4'
+          - php: 'nightly'
             phpunit: '10'
 
     name: "PHAR test: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
-    continue-on-error: ${{ matrix.php == '8.4' }}
+    continue-on-error: ${{ matrix.php == 'nightly' }}
 
     env:
       EXTRA_PHPUNIT_CLIARGS: '--fail-on-deprecation --fail-on-notice'
@@ -346,7 +346,7 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies - normal
-        if: matrix.php != '8.4'
+        if: matrix.php != 'nightly'
         uses: "ramsey/composer-install@v3"
         with:
           composer-options: "--no-dev"
@@ -354,7 +354,7 @@ jobs:
           custom-cache-suffix: $(date -u "+%Y-%m")
 
       - name: Install Composer dependencies - ignore PHP restrictions
-        if: matrix.php == '8.4'
+        if: matrix.php == 'nightly'
         uses: "ramsey/composer-install@v3"
         with:
           composer-options: "--no-dev --ignore-platform-req=php+"
