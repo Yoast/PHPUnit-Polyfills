@@ -290,9 +290,6 @@ jobs:
             coverage: true
 
           # PHPUnit 10 is fully supported for the officially supported PHP versions.
-          # Caveats:
-          # - PHPUnit 10 supports PHP 8.2 as of PHPUnit 9.5.8 (for our purposes).
-          # - PHPUnit 10 supports PHP 8.3 as of PHPUnit 9.5.8 (for our purposes).
           - php: '8.1'
             phpunit: '10.0'
             coverage: true
