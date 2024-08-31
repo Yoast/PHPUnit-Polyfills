@@ -154,32 +154,40 @@ jobs:
       - name: "DEBUG: Show grabbed version"
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
 
-      - name: "Run the unit tests (PHPUnit < 10)"
-        if: ${{ matrix.coverage == false && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && matrix.phpunit != 'dev-main' }}
-        run: composer test
-
-      - name: "Run the unit tests with code coverage (PHPUnit < 10)"
-        if: ${{ matrix.coverage == true && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && matrix.phpunit != 'dev-main' }}
-        run: composer coverage
+      # NEEDS_MIGRATION toggle has two functions:
+      # 1. yes/no run PHPUnit "migrate-configuration" for PHPUnit 10.1+.
+      # 2. yes/no pass the "EXTRA_PHPUNIT_CLIARGS" on PHPUnit 10.1+ (which can't be added to the config as that would
+      #    make the config incompatible with PHPUnit 10.0).
+      # The variable should only be set for the "yes" cases.
+      - name: Determine PHPUnit config
+        id: phpunit_config
+        run: |
+          if [ "${{ matrix.phpunit == 'dev-main' }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+            echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
+          elif [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+            echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
+          else
+            echo 'FILE=phpunit.xml.dist' >> $GITHUB_OUTPUT
+          fi
 
         # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
-        # versions as otherwise the warning about these would fail the build (which to me, feels like a bug).
-      - name: "Migrate configuration (PHPUnit 10.0+)"
+        # versions as otherwise the warnings about these would fail the build (which to me, feels like a bug).
+      - name: "Migrate configuration (PHPUnit 10.1+)"
+        if: ${{ steps.phpunit_config.outputs.NEEDS_MIGRATION }}
         continue-on-error: true
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '1' ) && steps.phpunit_version.outputs.VERSION != '10.0' }}
-        run: vendor/bin/phpunit -c phpunit10.xml.dist --migrate-configuration
+        run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} --migrate-configuration
 
-      - name: "Run the unit tests (PHPUnit 10.0+)"
-        if: ${{ matrix.coverage == false && startsWith( steps.phpunit_version.outputs.VERSION, '1' ) }}
+      - name: "Run the unit tests"
         # Don't fail the build on a test run failure against a future PHPUnit version.
         continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
-        run: composer test10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
-
-      - name: "Run the unit tests with code coverage (PHPUnit 10.0+)"
-        if: ${{ matrix.coverage == true && startsWith( steps.phpunit_version.outputs.VERSION, '1' ) }}
-        # Don't fail the build on a test run failure against a future PHPUnit version.
-        continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
-        run: composer coverage10 -- ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
+        run: >
+          vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }}
+          ${{ ! matrix.coverage && '--no-coverage' || '' }}
+          ${{ steps.phpunit_config.outputs.NEEDS_MIGRATION && env.EXTRA_PHPUNIT_CLIARGS || '' }}
 
       - name: Upload coverage results to Coveralls
         if: ${{ success() && matrix.coverage == true }}
@@ -365,31 +373,38 @@ jobs:
       - name: "DEBUG: Show grabbed version"
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
 
-      - name: "Run the unit tests (PHPUnit < 10)"
-        if: ${{ ! matrix.coverage && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: phpunit --no-coverage
-
-      - name: "Run the unit tests with code coverage (PHPUnit < 10)"
-        if: ${{ matrix.coverage && ! startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: phpunit
+      # NEEDS_MIGRATION toggle has two functions:
+      # 1. yes/no run PHPUnit "migrate-configuration" for PHPUnit 10.1+.
+      # 2. yes/no pass the "EXTRA_PHPUNIT_CLIARGS" on PHPUnit 10.1+ (which can't be added to the config as that would
+      #    make the config incompatible with PHPUnit 10.0).
+      # The variable should only be set for the "yes" cases.
+      - name: Determine PHPUnit config
+        id: phpunit_config
+        run: |
+          if [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+            echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
+          else
+            echo 'FILE=phpunit.xml.dist' >> $GITHUB_OUTPUT
+          fi
 
         # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
-        # versions as otherwise the warning about these would fail the build (which to me, feels like a bug).
-      - name: "Migrate configuration (PHPUnit 10.0+)"
+        # versions as otherwise the warnings about these would fail the build (which to me, feels like a bug).
+      - name: "Migrate configuration (PHPUnit 10.1+)"
+        if: ${{ steps.phpunit_config.outputs.NEEDS_MIGRATION }}
         continue-on-error: true
-        if: ${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) && steps.phpunit_version.outputs.VERSION != '10.0' }}
-        run: phpunit -c phpunit10.xml.dist --migrate-configuration
+        run: phpunit -c ${{ steps.phpunit_config.outputs.FILE }} --migrate-configuration
 
-      - name: "Run the unit tests (PHPUnit 10.0+)"
-        if: ${{ ! matrix.coverage && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: phpunit -c phpunit10.xml.dist  --no-coverage ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
-
-      - name: "Run the unit tests with code coverage (PHPUnit 10.0+)"
-        if: ${{ matrix.coverage == true && startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}
-        run: phpunit -c phpunit10.xml.dist ${{ steps.phpunit_version.outputs.VERSION != '10.0' && env.EXTRA_PHPUNIT_CLIARGS || '' }}
+      - name: "Run the unit tests"
+        run: >
+          phpunit -c ${{ steps.phpunit_config.outputs.FILE }}
+          ${{ ! matrix.coverage && '--no-coverage' || '' }}
+          ${{ steps.phpunit_config.outputs.NEEDS_MIGRATION && env.EXTRA_PHPUNIT_CLIARGS || '' }}
 
       - name: Upload coverage results to Coveralls
-        if: ${{ success() && matrix.coverage == true }}
+        if: ${{ success() && matrix.coverage }}
         uses: coverallsapp/github-action@v2
         with:
           file: build/logs/clover.xml
