@@ -17,6 +17,7 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectUserDeprecation;
 
 /**
  * Basic test case for use with PHPUnit <= 7.
@@ -43,6 +44,7 @@ abstract class TestCase extends PHPUnit_TestCase {
 	use AssertStringContains;
 	use EqualToSpecializations;
 	use ExpectExceptionMessageMatches;
+	use ExpectUserDeprecation;
 
 	/**
 	 * This method is called before the first test of this test class is run.

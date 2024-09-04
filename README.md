@@ -443,6 +443,36 @@ Refactoring tests which still use `Assert::assertArraySubset()` to use the new a
 [`Assert::assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys()`]: https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayonlyconsideringlistofkeys
 [`Assert::assertArrayIsIdenticalToArrayIgnoringListOfKeys()`]:        https://docs.phpunit.de/en/main/assertions.html#assertarrayisidenticaltoarrayignoringlistofkeys
 
+#### PHPUnit < 11.0.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectUserDeprecation`
+
+|                                              |                                                     |
+| -------------------------------------------- | --------------------------------------------------- |
+| [`TestCase::expectUserDeprecationMessage()`] | [`TestCase::expectUserDeprecationMessageMatches()`] |
+
+These methods were introduced in PHPUnit 11.0.0.
+
+This functionality resembles the functionality previously offered by the `TestCase::expectDeprecationMessage()` and `TestCase::expectDeprecationMessageMatches()` methods, which were removed in PHPUnit 10.0.0.
+
+The polyfill use the old methods under the hood for PHPUnit <= 9, however, there are some pertinent differences in behaviour between the old and the new methods, which users of the polyfill should be aware of.
+
+| PHPUnit <= 9.x | PHPUnit >= 11.0 |
+| -------------- | --------------- |
+| Only one deprecation can be expected per test | Multiple deprecations can be expected per test |
+| The test stops running as soon as the deprecation message has been seen | The test will be executed completely, independently of the deprecation notice |
+| The message passed to `expectUserDeprecationMessage()` will be compared as a substring | The message passed to `expectUserDeprecationMessage()` must be an exact match |
+| Can expect both PHP native and user-land deprecation notices | Can only expect user-land deprecation notices, i.e. `E_USER_DEPRECATED`, not `E_DEPRECATED` |
+
+Please keep these differences in mind when writing tests using the `expectUserDeprecationMessage*()` methods.
+
+Note: on PHPUnit 9.5.x, when using the `expectUserDeprecationMessage*()` expectations, a "_Expecting E_DEPRECATED and E_USER_DEPRECATED is deprecated and will no longer be possible in PHPUnit 10._" deprecation will be shown in the test output.
+As long at the actual test uses the `expectUserDeprecationMessage*()` expectations, this depreation message can be safely ignored.
+
+> :information_source: Important: when using the `expectUserDeprecationMessage*()` expectation(s) in a test, the test should be annotated with a [`#[IgnoreDeprecations]`][ignoredeprecations-attribute] attribute.
+
+[`TestCase::expectUserDeprecationMessage()`]:        https://docs.phpunit.de/en/main/error-handling.html#expecting-deprecations-e-user-deprecated
+[`TestCase::expectUserDeprecationMessageMatches()`]: https://docs.phpunit.de/en/main/error-handling.html#expecting-deprecations-e-user-deprecated
+[ignoredeprecations-attribute]:                      https://docs.phpunit.de/en/main/attributes.html#ignoredeprecations
+
 #### PHPUnit < 11.2.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals`
 
 Polyfills the [`Assert::assertObjectNotEquals()`] method to verify two (value) objects are **_not_** considered equal.

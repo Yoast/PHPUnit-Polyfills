@@ -86,6 +86,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertArrayWithListKeys();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectUserDeprecation':
+					self::loadExpectUserDeprecation();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals':
 					self::loadAssertObjectNotEquals();
 					return true;
@@ -337,6 +341,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 11.0.0.
 			require_once __DIR__ . '/src/Polyfills/AssertArrayWithListKeys_Empty.php';
+		}
+
+		/**
+		 * Load the ExpectUserDeprecation polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadExpectUserDeprecation() {
+			if ( \method_exists( TestCase::class, 'expectUserDeprecationMessage' ) === false ) {
+				// PHPUnit < 11.0.0.
+				require_once __DIR__ . '/src/Polyfills/ExpectUserDeprecation.php';
+				return;
+			}
+
+			// PHPUnit >= 11.0.0.
+			require_once __DIR__ . '/src/Polyfills/ExpectUserDeprecation_Empty.php';
 		}
 
 		/**
