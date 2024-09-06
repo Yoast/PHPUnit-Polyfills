@@ -2,8 +2,6 @@
 
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
-use ReflectionClass;
-use ReflectionException;
 use ReflectionNamedType;
 use ReflectionObject;
 use ReflectionType;
@@ -16,7 +14,7 @@ use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
  * Introduced in PHPUnit 9.4.0.
  *
  * The polyfill implementation closely matches the PHPUnit native implementation with the exception
- * of the return type check and the names of the thrown exceptions.
+ * of the thrown exceptions.
  *
  * @link https://github.com/sebastianbergmann/phpunit/issues/4467
  * @link https://github.com/sebastianbergmann/phpunit/issues/4707
@@ -37,8 +35,7 @@ trait AssertObjectEquals {
 	 * - The method must accept exactly one argument and this argument must be required.
 	 * - This parameter must have a classname-based declared type.
 	 * - The $expected object must be compatible with this declared type.
-	 * - The method must have a declared bool return type. (JRF: not verified in this implementation)
-	 * - `$actual->$method($expected)` returns boolean true.
+	 * - The method must have a declared bool return type.
 	 *
 	 * @param object $expected Expected value.
 	 * @param object $actual   The value to test.
@@ -103,14 +100,49 @@ trait AssertObjectEquals {
 		$reflMethod = $reflObject->getMethod( $method );
 
 		/*
-		 * As the next step, PHPUnit natively would validate the return type,
-		 * but as return type declarations is a PHP 7.0+ feature, the polyfill
-		 * skips this check in favour of checking the type of the actual
-		 * returned value.
-		 *
-		 * Also see the upstream discussion about this:
-		 * {@link https://github.com/sebastianbergmann/phpunit/issues/4707}
+		 * Comparator method return type requirements validation.
 		 */
+		$returnTypeError = \sprintf(
+			'Comparison method %s::%s() does not declare bool return type.',
+			\get_class( $actual ),
+			$method
+		);
+
+		if ( $reflMethod->hasReturnType() === false ) {
+			throw new InvalidComparisonMethodException( $returnTypeError );
+		}
+
+		$returnType = $reflMethod->getReturnType();
+
+		if ( \class_exists( 'ReflectionNamedType' ) ) {
+			// PHP >= 7.1: guard against union/intersection return types.
+			if ( ( $returnType instanceof ReflectionNamedType ) === false ) {
+				throw new InvalidComparisonMethodException( $returnTypeError );
+			}
+		}
+		elseif ( ( $returnType instanceof ReflectionType ) === false ) {
+			/*
+			 * PHP 7.0.
+			 * Checking for `ReflectionType` will not throw an error on union types,
+			 * but then again union types are not supported on PHP 7.0.
+			 */
+			throw new InvalidComparisonMethodException( $returnTypeError );
+		}
+
+		if ( $returnType->allowsNull() === true ) {
+			throw new InvalidComparisonMethodException( $returnTypeError );
+		}
+
+		if ( \method_exists( $returnType, 'getName' ) ) {
+			// PHP 7.1+.
+			if ( $returnType->getName() !== 'bool' ) {
+				throw new InvalidComparisonMethodException( $returnTypeError );
+			}
+		}
+		elseif ( (string) $returnType !== 'bool' ) {
+			// PHP 7.0.
+			throw new InvalidComparisonMethodException( $returnTypeError );
+		}
 
 		/*
 		 * Comparator method parameter requirements validation.
@@ -142,55 +174,31 @@ trait AssertObjectEquals {
 
 		$reflParameter = $reflMethod->getParameters()[0];
 
-		if ( \method_exists( $reflParameter, 'hasType' ) ) {
-			// PHP >= 7.0.
-			$hasType = $reflParameter->hasType();
-			if ( $hasType === false ) {
+		$hasType = $reflParameter->hasType();
+		if ( $hasType === false ) {
+			throw new InvalidComparisonMethodException( $noDeclaredTypeError );
+		}
+
+		$type = $reflParameter->getType();
+		if ( \class_exists( 'ReflectionNamedType' ) ) {
+			// PHP >= 7.1.
+			if ( ( $type instanceof ReflectionNamedType ) === false ) {
 				throw new InvalidComparisonMethodException( $noDeclaredTypeError );
 			}
 
-			$type = $reflParameter->getType();
-			if ( \class_exists( 'ReflectionNamedType' ) ) {
-				// PHP >= 7.1.
-				if ( ( $type instanceof ReflectionNamedType ) === false ) {
-					throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-				}
-
-				$typeName = $type->getName();
-			}
-			else {
-				/*
-				 * PHP 7.0.
-				 * Checking for `ReflectionType` will not throw an error on union types,
-				 * but then again union types are not supported on PHP 7.0.
-				 */
-				if ( ( $type instanceof ReflectionType ) === false ) {
-					throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-				}
-
-				$typeName = (string) $type;
-			}
+			$typeName = $type->getName();
 		}
 		else {
-			// PHP < 7.0.
-			try {
-				/*
-				 * Using `ReflectionParameter::getClass()` will trigger an autoload of the class,
-				 * but that's okay as for a valid class type that would be triggered on the
-				 * function call to the $method (at the end of this assertion) anyway.
-				 */
-				$hasType = $reflParameter->getClass();
-			} catch ( ReflectionException $e ) {
-				// Class with a type declaration for a non-existent class.
-				throw new InvalidComparisonMethodException( $notAcceptableTypeError );
-			}
-
-			if ( ( $hasType instanceof ReflectionClass ) === false ) {
-				// Array or callable type.
+			/*
+			 * PHP 7.0.
+			 * Checking for `ReflectionType` will not throw an error on union types,
+			 * but then again union types are not supported on PHP 7.0.
+			 */
+			if ( ( $type instanceof ReflectionType ) === false ) {
 				throw new InvalidComparisonMethodException( $noDeclaredTypeError );
 			}
 
-			$typeName = $hasType->name;
+			$typeName = (string) $type;
 		}
 
 		/*
@@ -208,16 +216,6 @@ trait AssertObjectEquals {
 		 * Execute the comparator method.
 		 */
 		$result = $actual->{$method}( $expected );
-
-		if ( \is_bool( $result ) === false ) {
-			throw new InvalidComparisonMethodException(
-				\sprintf(
-					'Comparison method %s::%s() does not return a boolean value.',
-					\get_class( $actual ),
-					$method
-				)
-			);
-		}
 
 		$msg = \sprintf(
 			'Failed asserting that two objects are equal. The objects are not equal according to %s::%s()',

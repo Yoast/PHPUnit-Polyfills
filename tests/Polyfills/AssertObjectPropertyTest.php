@@ -61,7 +61,7 @@ final class AssertObjectPropertyTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$pattern = '`^Argument 1 passed to [^\s]*assertObjectHasProperty\(\) must be of (the )?type string, `';
 			$this->expectExceptionMessageMatches( $pattern );
 		}
@@ -91,7 +91,7 @@ final class AssertObjectPropertyTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$pattern = '`^Argument 1 passed to [^\s]*assertObjectNotHasProperty\(\) must be of (the )?type string, `';
 			$this->expectExceptionMessageMatches( $pattern );
 		}
@@ -138,7 +138,7 @@ final class AssertObjectPropertyTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$pattern = '`^Argument 2 passed to [^\s]*assertObjectHasProperty\(\) must be (of type|an) object, `';
 			$this->expectExceptionMessageMatches( $pattern );
 		}
@@ -164,7 +164,7 @@ final class AssertObjectPropertyTest extends TestCase {
 			$this->expectExceptionMessage( $msg );
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$pattern = '`^Argument 2 passed to [^\s]*assertObjectNotHasProperty\(\) must be (of type|an) object, `';
 			$this->expectExceptionMessageMatches( $pattern );
 		}

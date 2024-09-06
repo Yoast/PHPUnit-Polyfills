@@ -47,7 +47,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			$msg = 'assertStringEqualsStringIgnoringLineEndings(): Argument #1 ($expected) must be of type string, ';
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$msg = 'Argument 1 passed to assertStringEqualsStringIgnoringLineEndings() must be of type string, ';
 		}
 
@@ -75,7 +75,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			$msg = 'assertStringEqualsStringIgnoringLineEndings(): Argument #2 ($actual) must be of type string, ';
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$msg = 'Argument 2 passed to assertStringEqualsStringIgnoringLineEndings() must be of type string, ';
 		}
 
@@ -221,7 +221,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			$msg = 'assertStringContainsStringIgnoringLineEndings(): Argument #1 ($needle) must be of type string, ';
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$msg = 'Argument 1 passed to assertStringContainsStringIgnoringLineEndings() must be of type string, ';
 		}
 
@@ -249,7 +249,7 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 			$msg = 'assertStringContainsStringIgnoringLineEndings(): Argument #2 ($haystack) must be of type string, ';
 		}
 		else {
-			// PHP 5/7.
+			// PHP 7.
 			$msg = 'Argument 2 passed to assertStringContainsStringIgnoringLineEndings() must be of type string, ';
 		}
 

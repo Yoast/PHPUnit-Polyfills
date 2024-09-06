@@ -4,8 +4,11 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures;
 
 /**
  * Fixture to test the AssertObjectEquals trait.
+ *
+ * This `equals*()` method needs to be in this separate fixture as it needs
+ * a nullable type declaration (PHP 7.1+).
  */
-class ValueObjectUnionNoReturnType {
+class ValueObjectNullableReturnType {
 
 	/**
 	 * The value.
@@ -24,13 +27,13 @@ class ValueObjectUnionNoReturnType {
 	}
 
 	/**
-	 * Comparator method: incorrectly declared - parameter has a union type.
+	 * Comparator method: incorrectly declared - return type is nullable.
 	 *
-	 * @param self|OtherClass|array $other Object to compare.
+	 * @param self $other Object to compare.
 	 *
 	 * @return bool
 	 */
-	public function equalsParamUnionType( self|OtherClass|array $other ) {
+	public function equalsNullableReturnType( self $other ): ?bool {
 		return ( $this->value === $other->value );
 	}
 }
