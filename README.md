@@ -23,7 +23,6 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
     - [Use with PHPUnit < 7.5.0](#use-with-phpunit--750)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
-    - [Helper traits](#helper-traits)
     - [TestCases](#testcases)
     - [TestListener](#testlistener)
 * [Frequently Asked Questions](#frequently-asked-questions)
@@ -426,38 +425,6 @@ These methods were later backported to the PHPUnit 9 branch and included in the 
 [`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/main/assertions.html#assertObjectHasProperty
 
 
-### Helper traits
-
-#### `Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`
-
-Helper to work around the removal of the `assertAttribute*()` methods.
-
-The `assertAttribute*()` methods were deprecated in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
-
-Public properties can still be tested by accessing them directly:
-```php
-$this->assertSame( 'value', $obj->propertyName );
-```
-
-Protected and private properties can no longer be tested using PHPUnit native functionality.
-The reasoning for the removal of these assertion methods is that _private and protected properties are an implementation detail and should not be tested directly, but via methods in the class_.
-
-It is strongly recommended to refactor your tests, and if needs be, your classes to adhere to this.
-
-However, if for some reason the value of `protected` or `private` properties still needs to be tested, this helper can be used to get access to their value and attributes.
-
-The trait contains two helper methods:
-* `public static getProperty( object $classInstance, string $propertyName ) : ReflectionProperty`
-* `public static getPropertyValue( object $classInstance, string $propertyName ) : mixed`
-
-```php
-// Test the value of a protected or private property.
-$this->assertSame( 'value', $this->getPropertyValue( $objInstance, $propertyName ) );
-
-// Retrieve a ReflectionProperty object to test other details of the property.
-self::assertSame( $propertyName, self::getProperty( $objInstance, $propertyName )->getName() );
-```
-
 ### TestCases
 
 PHPUnit 8.0.0 introduced a `void` return type declaration to the ["fixture" methods] - `setUpBeforeClass()`, `setUp()`, `tearDown()` and `tearDownAfterClass()`.
@@ -655,11 +622,9 @@ For frequently used, removed PHPUnit functionality, "helpers" may be provided. T
 | PHPUnit | Removed               | Issue          | Remarks                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ------- | --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 9.0.0   | `assertArraySubset()` | [#1][issue #1] | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1]. |
-| 9.0.0   | `assertAttribute*()`  | [#2][issue #2] | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.                                                                                                                                                                                                            |
 | 10.0.0  | `expectDeprecation*()` et al | [#186][issue #186] | A [custom polyfill approach tutorial](https://github.com/Yoast/PHPUnit-Polyfills/issues/186#issuecomment-2334326687) is available. Alternatively, tests can be refactored to skip running the `expectDeprecation*()` et al or skip the test completely on PHPUnit 10, while still running them on <= PHPUnit 9. |
 
 [issue #1]: https://github.com/Yoast/PHPUnit-Polyfills/issues/1
-[issue #2]: https://github.com/Yoast/PHPUnit-Polyfills/issues/2
 [issue #186]: https://github.com/Yoast/PHPUnit-Polyfills/issues/186
 
 ### Q: Can this library be used when the tests are being run via a PHPUnit Phar file ?
