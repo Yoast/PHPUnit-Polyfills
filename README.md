@@ -35,7 +35,7 @@ Requirements
 ------------
 
 * PHP 7.0 or higher.
-* [PHPUnit] 5.7 - 10.x (automatically required via Composer).
+* [PHPUnit] 6.4 - 10.x (automatically required via Composer).
 
 [PHPUnit]: https://packagist.org/packages/phpunit/phpunit
 
@@ -65,7 +65,7 @@ Why use the PHPUnit Polyfills?
 
 This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
-### Write your tests for PHPUnit 10.x and run them on PHPUnit 5.7 - 10.x
+### Write your tests for PHPUnit 10.x and run them on PHPUnit 6.4 - 10.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
@@ -163,11 +163,11 @@ You will need to make sure to `use` any additional traits needed for the polyfil
 
 | PHPUnit   | When `use`-ing this trait   | You also need to `use` this trait |
 | --------- | --------------------------- | --------------------------------- |
-| 5.7 < 7.5 | `AssertIgnoringLineEndings` | `AssertStringContains`            |
+| 6.4 < 7.5 | `AssertIgnoringLineEndings` | `AssertStringContains`            |
 
 _**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
 
-Code example for a test using the `AssertIgnoringLineEndings` trait, which needs to be able to run on PHPUnit 5.7:
+Code example for a test using the `AssertIgnoringLineEndings` trait, which needs to be able to run on PHPUnit 6.4:
 ```php
 <?php
 
@@ -197,14 +197,6 @@ Features
 --------
 
 ### Polyfill traits
-
-#### PHPUnit < 6.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject`
-
-Polyfills the [`TestCase::expectExceptionObject()`] method to test all aspects of an `Exception` by passing an object to the method.
-
-This method was introduced in PHPUnit 6.4.0.
-
-[`TestCase::expectExceptionObject()`]: https://docs.phpunit.de/en/main/writing-tests-for-phpunit.html#testing-exceptions
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
 
@@ -590,7 +582,7 @@ class MyTest extends XTestCase {
 >
 > If you need the TestListener polyfill, it is recommended to stay on the PHPUnit Polyfills 1.x series for the time being and to watch and upvote the [related ticket][polyfill-ticket].
 >
-> The below documentation is for the PHPUnit 5.x-9.x TestListener polyfill implementation.
+> The below documentation is for the PHPUnit 6.x-9.x TestListener polyfill implementation.
 
 [polyfill-ticket]: https://github.com/Yoast/PHPUnit-Polyfills/issues/128
 
@@ -609,24 +601,21 @@ This `TestListenerDefaultImplementation` trait overcomes the signature mismatche
 
 Similar to the `TestCase` implementation, snake_case methods without type declarations are used to get round the signature mismatches. The snake_case methods will automatically be called.
 
-| PHPUnit native method name | Replacement                             | Notes                                     |
-| -------------------------- | --------------------------------------- | ----------------------------------------- |
-| `addError()`               | `add_error($test, $e, $time)`           |                                           |
-| `addWarning()`             | `add_warning($test, $e, $time)`         | Introduced in PHPUnit 6.                  |
-| `addFailure()`             | `add_failure($test, $e, $time)`         |                                           |
-| `addIncompleteTest()`      | `add_incomplete_test($test, $e, $time)` |                                           |
-| `addRiskyTest()`           | `add_risky_test($test, $e, $time)`      | Support appears to be flaky on PHPUnit 5. |
-| `addSkippedTest()`         | `add_skipped_test($test, $e, $time)`    |                                           |
-| `startTestSuite()`         | `start_test_suite($suite)`              |                                           |
-| `endTestSuite()`           | `end_test_suite($suite)`                |                                           |
-| `startTest()`              | `start_test($test)`                     |                                           |
-| `endTest()`                | `end_test($test, $time)`                |                                           |
+| PHPUnit native method name | Replacement                             |
+| -------------------------- | --------------------------------------- |
+| `addError()`               | `add_error($test, $e, $time)`           |
+| `addWarning()`             | `add_warning($test, $e, $time)`         |
+| `addFailure()`             | `add_failure($test, $e, $time)`         |
+| `addIncompleteTest()`      | `add_incomplete_test($test, $e, $time)` |
+| `addRiskyTest()`           | `add_risky_test($test, $e, $time)`      |
+| `addSkippedTest()`         | `add_skipped_test($test, $e, $time)`    |
+| `startTestSuite()`         | `start_test_suite($suite)`              |
+| `endTestSuite()`           | `end_test_suite($suite)`                |
+| `startTest()`              | `start_test($test)`                     |
+| `endTest()`                | `end_test($test, $time)`                |
 
 Implementations of the `TestListener` interface may be using any of the following patterns:
 ```php
-// PHPUnit < 6.
-class MyTestListener extends \PHPUnit_Framework_BaseTestListener {}
-
 // PHPUnit 6.
 class MyTestListener extends \PHPUnit\Framework\BaseTestListener {}
 

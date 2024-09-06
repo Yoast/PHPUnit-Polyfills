@@ -5,7 +5,6 @@ namespace Yoast\PHPUnitPolyfills;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
-use PHPUnit_Runner_Version;
 
 if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
@@ -35,10 +34,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			switch ( $className ) {
-				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject':
-					self::loadExpectExceptionObject();
-					return true;
-
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertIsType':
 					self::loadAssertIsType();
 					return true;
@@ -113,23 +108,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Load the ExpectExceptionObject polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadExpectExceptionObject() {
-			if ( \method_exists( TestCase::class, 'expectExceptionObject' ) === false ) {
-				// PHPUnit < 6.4.0.
-				require_once __DIR__ . '/src/Polyfills/ExpectExceptionObject.php';
-				return;
-			}
-
-			// PHPUnit >= 6.4.0.
-			require_once __DIR__ . '/src/Polyfills/ExpectExceptionObject_Empty.php';
 		}
 
 		/**
@@ -358,29 +336,8 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestListenerDefaultImplementation() {
-			if ( \version_compare( self::getPHPUnitVersion(), '6.0.0', '<' ) ) {
-				/*
-				 * Alias one particular PHPUnit 5.x class to its PHPUnit >= 6 name.
-				 *
-				 * All other classes needed are part of the forward-compatibility layer.
-				 *
-				 * {@internal The `class_exists` wrappers are needed to play nice with
-				 * PHPUnit bootstrap files of test suites implementing this library
-				 * which may be creating cross-version compatibility in a similar manner.}}
-				 */
-				if ( \class_exists( 'PHPUnit_Framework_Warning' ) === true
-					&& \class_exists( 'PHPUnit\Framework\Warning' ) === false
-				) {
-					\class_alias( 'PHPUnit_Framework_Warning', 'PHPUnit\Framework\Warning' );
-				}
-
-				// PHPUnit < 6.0.0.
-				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitLte5.php';
-				return;
-			}
-
 			if ( \version_compare( PHPUnit_Version::id(), '7.0.0', '<' ) ) {
-				// PHPUnit 6.0.0 < 7.0.0.
+				// PHPUnit 6.4.4 < 7.0.0.
 				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnit6.php';
 				return;
 			}
@@ -392,18 +349,11 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		/**
 		 * Retrieve the PHPUnit version id.
 		 *
-		 * As both the pre-PHPUnit 6 class, as well as the PHPUnit 6+ class contain the `id()` function,
-		 * this should work independently of whether or not another library may have aliased the class.
-		 *
 		 * @return string Version number as a string.
 		 */
 		public static function getPHPUnitVersion() {
 			if ( \class_exists( '\PHPUnit\Runner\Version' ) ) {
 				return PHPUnit_Version::id();
-			}
-
-			if ( \class_exists( '\PHPUnit_Runner_Version' ) ) {
-				return PHPUnit_Runner_Version::id();
 			}
 
 			return '0';

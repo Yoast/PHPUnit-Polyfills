@@ -6,7 +6,6 @@ use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_AssertionFailedError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
@@ -111,7 +110,7 @@ final class AssertStringContainsTest extends TestCase {
 	public function testAssertStringNotContainsStringEmptyNeedle( $haystack ) {
 		$pattern = "`^Failed asserting that '{$haystack}'( \[[^\]]+\]\(length: [0-9]+\))? does not contain \"\"( \[[^\]]+\]\(length: [0-9]+\))?\.`";
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		self::assertStringNotContainsString( '', $haystack );
@@ -131,7 +130,7 @@ final class AssertStringContainsTest extends TestCase {
 	public function testAssertStringNotContainsStringIgnoringCaseEmptyNeedle() {
 		$pattern = '`^Failed asserting that \'text with whitespace\'( \[[^\]]+\]\(length: [0-9]+\))? does not contain ""( \[[^\]]+\]\(length: [0-9]+\))?.`';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringNotContainsStringIgnoringCase( '', 'text with whitespace' );
@@ -161,7 +160,7 @@ final class AssertStringContainsTest extends TestCase {
 	public function testAssertStringNotContainsStringFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that \'.+?\'( \[[^\]]+\]\(length: [0-9]+\))? does not contain ""( \[[^\]]+\]\(length: [0-9]+\))?\.`s';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringNotContainsString( '', 'something', 'This assertion failed for reason XYZ' );
@@ -176,24 +175,9 @@ final class AssertStringContainsTest extends TestCase {
 	public function testssertStringNotContainsStringIgnoringCaseFailsWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that \'.+?\'( \[[^\]]+\]\(length: [0-9]+\))? does not contain ""( \[[^\]]+\]\(length: [0-9]+\))?\.`s';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$this->assertStringNotContainsStringIgnoringCase( '', 'something', 'This assertion failed for reason XYZ' );
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 }

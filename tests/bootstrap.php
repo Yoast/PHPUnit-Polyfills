@@ -57,19 +57,3 @@ else {
 if ( \defined( 'PHPUNIT_TESTSUITE' ) === false ) {
 	\define( 'PHPUNIT_TESTSUITE', true );
 }
-
-/*
- * Create a number of class aliases for PHPUnit native classes which have been
- * renamed over time and are only used in the unit tests.
- */
-if ( \class_exists( 'PHPUnit_Runner_Version' ) === true
-	&& \class_exists( 'PHPUnit\Runner\Version' ) === false
-) {
-	\class_alias( 'PHPUnit_Runner_Version', 'PHPUnit\Runner\Version' );
-}
-
-if ( \class_exists( 'PHPUnit_Framework_TestResult' ) === true
-	&& \class_exists( 'PHPUnit\Framework\TestResult' ) === false
-) {
-	\class_alias( 'PHPUnit_Framework_TestResult', 'PHPUnit\Framework\TestResult' );
-}

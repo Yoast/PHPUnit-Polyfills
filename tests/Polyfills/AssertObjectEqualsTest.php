@@ -12,7 +12,6 @@ use PHPUnit\Framework\ComparisonMethodDoesNotDeclareParameterTypeException;
 use PHPUnit\Framework\ComparisonMethodDoesNotExistException;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\Version as PHPUnit_Version;
-use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
@@ -452,7 +451,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	public function testAssertObjectEqualsFailsAsNotEqual() {
 		$msg = 'Failed asserting that two objects are equal.';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessage( $msg );
 
 		$expected = new ValueObject( 'test' );
@@ -469,26 +468,11 @@ final class AssertObjectEqualsTest extends TestCase {
 	public function testAssertObjectEqualsFailsAsNotEqualWithCustomMessage() {
 		$pattern = '`^This assertion failed for reason XYZ\s+Failed asserting that two objects are equal\.`';
 
-		$this->expectException( $this->getAssertionFailedExceptionName() );
+		$this->expectException( AssertionFailedError::class );
 		$this->expectExceptionMessageMatches( $pattern );
 
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'testing... 1..2..3' );
 		$this->assertObjectEquals( $expected, $actual, 'equals', 'This assertion failed for reason XYZ' );
-	}
-
-	/**
-	 * Helper function: retrieve the name of the "assertion failed" exception to expect (PHPUnit cross-version).
-	 *
-	 * @return string
-	 */
-	public function getAssertionFailedExceptionName() {
-		$exception = AssertionFailedError::class;
-		if ( \class_exists( PHPUnit_Framework_AssertionFailedError::class ) ) {
-			// PHPUnit < 6.
-			$exception = PHPUnit_Framework_AssertionFailedError::class;
-		}
-
-		return $exception;
 	}
 }
