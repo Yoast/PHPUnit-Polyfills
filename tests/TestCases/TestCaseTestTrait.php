@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use Exception;
+use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
@@ -176,5 +177,17 @@ trait TestCaseTestTrait {
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'different' );
 		$this->assertObjectNotEquals( $expected, $actual );
+	}
+
+	/**
+	 * Test availability of trait polyfilled PHPUnit methods [20].
+	 *
+	 * @return void
+	 */
+	#[IgnoreDeprecations]
+	final public function testAvailabilityExpectUserDeprecation() {
+		$this->expectUserDeprecationMessage( 'This is a deprecation notice' );
+
+		\trigger_error( 'This is a deprecation notice', \E_USER_DEPRECATED );
 	}
 }
