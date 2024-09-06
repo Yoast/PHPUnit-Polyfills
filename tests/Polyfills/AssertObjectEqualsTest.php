@@ -3,6 +3,8 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\ComparisonMethodDoesNotAcceptParameterTypeException;
 use PHPUnit\Framework\ComparisonMethodDoesNotDeclareBoolReturnTypeException;
 use PHPUnit\Framework\ComparisonMethodDoesNotDeclareExactlyOneParameterException;
@@ -33,6 +35,8 @@ use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
  *
  * @requires PHP 7.0
  */
+#[CoversClass( AssertObjectEquals::class )]
+#[RequiresPhp( '7.0' )]
 final class AssertObjectEqualsTest extends TestCase {
 
 	use AssertObjectEquals;
@@ -216,6 +220,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[RequiresPhp( '7.1' )]
 	public function testAssertObjectEqualsFailsOnMethodParamNotRequired() {
 		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectParamNotRequired::equalsParamNotRequired() does not declare exactly one parameter.';
 
@@ -264,6 +269,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[RequiresPhp( '8.0' )]
 	public function testAssertObjectEqualsFailsOnMethodParamHasUnionTypeDeclaration() {
 		$msg = 'Parameter of comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion::equalsParamUnionType() does not have a declared type.';
 

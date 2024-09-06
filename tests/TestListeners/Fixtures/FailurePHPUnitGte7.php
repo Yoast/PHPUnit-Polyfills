@@ -2,6 +2,7 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures;
 
+use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -9,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @requires PHPUnit 7.0
  */
+#[RequiresPhpunit( '7.0' )]
 class FailurePHPUnitGte7 extends TestCase {
 
 	/**

@@ -2,6 +2,9 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
 /**
@@ -23,6 +26,9 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.zip_closeDeprecated
  * @phpcs:disable WordPress.PHP.NoSilencedErrors.Discouraged
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
+#[RequiresPhpExtension( 'zip' )]
 final class AssertClosedResourceZipTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;

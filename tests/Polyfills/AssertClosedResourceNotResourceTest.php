@@ -3,9 +3,12 @@
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_AssertionFailedError;
 use stdClass;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
@@ -15,6 +18,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
  * @covers \Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
  * @covers \Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
 final class AssertClosedResourceNotResourceTest extends TestCase {
 
 	use AssertClosedResource;
@@ -30,6 +35,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataNotResource' )]
 	public function testAssertIsClosedResource( $value ) {
 		$pattern = '`^Failed asserting that .+? is of type ["]?resource \(closed\)["]?`s';
 
@@ -64,6 +70,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataNotResource' )]
 	public function testAssertIsNotClosedResource( $value ) {
 		self::assertIsNotClosedResource( $value );
 	}
@@ -95,6 +102,7 @@ final class AssertClosedResourceNotResourceTest extends TestCase {
 	 *
 	 * @return void
 	 */
+	#[DataProvider( 'dataNotResource' )]
 	public function testShouldClosedResourceAssertionBeSkipped( $value ) {
 		$this->assertFalse( self::shouldClosedResourceAssertionBeSkipped( $value ) );
 	}

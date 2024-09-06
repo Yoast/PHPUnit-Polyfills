@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,6 +13,8 @@ use PHPUnit\Framework\TestCase;
  *
  * @coversNothing
  */
+#[CoversNothing]
+#[RequiresPhpunit( '7.0' )]
 class TestErrorPHPUnitGte7 extends TestCase {
 
 	/**

@@ -2,6 +2,10 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\RequiresPhp;
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
+use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
 
 /**
@@ -22,6 +26,10 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.wddx_packet_startRemoved
  * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.wddx_packet_endRemoved
  */
+#[CoversClass( AssertClosedResource::class )]
+#[CoversClass( ResourceHelper::class )]
+#[RequiresPhp( '< 7.4' )]
+#[RequiresPhpExtension( 'wddx' )]
 final class AssertClosedResourceWddxTest extends AssertClosedResourceTestCase {
 
 	use AssertClosedResource;

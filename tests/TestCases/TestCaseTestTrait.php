@@ -3,6 +3,7 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 
 use Exception;
+use PHPUnit\Framework\Attributes\RequiresPhp;
 use stdClass;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
@@ -129,6 +130,7 @@ trait TestCaseTestTrait {
 	 *
 	 * @return void
 	 */
+	#[RequiresPhp( '7.0' )]
 	final public function testAvailabilityAssertObjectEquals() {
 		$expected = new ValueObject( 'test' );
 		$actual   = new ValueObject( 'test' );

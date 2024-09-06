@@ -2,7 +2,9 @@
 
 namespace Yoast\PHPUnitPolyfills\Tests\Helpers;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use ReflectionException;
+use Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures\ClassWithProperties;
 
@@ -11,6 +13,7 @@ use Yoast\PHPUnitPolyfills\Tests\Helpers\Fixtures\ClassWithProperties;
  *
  * @covers \Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper
  */
+#[CoversClass( AssertAttributeHelper::class )]
 final class AssertAttributesHelperTest extends TestCase {
 
 	/**
