@@ -671,9 +671,11 @@ For frequently used, removed PHPUnit functionality, "helpers" may be provided. T
 | ------- | --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 9.0.0   | `assertArraySubset()` | [#1][issue #1] | The [`dms/phpunit-arraysubset-asserts`](https://packagist.org/packages/dms/phpunit-arraysubset-asserts) package polyfills this functionality.<br/>As of [version 0.3.0](https://github.com/rdohms/phpunit-arraysubset-asserts/releases/tag/v0.3.0) this package can be installed in combination with PHP 5.4 - current and PHPUnit 4.8.36/5.7.21 - current.<br/>Alternatively, tests can be refactored using the patterns outlined in [issue #1]. |
 | 9.0.0   | `assertAttribute*()`  | [#2][issue #2] | Refactor the tests to not directly test private/protected properties.<br/>As an interim solution, the [`Yoast\PHPUnitPolyfills\Helpers\AssertAttributeHelper`](#yoastphpunitpolyfillshelpersassertattributehelper) trait is available.                                                                                                                                                                                                            |
+| 10.0.0  | `expectDeprecation*()` et al | [#186][issue #186] | A [custom polyfill approach tutorial](https://github.com/Yoast/PHPUnit-Polyfills/issues/186#issuecomment-2334326687) is available. Alternatively, tests can be refactored to skip running the `expectDeprecation*()` et al or skip the test completely on PHPUnit 10, while still running them on <= PHPUnit 9. |
 
 [issue #1]: https://github.com/Yoast/PHPUnit-Polyfills/issues/1
 [issue #2]: https://github.com/Yoast/PHPUnit-Polyfills/issues/2
+[issue #186]: https://github.com/Yoast/PHPUnit-Polyfills/issues/186
 
 ### Q: Can this library be used when the tests are being run via a PHPUnit Phar file ?
 
