@@ -99,11 +99,6 @@ jobs:
             coverage: false
             experimental: true
 
-          - php: '8.3'
-            phpunit: 'dev-main' # PHPUnit 11.x
-            coverage: false
-            experimental: true
-
     name: "Tests: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
     continue-on-error: ${{ matrix.experimental }}
@@ -162,10 +157,7 @@ jobs:
       - name: Determine PHPUnit config
         id: phpunit_config
         run: |
-          if [ "${{ matrix.phpunit == 'dev-main' }}" == "true" ]; then
-            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
-            echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
-          elif [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
+          if [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
             echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
           elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
             echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
@@ -182,8 +174,6 @@ jobs:
         run: vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }} --migrate-configuration
 
       - name: "Run the unit tests"
-        # Don't fail the build on a test run failure against a future PHPUnit version.
-        continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
         run: >
           vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }}
           ${{ ! matrix.coverage && '--no-coverage' || '' }}
