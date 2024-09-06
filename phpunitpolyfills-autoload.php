@@ -86,6 +86,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertArrayWithListKeys();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals':
+					self::loadAssertObjectNotEquals();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
 					self::loadTestCase();
 					return true;
@@ -97,6 +101,7 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 				/*
 				 * Handles:
 				 * - Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException
+				 * - Yoast\PHPUnitPolyfills\Helpers\ComparatorValidator
 				 * - Yoast\PHPUnitPolyfills\Helpers\ResourceHelper
 				 * - Yoast\PHPUnitPolyfills\TestCases\XTestCase
 				 * - Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods
@@ -332,6 +337,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 11.0.0.
 			require_once __DIR__ . '/src/Polyfills/AssertArrayWithListKeys_Empty.php';
+		}
+
+		/**
+		 * Load the AssertObjectNotEquals polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertObjectNotEquals() {
+			if ( \method_exists( Assert::class, 'assertObjectNotEquals' ) === false ) {
+				// PHPUnit < 11.2.0.
+				require_once __DIR__ . '/src/Polyfills/AssertObjectNotEquals.php';
+				return;
+			}
+
+			// PHPUnit >= 11.2.0.
+			require_once __DIR__ . '/src/Polyfills/AssertObjectNotEquals_Empty.php';
 		}
 
 		/**
