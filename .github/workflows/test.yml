@@ -25,6 +25,21 @@ jobs:
         coverage: [true]
         experimental: [false]
 
+        # Mind: code coverage can not be run on PHPUnit 11.2.0 - 11.3.2.
+        #
+        # Since PHPUnit 10.0, PHPUnit native deprecations would affect the exit code.
+        # This has been handled via various work-arounds to avoid the PHPUnit
+        # deprecation notices, up to the point where it couldn't be handled anymore *.
+        #
+        # PHPUnit 11.3.3 changes the default behaviour. PHPUnit deprecation notices will
+        # now no longer affect the exit code.
+        #
+        # * PHPUnit 11.2.0 deprecated the use of `#[CoversClass]` for tests covering traits
+        #   in favour of a new `#[CoversTrait]` attributes.
+        #   No work-around was available to avoid this deprecation notice other than to
+        #   not run code coverage.
+        #   @link https://github.com/sebastianbergmann/phpunit/issues/5937
+
         include:
           # Test against a version on the low-end of the PHPUnit versions supported for each PHP version.
           # Using the Composer `--prefer-lowest` option is, unfortunately, not viable, as
@@ -81,8 +96,16 @@ jobs:
             phpunit: '9.3.0'
             coverage: true
             experimental: false
+          - php: '8.2'
+            phpunit: '~11.1.0' # See note above about PHPUnit 11.2.
+            coverage: true
+            experimental: false
           - php: '8.3'
             phpunit: '10.1.0'
+            coverage: true
+            experimental: false
+          - php: '8.3'
+            phpunit: '11.0.0'
             coverage: true
             experimental: false
 
@@ -92,12 +115,16 @@ jobs:
             coverage: false
             experimental: true
           - php: 'nightly'
-            phpunit: 'auto' # PHPUnit 10.x.
+            phpunit: '^10.5'
+            coverage: false
+            experimental: true
+          - php: 'nightly'
+            phpunit: 'auto' # PHPUnit 11.x.
             coverage: false
             experimental: true
 
-          - php: '8.3'
-            phpunit: 'dev-main' # PHPUnit 11.x
+          - php: 'latest'
+            phpunit: 'dev-main' # PHPUnit 11.x/12.x.
             coverage: false
             experimental: true
 
@@ -164,7 +191,7 @@ jobs:
             echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
           elif [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
             echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
-          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) || startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
             echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
             echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
           else
@@ -299,11 +326,28 @@ jobs:
             phpunit: '10'
             coverage: true
 
+          # PHPUnit 11 is fully supported for the officially supported PHP versions.
+          #
+          # Mind: code coverage can not be run on PHPUnit 11.2.0 - 11.3.2.
+          # For a full explanation, see above (in the strategy for the other test job).
+          - php: '8.2'
+            phpunit: '11.0'
+            coverage: true
+          - php: '8.2'
+            phpunit: '11'
+          - php: '8.3'
+            phpunit: '11.0'
+          - php: '8.3'
+            phpunit: '11'
+            coverage: true
+
           # Experimental builds.
           - php: 'nightly'
             phpunit: '9'
           - php: 'nightly'
             phpunit: '10'
+          - php: 'nightly'
+            phpunit: '11'
 
     name: "PHAR test: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
@@ -369,7 +413,7 @@ jobs:
         run: |
           if [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
             echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
-          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) || startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
             echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
             echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
           else
