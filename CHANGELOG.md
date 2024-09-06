@@ -9,6 +9,21 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [2.0.2] - 2024-09-07
+
+This is a maintenance release.
+
+### Changed
+* README: updated sub-section about PHPUnit version support with information about the PHPUnit Polyfills 3.x branch. PR [#188]
+* README: FAQ updated with info about ability to polyfill the removed `expectDeprecation*()` methods et al. PR [#187], props [Tonya Mork].
+* README: links to the PHPUnit manual now point explicitly to the PHPUnit 10.x documentation. PR [#190]
+* General housekeeping.
+
+[#187]: https://github.com/Yoast/PHPUnit-Polyfills/pull/187
+<!-- Link to #188 is defined on the 1.1.2 release. -->
+[#190]: https://github.com/Yoast/PHPUnit-Polyfills/pull/190
+
+
 ## [2.0.1] - 2024-04-05
 
 ### Added
@@ -254,6 +269,7 @@ Initial release.
 
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.x...HEAD
+[2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.2...2.0.0
 [1.1.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.1...1.1.2
@@ -276,3 +292,4 @@ Initial release.
 [Pascal Birchler]: https://github.com/swissspidy
 [Phil E. Taylor]: https://github.com/PhilETaylor
 [Pierre Gordon]: https://github.com/pierlon
+[Tonya Mork]: https://github.com/hellofromtonya
