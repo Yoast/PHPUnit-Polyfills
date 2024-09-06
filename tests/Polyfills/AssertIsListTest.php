@@ -7,6 +7,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use Yoast\PHPUnitPolyfills\Autoload;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIsList;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
@@ -49,6 +50,15 @@ final class AssertIsListTest extends TestCase {
 		$resource = \fopen( __DIR__ . '/Fixtures/test.txt', 'r' );
 		\fclose( $resource );
 
+		// The error message for objects was improved in PHPUnit 11.3.1 and this improvement
+		// is emulated in the polyfill for PHPUnit < 10.
+		$improved_error_message = false;
+		if ( \version_compare( Autoload::getPHPUnitVersion(), '10.0.0', '<' )
+			|| \version_compare( Autoload::getPHPUnitVersion(), '11.3.1', '>=' )
+		) {
+			$improved_error_message = true;
+		}
+
 		return [
 			'null' => [
 				'actual' => null,
@@ -70,9 +80,13 @@ final class AssertIsListTest extends TestCase {
 				'actual' => 'text',
 				'type'   => 'a string',
 			],
-			'object' => [
+			'named object' => [
 				'actual' => new stdClass(),
-				'type'   => 'an object',
+				'type'   => ( $improved_error_message === true ) ? 'an instance of class stdClass' : 'an object',
+			],
+			'anonymous object' => [
+				'actual' => new class() {},
+				'type'   => ( $improved_error_message === true ) ? 'an instance of anonymous class created at \S+' : 'an object',
 			],
 			'closed resource' => [
 				'actual' => $resource,
