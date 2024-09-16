@@ -201,6 +201,7 @@ Features
 #### PHPUnit < 5.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertNumericType`
 
 Polyfills the following methods:
+
 |                            |                              |                         |
 | -------------------------- | ---------------------------- | ----------------------- |
 | [`Assert::assertFinite()`] | [`Assert::assertInfinite()`] | [`Assert::assertNan()`] |
@@ -214,6 +215,7 @@ These methods were introduced in PHPUnit 5.0.0.
 #### PHPUnit < 5.2.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectException`
 
 Polyfills the following methods:
+
 |                                     |                                              |
 | ----------------------------------- | -------------------------------------------- |
 | [`TestCase::expectException()`]     | [`TestCase::expectExceptionMessage()`]       |
@@ -230,6 +232,7 @@ Both these methods were removed in PHPUnit 6.0.0.
 #### PHPUnit < 5.6.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileDirectory`
 
 Polyfills the following methods:
+
 |                                         |                                            |
 | --------------------------------------- | ------------------------------------------ |
 | [`Assert::assertIsReadable()`]          | [`Assert::assertNotIsReadable()`]          |
@@ -268,6 +271,7 @@ This method was introduced in PHPUnit 6.4.0.
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
 
 Polyfills the following methods:
+
 |                                   |                                   |                                 |
 | --------------------------------- | --------------------------------- | ------------------------------- |
 | [`Assert::assertIsArray()`]       | [`Assert::assertIsBool()`]        | [`Assert::assertIsFloat()`]     |
@@ -307,6 +311,7 @@ These methods were introduced in PHPUnit 7.5.0 as alternatives to the `Assert::a
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains`
 
 Polyfills the following methods:
+
 |                                                      |                                                         |
 | ---------------------------------------------------- | ------------------------------------------------------- |
 | [`Assert::assertStringContainsString()`]             | [`Assert::assertStringNotContainsString()`]             |
@@ -322,6 +327,7 @@ These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert:
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations`
 
 Polyfills the following methods:
+
 |                                          |                                             |
 | ---------------------------------------- | ------------------------------------------- |
 | [`Assert::assertEqualsCanonicalizing()`] | [`Assert::assertNotEqualsCanonicalizing()`] |
@@ -340,6 +346,7 @@ These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert:
 #### PHPUnit < 8.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException`
 
 Polyfills the following methods:
+
 |                                     |                                |                                       |
 | ----------------------------------- | ------------------------------ | ------------------------------------- |
 | `TestCase::`[`expectError()`]       | [`expectErrorMessage()`]       | [`expectErrorMessageMatches()`]       |
@@ -375,6 +382,7 @@ The `TestCase::expectExceptionMessageRegExp()` method was soft deprecated in PHP
 #### PHPUnit < 8.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations`
 
 Polyfills the following methods:
+
 |                                                  |                                                     |
 | ------------------------------------------------ | --------------------------------------------------- |
 | `Assert::assertFileEqualsCanonicalizing()`       | `Assert::assertFileNotEqualsCanonicalizing()`       |
@@ -391,6 +399,7 @@ COMMENT: No documentation available (yet) for these assertions on the PHPUnit si
 #### PHPUnit < 9.0.0: `Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations`
 
 Polyfills the following methods:
+
 |                                   |                                 |
 | --------------------------------- | ------------------------------- |
 | `Assert::equalToCanonicalizing()` | `Assert::equalToIgnoringCase()` |
@@ -429,6 +438,7 @@ The original methods these new methods replace were hard deprecated in PHPUnit 9
 #### PHPUnit < 9.3.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource`
 
 Polyfills the following methods:
+
 |                                    |                                       |
 | ---------------------------------- | ------------------------------------- |
 | `Assert::assertIsClosedResource()` | `Assert::assertIsNotClosedResource()` |
@@ -487,6 +497,7 @@ The `assertObjectEquals()` assertion was introduced in PHPUnit 9.4.0.
 #### PHPUnit < 9.6.11: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty`
 
 Polyfills the following method:
+
 |                                     |                                        |
 | ----------------------------------- | -------------------------------------- |
 | `Assert::assertObjectHasProperty()` | `Assert::assertObjectNotHasProperty()` |
