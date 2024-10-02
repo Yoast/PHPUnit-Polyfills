@@ -1,15 +1,16 @@
 PHPUnit Polyfills
 =====================================================
 
-[![Version](https://poser.pugx.org/yoast/phpunit-polyfills/version)](//packagist.org/packages/yoast/phpunit-polyfills)
+[![Version](https://img.shields.io/packagist/v/yoast/phpunit-polyfills?label=stable)][Packagist]
 [![CS Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml)
 [![Lint Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml)
 [![Test Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml)
-[![Coverage Status](https://coveralls.io/repos/github/Yoast/PHPUnit-Polyfills/badge.svg?branch=2.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=2.x)
+[![Coverage Status](https://img.shields.io/coverallsCoverage/github/Yoast/PHPUnit-Polyfills?branch=2.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=2.x)
 
-[![Minimum PHP Version](https://img.shields.io/packagist/php-v/yoast/phpunit-polyfills.svg?maxAge=3600)](https://packagist.org/packages/yoast/phpunit-polyfills)
-[![License: BSD3](https://poser.pugx.org/yoast/phpunit-polyfills/license)](https://github.com/Yoast/PHPUnit-Polyfills/blob/main/LICENSE)
+[![Minimum PHP Version](https://img.shields.io/packagist/dependency-v/yoast/phpunit-polyfills/php.svg)][Packagist]
+[![License: BSD3](https://img.shields.io/github/license/Yoast/PHPUnit-Polyfills)](https://github.com/Yoast/PHPUnit-Polyfills/blob/main/LICENSE)
 
+[Packagist]: https://packagist.org/packages/yoast/phpunit-polyfills
 
 Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit cross-version compatible tests.
 
@@ -204,7 +205,7 @@ Polyfills the [`TestCase::expectExceptionObject()`] method to test all aspects o
 
 This method was introduced in PHPUnit 6.4.0.
 
-[`TestCase::expectExceptionObject()`]: https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#testing-exceptions
+[`TestCase::expectExceptionObject()`]: https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#expecting-exceptions
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
 
@@ -289,7 +290,7 @@ Polyfills the [`TestCase::expectExceptionMessageMatches()`] method.
 This method was introduced in PHPUnit 8.4.0 to improve the name of the `TestCase::expectExceptionMessageRegExp()` method.
 The `TestCase::expectExceptionMessageRegExp()` method was soft deprecated in PHPUnit 8.4.0, hard deprecated (warning) in PHPUnit 8.5.3 and removed in PHPUnit 9.0.0.
 
-[`TestCase::expectExceptionMessageMatches()`]: https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#testing-exceptions
+[`TestCase::expectExceptionMessageMatches()`]: https://docs.phpunit.de/en/10.5/writing-tests-for-phpunit.html#expecting-exceptions
 
 #### PHPUnit < 8.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations`
 
@@ -389,7 +390,7 @@ if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
 ```
 
 > :point_right: While this polyfill is tested extensively, testing for these kind of bugs _exhaustively_ is _hard_.
-> Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues/new/choose) found and include a clear code sample to reproduce the issue.
+> Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues) found and include a clear code sample to reproduce the issue.
 
 #### PHPUnit < 9.4.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals`
 
@@ -421,7 +422,7 @@ Polyfills the following methods:
 These methods were introduced in PHPUnit 10.0.0.
 
 [`Assert::assertStringEqualsStringIgnoringLineEndings()`]:   https://docs.phpunit.de/en/10.5/assertions.html#assertstringequalsstringignoringlineendings
-[`Assert::assertStringContainsStringIgnoringLineEndings()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstringignoringlineendings
+[`Assert::assertStringContainsStringIgnoringLineEndings()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertstringcontainsstring
 
 #### PHPUnit < 10.0.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsList`
 
@@ -447,8 +448,8 @@ These methods were introduced in PHPUnit 10.1.0 as alternatives to the `Assert::
 
 These methods were later backported to the PHPUnit 9 branch and included in the PHPUnit 9.6.11 release.
 
-[`Assert::assertObjectHasProperty()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertObjectHasProperty
-[`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertObjectHasProperty
+[`Assert::assertObjectHasProperty()`]:    https://docs.phpunit.de/en/10.5/assertions.html#assertobjecthasproperty
+[`Assert::assertObjectNotHasProperty()`]: https://docs.phpunit.de/en/10.5/assertions.html#assertobjecthasproperty
 
 
 ### Helper traits
