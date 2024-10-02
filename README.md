@@ -1,15 +1,16 @@
 PHPUnit Polyfills
 =====================================================
 
-[![Version](https://poser.pugx.org/yoast/phpunit-polyfills/version)](//packagist.org/packages/yoast/phpunit-polyfills)
+[![Version](https://img.shields.io/packagist/v/yoast/phpunit-polyfills?label=stable)][Packagist]
 [![CS Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml)
 [![Lint Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml)
 [![Test Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml)
-[![Coverage Status](https://coveralls.io/repos/github/Yoast/PHPUnit-Polyfills/badge.svg?branch=1.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=1.x)
+[![Coverage Status](https://img.shields.io/coverallsCoverage/github/Yoast/PHPUnit-Polyfills?branch=1.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=1.x)
 
-[![Minimum PHP Version](https://img.shields.io/packagist/php-v/yoast/phpunit-polyfills.svg?maxAge=3600)](https://packagist.org/packages/yoast/phpunit-polyfills)
-[![License: BSD3](https://poser.pugx.org/yoast/phpunit-polyfills/license)](https://github.com/Yoast/PHPUnit-Polyfills/blob/main/LICENSE)
+[![Minimum PHP Version](https://img.shields.io/packagist/dependency-v/yoast/phpunit-polyfills/php.svg)][Packagist]
+[![License: BSD3](https://img.shields.io/github/license/Yoast/PHPUnit-Polyfills)](https://github.com/Yoast/PHPUnit-Polyfills/blob/main/LICENSE)
 
+[Packagist]: https://packagist.org/packages/yoast/phpunit-polyfills
 
 Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit cross-version compatible tests.
 
@@ -473,7 +474,7 @@ if ( self::shouldClosedResourceAssertionBeSkipped( $actual ) === false ) {
 ```
 
 > :point_right: While this polyfill is tested extensively, testing for these kind of bugs _exhaustively_ is _hard_.
-> Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues/new/choose) found and include a clear code sample to reproduce the issue.
+> Please [report any bugs](https://github.com/Yoast/PHPUnit-Polyfills/issues) found and include a clear code sample to reproduce the issue.
 
 #### PHPUnit < 9.4.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals`
 
