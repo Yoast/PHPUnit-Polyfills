@@ -4,6 +4,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures;
 
 use Exception;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\RequiresPhpunit;
 use PHPUnit\Framework\TestCase;
 
 /**
