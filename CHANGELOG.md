@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-This projects adheres to [Keep a CHANGELOG](https://keepachangelog.com/en/1.1.0/) and uses [Semantic Versioning](https://semver.org/).
+This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses [Semantic Versioning](https://semver.org/).
 
 
 ## [Unreleased]
