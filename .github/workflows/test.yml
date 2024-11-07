@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php: ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
         phpunit: ['auto']
         coverage: [true]
         experimental: [false]
@@ -86,6 +86,10 @@ jobs:
             experimental: false
           - php: '8.3'
             phpunit: '10.1.0'
+            coverage: true
+            experimental: false
+          - php: '8.4'
+            phpunit: '10.5.35'
             coverage: true
             experimental: false
 
@@ -242,6 +246,7 @@ jobs:
           # - PHPUnit 8 supports PHP 8.1 as of PHPUnit 8.5.19 (for our purposes).
           # - PHPUnit 8 supports PHP 8.2 as of PHPUnit 8.5.19 (for our purposes).
           # - PHPUnit 8 supports PHP 8.3 as of PHPUnit 8.5.19 (for our purposes).
+          # - PHPUnit 8 supports PHP 8.4 as of PHPUnit 8.5.40 (for our purposes).
           # - PHPUnit 8 does not support running code coverage on PHP 8.0 or higher.
           - php: '7.2'
             phpunit: '8.0'
@@ -253,9 +258,9 @@ jobs:
             coverage: true
           - php: '8.0'
             phpunit: '8.5.12'
-          - php: '8.3'
-            phpunit: '8.5.19'
-          - php: '8.3'
+          - php: '8.4'
+            phpunit: '8.5.40'
+          - php: '8.4'
             phpunit: '8'
 
           # PHPUnit 9 is fully supported for the officially supported PHP versions.
@@ -264,6 +269,7 @@ jobs:
           # - PHPUnit 9 supports PHP 8.1 as of PHPUnit 9.5.8 (for our purposes).
           # - PHPUnit 9 supports PHP 8.2 as of PHPUnit 9.5.8 (for our purposes).
           # - PHPUnit 9 supports PHP 8.3 as of PHPUnit 9.5.8 (for our purposes).
+          # - PHPUnit 9 supports PHP 8.4 as of PHPUnit 9.6.21 (for our purposes).
           - php: '7.3'
             phpunit: '9.0'
             coverage: true
@@ -273,21 +279,19 @@ jobs:
             phpunit: '9.3.0'
           - php: '8.0'
             phpunit: '9'
-          - php: '8.1'
-            phpunit: '9.5.8'
-          - php: '8.1'
-            phpunit: '9'
-          - php: '8.2'
-            phpunit: '9.5.8'
-          - php: '8.2'
-            phpunit: '9'
           - php: '8.3'
             phpunit: '9.5.8'
           - php: '8.3'
+            phpunit: '9'
+          - php: '8.4'
+            phpunit: '9.6.21'
+          - php: '8.4'
             phpunit: '9'
             coverage: true
 
           # PHPUnit 10 is fully supported for the officially supported PHP versions.
+          # Caveats:
+          # - PHPUnit 10 supports PHP 8.4 as of PHPUnit 10.5.35 (for our purposes).
           - php: '8.1'
             phpunit: '10.0'
             coverage: true
@@ -300,6 +304,10 @@ jobs:
           - php: '8.3'
             phpunit: '10.0'
           - php: '8.3'
+            phpunit: '10'
+          - php: '8.4'
+            phpunit: '10.5.35'
+          - php: '8.4'
             phpunit: '10'
             coverage: true
 
