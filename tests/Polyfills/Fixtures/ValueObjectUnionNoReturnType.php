@@ -28,7 +28,7 @@ class ValueObjectUnionNoReturnType {
 	 *
 	 * @param self|OtherClass|array $other Object to compare.
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
 	public function equalsParamUnionType( self|OtherClass|array $other ) {
 		return ( $this->value === $other->value );
