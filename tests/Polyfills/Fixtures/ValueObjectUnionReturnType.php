@@ -31,7 +31,7 @@ class ValueObjectUnionReturnType {
 	 *
 	 * @param self $other Object to compare.
 	 *
-	 * @return bool
+	 * @return bool|null
 	 */
 	public function equalsUnionReturnType( self $other ): bool|int {
 		return ( $this->value === $other->value );
