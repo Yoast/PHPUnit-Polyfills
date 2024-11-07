@@ -46,7 +46,7 @@ elseif ( \file_exists( \dirname( __DIR__ ) . '/vendor/autoload.php' ) ) {
 }
 else {
 	echo 'Please run `composer install` before attempting to run the tests.';
-	die( 1 );
+	exit( 1 );
 }
 
 /*
