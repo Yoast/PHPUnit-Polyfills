@@ -3,7 +3,6 @@
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
 use PHPUnit\Framework\Constraint\IsEqual;
-use PHPUnit_Framework_Constraint_IsEqual;
 
 /**
  * Polyfill the Assert::equalToCanonicalizing(), Assert::equalToIgnoringCase() and
@@ -23,7 +22,7 @@ trait EqualToSpecializations {
 	 *
 	 * @param mixed $value Expected value for constraint.
 	 *
-	 * @return IsEqual|PHPUnit_Framework_Constraint_IsEqual An isEqual constraint instance.
+	 * @return IsEqual An isEqual constraint instance.
 	 */
 	final public static function equalToCanonicalizing( $value ) {
 		return static::equalTo( $value, 0.0, 10, true, false );
@@ -34,7 +33,7 @@ trait EqualToSpecializations {
 	 *
 	 * @param mixed $value Expected value for constraint.
 	 *
-	 * @return IsEqual|PHPUnit_Framework_Constraint_IsEqual An isEqual constraint instance.
+	 * @return IsEqual An isEqual constraint instance.
 	 */
 	final public static function equalToIgnoringCase( $value ) {
 		return static::equalTo( $value, 0.0, 10, false, true );
@@ -46,7 +45,7 @@ trait EqualToSpecializations {
 	 * @param mixed $value Expected value for constraint.
 	 * @param float $delta The delta to allow between the expected and the actual value.
 	 *
-	 * @return IsEqual|PHPUnit_Framework_Constraint_IsEqual An isEqual constraint instance.
+	 * @return IsEqual An isEqual constraint instance.
 	 */
 	final public static function equalToWithDelta( $value, $delta ) {
 		return static::equalTo( $value, $delta, 10, false, false );
