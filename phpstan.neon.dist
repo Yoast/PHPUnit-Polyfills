@@ -15,6 +15,21 @@ parameters:
 		- src/Polyfills/AssertClosedResource.php
 
 	ignoreErrors:
+		# Level 4
+		# This is part of the functionality of this package. Safe to ignore.
+		-
+			message: "`^Call to function method_exists\\(\\) with '\\W+PHPUnit\\W+Framework…' and '(assert|expect|equalTo)[^']+' will always evaluate to true\\.$`"
+			count: 15
+			path: phpunitpolyfills-autoload.php
+
+		# The traits are functionality, but not used by the package itself. Can't be helped.
+		-
+			identifier: trait.unused
+			path: src/TestListeners/TestListenerDefaultImplementationPHPUnitLte5.php
+		-
+			identifier: trait.unused
+			path: src/TestListeners/TestListenerSnakeCaseMethods.php
+
 		# Level 5
 		-
 			# False positive, a string callback is perfectly fine, especially for static methods.
