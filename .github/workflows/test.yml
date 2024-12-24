@@ -148,7 +148,7 @@ jobs:
 
       - name: Grab PHPUnit version
         id: phpunit_version
-        run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(vendor/bin/phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
       - name: "DEBUG: Show grabbed version"
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
@@ -162,12 +162,12 @@ jobs:
         id: phpunit_config
         run: |
           if [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
-            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
           elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
-            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
-            echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+            echo 'NEEDS_MIGRATION=true' >> "$GITHUB_OUTPUT"
           else
-            echo 'FILE=phpunit.xml.dist' >> $GITHUB_OUTPUT
+            echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
           fi
 
         # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
@@ -366,7 +366,7 @@ jobs:
 
       - name: Grab PHPUnit version
         id: phpunit_version
-        run: echo "VERSION=$(phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> $GITHUB_OUTPUT
+        run: echo "VERSION=$(phpunit --version | grep --only-matching --max-count=1 --extended-regexp '\b[0-9]+\.[0-9]+')" >> "$GITHUB_OUTPUT"
 
       - name: "DEBUG: Show grabbed version"
         run: echo ${{ steps.phpunit_version.outputs.VERSION }}
@@ -380,12 +380,12 @@ jobs:
         id: phpunit_config
         run: |
           if [ "${{ steps.phpunit_version.outputs.VERSION }}" == "10.0" ]; then
-            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
           elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '10.' ) }}" == "true" ]; then
-            echo 'FILE=phpunit10.xml.dist' >> $GITHUB_OUTPUT
-            echo 'NEEDS_MIGRATION=true' >> $GITHUB_OUTPUT
+            echo 'FILE=phpunit10.xml.dist' >> "$GITHUB_OUTPUT"
+            echo 'NEEDS_MIGRATION=true' >> "$GITHUB_OUTPUT"
           else
-            echo 'FILE=phpunit.xml.dist' >> $GITHUB_OUTPUT
+            echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
           fi
 
         # Migrate PHPUnit configuration to deal with changes in the coverage/source setting across PHPUnit 10.x
