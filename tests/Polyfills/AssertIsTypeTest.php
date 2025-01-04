@@ -75,7 +75,6 @@ final class AssertIsTypeTest extends TestCase {
 	 * @return void
 	 */
 	public function testAssertIsResource() {
-		// TODO: needs checking if this is still a resource in PHP 8!
 		$resource = \opendir( __DIR__ );
 		$this->assertIsResource( $resource );
 		\closedir( $resource );
