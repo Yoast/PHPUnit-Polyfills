@@ -10,6 +10,7 @@
  * @phpcs:disable Universal.Namespaces.OneDeclarationPerFile
  * @phpcs:disable Universal.Namespaces.DisallowCurlyBraceSyntax
  * @phpcs:disable Squiz.Commenting.FunctionComment.InvalidNoReturn -- These are only stubs, not real functions.
+ * @phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- This file emulates external classes.
  */
 
 namespace PHPUnit\SebastianBergmann\Exporter {
