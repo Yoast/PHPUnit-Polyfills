@@ -8,6 +8,8 @@ use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
 /**
  * TestListener implementation for testing the TestListener cross-version
  * TestListenerDefaultImplementation trait.
+ *
+ * @phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- This is intentional. These params can be used, but don't have to be.
  */
 class TestListenerImplementation implements TestListener {
 
