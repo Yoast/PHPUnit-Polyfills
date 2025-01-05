@@ -81,6 +81,18 @@ final class AssertIsTypeTest extends TestCase {
 	}
 
 	/**
+	 * Verify assertIsResource() method handles closed resources correctly.
+	 *
+	 * @return void
+	 */
+	public function testAssertIsResourceAllowsForClosedResources() {
+		$resource = \opendir( __DIR__ );
+		\closedir( $resource );
+
+		$this->assertIsResource( $resource );
+	}
+
+	/**
 	 * Verify availability of the assertIsArray() method.
 	 *
 	 * @return void
