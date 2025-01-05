@@ -51,7 +51,10 @@
 		<exclude name="WordPress.WP"/>
 		<exclude name="Yoast.Yoast.JsonEncodeAlternative"/>
 		<exclude name="Yoast.NamingConventions.ObjectNameDepth.MaxExceeded"/>
-		<exclude name="WordPressVIPMinimum"/>
+		<exclude name="WordPressVIPMinimum.Classes.DeclarationCompatibility"/>
+		<exclude name="WordPressVIPMinimum.Hooks.AlwaysReturnInFilter"/>
+		<exclude name="WordPressVIPMinimum.Security.EscapingVoidReturnFunctions"/>
+		<exclude name="WordPressVIPMinimum.Security.ProperEscapingFunction"/>
 
 		<!-- Exclude select "modern PHP" sniffs, which conflict with the minimum supported PHP version of this package. -->
 		<exclude name="SlevomatCodingStandard.Classes.ModernClassNameReference"/><!-- PHP 5.5+ -->
