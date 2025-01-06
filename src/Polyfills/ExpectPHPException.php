@@ -14,6 +14,8 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  * @link https://github.com/sebastianbergmann/phpunit/issues/3775
  * @link https://github.com/sebastianbergmann/phpunit/issues/3776
  * @link https://github.com/sebastianbergmann/phpunit/issues/3777
+ *
+ * @since 0.1.0
  */
 trait ExpectPHPException {
 

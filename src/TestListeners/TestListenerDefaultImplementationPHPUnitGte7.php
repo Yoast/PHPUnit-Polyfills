@@ -16,6 +16,8 @@ use Throwable;
  *
  * When using this TestListener trait, the snake_case method names need to be used to implement
  * the listener functionality.
+ *
+ * @since 0.2.0
  */
 trait TestListenerDefaultImplementation {
 

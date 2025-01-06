@@ -12,6 +12,8 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  * deprecated in PHPUnit 7.5.0 and removed in PHPUnit 9.0.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/issues/3340
+ *
+ * @since 0.1.0
  */
 trait AssertEqualsSpecializations {
 

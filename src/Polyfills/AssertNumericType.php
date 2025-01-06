@@ -8,6 +8,8 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  * Introduced in PHPUnit 5.0.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/pull/1753
+ *
+ * @since 0.2.0
  */
 trait AssertNumericType {
 

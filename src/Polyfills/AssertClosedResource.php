@@ -14,6 +14,8 @@ use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
  *
  * @link https://github.com/sebastianbergmann/phpunit/issues/4276
  * @link https://github.com/sebastianbergmann/phpunit/pull/4365
+ *
+ * @since 1.0.0
  */
 trait AssertClosedResource {
 
