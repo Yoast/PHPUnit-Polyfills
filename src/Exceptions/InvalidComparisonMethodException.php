@@ -9,6 +9,8 @@ use Exception;
  *
  * PHPUnit natively throws a range of different exceptions.
  * The polyfill throws just one exception type with different messages.
+ *
+ * @since 1.0.0
  */
 final class InvalidComparisonMethodException extends Exception {
 

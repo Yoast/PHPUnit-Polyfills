@@ -12,6 +12,8 @@ use Throwable;
 /**
  * Renamed snake_case TestListener method collection used by the TestListenerDefaultImplementation traits.
  *
+ * @since 0.2.0
+ *
  * @phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- This is intentional as these are template methods.
  */
 trait TestListenerSnakeCaseMethods {

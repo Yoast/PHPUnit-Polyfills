@@ -15,6 +15,8 @@ use PHPUnit_Util_InvalidArgumentHelper;
  * Introduced in PHPUnit 5.6.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/pull/2262
+ *
+ * @since 0.2.0
  */
 trait AssertFileDirectory {
 

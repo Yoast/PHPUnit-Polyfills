@@ -10,6 +10,8 @@ use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
  * For consistency, the "should this test be skipped" method is included
  * as the PHPUnit native versions of the `assertIs[Not]ClosedResource()`
  * assertions are affected by the same bugs.
+ *
+ * @since 1.0.0
  */
 trait AssertClosedResource {
 
