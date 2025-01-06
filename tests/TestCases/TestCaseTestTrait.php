@@ -190,4 +190,13 @@ trait TestCaseTestTrait {
 
 		\trigger_error( 'This is a deprecation notice', \E_USER_DEPRECATED );
 	}
+
+	/**
+	 * Verify availability of trait polyfilled PHPUnit methods [21].
+	 *
+	 * @return void
+	 */
+	final public function testAvailabilityAssertContainsOnly() {
+		$this->assertContainsOnlyBool( [ true, false ] );
+	}
 }

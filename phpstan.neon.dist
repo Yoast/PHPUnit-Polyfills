@@ -15,6 +15,7 @@ parameters:
 		- src/TestCases/TestCasePHPUnitLte7.php
 		# Triggers "Referencing prefixed PHPUnit class: PHPUnitPHAR\SebastianBergmann\Exporter\Exporter." notices, which cannot be ignored.
 		- src/Polyfills/AssertClosedResource.php
+		- src/Polyfills/AssertContainsOnly.php
 		- src/Polyfills/AssertIgnoringLineEndings.php
 	treatPhpDocTypesAsCertain: false
 
