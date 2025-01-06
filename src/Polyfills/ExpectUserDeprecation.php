@@ -13,6 +13,8 @@ use PHPUnit\Framework\TestCase;
  * Note: PHPUnit 10 is not and will not be supported for these polyfills.
  *
  * @link https://github.com/sebastianbergmann/phpunit/pull/5605
+ *
+ * @since 3.0.0
  */
 trait ExpectUserDeprecation {
 

@@ -13,6 +13,8 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  * @link https://github.com/sebastianbergmann/phpunit/commit/d1199cb2e43a934b51521656be9748f63febe18e
  * @link https://github.com/sebastianbergmann/phpunit/issues/4133
  * @link https://github.com/sebastianbergmann/phpunit/issues/3957
+ *
+ * @since 0.1.0
  */
 trait ExpectExceptionMessageMatches {
 

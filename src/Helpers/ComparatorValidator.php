@@ -19,6 +19,8 @@ use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
  * ---------------------------------------------------------------------------------------------
  *
  * @internal
+ *
+ * @since 3.0.0
  */
 final class ComparatorValidator {
 

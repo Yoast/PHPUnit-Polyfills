@@ -14,6 +14,8 @@ use Traversable;
  *
  * @link https://github.com/sebastianbergmann/phpunit/issues/3368
  * @link https://github.com/sebastianbergmann/phpunit/issues/3369
+ *
+ * @since 0.1.0
  */
 trait AssertIsType {
 

@@ -16,6 +16,8 @@ use Yoast\PHPUnitPolyfills\Helpers\ComparatorValidator;
  *
  * @link https://github.com/sebastianbergmann/phpunit/issues/5811
  * @link https://github.com/sebastianbergmann/phpunit/commit/8e3b7c18506312df0676f2e079c414cc56b49f69
+ *
+ * @since 3.0.0
  */
 trait AssertObjectNotEquals {
 
