@@ -22,6 +22,8 @@ use PHPUnit_Framework_Warning;
  * file are based on the namespaced names. As both the namespaced names as well as the
  * non-namespaced names exist in PHPUnit 5.7.21+, we cannot create class aliases to
  * get round the signature mismatch and need this trait using the old names instead.}
+ *
+ * @since 0.2.0
  */
 trait TestListenerDefaultImplementation {
 

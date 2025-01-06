@@ -15,6 +15,8 @@ use PHPUnit_Framework_Constraint_IsEqual;
  * never deprecated but leads to unexpected behaviour as they are ignored in PHPUnit 9.0.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/commit/43c01a4e0c74a4bf019a8d879bced5146af2fbb6
+ *
+ * @since 1.0.0
  */
 trait EqualToSpecializations {
 

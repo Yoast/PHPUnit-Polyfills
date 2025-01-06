@@ -32,6 +32,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
  * `@after` and `@afterClass` annotations.
  * The naming of the overloaded methods is open as long as the method names don't conflict with
  * the PHPUnit native method names.
+ *
+ * @since 0.1.0
  */
 abstract class XTestCase extends PHPUnit_TestCase {
 

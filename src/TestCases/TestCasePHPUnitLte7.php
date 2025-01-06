@@ -26,6 +26,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionObject;
  * methods to get round the signature change in PHPUnit 8.
  *
  * When using this TestCase, the snakecase method names need to be used to overload a fixture method.
+ *
+ * @since 0.1.0
  */
 abstract class TestCase extends PHPUnit_TestCase {
 
@@ -73,6 +75,8 @@ abstract class TestCase extends PHPUnit_TestCase {
 	 *
 	 * This method is called before the execution of a test starts and after setUp() is called.
 	 *
+	 * @since 0.2.0
+	 *
 	 * @return void
 	 */
 	protected function assertPreConditions() {
@@ -84,6 +88,8 @@ abstract class TestCase extends PHPUnit_TestCase {
 	 * Performs assertions shared by all tests of a test case.
 	 *
 	 * This method is called before the execution of a test ends and before tearDown() is called.
+	 *
+	 * @since 0.2.0
 	 *
 	 * @return void
 	 */

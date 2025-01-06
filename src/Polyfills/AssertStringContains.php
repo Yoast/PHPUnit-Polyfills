@@ -19,6 +19,8 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
  * @link https://github.com/sebastianbergmann/phpunit/issues/3422
  * @link https://github.com/sebastianbergmann/phpunit/issues/2520
  * @link https://github.com/sebastianbergmann/phpunit/pull/2778
+ *
+ * @since 0.1.0
  */
 trait AssertStringContains {
 

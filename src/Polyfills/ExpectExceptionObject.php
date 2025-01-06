@@ -10,6 +10,8 @@ use Exception;
  * Introduced in PHPUnit 6.4.0.
  *
  * @link https://github.com/sebastianbergmann/phpunit/pull/2780
+ *
+ * @since 0.1.0
  */
 trait ExpectExceptionObject {
 
