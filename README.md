@@ -515,7 +515,8 @@ Polyfills the following methods:
 | [`Assert::assertContainsOnlyClosedResource()`] * | [`Assert::assertContainsNotOnlyClosedResource()`] * |
 | [`Assert::assertContainsOnlyScalar()`]           | [`Assert::assertContainsNotOnlyScalar()`]           |
 | [`Assert::assertContainsOnlyString()`]           | [`Assert::assertContainsNotOnlyString()`]           |
-| [`Assert::assertContainsNotOnlyInstancesOf()`]   |                                                     |
+|                                                  | [`Assert::assertContainsNotOnlyInstancesOf()`]      |
+
 
 These methods were introduced in PHPUnit 11.5.0 as alternatives to the `Assert::assertContainsOnly()` and `Assert::assertNotContainsOnly()` methods, which were soft deprecated in PHPUnit 11.5.0, hard deprecated (warning) in PHPUnit 12.0.0 and will be removed in PHPUnit 13.0.0.
 
