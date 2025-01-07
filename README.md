@@ -202,16 +202,19 @@ Features
 
 Polyfills the following methods:
 
-|                                   |                                   |                                 |
-| --------------------------------- | --------------------------------- | ------------------------------- |
-| [`Assert::assertIsArray()`]       | [`Assert::assertIsBool()`]        | [`Assert::assertIsFloat()`]     |
-| [`Assert::assertIsInt()`]         | [`Assert::assertIsNumeric()`]     | [`Assert::assertIsObject()`]    |
-| [`Assert::assertIsResource()`]    | [`Assert::assertIsString()`]      | [`Assert::assertIsScalar()`]    |
-| [`Assert::assertIsCallable()`]    | [`Assert::assertIsIterable()`]    |                                 |
-| [`Assert::assertIsNotArray()`]    | [`Assert::assertIsNotBool()`]     | [`Assert::assertIsNotFloat()`]  |
-| [`Assert::assertIsNotInt()`]      | [`Assert::assertIsNotNumeric()`]  | [`Assert::assertIsNotObject()`] |
-| [`Assert::assertIsNotResource()`] | [`Assert::assertIsNotString()`]   | [`Assert::assertIsNotScalar()`] |
-| [`Assert::assertIsNotCallable()`] | [`Assert::assertIsNotIterable()`] |                                 |
+|                                |                                   |
+| ------------------------------ | --------------------------------- |
+| [`Assert::assertIsArray()`]    | [`Assert::assertIsNotArray()`]    |
+| [`Assert::assertIsBool()`]     | [`Assert::assertIsNotBool()`]     |
+| [`Assert::assertIsFloat()`]    | [`Assert::assertIsNotFloat()`]    |
+| [`Assert::assertIsInt()`]      | [`Assert::assertIsNotInt()`]      |
+| [`Assert::assertIsNumeric()`]  | [`Assert::assertIsNotNumeric()`]  |
+| [`Assert::assertIsObject()`]   | [`Assert::assertIsNotObject()`]   |
+| [`Assert::assertIsResource()`] | [`Assert::assertIsNotResource()`] |
+| [`Assert::assertIsString()`]   | [`Assert::assertIsNotString()`]   |
+| [`Assert::assertIsScalar()`]   | [`Assert::assertIsNotScalar()`]   |
+| [`Assert::assertIsCallable()`] | [`Assert::assertIsNotCallable()`] |
+| [`Assert::assertIsIterable()`] | [`Assert::assertIsNotIterable()`] |
 
 These methods were introduced in PHPUnit 7.5.0 as alternatives to the `Assert::assertInternalType()` and `Assert::assertNotInternalType()` methods, which were soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
 
