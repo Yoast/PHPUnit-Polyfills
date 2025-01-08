@@ -9,6 +9,20 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [3.1.0] - 2025-01-08
+
+### Added
+* `Yoast\PHPUnitPolyfills\Polyfills\AssertContainsOnly` trait to polyfill the specialized `Assert::assertContains[Not]Only*()` methods as introduced in PHPUnit 11.5.0. PR [#225].
+
+### Changed
+* README: fix links which were broken due to an upstream branch removal. PR [#213].
+* README: fixed a few broken badges.
+* General housekeeping.
+
+[#213]: https://github.com/Yoast/PHPUnit-Polyfills/pull/213
+[#225]: https://github.com/Yoast/PHPUnit-Polyfills/pull/225
+
+
 ## [3.0.0] - 2024-09-07
 
 ### PHPUnit 11 support
@@ -341,7 +355,8 @@ As of version 2.15.0 of the `shivammathur/setup-php` action for GitHub Actions, 
 Initial release.
 
 
-[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.x...HEAD
+[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[3.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...3.0.0
 [2.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
