@@ -98,6 +98,10 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 					self::loadAssertObjectNotEquals();
 					return true;
 
+				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertContainsOnly':
+					self::loadAssertContainsOnly();
+					return true;
+
 				case 'Yoast\PHPUnitPolyfills\TestCases\TestCase':
 					self::loadTestCase();
 					return true;
@@ -379,6 +383,23 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 
 			// PHPUnit >= 11.2.0.
 			require_once __DIR__ . '/src/Polyfills/AssertObjectNotEquals_Empty.php';
+		}
+
+		/**
+		 * Load the AssertContainsOnly polyfill or an empty trait with the same name
+		 * if a PHPUnit version is used which already contains this functionality.
+		 *
+		 * @return void
+		 */
+		public static function loadAssertContainsOnly() {
+			if ( \method_exists( Assert::class, 'assertContainsOnlyIterable' ) === false ) {
+				// PHPUnit < 11.5.0.
+				require_once __DIR__ . '/src/Polyfills/AssertContainsOnly.php';
+				return;
+			}
+
+			// PHPUnit >= 11.5.0.
+			require_once __DIR__ . '/src/Polyfills/AssertContainsOnly_Empty.php';
 		}
 
 		/**

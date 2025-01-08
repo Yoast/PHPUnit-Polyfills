@@ -5,6 +5,7 @@ namespace Yoast\PHPUnitPolyfills\TestCases;
 use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertArrayWithListKeys;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertContainsOnly;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertFileEqualsSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
@@ -31,6 +32,7 @@ abstract class TestCase extends PHPUnit_TestCase {
 
 	use AssertArrayWithListKeys;
 	use AssertClosedResource;
+	use AssertContainsOnly;
 	use AssertFileEqualsSpecializations;
 	use AssertIgnoringLineEndings;
 	use AssertionRenames;

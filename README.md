@@ -499,6 +499,60 @@ The `assertObjectNotEquals()` assertion was introduced in PHPUnit 11.2.0.
 
 [`Assert::assertObjectNotEquals()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertobjectequals
 
+#### PHPUnit < 11.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertContainsOnly`
+
+Polyfills the following methods:
+
+|                                                  |                                                     |
+| ------------------------------------------------ | --------------------------------------------------- |
+| [`Assert::assertContainsOnlyArray()`]            | [`Assert::assertContainsNotOnlyArray()`]            |
+| [`Assert::assertContainsOnlyBool()`]             | [`Assert::assertContainsNotOnlyBool()`]             |
+| [`Assert::assertContainsOnlyCallable()`]         | [`Assert::assertContainsNotOnlyCallable()`]         |
+| [`Assert::assertContainsOnlyFloat()`]            | [`Assert::assertContainsNotOnlyFloat()`]            |
+| [`Assert::assertContainsOnlyInt()`]              | [`Assert::assertContainsNotOnlyInt()`]              |
+| [`Assert::assertContainsOnlyIterable()`]         | [`Assert::assertContainsNotOnlyIterable()`]         |
+| [`Assert::assertContainsOnlyNull()`]             | [`Assert::assertContainsNotOnlyNull()`]             |
+| [`Assert::assertContainsOnlyNumeric()`]          | [`Assert::assertContainsNotOnlyNumeric()`]          |
+| [`Assert::assertContainsOnlyObject()`]           | [`Assert::assertContainsNotOnlyObject()`]           |
+| [`Assert::assertContainsOnlyResource()`]         | [`Assert::assertContainsNotOnlyResource()`]         |
+| [`Assert::assertContainsOnlyClosedResource()`] * | [`Assert::assertContainsNotOnlyClosedResource()`] * |
+| [`Assert::assertContainsOnlyScalar()`]           | [`Assert::assertContainsNotOnlyScalar()`]           |
+| [`Assert::assertContainsOnlyString()`]           | [`Assert::assertContainsNotOnlyString()`]           |
+|                                                  | [`Assert::assertContainsNotOnlyInstancesOf()`]      |
+
+
+These methods were introduced in PHPUnit 11.5.0 as alternatives to the `Assert::assertContainsOnly()` and `Assert::assertNotContainsOnly()` methods, which were soft deprecated in PHPUnit 11.5.0, hard deprecated (warning) in PHPUnit 12.0.0 and will be removed in PHPUnit 13.0.0.
+
+* The `assertContains[Not]OnlyClosedResource()` methods are affected by issues in older PHP versions. Please read the [warning about checking for closed resources and how to optional skip such tests](https://github.com/Yoast/PHPUnit-Polyfills/tree/1.x?tab=readme-ov-file#phpunit--930-yoastphpunitpolyfillspolyfillsassertclosedresource).
+
+[`Assert::assertContainsOnlyArray()`]:             https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyarray
+[`Assert::assertContainsNotOnlyArray()`]:          https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyarray
+[`Assert::assertContainsOnlyBool()`]:              https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlybool
+[`Assert::assertContainsNotOnlyBool()`]:           https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlybool
+[`Assert::assertContainsOnlyCallable()`]:          https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlycallable
+[`Assert::assertContainsNotOnlyCallable()`]:       https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlycallable
+[`Assert::assertContainsOnlyFloat()`]:             https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyfloat
+[`Assert::assertContainsNotOnlyFloat()`]:          https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyfloat
+[`Assert::assertContainsOnlyInt()`]:               https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyint
+[`Assert::assertContainsNotOnlyInt()`]:            https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyint
+[`Assert::assertContainsOnlyIterable()`]:          https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyiterable
+[`Assert::assertContainsNotOnlyIterable()`]:       https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyiterable
+[`Assert::assertContainsOnlyNull()`]:              https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlynull
+[`Assert::assertContainsNotOnlyNull()`]:           https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlynull
+[`Assert::assertContainsOnlyNumeric()`]:           https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlynumeric
+[`Assert::assertContainsNotOnlyNumeric()`]:        https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlynumeric
+[`Assert::assertContainsOnlyObject()`]:            https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyobject
+[`Assert::assertContainsNotOnlyObject()`]:         https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyobject
+[`Assert::assertContainsOnlyResource()`]:          https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyresource
+[`Assert::assertContainsNotOnlyResource()`]:       https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyresource
+[`Assert::assertContainsOnlyClosedResource()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyclosedresource
+[`Assert::assertContainsNotOnlyClosedResource()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyclosedresource
+[`Assert::assertContainsOnlyScalar()`]:            https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyscalar
+[`Assert::assertContainsNotOnlyScalar()`]:         https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyscalar
+[`Assert::assertContainsOnlyString()`]:            https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlystring
+[`Assert::assertContainsNotOnlyString()`]:         https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlystring
+[`Assert::assertContainsNotOnlyInstancesOf()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertcontainsonlyinstancesof
+
 
 ### TestCases
 
