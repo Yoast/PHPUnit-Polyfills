@@ -102,13 +102,6 @@
 	#############################################################################
 	-->
 
-	<!-- The polyfills for the PHP native exceptions can not have a namespace
-		 and making those the only files with a file comment would create more,
-		 not less inconsistency. -->
-	<rule ref="Yoast.Commenting.FileComment">
-		<exclude-pattern>/src/Exceptions/*Error\.php$</exclude-pattern>
-	</rule>
-
 	<!-- For named parameter support, the parameters in the polyfilled assertions *must*
 		 mirror the parameter name as used in PHPUnit itself.
 		 These cannot be changed until PHPUnit itself changes the names. -->
@@ -136,16 +129,6 @@
 	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.voidFound">
 		<exclude-pattern>/src/TestCases/TestCasePHPUnitGte8\.php$</exclude-pattern>
-		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
-	</rule>
-
-	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
-	<rule ref="PHPCompatibility.Interfaces.NewInterfaces.throwableFound">
-		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
-	</rule>
-
-	<!-- The TestListenerDefaultImplementation for PHPUnit 7+ will only ever be loaded on PHP 7.1+. -->
-	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.floatFound">
 		<exclude-pattern>/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7\.php$</exclude-pattern>
 	</rule>
 
