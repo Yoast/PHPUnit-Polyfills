@@ -9,6 +9,17 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [3.1.2] - 2025-02-09
+
+This is a maintenance release.
+
+### Changed
+* README: updated sub-section about PHPUnit version support with information about the PHPUnit Polyfills 4.x branch. PR [#249]
+* General housekeeping.
+
+<!-- Link to #249 is defined on the 1.1.4 release. -->
+
+
 ## [3.1.1] - 2025-01-12
 
 ### Fixed
@@ -389,6 +400,7 @@ Initial release.
 
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[3.1.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.4...3.0.0
