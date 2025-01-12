@@ -9,6 +9,45 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [4.0.0] - 2025-02-09
+
+### PHPUnit 12 support
+
+This release updates the PHPUnit Polyfills to allow for _"writing your tests for PHPUnit 12 and running them all the way back to PHPUnit 7"_. \[*\]
+
+Please keep in mind that the PHPUnit Polyfills provide _forward_-compatibility. This means that features which PHPUnit no longer supports in PHPUnit 12.x, are also no longer supported in the 4.0 release of the PHPUnit Polyfills.
+
+Please refer to the [PHPUnit 12 release notification] and [PHPUnit 12 changelog] to inform your decision on whether or not to upgrade (yet).
+
+Projects which don't use any of the new or removed functionality in their test suite, can, of course, use the PHPUnit Polyfills 1.x, 2.x, 3.x and 4.x series side-by-side, like so `composer require --dev yoast/phpunit-polyfills:"^1.0 || ^2.0 || ^3.0 || ^4.0"`.
+
+[PHPUnit 12 release notification]: https://phpunit.de/announcements/phpunit-12.html
+[PHPUnit 12 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/12.0.2/ChangeLog-12.0.md
+
+\[*\]: _Note: Releases from the PHPUnit Polyfills 4.x branch will support running tests on PHPUnit 7.5.0 - 9.x, 11.x and 12.x, but will not allow for running tests on PHPUnit 10 (for reasons explained in [#200])._
+_In practical terms, the net effect of this is that tests on PHP 8.1 will run on PHPUnit 9 instead of PHPUnit 10. Other than that, there is no impact._
+
+
+### Changelog
+
+#### Changed
+* Composer: allow for installation of PHPUnit 12.x. PR [#247]
+* Scalar parameter type declarations and return type declarations are now used where possible. PR [#241]
+* General housekeeping.
+
+#### Removed
+* Support for PHP < 7.1. PR [#238].
+* Support for PHPUnit < 7.5.0. PR [#239].
+* The `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType` trait which is no longer needed now support for PHPUnit < 7.5 has been dropped. PR [#239].
+* The `Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains` trait which is no longer needed now support for PHPUnit < 7.5 has been dropped. PR [#239].
+* The `Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations` trait which is no longer needed now support for PHPUnit < 7.5 has been dropped. PR [#239].
+
+[#238]: https://github.com/Yoast/PHPUnit-Polyfills/pull/238
+[#239]: https://github.com/Yoast/PHPUnit-Polyfills/pull/239
+[#241]: https://github.com/Yoast/PHPUnit-Polyfills/pull/241
+[#247]: https://github.com/Yoast/PHPUnit-Polyfills/pull/247
+
+
 ## [3.1.2] - 2025-02-09
 
 This is a maintenance release.
@@ -400,6 +439,7 @@ Initial release.
 
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[4.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.2...4.0.0
 [3.1.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.0.0...3.1.0
