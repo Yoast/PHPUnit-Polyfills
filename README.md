@@ -35,7 +35,7 @@ Requirements
 ------------
 
 * PHP 7.1 or higher.
-* [PHPUnit] 6.4 - 9.x and 11.x (automatically required via Composer).
+* [PHPUnit] 7.5 - 9.x and 11.x (automatically required via Composer).
 
 [PHPUnit]: https://packagist.org/packages/phpunit/phpunit
 
@@ -65,7 +65,7 @@ Why use the PHPUnit Polyfills?
 
 This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
-### Write your tests for PHPUnit 11.x and run them on PHPUnit 6.4 - 11.x
+### Write your tests for PHPUnit 11.x and run them on PHPUnit 7.5 - 11.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
