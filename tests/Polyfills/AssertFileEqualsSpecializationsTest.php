@@ -16,15 +16,15 @@ final class AssertFileEqualsSpecializationsTest extends TestCase {
 
 	use AssertFileEqualsSpecializations;
 
-	const PATH_TO_EXPECTED = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_Expected.txt';
+	public const PATH_TO_EXPECTED = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_Expected.txt';
 
-	const PATH_TO_EQUALS = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_Equals.txt';
+	private const PATH_TO_EQUALS = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_Equals.txt';
 
-	const PATH_TO_NOT_EQUALS = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_NotEquals.txt';
+	private const PATH_TO_NOT_EQUALS = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_NotEquals.txt';
 
-	const PATH_TO_EQUALS_CI = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_EqualsCI.txt';
+	private const PATH_TO_EQUALS_CI = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_EqualsCI.txt';
 
-	const PATH_TO_NOT_EQUALS_CI = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_NotEqualsCI.txt';
+	private const PATH_TO_NOT_EQUALS_CI = __DIR__ . '/Fixtures/AssertFileEqualsSpecialization_NotEqualsCI.txt';
 
 	/**
 	 * Verify availability of the assertFileEqualsCanonicalizing() method.
