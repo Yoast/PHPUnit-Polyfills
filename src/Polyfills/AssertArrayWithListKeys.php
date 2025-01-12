@@ -37,7 +37,7 @@ trait AssertArrayWithListKeys {
 	 *
 	 * @return void
 	 */
-	final public static function assertArrayIsEqualToArrayOnlyConsideringListOfKeys( array $expected, array $actual, array $keysToBeConsidered, string $message = '' ) {
+	final public static function assertArrayIsEqualToArrayOnlyConsideringListOfKeys( array $expected, array $actual, array $keysToBeConsidered, string $message = '' ): void {
 		$filteredExpected = [];
 		foreach ( $keysToBeConsidered as $key ) {
 			if ( isset( $expected[ $key ] ) ) {
@@ -68,7 +68,7 @@ trait AssertArrayWithListKeys {
 	 *
 	 * @return void
 	 */
-	final public static function assertArrayIsEqualToArrayIgnoringListOfKeys( array $expected, array $actual, array $keysToBeIgnored, string $message = '' ) {
+	final public static function assertArrayIsEqualToArrayIgnoringListOfKeys( array $expected, array $actual, array $keysToBeIgnored, string $message = '' ): void {
 		foreach ( $keysToBeIgnored as $key ) {
 			unset( $expected[ $key ], $actual[ $key ] );
 		}
@@ -89,7 +89,7 @@ trait AssertArrayWithListKeys {
 	 *
 	 * @return void
 	 */
-	final public static function assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys( array $expected, array $actual, array $keysToBeConsidered, string $message = '' ) {
+	final public static function assertArrayIsIdenticalToArrayOnlyConsideringListOfKeys( array $expected, array $actual, array $keysToBeConsidered, string $message = '' ): void {
 		$keysToBeConsidered = \array_combine( $keysToBeConsidered, $keysToBeConsidered );
 		$expected           = \array_intersect_key( $expected, $keysToBeConsidered );
 		$actual             = \array_intersect_key( $actual, $keysToBeConsidered );
@@ -110,7 +110,7 @@ trait AssertArrayWithListKeys {
 	 *
 	 * @return void
 	 */
-	final public static function assertArrayIsIdenticalToArrayIgnoringListOfKeys( array $expected, array $actual, array $keysToBeIgnored, string $message = '' ) {
+	final public static function assertArrayIsIdenticalToArrayIgnoringListOfKeys( array $expected, array $actual, array $keysToBeIgnored, string $message = '' ): void {
 		foreach ( $keysToBeIgnored as $key ) {
 			unset( $expected[ $key ], $actual[ $key ] );
 		}

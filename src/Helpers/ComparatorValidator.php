@@ -48,7 +48,7 @@ final class ComparatorValidator {
 	 *
 	 * @throws InvalidComparisonMethodException When the comparator method does not comply with the requirements.
 	 */
-	public static function isValid( $expected, $actual, $method = 'equals' ) {
+	public static function isValid( $expected, $actual, string $method = 'equals' ): void {
 		/*
 		 * Verify the method exists.
 		 */

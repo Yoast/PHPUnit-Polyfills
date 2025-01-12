@@ -161,4 +161,18 @@
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnionReturnType\.php$</exclude-pattern>
 	</rule>
 
+
+	<!--
+	#############################################################################
+	TEMPORARY ADJUSTMENTS
+	Adjustments which should be removed once the associated issue has been resolved.
+	#############################################################################
+	-->
+
+	<!-- Bug in PHPCS. This exclusion can be removed once PHPCS PR #750 has been merged and released.
+		 https://github.com/PHPCSStandards/PHP_CodeSniffer/pull/750 -->
+	<rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
+		<exclude-pattern>/src/Polyfills/AssertContainsOnly\.php$</exclude-pattern>
+	</rule>
+
 </ruleset>

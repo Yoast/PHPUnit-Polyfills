@@ -28,7 +28,7 @@ namespace PHPUnit\SebastianBergmann\Exporter {
 		 *
 		 * @return string
 		 */
-		public function export( $value, $indentation = 0 ) {}
+		public function export( $value, int $indentation = 0 ) {}
 	}
 }
 
@@ -47,6 +47,6 @@ namespace PHPUnitPHAR\SebastianBergmann\Exporter {
 		 *
 		 * @return string
 		 */
-		public function export( $value, $indentation = 0 ) {}
+		public function export( $value, int $indentation = 0 ) {}
 	}
 }
