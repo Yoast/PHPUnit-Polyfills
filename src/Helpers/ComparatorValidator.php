@@ -4,7 +4,6 @@ namespace Yoast\PHPUnitPolyfills\Helpers;
 
 use ReflectionNamedType;
 use ReflectionObject;
-use ReflectionType;
 use Yoast\PHPUnitPolyfills\Exceptions\InvalidComparisonMethodException;
 
 /**
@@ -82,18 +81,7 @@ final class ComparatorValidator {
 
 		$returnType = $reflMethod->getReturnType();
 
-		if ( \class_exists( 'ReflectionNamedType' ) ) {
-			// PHP >= 7.1: guard against union/intersection return types.
-			if ( ( $returnType instanceof ReflectionNamedType ) === false ) {
-				throw new InvalidComparisonMethodException( $returnTypeError );
-			}
-		}
-		elseif ( ( $returnType instanceof ReflectionType ) === false ) {
-			/*
-			 * PHP 7.0.
-			 * Checking for `ReflectionType` will not throw an error on union types,
-			 * but then again union types are not supported on PHP 7.0.
-			 */
+		if ( ( $returnType instanceof ReflectionNamedType ) === false ) {
 			throw new InvalidComparisonMethodException( $returnTypeError );
 		}
 
@@ -101,14 +89,7 @@ final class ComparatorValidator {
 			throw new InvalidComparisonMethodException( $returnTypeError );
 		}
 
-		if ( \method_exists( $returnType, 'getName' ) ) {
-			// PHP >= 7.1.
-			if ( $returnType->getName() !== 'bool' ) {
-				throw new InvalidComparisonMethodException( $returnTypeError );
-			}
-		}
-		elseif ( (string) $returnType !== 'bool' ) {
-			// PHP 7.0.
+		if ( $returnType->getName() !== 'bool' ) {
 			throw new InvalidComparisonMethodException( $returnTypeError );
 		}
 
@@ -148,26 +129,11 @@ final class ComparatorValidator {
 		}
 
 		$type = $reflParameter->getType();
-		if ( \class_exists( 'ReflectionNamedType' ) ) {
-			// PHP >= 7.1.
-			if ( ( $type instanceof ReflectionNamedType ) === false ) {
-				throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-			}
-
-			$typeName = $type->getName();
+		if ( ( $type instanceof ReflectionNamedType ) === false ) {
+			throw new InvalidComparisonMethodException( $noDeclaredTypeError );
 		}
-		else {
-			/*
-			 * PHP 7.0.
-			 * Checking for `ReflectionType` will not throw an error on union types,
-			 * but then again union types are not supported on PHP 7.0.
-			 */
-			if ( ( $type instanceof ReflectionType ) === false ) {
-				throw new InvalidComparisonMethodException( $noDeclaredTypeError );
-			}
 
-			$typeName = (string) $type;
-		}
+		$typeName = $type->getName();
 
 		/*
 		 * Validate that the $expected object complies with the declared parameter type.

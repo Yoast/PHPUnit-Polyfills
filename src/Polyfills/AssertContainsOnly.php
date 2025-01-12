@@ -176,14 +176,12 @@ trait AssertContainsOnly {
 	 * @return void
 	 */
 	final public static function assertContainsOnlyIterable( $haystack, string $message = '' ) {
-		if ( \function_exists( 'is_iterable' ) === true
-			&& \version_compare( Autoload::getPHPUnitVersion(), '7.1.0', '>=' )
-		) {
-			// PHP >= 7.1 with PHPUnit >= 7.1.0.
+		if ( \version_compare( Autoload::getPHPUnitVersion(), '7.1.0', '>=' ) ) {
+			// PHPUnit >= 7.1.0.
 			static::assertContainsOnly( 'iterable', $haystack, true, $message );
 		}
 		else {
-			// PHP < 7.1 or PHPUnit 6.x/7.0.0.
+			// PHPUnit 6.x/7.0.0.
 			$exporter = self::getPHPUnitExporterObjectForContainsOnly();
 			$msg      = \sprintf( 'Failed asserting that %s contains only values of type "iterable".', $exporter->export( $haystack ) );
 
