@@ -5,8 +5,6 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
 use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
 use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
 use SebastianBergmann\Exporter\Exporter;
-use Traversable;
-use Yoast\PHPUnitPolyfills\Autoload;
 use Yoast\PHPUnitPolyfills\Helpers\ResourceHelper;
 
 /**
@@ -164,53 +162,17 @@ trait AssertContainsOnly {
 	/**
 	 * Asserts that $haystack only contains values of type iterable.
 	 *
-	 * {@internal Support for `iterable` was only added to the `IsType` constraint
-	 * in PHPUnit 7.1.0, so this polyfill can't use a direct fall-through to the PHPUnit native
-	 * functionality until the minimum supported PHPUnit version of this library would be PHPUnit 7.1.0.}
-	 *
-	 * @link https://github.com/sebastianbergmann/phpunit/pull/3035 PR which added support for `is_iterable`.
-	 *
 	 * @param iterable<mixed> $haystack The variable to test.
 	 * @param string          $message  Optional failure message to display.
 	 *
 	 * @return void
 	 */
 	final public static function assertContainsOnlyIterable( $haystack, string $message = '' ) {
-		if ( \version_compare( Autoload::getPHPUnitVersion(), '7.1.0', '>=' ) ) {
-			// PHPUnit >= 7.1.0.
-			static::assertContainsOnly( 'iterable', $haystack, true, $message );
-		}
-		else {
-			// PHPUnit 6.x/7.0.0.
-			$exporter = self::getPHPUnitExporterObjectForContainsOnly();
-			$msg      = \sprintf( 'Failed asserting that %s contains only values of type "iterable".', $exporter->export( $haystack ) );
-
-			if ( $message !== '' ) {
-				$msg = $message . \PHP_EOL . $msg;
-			}
-
-			$hasOnlyIterable = true;
-			foreach ( $haystack as $value ) {
-				if ( \is_array( $value ) || $value instanceof Traversable ) {
-					continue;
-				}
-
-				$hasOnlyIterable = false;
-				break;
-			}
-
-			static::assertTrue( $hasOnlyIterable, $msg );
-		}
+		static::assertContainsOnly( 'iterable', $haystack, true, $message );
 	}
 
 	/**
 	 * Asserts that $haystack does not only contain values of type iterable.
-	 *
-	 * {@internal Support for `iterable` was only added to the `IsType` constraint
-	 * in PHPUnit 7.1.0, so this polyfill can't use a direct fall-through to the PHPUnit native
-	 * functionality until the minimum supported PHPUnit version of this library would be PHPUnit 7.1.0.}
-	 *
-	 * @link https://github.com/sebastianbergmann/phpunit/pull/3035 PR which added support for `is_iterable`.
 	 *
 	 * @param iterable<mixed> $haystack The variable to test.
 	 * @param string          $message  Optional failure message to display.
@@ -218,33 +180,7 @@ trait AssertContainsOnly {
 	 * @return void
 	 */
 	final public static function assertContainsNotOnlyIterable( $haystack, string $message = '' ) {
-		if ( \function_exists( 'is_iterable' ) === true
-			&& \version_compare( Autoload::getPHPUnitVersion(), '7.1.0', '>=' )
-		) {
-			// PHP >= 7.1 with PHPUnit >= 7.1.0.
-			static::assertNotContainsOnly( 'iterable', $haystack, true, $message );
-		}
-		else {
-			// PHP < 7.1 or PHPUnit 6.x/7.0.0.
-			$exporter = self::getPHPUnitExporterObjectForContainsOnly();
-			$msg      = \sprintf( 'Failed asserting that %s does not contain only values of type "iterable".', $exporter->export( $haystack ) );
-
-			if ( $message !== '' ) {
-				$msg = $message . \PHP_EOL . $msg;
-			}
-
-			$hasOnlyIterable = true;
-			foreach ( $haystack as $value ) {
-				if ( \is_array( $value ) || $value instanceof Traversable ) {
-					continue;
-				}
-
-				$hasOnlyIterable = false;
-				break;
-			}
-
-			static::assertFalse( $hasOnlyIterable, $msg );
-		}
+		static::assertNotContainsOnly( 'iterable', $haystack, true, $message );
 	}
 
 	/**
