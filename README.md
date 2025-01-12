@@ -34,7 +34,7 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
 Requirements
 ------------
 
-* PHP 7.0 or higher.
+* PHP 7.1 or higher.
 * [PHPUnit] 6.4 - 9.x and 11.x (automatically required via Composer).
 
 [PHPUnit]: https://packagist.org/packages/phpunit/phpunit
