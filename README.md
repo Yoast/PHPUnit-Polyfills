@@ -157,26 +157,6 @@ Features
 
 ### Polyfill traits
 
-#### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations`
-
-Polyfills the following methods:
-
-|                                          |                                             |
-| ---------------------------------------- | ------------------------------------------- |
-| [`Assert::assertEqualsCanonicalizing()`] | [`Assert::assertNotEqualsCanonicalizing()`] |
-| [`Assert::assertEqualsIgnoringCase()`]   | [`Assert::assertNotEqualsIgnoringCase()`]   |
-| [`Assert::assertEqualsWithDelta()`]      | [`Assert::assertNotEqualsWithDelta()`]      |
-
-These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertEquals()` and `Assert::assertNotEquals()` with these optional parameters. Passing the respective optional parameters to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
-
-[`Assert::assertEqualsCanonicalizing()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertequalscanonicalizing
-[`Assert::assertNotEqualsCanonicalizing()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertequalscanonicalizing
-[`Assert::assertEqualsIgnoringCase()`]:      https://docs.phpunit.de/en/11.5/assertions.html#assertequalsignoringcase
-[`Assert::assertNotEqualsIgnoringCase()`]:   https://docs.phpunit.de/en/11.5/assertions.html#assertequalsignoringcase
-[`Assert::assertEqualsWithDelta()`]:         https://docs.phpunit.de/en/11.5/assertions.html#assertequalswithdelta
-[`Assert::assertNotEqualsWithDelta()`]:      https://docs.phpunit.de/en/11.5/assertions.html#assertequalswithdelta
-
-
 #### PHPUnit < 8.4.0: `Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches`
 
 Polyfills the [`TestCase::expectExceptionMessageMatches()`] method.

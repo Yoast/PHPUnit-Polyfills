@@ -27,15 +27,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Test availability of trait polyfilled PHPUnit methods [4].
-	 *
-	 * @return void
-	 */
-	final public function testAvailabilityAssertEqualsSpecializationsTrait() {
-		static::assertEqualsIgnoringCase( 'a', 'A' );
-	}
-
-	/**
 	 * Test availability of trait polyfilled PHPUnit methods [6].
 	 *
 	 * @return void

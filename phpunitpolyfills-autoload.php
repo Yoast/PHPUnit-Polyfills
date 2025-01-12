@@ -38,10 +38,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			switch ( $className ) {
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations':
-					self::loadAssertEqualsSpecializations();
-					return true;
-
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches':
 					self::loadExpectExceptionMessageMatches();
 					return true;
@@ -120,23 +116,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Load the AssertEqualsSpecializations polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertEqualsSpecializations() {
-			if ( \method_exists( Assert::class, 'assertEqualsWithDelta' ) === false ) {
-				// PHPUnit < 7.5.0.
-				require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations.php';
-				return;
-			}
-
-			// PHPUnit >= 7.5.0.
-			require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations_Empty.php';
 		}
 
 		/**
