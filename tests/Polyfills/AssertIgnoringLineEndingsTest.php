@@ -13,7 +13,6 @@ use SebastianBergmann\Exporter\Exporter;
 use stdClass;
 use TypeError;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
 /**
@@ -25,7 +24,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 final class AssertIgnoringLineEndingsTest extends TestCase {
 
 	use AssertIgnoringLineEndings;
-	use AssertStringContains;
 	use ExpectExceptionMessageMatches;
 
 	/**

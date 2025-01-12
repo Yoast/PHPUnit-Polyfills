@@ -21,7 +21,6 @@ Set of polyfills for changed PHPUnit functionality to allow for creating PHPUnit
     - [PHPUnit support](#phpunit-support)
 * [Using this library](#using-this-library)
     - [Supported ways of calling the assertions](#supported-ways-of-calling-the-assertions)
-    - [Use with PHPUnit < 7.5.0](#use-with-phpunit--750)
 * [Features](#features)
     - [Polyfill traits](#polyfill-traits)
     - [TestCases](#testcases)
@@ -153,66 +152,10 @@ For the polyfills to work, a test class is **required** to be a (grand-)child of
 
 [four ways of calling assertions]: https://docs.phpunit.de/en/11.5/assertions.html#static-vs-non-static-usage-of-assertion-methods
 
-### Use with PHPUnit < 7.5.0
-
-If your library still needs to support PHP < 7.1 and therefore needs PHPUnit < 7 for testing, there are a few caveats when using the traits stand-alone as we then enter "double-polyfill" territory.
-
-To prevent _"conflicting method names"_ errors when a trait is `use`d multiple times in a class, the traits offered here do not attempt to solve this.
-
-You will need to make sure to `use` any additional traits needed for the polyfills to work.
-
-| PHPUnit   | When `use`-ing this trait   | You also need to `use` this trait |
-| --------- | --------------------------- | --------------------------------- |
-| 6.4 < 7.5 | `AssertIgnoringLineEndings` | `AssertStringContains`            |
-
-_**Note: this only applies to the stand-alone use of the traits. The [`TestCase` classes](#testcases) provided by this library already take care of this automatically.**_
-
-Code example for a test using the `AssertIgnoringLineEndings` trait, which needs to be able to run on PHPUnit 6.4:
-```php
-<?php
-
-namespace Vendor\YourPackage\Tests;
-
-use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIgnoringLineEndings;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
-
-class FooTest extends TestCase
-{
-    use AssertIgnoringLineEndings;
-    use AssertStringContains;
-
-    public function testSomething()
-    {
-        $this->assertStringContainsStringIgnoringLineEndings(
-            "something\nelse",
-            "this is something\r\nelse"
-        );
-    }
-}
-```
-
-
 Features
 --------
 
 ### Polyfill traits
-
-#### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains`
-
-Polyfills the following methods:
-
-|                                                      |                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------- |
-| [`Assert::assertStringContainsString()`]             | [`Assert::assertStringNotContainsString()`]             |
-| [`Assert::assertStringContainsStringIgnoringCase()`] | [`Assert::assertStringNotContainsStringIgnoringCase()`] |
-
-These methods were introduced in PHPUnit 7.5.0 as alternatives to using `Assert::assertContains()` and `Assert::assertNotContains()` with string haystacks. Passing string haystacks to these methods was soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
-
-[`Assert::assertStringContainsString()`]:                https://docs.phpunit.de/en/11.5/assertions.html#assertstringcontainsstring
-[`Assert::assertStringNotContainsString()`]:             https://docs.phpunit.de/en/11.5/assertions.html#assertstringcontainsstring
-[`Assert::assertStringContainsStringIgnoringCase()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertstringcontainsstringignoringcase
-[`Assert::assertStringNotContainsStringIgnoringCase()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertstringcontainsstringignoringcase
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations`
 

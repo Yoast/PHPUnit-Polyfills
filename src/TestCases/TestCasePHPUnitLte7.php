@@ -14,7 +14,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsList;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectNotEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectProperty;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Yoast\PHPUnitPolyfills\Polyfills\EqualToSpecializations;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectUserDeprecation;
@@ -43,7 +42,6 @@ abstract class TestCase extends PHPUnit_TestCase {
 	use AssertObjectEquals;
 	use AssertObjectNotEquals;
 	use AssertObjectProperty;
-	use AssertStringContains;
 	use EqualToSpecializations;
 	use ExpectExceptionMessageMatches;
 	use ExpectUserDeprecation;

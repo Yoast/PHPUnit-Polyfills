@@ -27,15 +27,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Test availability of trait polyfilled PHPUnit methods [3].
-	 *
-	 * @return void
-	 */
-	final public function testAvailabilityAssertStringContainsTrait() {
-		$this->assertStringContainsString( 'foo', 'foobar' );
-	}
-
-	/**
 	 * Test availability of trait polyfilled PHPUnit methods [4].
 	 *
 	 * @return void
