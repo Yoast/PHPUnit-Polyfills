@@ -116,11 +116,6 @@ jobs:
             coverage: false
             experimental: true
 
-          - php: 'latest'
-            phpunit: 'dev-main' # PHPUnit 12.x.
-            coverage: false
-            experimental: true
-
     name: "Tests: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
     continue-on-error: ${{ matrix.experimental }}
@@ -171,17 +166,13 @@ jobs:
       - name: Determine PHPUnit config
         id: phpunit_config
         run: |
-          if [ "${{ matrix.phpunit == 'dev-main' }}" == "true" ]; then
-            echo 'FILE=phpunit11.xml.dist' >> "$GITHUB_OUTPUT"
-          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
+          if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
             echo 'FILE=phpunit11.xml.dist' >> "$GITHUB_OUTPUT"
           else
             echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"
           fi
 
       - name: "Run the unit tests"
-        # Don't fail the build on a test run failure against a future PHPUnit version.
-        continue-on-error: ${{ matrix.phpunit == 'dev-main' }}
         run: >
           vendor/bin/phpunit -c ${{ steps.phpunit_config.outputs.FILE }}
           ${{ ! matrix.coverage && '--no-coverage' || '' }}
