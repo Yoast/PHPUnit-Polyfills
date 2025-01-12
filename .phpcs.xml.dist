@@ -153,13 +153,7 @@
 		<exclude-pattern>/tests/Polyfills/Fixtures/*\.php$</exclude-pattern>
 	</rule>
 
-	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 7.1+/8+ respectively. -->
-	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.typeDeclarationFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectParamNotRequired\.php$</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.FunctionDeclarations.NewNullableTypes.returnTypeFound">
-		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectNullableReturnType\.php$</exclude-pattern>
-	</rule>
+	<!-- These fixtures for the assertEqualObject() tests will only be loaded on PHP 8+. -->
 	<rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.UnionTypeFound">
 		<exclude-pattern>/tests/Polyfills/Fixtures/ValueObjectUnion\.php$</exclude-pattern>
 	</rule>

@@ -59,6 +59,17 @@ class ValueObject {
 	}
 
 	/**
+	 * Comparator method: incorrectly declared - return type is nullable.
+	 *
+	 * @param self $other Object to compare.
+	 *
+	 * @return bool
+	 */
+	public function equalsNullableReturnType( self $other ): ?bool {
+		return ( $this->value === $other->value );
+	}
+
+	/**
 	 * Comparator method: incorrectly declared - non-boolean return type/value.
 	 *
 	 * @param self $other Object to compare.
@@ -79,6 +90,17 @@ class ValueObject {
 	 */
 	public function equalsTwoParams( $other, $param ): bool {
 		return ( $param && $this->value === $other->value );
+	}
+
+	/**
+	 * Comparator method: incorrectly declared - parameter is not required.
+	 *
+	 * @param self|null $other Object to compare.
+	 *
+	 * @return bool
+	 */
+	public function equalsParamNotRequired( ?self $other = null ): bool {
+		return ( $this->value === $other->value );
 	}
 
 	/**
