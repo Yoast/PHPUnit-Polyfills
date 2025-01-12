@@ -31,14 +31,14 @@ trait AssertContainsOnly {
 	/**
 	 * Asserts that $haystack does not only contain instances of class or interface $type.
 	 *
-	 * @param string          $type     Class or interface name.
-	 * @param iterable<mixed> $haystack The variable to test.
-	 * @param string          $message  Optional failure message to display.
+	 * @param string          $className Class or interface name.
+	 * @param iterable<mixed> $haystack  The variable to test.
+	 * @param string          $message   Optional failure message to display.
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyInstancesOf( string $type, $haystack, string $message = '' ) {
-		static::assertNotContainsOnly( $type, $haystack, false, $message );
+	final public static function assertContainsNotOnlyInstancesOf( string $className, $haystack, string $message = '' ) {
+		static::assertNotContainsOnly( $className, $haystack, false, $message );
 	}
 
 	/**
