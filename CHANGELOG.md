@@ -9,6 +9,17 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [3.1.1] - 2025-01-12
+
+### Fixed
+* AssertContainsOnly::assertContainsNotOnlyInstancesOf(): incorrect parameter name. PR [#235]
+
+### Changed
+* General housekeeping.
+
+[#235]: https://github.com/Yoast/PHPUnit-Polyfills/pull/235
+
+
 ## [3.1.0] - 2025-01-08
 
 ### Added
@@ -356,6 +367,7 @@ Initial release.
 
 
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
+[3.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...3.0.0
 [2.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...2.0.3
