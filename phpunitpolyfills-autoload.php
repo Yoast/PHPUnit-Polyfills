@@ -38,10 +38,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			switch ( $className ) {
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertIsType':
-					self::loadAssertIsType();
-					return true;
-
 				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains':
 					self::loadAssertStringContains();
 					return true;
@@ -128,23 +124,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Load the AssertIsType polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertIsType() {
-			if ( \method_exists( Assert::class, 'assertIsArray' ) === false ) {
-				// PHPUnit < 7.5.0.
-				require_once __DIR__ . '/src/Polyfills/AssertIsType.php';
-				return;
-			}
-
-			// PHPUnit >= 7.5.0.
-			require_once __DIR__ . '/src/Polyfills/AssertIsType_Empty.php';
 		}
 
 		/**

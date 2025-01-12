@@ -27,15 +27,6 @@ trait TestCaseTestTrait {
 	}
 
 	/**
-	 * Test availability of trait polyfilled PHPUnit methods [2].
-	 *
-	 * @return void
-	 */
-	final public function testAvailabilityAssertIsTypeTrait() {
-		self::assertIsInt( self::$beforeClass );
-	}
-
-	/**
 	 * Test availability of trait polyfilled PHPUnit methods [3].
 	 *
 	 * @return void

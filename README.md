@@ -104,16 +104,16 @@ need to be PHPUnit cross-version compatible.
 namespace Vendor\YourPackage\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertContainsOnly;
 
 class FooTest extends TestCase
 {
-    use AssertIsType;
+    use AssertContainsOnly;
 
     public function testSomething()
     {
-        $this->assertIsBool( $maybeBool );
-        self::assertIsNotIterable( $maybeIterable );
+        $this->assertContainsOnlyBool( $haystack );
+        self::assertContainsNotOnlyNumeric( $haystack );
     }
 }
 ```
@@ -133,8 +133,8 @@ class FooTest extends TestCase
 {
     public function testSomething()
     {
-        $this->assertIsBool( $maybeBool );
-        self::assertMatchesRegularExpression( $pattern, $string, $message );
+        $this->assertContainsOnlyBool( $haystack );
+        self::assertContainsNotOnlyNumeric( $haystack );
     }
 }
 ```
@@ -197,49 +197,6 @@ Features
 --------
 
 ### Polyfill traits
-
-#### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertIsType`
-
-Polyfills the following methods:
-
-|                                |                                   |
-| ------------------------------ | --------------------------------- |
-| [`Assert::assertIsArray()`]    | [`Assert::assertIsNotArray()`]    |
-| [`Assert::assertIsBool()`]     | [`Assert::assertIsNotBool()`]     |
-| [`Assert::assertIsFloat()`]    | [`Assert::assertIsNotFloat()`]    |
-| [`Assert::assertIsInt()`]      | [`Assert::assertIsNotInt()`]      |
-| [`Assert::assertIsNumeric()`]  | [`Assert::assertIsNotNumeric()`]  |
-| [`Assert::assertIsObject()`]   | [`Assert::assertIsNotObject()`]   |
-| [`Assert::assertIsResource()`] | [`Assert::assertIsNotResource()`] |
-| [`Assert::assertIsString()`]   | [`Assert::assertIsNotString()`]   |
-| [`Assert::assertIsScalar()`]   | [`Assert::assertIsNotScalar()`]   |
-| [`Assert::assertIsCallable()`] | [`Assert::assertIsNotCallable()`] |
-| [`Assert::assertIsIterable()`] | [`Assert::assertIsNotIterable()`] |
-
-These methods were introduced in PHPUnit 7.5.0 as alternatives to the `Assert::assertInternalType()` and `Assert::assertNotInternalType()` methods, which were soft deprecated in PHPUnit 7.5.0, hard deprecated (warning) in PHPUnit 8.0.0 and removed in PHPUnit 9.0.0.
-
-[`Assert::assertIsArray()`]:       https://docs.phpunit.de/en/11.5/assertions.html#assertisarray
-[`Assert::assertIsNotArray()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertisarray
-[`Assert::assertIsBool()`]:        https://docs.phpunit.de/en/11.5/assertions.html#assertisbool
-[`Assert::assertIsNotBool()`]:     https://docs.phpunit.de/en/11.5/assertions.html#assertisbool
-[`Assert::assertIsFloat()`]:       https://docs.phpunit.de/en/11.5/assertions.html#assertisfloat
-[`Assert::assertIsNotFloat()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertisfloat
-[`Assert::assertIsInt()`]:         https://docs.phpunit.de/en/11.5/assertions.html#assertisint
-[`Assert::assertIsNotInt()`]:      https://docs.phpunit.de/en/11.5/assertions.html#assertisint
-[`Assert::assertIsNumeric()`]:     https://docs.phpunit.de/en/11.5/assertions.html#assertisnumeric
-[`Assert::assertIsNotNumeric()`]:  https://docs.phpunit.de/en/11.5/assertions.html#assertisnumeric
-[`Assert::assertIsObject()`]:      https://docs.phpunit.de/en/11.5/assertions.html#assertisobject
-[`Assert::assertIsNotObject()`]:   https://docs.phpunit.de/en/11.5/assertions.html#assertisobject
-[`Assert::assertIsResource()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertisresource
-[`Assert::assertIsNotResource()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertisresource
-[`Assert::assertIsString()`]:      https://docs.phpunit.de/en/11.5/assertions.html#assertisstring
-[`Assert::assertIsNotString()`]:   https://docs.phpunit.de/en/11.5/assertions.html#assertisstring
-[`Assert::assertIsScalar()`]:      https://docs.phpunit.de/en/11.5/assertions.html#assertisscalar
-[`Assert::assertIsNotScalar()`]:   https://docs.phpunit.de/en/11.5/assertions.html#assertisscalar
-[`Assert::assertIsCallable()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertiscallable
-[`Assert::assertIsNotCallable()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertiscallable
-[`Assert::assertIsIterable()`]:    https://docs.phpunit.de/en/11.5/assertions.html#assertisiterable
-[`Assert::assertIsNotIterable()`]: https://docs.phpunit.de/en/11.5/assertions.html#assertisiterable
 
 #### PHPUnit < 7.5.0: `Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains`
 

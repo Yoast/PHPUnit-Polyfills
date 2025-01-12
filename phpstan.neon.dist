@@ -36,7 +36,7 @@ parameters:
 		# This is part of the functionality of this package. Safe to ignore.
 		-
 			message: "`^Call to function method_exists\\(\\) with 'PHPUnit\\W+Framework\\W+(TestCase|Assert)' and '(assert|expect|equalTo)[^']+' will always evaluate to true\\.$`"
-			count: 10
+			count: 9
 			path: phpunitpolyfills-autoload.php
 		-
 			message: "`^Call to function method_exists\\(\\) with 'PHPUnit\\W+Framework\\W+TestCase' and 'expectDeprecationMe[^']+' will always evaluate to true\\.$`"
