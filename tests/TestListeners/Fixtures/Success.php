@@ -14,7 +14,7 @@ class Success extends TestCase {
 	 *
 	 * @return void
 	 */
-	protected function runTest() {
+	protected function testForListener() {
 		$this->assertTrue( true );
 	}
 }

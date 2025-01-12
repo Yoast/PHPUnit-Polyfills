@@ -14,7 +14,7 @@ class Failure extends TestCase {
 	 *
 	 * @return void
 	 */
-	protected function runTest() {
+	protected function testForListener() {
 		$this->fail();
 	}
 }

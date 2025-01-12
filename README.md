@@ -554,11 +554,11 @@ class MyTest extends XTestCase {
 
 > :warning: **Important** :warning:
 >
-> The TestListener polyfill in PHPUnit Polyfills 2.0/3.0 is [not (yet) compatible with PHPUnit 10.x/11.x][polyfill-ticket].
+> The TestListener polyfill in PHPUnit Polyfills 2.0/3.0/4.0 is [not (yet) compatible with PHPUnit 10.x/11.x/12.x][polyfill-ticket].
 >
 > If you need the TestListener polyfill, it is recommended to stay on the PHPUnit Polyfills 1.x series for the time being and to watch and upvote the [related ticket][polyfill-ticket].
 >
-> The below documentation is for the PHPUnit 6.x-9.x TestListener polyfill implementation.
+> The below documentation is for the PHPUnit 7.x-9.x TestListener polyfill implementation.
 
 [polyfill-ticket]: https://github.com/Yoast/PHPUnit-Polyfills/issues/128
 
@@ -567,9 +567,7 @@ Additionally, the use of the TestListener principle has been deprecated in PHPUn
 
 > Note: while deprecated in PHPUnit 7, the TestListener interface has not yet been removed and is still supported in PHPUnit 9.x.
 
-If your test suite does not need to support PHPUnit < 7, it is strongly recommended to use the TestRunner hook interfaces extensions instead.
-
-However, for test suites that still need to support PHPUnit 6 or lower, implementing the `TestListener` interface is the only viable option.
+It is recommended to use the TestRunner hook interfaces extensions instead.
 
 #### `Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation`
 
@@ -592,10 +590,6 @@ Similar to the `TestCase` implementation, snake_case methods without type declar
 
 Implementations of the `TestListener` interface may be using any of the following patterns:
 ```php
-// PHPUnit 6.
-class MyTestListener extends \PHPUnit\Framework\BaseTestListener {}
-
-// PHPUnit 7+.
 class MyTestListener implements \PHPUnit\Framework\TestListener {
     use \PHPUnit\Framework\TestListenerDefaultImplementation;
 }

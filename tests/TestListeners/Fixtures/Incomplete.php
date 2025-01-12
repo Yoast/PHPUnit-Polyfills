@@ -14,7 +14,7 @@ class Incomplete extends TestCase {
 	 *
 	 * @return void
 	 */
-	protected function runTest() {
+	protected function testForListener() {
 		$this->markTestIncomplete( 'Test incomplete' );
 	}
 }

@@ -3,11 +3,15 @@
 namespace Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures;
 
 use Exception;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Fixture to generate a test error to pass to the test listener.
+ *
+ * @coversNothing
  */
+#[CoversNothing]
 class TestError extends TestCase {
 
 	/**
@@ -17,7 +21,7 @@ class TestError extends TestCase {
 	 *
 	 * @throws Exception For test purposes.
 	 */
-	protected function runTest() {
+	protected function testForListener() {
 		throw new Exception();
 	}
 }

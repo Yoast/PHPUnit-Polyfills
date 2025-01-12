@@ -361,13 +361,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestListenerDefaultImplementation() {
-			if ( \version_compare( PHPUnit_Version::id(), '7.0.0', '<' ) ) {
-				// PHPUnit 6.4.4 < 7.0.0.
-				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnit6.php';
-				return;
-			}
-
-			// PHPUnit >= 7.0.0.
 			require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php';
 		}
 
