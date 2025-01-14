@@ -38,18 +38,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			switch ( $className ) {
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertIsType':
-					self::loadAssertIsType();
-					return true;
-
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains':
-					self::loadAssertStringContains();
-					return true;
-
-				case 'Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations':
-					self::loadAssertEqualsSpecializations();
-					return true;
-
 				case 'Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches':
 					self::loadExpectExceptionMessageMatches();
 					return true;
@@ -128,57 +116,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 			}
 
 			return false;
-		}
-
-		/**
-		 * Load the AssertIsType polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertIsType() {
-			if ( \method_exists( Assert::class, 'assertIsArray' ) === false ) {
-				// PHPUnit < 7.5.0.
-				require_once __DIR__ . '/src/Polyfills/AssertIsType.php';
-				return;
-			}
-
-			// PHPUnit >= 7.5.0.
-			require_once __DIR__ . '/src/Polyfills/AssertIsType_Empty.php';
-		}
-
-		/**
-		 * Load the AssertStringContains polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertStringContains() {
-			if ( \method_exists( Assert::class, 'assertStringContainsString' ) === false ) {
-				// PHPUnit < 7.5.0.
-				require_once __DIR__ . '/src/Polyfills/AssertStringContains.php';
-				return;
-			}
-
-			// PHPUnit >= 7.5.0.
-			require_once __DIR__ . '/src/Polyfills/AssertStringContains_Empty.php';
-		}
-
-		/**
-		 * Load the AssertEqualsSpecializations polyfill or an empty trait with the same name
-		 * if a PHPUnit version is used which already contains this functionality.
-		 *
-		 * @return void
-		 */
-		public static function loadAssertEqualsSpecializations() {
-			if ( \method_exists( Assert::class, 'assertEqualsWithDelta' ) === false ) {
-				// PHPUnit < 7.5.0.
-				require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations.php';
-				return;
-			}
-
-			// PHPUnit >= 7.5.0.
-			require_once __DIR__ . '/src/Polyfills/AssertEqualsSpecializations_Empty.php';
 		}
 
 		/**
@@ -424,13 +361,6 @@ if ( \class_exists( 'Yoast\PHPUnitPolyfills\Autoload', false ) === false ) {
 		 * @return void
 		 */
 		public static function loadTestListenerDefaultImplementation() {
-			if ( \version_compare( PHPUnit_Version::id(), '7.0.0', '<' ) ) {
-				// PHPUnit 6.4.4 < 7.0.0.
-				require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnit6.php';
-				return;
-			}
-
-			// PHPUnit >= 7.0.0.
 			require_once __DIR__ . '/src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php';
 		}
 

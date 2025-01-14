@@ -23,11 +23,6 @@ parameters:
 		# Level 0
 		# This is part of the functionality of this library. Ignore.
 		-
-			message: '`^Call to an undefined static method Yoast\\PHPUnitPolyfills\\TestCases\\[X]?TestCase::assertInternalType\(\)\.$`'
-			count: 2
-			path: src/Polyfills/AssertIsList.php
-
-		-
 			message: '`^Call to an undefined method Yoast\\PHPUnitPolyfills\\TestCases\\[X]?TestCase::expectExceptionMessageRegExp\(\)\.$`'
 			count: 2
 			path: src/Polyfills/ExpectUserDeprecation.php
@@ -36,16 +31,12 @@ parameters:
 		# This is part of the functionality of this package. Safe to ignore.
 		-
 			message: "`^Call to function method_exists\\(\\) with 'PHPUnit\\W+Framework\\W+(TestCase|Assert)' and '(assert|expect|equalTo)[^']+' will always evaluate to true\\.$`"
-			count: 10
+			count: 7
 			path: phpunitpolyfills-autoload.php
 		-
 			message: "`^Call to function method_exists\\(\\) with 'PHPUnit\\W+Framework\\W+TestCase' and 'expectDeprecationMe[^']+' will always evaluate to true\\.$`"
 			count: 4
 			path: src/Polyfills/ExpectUserDeprecation.php
-		-
-			message: "`^Call to function method_exists\\(\\) with 'PHPUnit\\W+Framework\\W+Assert' and 'assertIsArray' will always evaluate to true\\.$`"
-			count: 2
-			path: src/Polyfills/AssertIsList.php
 
 		-
 			message: '`^Call to static method PHPUnit\\Framework\\Assert::assertIsArray\(\) with mixed and mixed will always evaluate to false\.$`'
@@ -55,7 +46,7 @@ parameters:
 		# The traits are functionality, but not used by the package itself. Can't be helped.
 		-
 			identifier: trait.unused
-			path: src/TestListeners/TestListenerDefaultImplementationPHPUnit6.php
+			path: src/TestListeners/TestListenerDefaultImplementationPHPUnitGte7.php
 		-
 			identifier: trait.unused
 			path: src/TestListeners/TestListenerSnakeCaseMethods.php

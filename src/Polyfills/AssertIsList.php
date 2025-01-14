@@ -2,7 +2,6 @@
 
 namespace Yoast\PHPUnitPolyfills\Polyfills;
 
-use PHPUnit\Framework\Assert;
 use ReflectionObject;
 
 /**
@@ -31,12 +30,7 @@ trait AssertIsList {
 		}
 
 		if ( \is_array( $array ) === false ) {
-			if ( \method_exists( Assert::class, 'assertIsArray' ) ) {
-				static::assertIsArray( $array, $msg );
-				return;
-			}
-
-			static::assertInternalType( 'array', $array, $msg );
+			static::assertIsArray( $array, $msg );
 			return;
 		}
 

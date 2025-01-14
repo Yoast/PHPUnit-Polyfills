@@ -17,7 +17,7 @@ class Warning extends TestCase {
 	 *
 	 * @throws PHPUnit_Warning For test purposes.
 	 */
-	protected function runTest() {
+	protected function testForListener() {
 		throw new PHPUnit_Warning();
 	}
 }

@@ -4,13 +4,18 @@ namespace Yoast\PHPUnitPolyfills\Tests\TestListeners;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
-use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use PHPUnit\Framework\TestResult;
-use Yoast\PHPUnitPolyfills\Autoload;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
 use Yoast\PHPUnitPolyfills\TestListeners\TestListenerSnakeCaseMethods;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Failure;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Incomplete;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Risky;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Skipped;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Success;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestError;
 use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\TestListenerImplementation;
+use Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\Warning;
 
 /**
  * Basic test for the PHPUnit version-based TestListenerDefaultImplementation setup.
@@ -57,7 +62,7 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testError() {
-		$test = $this->getTestObject( 'TestError' );
+		$test = new TestError( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -71,7 +76,7 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testWarning() {
-		$test = $this->getTestObject( 'Warning' );
+		$test = new Warning( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -85,7 +90,7 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testFailure() {
-		$test = $this->getTestObject( 'Failure' );
+		$test = new Failure( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -99,7 +104,7 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testIncomplete() {
-		$test = $this->getTestObject( 'Incomplete' );
+		$test = new Incomplete( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -113,7 +118,7 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testRisky() {
-		$test = $this->getTestObject( 'Risky' );
+		$test = new Risky( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -127,7 +132,7 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testSkipped() {
-		$test = $this->getTestObject( 'Skipped' );
+		$test = new Skipped( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
@@ -141,33 +146,10 @@ final class TestListenerTest extends TestCase {
 	 * @return void
 	 */
 	public function testStartStop() {
-		$test = $this->getTestObject( 'Success' );
+		$test = new Success( 'testForListener' );
 		$test->run( $this->result );
 
 		$this->assertSame( 1, $this->listener->startTestCount, 'test start count failed' );
 		$this->assertSame( 1, $this->listener->endTestCount, 'test end count failed' );
-	}
-
-	/**
-	 * Helper method to get the right Test class object.
-	 *
-	 * Toggles between different versions of the same Test class object:
-	 * - Base version using `runTest()` method, compatible with PHPUnit < 10.0.
-	 * - Version using `testForListener()` method, compatible with PHPUnit > 7.0.
-	 *
-	 * @param string $className Base class name of the test class to instantiate.
-	 *
-	 * @return PHPUnitTestCase
-	 */
-	private function getTestObject( $className ) {
-		$className = '\Yoast\PHPUnitPolyfills\Tests\TestListeners\Fixtures\\' . $className;
-		$testName  = 'runTest';
-
-		if ( \version_compare( Autoload::getPHPUnitVersion(), '7.0.0', '>=' ) ) {
-			$className .= 'PHPUnitGte7';
-			$testName   = 'testForListener';
-		}
-
-		return new $className( $testName );
 	}
 }

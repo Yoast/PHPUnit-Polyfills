@@ -5,7 +5,6 @@ namespace Yoast\PHPUnitPolyfills\Tests\Polyfills;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
-use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * Availability test for the functions polyfilled by the AssertionRenames trait.
@@ -16,7 +15,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 final class AssertionRenamesTest extends TestCase {
 
 	use AssertionRenames;
-	use AssertIsType;
 
 	const NOT_EXISTENT_FILE = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
 

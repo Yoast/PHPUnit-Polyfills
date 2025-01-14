@@ -14,7 +14,7 @@ class Skipped extends TestCase {
 	 *
 	 * @return void
 	 */
-	protected function runTest() {
+	protected function testForListener() {
 		$this->markTestSkipped( 'Skipped test' );
 	}
 }
