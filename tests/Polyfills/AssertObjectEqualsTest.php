@@ -20,8 +20,6 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertObjectEquals;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ChildValueObject;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
-use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectNullableReturnType;
-use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectParamNotRequired;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnion;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectUnionReturnType;
 
@@ -237,13 +235,10 @@ final class AssertObjectEqualsTest extends TestCase {
 	/**
 	 * Verify that the assertObjectEquals() method throws an error when the declared return type is nullable.
 	 *
-	 * @requires PHP 7.1
-	 *
 	 * @return void
 	 */
-	#[RequiresPhp( '7.1' )]
 	public function testAssertObjectEqualsFailsOnNullableReturnType() {
-		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectNullableReturnType::equalsNullableReturnType() does not declare bool return type.';
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsNullableReturnType() does not declare bool return type.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
 		if ( \class_exists( ComparisonMethodDoesNotDeclareBoolReturnTypeException::class ) ) {
@@ -254,8 +249,8 @@ final class AssertObjectEqualsTest extends TestCase {
 		$this->expectException( $exception );
 		$this->expectExceptionMessage( $msg );
 
-		$expected = new ValueObjectNullableReturnType( 100 );
-		$actual   = new ValueObjectNullableReturnType( 100 );
+		$expected = new ValueObject( 100 );
+		$actual   = new ValueObject( 100 );
 		$this->assertObjectEquals( $expected, $actual, 'equalsNullableReturnType' );
 	}
 
@@ -306,13 +301,10 @@ final class AssertObjectEqualsTest extends TestCase {
 	/**
 	 * Verify that the assertObjectEquals() method throws an error when the $method is not a required parameter.
 	 *
-	 * @requires PHP 7.1
-	 *
 	 * @return void
 	 */
-	#[RequiresPhp( '7.1' )]
 	public function testAssertObjectEqualsFailsOnMethodParamNotRequired() {
-		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObjectParamNotRequired::equalsParamNotRequired() does not declare exactly one parameter.';
+		$msg = 'Comparison method Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject::equalsParamNotRequired() does not declare exactly one parameter.';
 
 		$exception = self::COMPARATOR_EXCEPTION;
 		if ( \class_exists( ComparisonMethodDoesNotDeclareExactlyOneParameterException::class ) ) {
@@ -323,8 +315,8 @@ final class AssertObjectEqualsTest extends TestCase {
 		$this->expectException( $exception );
 		$this->expectExceptionMessage( $msg );
 
-		$expected = new ValueObjectParamNotRequired( 'test' );
-		$actual   = new ValueObjectParamNotRequired( 'test' );
+		$expected = new ValueObject( 'test' );
+		$actual   = new ValueObject( 'test' );
 		$this->assertObjectEquals( $expected, $actual, 'equalsParamNotRequired' );
 	}
 

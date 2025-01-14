@@ -26,7 +26,7 @@
 		"security": "https://github.com/Yoast/PHPUnit-Polyfills/security/policy"
 	},
 	"require": {
-		"php": ">=7.0",
+		"php": ">=7.1",
 		"phpunit/phpunit": "^6.4.4 || ^7.0 || ^8.0 || ^9.0 || ^11.0"
 	},
 	"require-dev": {
@@ -61,14 +61,11 @@
 		"lint7": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionReturnType.php"
 		],
-		"lint70": [
-			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git --exclude src/Exceptions/Error.php --exclude src/Exceptions/TypeError.php --exclude tests/Polyfills/Fixtures/ValueObjectParamNotRequired.php --exclude tests/Polyfills/Fixtures/ValueObjectNullableReturnType.php --exclude tests/Polyfills/Fixtures/ValueObjectUnion.php --exclude tests/Polyfills/Fixtures/ValueObjectUnionReturnType.php"
-		],
 		"lint-gte80": [
 			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"
 		],
 		"check-cs": [
-			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --runtime-set testVersion 7.0-"
+			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --runtime-set testVersion 7.1-"
 		],
 		"fix-cs": [
 			"@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
@@ -88,7 +85,6 @@
 	},
 	"scripts-descriptions": {
 		"lint7": "Check the PHP files for parse errors. (PHP 7.1 - 7.4)",
-		"lint70": "Check the PHP files for parse errors. (PHP 7.0)",
 		"lint-gte80": "Check the PHP files for parse errors. (PHP 8.0+)",
 		"check-cs": "Check the PHP files for code style violations and best practices.",
 		"fix-cs": "Auto-fix code style violations in the PHP files.",
