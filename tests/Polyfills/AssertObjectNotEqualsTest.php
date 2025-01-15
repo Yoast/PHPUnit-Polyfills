@@ -42,7 +42,7 @@ final class AssertObjectNotEqualsTest extends TestCase {
 	 *
 	 * @var string
 	 */
-	const COMPARATOR_EXCEPTION = InvalidComparisonMethodException::class;
+	private const COMPARATOR_EXCEPTION = InvalidComparisonMethodException::class;
 
 	/**
 	 * Verify availability of the assertObjectNotEquals() method.

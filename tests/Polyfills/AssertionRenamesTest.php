@@ -16,9 +16,9 @@ final class AssertionRenamesTest extends TestCase {
 
 	use AssertionRenames;
 
-	const NOT_EXISTENT_FILE = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
+	private const NOT_EXISTENT_FILE = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting.php';
 
-	const NOT_EXISTENT_DIR = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
+	private const NOT_EXISTENT_DIR = __DIR__ . \DIRECTORY_SEPARATOR . 'NotExisting' . \DIRECTORY_SEPARATOR;
 
 	/**
 	 * Verify availability of the assertIsNotReadable() method.

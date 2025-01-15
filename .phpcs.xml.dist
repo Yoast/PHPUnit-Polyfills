@@ -56,10 +56,6 @@
 		<exclude name="WordPressVIPMinimum.Security.EscapingVoidReturnFunctions"/>
 		<exclude name="WordPressVIPMinimum.Security.ProperEscapingFunction"/>
 
-		<!-- Exclude select "modern PHP" sniffs, which conflict with the minimum supported PHP version of this package. -->
-		<exclude name="PSR12.Properties.ConstantVisibility"/><!-- PHP 7.1+. -->
-		<exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/><!-- PHP 7.1+. -->
-
 		<!-- As this repo is about providing assertions, "mixed" is a perfectly valid type. -->
 		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
 	</rule>
