@@ -47,7 +47,7 @@ trait AssertObjectEquals {
 	 * @throws TypeError                        When any of the passed arguments do not meet the required type.
 	 * @throws InvalidComparisonMethodException When the comparator method does not comply with the requirements.
 	 */
-	final public static function assertObjectEquals( $expected, $actual, $method = 'equals', $message = '' ) {
+	final public static function assertObjectEquals( $expected, $actual, string $method = 'equals', string $message = '' ): void {
 		/*
 		 * Parameter input validation.
 		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill.
@@ -68,18 +68,6 @@ trait AssertObjectEquals {
 					\gettype( $actual )
 				)
 			);
-		}
-
-		if ( \is_scalar( $method ) === false ) {
-			throw new TypeError(
-				\sprintf(
-					'Argument 3 passed to assertObjectEquals() must be of the type string, %s given',
-					\gettype( $method )
-				)
-			);
-		}
-		else {
-			$method = (string) $method;
 		}
 
 		/*

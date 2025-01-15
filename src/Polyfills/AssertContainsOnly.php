@@ -35,7 +35,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyInstancesOf( string $className, $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyInstancesOf( string $className, iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( $className, $haystack, false, $message );
 	}
 
@@ -47,7 +47,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyArray( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyArray( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'array', $haystack, true, $message );
 	}
 
@@ -59,7 +59,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyArray( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyArray( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'array', $haystack, true, $message );
 	}
 
@@ -71,7 +71,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyBool( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyBool( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'bool', $haystack, true, $message );
 	}
 
@@ -83,7 +83,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyBool( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyBool( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'bool', $haystack, true, $message );
 	}
 
@@ -95,7 +95,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyCallable( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyCallable( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'callable', $haystack, true, $message );
 	}
 
@@ -107,7 +107,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyCallable( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyCallable( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'callable', $haystack, true, $message );
 	}
 
@@ -119,7 +119,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyFloat( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyFloat( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'float', $haystack, true, $message );
 	}
 
@@ -131,7 +131,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyFloat( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyFloat( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'float', $haystack, true, $message );
 	}
 
@@ -143,7 +143,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyInt( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyInt( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'int', $haystack, true, $message );
 	}
 
@@ -155,7 +155,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyInt( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyInt( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'int', $haystack, true, $message );
 	}
 
@@ -167,7 +167,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyIterable( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyIterable( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'iterable', $haystack, true, $message );
 	}
 
@@ -179,7 +179,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyIterable( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyIterable( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'iterable', $haystack, true, $message );
 	}
 
@@ -191,7 +191,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyNull( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyNull( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'null', $haystack, true, $message );
 	}
 
@@ -203,7 +203,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyNull( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyNull( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'null', $haystack, true, $message );
 	}
 
@@ -215,7 +215,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyNumeric( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyNumeric( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'numeric', $haystack, true, $message );
 	}
 
@@ -227,7 +227,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyNumeric( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyNumeric( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'numeric', $haystack, true, $message );
 	}
 
@@ -239,7 +239,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyObject( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyObject( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'object', $haystack, true, $message );
 	}
 
@@ -251,7 +251,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyObject( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyObject( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'object', $haystack, true, $message );
 	}
 
@@ -263,7 +263,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyResource( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyResource( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'resource', $haystack, true, $message );
 	}
 
@@ -275,7 +275,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyResource( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyResource( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'resource', $haystack, true, $message );
 	}
 
@@ -287,7 +287,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyClosedResource( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyClosedResource( iterable $haystack, string $message = '' ): void {
 		$exporter = self::getPHPUnitExporterObjectForContainsOnly();
 		$msg      = \sprintf( 'Failed asserting that %s contains only values of type "resource (closed)".', $exporter->export( $haystack ) );
 
@@ -316,7 +316,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyClosedResource( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyClosedResource( iterable $haystack, string $message = '' ): void {
 		$exporter = self::getPHPUnitExporterObjectForContainsOnly();
 		$msg      = \sprintf( 'Failed asserting that %s does not contain only values of type "resource (closed)".', $exporter->export( $haystack ) );
 
@@ -345,7 +345,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyScalar( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyScalar( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'scalar', $haystack, true, $message );
 	}
 
@@ -357,7 +357,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyScalar( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyScalar( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'scalar', $haystack, true, $message );
 	}
 
@@ -369,7 +369,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsOnlyString( $haystack, string $message = '' ) {
+	final public static function assertContainsOnlyString( iterable $haystack, string $message = '' ): void {
 		static::assertContainsOnly( 'string', $haystack, true, $message );
 	}
 
@@ -381,7 +381,7 @@ trait AssertContainsOnly {
 	 *
 	 * @return void
 	 */
-	final public static function assertContainsNotOnlyString( $haystack, string $message = '' ) {
+	final public static function assertContainsNotOnlyString( iterable $haystack, string $message = '' ): void {
 		static::assertNotContainsOnly( 'string', $haystack, true, $message );
 	}
 

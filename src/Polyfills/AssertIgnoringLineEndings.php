@@ -5,7 +5,6 @@ namespace Yoast\PHPUnitPolyfills\Polyfills;
 use PHPUnit\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar_Old;
 use PHPUnitPHAR\SebastianBergmann\Exporter\Exporter as Exporter_In_Phar;
 use SebastianBergmann\Exporter\Exporter;
-use TypeError;
 
 /**
  * Polyfill the Assert::assertStringEqualsStringIgnoringLineEndings() and the
@@ -30,32 +29,8 @@ trait AssertIgnoringLineEndings {
 	 * @param string $message  Optional failure message to display.
 	 *
 	 * @return void
-	 *
-	 * @throws TypeError When any of the passed arguments do not meet the required type.
 	 */
-	final public static function assertStringEqualsStringIgnoringLineEndings( $expected, $actual, $message = '' ) {
-		/*
-		 * Parameter input validation.
-		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill.
-		 * Note: using `is_scalar()` instead of `is_string()` as test files may not be using strict_types.
-		 */
-		if ( \is_scalar( $expected ) === false ) {
-			throw new TypeError(
-				\sprintf(
-					'Argument 1 passed to assertStringEqualsStringIgnoringLineEndings() must be of type string, %s given',
-					\gettype( $expected )
-				)
-			);
-		}
-		if ( \is_scalar( $actual ) === false ) {
-			throw new TypeError(
-				\sprintf(
-					'Argument 2 passed to assertStringEqualsStringIgnoringLineEndings() must be of type string, %s given',
-					\gettype( $actual )
-				)
-			);
-		}
-
+	final public static function assertStringEqualsStringIgnoringLineEndings( string $expected, string $actual, string $message = '' ): void {
 		$expected = self::normalizeLineEndingsForIgnoringLineEndingsAssertions( (string) $expected );
 		$exporter = self::getPHPUnitExporterObjectForIgnoringLineEndings();
 		$msg      = \sprintf(
@@ -81,32 +56,8 @@ trait AssertIgnoringLineEndings {
 	 * @param string $message  Optional failure message to display.
 	 *
 	 * @return void
-	 *
-	 * @throws TypeError When any of the passed arguments do not meet the required type.
 	 */
-	final public static function assertStringContainsStringIgnoringLineEndings( $needle, $haystack, $message = '' ) {
-		/*
-		 * Parameter input validation.
-		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill.
-		 * Note: using `is_scalar()` instead of `is_string()` as test files may not be using strict_types.
-		 */
-		if ( \is_scalar( $needle ) === false ) {
-			throw new TypeError(
-				\sprintf(
-					'Argument 1 passed to assertStringContainsStringIgnoringLineEndings() must be of type string, %s given',
-					\gettype( $needle )
-				)
-			);
-		}
-		if ( \is_scalar( $haystack ) === false ) {
-			throw new TypeError(
-				\sprintf(
-					'Argument 2 passed to assertStringContainsStringIgnoringLineEndings() must be of type string, %s given',
-					\gettype( $haystack )
-				)
-			);
-		}
-
+	final public static function assertStringContainsStringIgnoringLineEndings( string $needle, string $haystack, string $message = '' ): void {
 		$needle   = self::normalizeLineEndingsForIgnoringLineEndingsAssertions( (string) $needle );
 		$haystack = self::normalizeLineEndingsForIgnoringLineEndingsAssertions( (string) $haystack );
 
@@ -120,7 +71,7 @@ trait AssertIgnoringLineEndings {
 	 *
 	 * @return string
 	 */
-	private static function normalizeLineEndingsForIgnoringLineEndingsAssertions( $value ) {
+	private static function normalizeLineEndingsForIgnoringLineEndingsAssertions( string $value ): string {
 		return \strtr(
 			$value,
 			[

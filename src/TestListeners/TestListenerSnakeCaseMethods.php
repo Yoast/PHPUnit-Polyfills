@@ -27,7 +27,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function add_error( $test, $e, $time ) {}
+	public function add_error( Test $test, Throwable $e, float $time ): void {}
 
 	/**
 	 * A warning occurred.
@@ -40,7 +40,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function add_warning( $test, $e, $time ) {}
+	public function add_warning( Test $test, Warning $e, float $time ): void {}
 
 	/**
 	 * A failure occurred.
@@ -51,7 +51,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function add_failure( $test, $e, $time ) {}
+	public function add_failure( Test $test, AssertionFailedError $e, float $time ): void {}
 
 	/**
 	 * Incomplete test.
@@ -62,7 +62,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function add_incomplete_test( $test, $e, $time ) {}
+	public function add_incomplete_test( Test $test, Throwable $e, float $time ): void {}
 
 	/**
 	 * Risky test.
@@ -73,7 +73,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function add_risky_test( $test, $e, $time ) {}
+	public function add_risky_test( Test $test, Throwable $e, float $time ): void {}
 
 	/**
 	 * Skipped test.
@@ -84,7 +84,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function add_skipped_test( $test, $e, $time ) {}
+	public function add_skipped_test( Test $test, Throwable $e, float $time ): void {}
 
 	/**
 	 * A test suite started.
@@ -93,7 +93,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function start_test_suite( $suite ) {}
+	public function start_test_suite( TestSuite $suite ): void {}
 
 	/**
 	 * A test suite ended.
@@ -102,7 +102,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function end_test_suite( $suite ) {}
+	public function end_test_suite( TestSuite $suite ): void {}
 
 	/**
 	 * A test started.
@@ -111,7 +111,7 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function start_test( $test ) {}
+	public function start_test( Test $test ): void {}
 
 	/**
 	 * A test ended.
@@ -121,5 +121,5 @@ trait TestListenerSnakeCaseMethods {
 	 *
 	 * @return void
 	 */
-	public function end_test( $test, $time ) {}
+	public function end_test( Test $test, float $time ): void {}
 }

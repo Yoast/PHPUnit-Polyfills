@@ -23,7 +23,7 @@ trait AssertIsList {
 	 *
 	 * @return void
 	 */
-	final public static function assertIsList( $array, $message = '' ) {
+	final public static function assertIsList( $array, string $message = '' ): void {
 		$msg = self::assertIsListFailureDescription( $array );
 		if ( $message !== '' ) {
 			$msg = $message . \PHP_EOL . $msg;
@@ -57,7 +57,7 @@ trait AssertIsList {
 	 *
 	 * @return string
 	 */
-	private static function assertIsListFailureDescription( $value ) {
+	private static function assertIsListFailureDescription( $value ): string {
 		$message = 'Failed asserting that %s is a list.';
 
 		if ( \is_object( $value ) ) {

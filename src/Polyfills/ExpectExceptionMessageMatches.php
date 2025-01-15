@@ -25,7 +25,7 @@ trait ExpectExceptionMessageMatches {
 	 *
 	 * @return void
 	 */
-	final protected function expectExceptionMessageMatches( $regularExpression ) {
+	final protected function expectExceptionMessageMatches( string $regularExpression ): void {
 		$this->expectExceptionMessageRegExp( $regularExpression );
 	}
 }

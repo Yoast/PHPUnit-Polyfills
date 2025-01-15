@@ -25,7 +25,7 @@ trait ExpectUserDeprecation {
 	 *
 	 * @return void
 	 */
-	final protected function expectUserDeprecationMessage( string $expectedUserDeprecationMessage ) {
+	final protected function expectUserDeprecationMessage( string $expectedUserDeprecationMessage ): void {
 		if ( \method_exists( TestCase::class, 'expectDeprecationMessage' ) ) {
 			// PHPUnit 8.4.0 - 9.x.
 			$this->expectDeprecation();
@@ -45,7 +45,7 @@ trait ExpectUserDeprecation {
 	 *
 	 * @return void
 	 */
-	final protected function expectUserDeprecationMessageMatches( string $expectedUserDeprecationMessageRegularExpression ) {
+	final protected function expectUserDeprecationMessageMatches( string $expectedUserDeprecationMessageRegularExpression ): void {
 		if ( \method_exists( TestCase::class, 'expectDeprecationMessageMatches' ) ) {
 			// PHPUnit 8.4.0 - 9.x.
 			$this->expectDeprecation();

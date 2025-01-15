@@ -19,7 +19,7 @@ final class InvalidComparisonMethodException extends Exception {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		return $this->getMessage() . \PHP_EOL;
 	}
 }

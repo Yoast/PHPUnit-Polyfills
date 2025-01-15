@@ -38,14 +38,13 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 */
 	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringEqualsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg1( $input ) {
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
-		) {
+		if ( \PHP_VERSION_ID >= 80000 ) {
 			$msg = 'assertStringEqualsStringIgnoringLineEndings(): Argument #1 ($expected) must be of type string, ';
 		}
 		else {
 			// PHP 7.
-			$msg = 'Argument 1 passed to assertStringEqualsStringIgnoringLineEndings() must be of type string, ';
+			$msg  = 'Argument 1 passed to Yoast\\PHPUnitPolyfills\\Tests\\Polyfills\\AssertIgnoringLineEndingsTest';
+			$msg .= '::assertStringEqualsStringIgnoringLineEndings() must be of the type string, ';
 		}
 
 		$this->expectException( TypeError::class );
@@ -66,14 +65,13 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 */
 	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringEqualsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg2( $input ) {
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
-		) {
+		if ( \PHP_VERSION_ID >= 80000 ) {
 			$msg = 'assertStringEqualsStringIgnoringLineEndings(): Argument #2 ($actual) must be of type string, ';
 		}
 		else {
 			// PHP 7.
-			$msg = 'Argument 2 passed to assertStringEqualsStringIgnoringLineEndings() must be of type string, ';
+			$msg  = 'Argument 2 passed to Yoast\\PHPUnitPolyfills\\Tests\\Polyfills\\AssertIgnoringLineEndingsTest';
+			$msg .= '::assertStringEqualsStringIgnoringLineEndings() must be of the type string, ';
 		}
 
 		$this->expectException( TypeError::class );
@@ -212,14 +210,13 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 */
 	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringContainsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg1( $input ) {
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
-		) {
+		if ( \PHP_VERSION_ID >= 80000 ) {
 			$msg = 'assertStringContainsStringIgnoringLineEndings(): Argument #1 ($needle) must be of type string, ';
 		}
 		else {
 			// PHP 7.
-			$msg = 'Argument 1 passed to assertStringContainsStringIgnoringLineEndings() must be of type string, ';
+			$msg  = 'Argument 1 passed to Yoast\\PHPUnitPolyfills\\Tests\\Polyfills\\AssertIgnoringLineEndingsTest';
+			$msg .= '::assertStringContainsStringIgnoringLineEndings() must be of the type string, ';
 		}
 
 		$this->expectException( TypeError::class );
@@ -240,14 +237,13 @@ final class AssertIgnoringLineEndingsTest extends TestCase {
 	 */
 	#[DataProvider( 'dataThrowsTypeErrorOnInvalidType' )]
 	public function testAssertStringContainsStringIgnoringLineEndingsThrowsTypeErrorOnInvalidTypeArg2( $input ) {
-		if ( \PHP_VERSION_ID >= 80100
-			&& \version_compare( PHPUnit_Version::id(), '10.0.0', '>=' )
-		) {
+		if ( \PHP_VERSION_ID >= 80000 ) {
 			$msg = 'assertStringContainsStringIgnoringLineEndings(): Argument #2 ($haystack) must be of type string, ';
 		}
 		else {
 			// PHP 7.
-			$msg = 'Argument 2 passed to assertStringContainsStringIgnoringLineEndings() must be of type string, ';
+			$msg  = 'Argument 2 passed to Yoast\\PHPUnitPolyfills\\Tests\\Polyfills\\AssertIgnoringLineEndingsTest';
+			$msg .= '::assertStringContainsStringIgnoringLineEndings() must be of the type string, ';
 		}
 
 		$this->expectException( TypeError::class );

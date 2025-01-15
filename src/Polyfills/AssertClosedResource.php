@@ -27,7 +27,7 @@ trait AssertClosedResource {
 	 *
 	 * @return void
 	 */
-	public static function assertIsClosedResource( $actual, $message = '' ) {
+	public static function assertIsClosedResource( $actual, string $message = '' ): void {
 		$exporter = self::getPHPUnitExporterObject();
 		$msg      = \sprintf( 'Failed asserting that %s is of type "resource (closed)"', $exporter->export( $actual ) );
 
@@ -46,7 +46,7 @@ trait AssertClosedResource {
 	 *
 	 * @return void
 	 */
-	public static function assertIsNotClosedResource( $actual, $message = '' ) {
+	public static function assertIsNotClosedResource( $actual, string $message = '' ): void {
 		$exporter = self::getPHPUnitExporterObject();
 		$type     = $exporter->export( $actual );
 		if ( $type === 'NULL' ) {
@@ -77,7 +77,7 @@ trait AssertClosedResource {
 	 *
 	 * @return bool
 	 */
-	public static function shouldClosedResourceAssertionBeSkipped( $actual ) {
+	public static function shouldClosedResourceAssertionBeSkipped( $actual ): bool {
 		return ( ResourceHelper::isResourceStateReliable( $actual ) === false );
 	}
 

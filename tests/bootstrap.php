@@ -14,7 +14,7 @@ if ( \defined( '__PHPUNIT_PHAR__' ) ) {
 		 *
 		 * @return bool
 		 */
-		static function ( $fqClassName ) {
+		static function ( string $fqClassName ): bool {
 			// Only try & load our own classes.
 			if ( \stripos( $fqClassName, 'Yoast\PHPUnitPolyfills\Tests\\' ) !== 0 ) {
 				return false;
