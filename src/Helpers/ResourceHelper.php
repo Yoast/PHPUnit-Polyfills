@@ -28,7 +28,7 @@ final class ResourceHelper {
 	 *
 	 * @return bool
 	 */
-	public static function isResource( $actual ) {
+	public static function isResource( $actual ): bool {
 		return ( $actual !== null
 			&& \is_scalar( $actual ) === false
 			&& \is_array( $actual ) === false
@@ -42,7 +42,7 @@ final class ResourceHelper {
 	 *
 	 * @return bool
 	 */
-	public static function isClosedResource( $actual ) {
+	public static function isClosedResource( $actual ): bool {
 		$type = \gettype( $actual );
 
 		/*
@@ -92,7 +92,7 @@ final class ResourceHelper {
 	 *
 	 * @return bool
 	 */
-	public static function isResourceStateReliable( $actual ) {
+	public static function isResourceStateReliable( $actual ): bool {
 		try {
 			$type = @\get_resource_type( $actual );
 
@@ -118,7 +118,7 @@ final class ResourceHelper {
 	 *
 	 * @return bool
 	 */
-	public static function isIncompatiblePHPForLibXMLResources() {
+	public static function isIncompatiblePHPForLibXMLResources(): bool {
 		if ( \PHP_VERSION_ID >= 70100 && \PHP_VERSION_ID < 70134 ) {
 			return true;
 		}

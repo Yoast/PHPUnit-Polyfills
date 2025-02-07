@@ -34,7 +34,7 @@ trait AssertObjectProperty {
 	 *
 	 * @throws TypeError When any of the passed arguments do not meet the required type.
 	 */
-	final public static function assertObjectHasProperty( $propertyName, $object, $message = '' ) {
+	final public static function assertObjectHasProperty( $propertyName, $object, string $message = '' ): void {
 		/*
 		 * Parameter input validation.
 		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill,
@@ -92,7 +92,7 @@ trait AssertObjectProperty {
 	 *
 	 * @throws TypeError When any of the passed arguments do not meet the required type.
 	 */
-	final public static function assertObjectNotHasProperty( $propertyName, $object, $message = '' ) {
+	final public static function assertObjectNotHasProperty( $propertyName, $object, string $message = '' ): void {
 		/*
 		 * Parameter input validation.
 		 * In PHPUnit this is done via PHP native type declarations. Emulating this for the polyfill,
@@ -146,7 +146,7 @@ trait AssertObjectProperty {
 	 *
 	 * @return string
 	 */
-	private static function assertObjectHasPropertyFailureDescription( $object ) {
+	private static function assertObjectHasPropertyFailureDescription( $object ): string {
 		return \sprintf(
 			'Failed asserting that object of class "%s"',
 			\get_class( $object )

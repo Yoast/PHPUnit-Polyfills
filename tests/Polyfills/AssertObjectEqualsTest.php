@@ -145,9 +145,7 @@ final class AssertObjectEqualsTest extends TestCase {
 	public function testAssertObjectEqualsFailsOnMethodNotJuggleableToString() {
 		$this->expectException( TypeError::class );
 
-		if ( \PHP_VERSION_ID >= 80000
-			&& \version_compare( PHPUnit_Version::id(), '9.4.0', '>=' )
-		) {
+		if ( \PHP_VERSION_ID >= 80000 ) {
 			$msg = 'assertObjectEquals(): Argument #3 ($method) must be of type string, array given';
 			$this->expectExceptionMessage( $msg );
 		}

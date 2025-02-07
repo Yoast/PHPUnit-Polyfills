@@ -30,7 +30,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertFileEqualsCanonicalizing( $expected, $actual, $message = '' ) {
+	final public static function assertFileEqualsCanonicalizing( string $expected, string $actual, string $message = '' ): void {
 		static::assertFileEquals( $expected, $actual, $message, true );
 	}
 
@@ -44,7 +44,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertFileEqualsIgnoringCase( $expected, $actual, $message = '' ) {
+	final public static function assertFileEqualsIgnoringCase( string $expected, string $actual, string $message = '' ): void {
 		static::assertFileEquals( $expected, $actual, $message, false, true );
 	}
 
@@ -58,7 +58,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertFileNotEqualsCanonicalizing( $expected, $actual, $message = '' ) {
+	final public static function assertFileNotEqualsCanonicalizing( string $expected, string $actual, string $message = '' ): void {
 		static::assertFileNotEquals( $expected, $actual, $message, true );
 	}
 
@@ -72,7 +72,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertFileNotEqualsIgnoringCase( $expected, $actual, $message = '' ) {
+	final public static function assertFileNotEqualsIgnoringCase( string $expected, string $actual, string $message = '' ): void {
 		static::assertFileNotEquals( $expected, $actual, $message, false, true );
 	}
 
@@ -86,7 +86,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertStringEqualsFileCanonicalizing( $expectedFile, $actualString, $message = '' ) {
+	final public static function assertStringEqualsFileCanonicalizing( string $expectedFile, string $actualString, string $message = '' ): void {
 		static::assertStringEqualsFile( $expectedFile, $actualString, $message, true );
 	}
 
@@ -100,7 +100,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertStringEqualsFileIgnoringCase( $expectedFile, $actualString, $message = '' ) {
+	final public static function assertStringEqualsFileIgnoringCase( string $expectedFile, string $actualString, string $message = '' ): void {
 		static::assertStringEqualsFile( $expectedFile, $actualString, $message, false, true );
 	}
 
@@ -114,7 +114,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertStringNotEqualsFileCanonicalizing( $expectedFile, $actualString, $message = '' ) {
+	final public static function assertStringNotEqualsFileCanonicalizing( string $expectedFile, string $actualString, string $message = '' ): void {
 		static::assertStringNotEqualsFile( $expectedFile, $actualString, $message, true );
 	}
 
@@ -128,7 +128,7 @@ trait AssertFileEqualsSpecializations {
 	 *
 	 * @return void
 	 */
-	final public static function assertStringNotEqualsFileIgnoringCase( $expectedFile, $actualString, $message = '' ) {
+	final public static function assertStringNotEqualsFileIgnoringCase( string $expectedFile, string $actualString, string $message = '' ): void {
 		static::assertStringNotEqualsFile( $expectedFile, $actualString, $message, false, true );
 	}
 }
