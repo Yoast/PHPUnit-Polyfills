@@ -328,6 +328,7 @@ jobs:
           coverage: ${{ matrix.coverage && 'xdebug' || 'none' }}
         env:
           fail-fast: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # YoastCS 3.0 has a PHP 7.2 minimum which conflicts with the requirements of this package.
       - name: 'Composer: remove YoastCS'
