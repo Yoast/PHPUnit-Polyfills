@@ -18,18 +18,3 @@ updates:
       - "Type: chores/QA"
     reviewers:
       - "jrfnl"
-
-  # Maintain dependencies for Composer.
-  - package-ecosystem: "composer"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5 # Set to 0 to (temporarily) disable.
-    target-branch: "1.x"
-    versioning-strategy: widen
-    commit-message:
-      prefix: "Composer:"
-    labels:
-      - "Type: chores/QA"
-    reviewers:
-      - "jrfnl"
