@@ -25,10 +25,7 @@ parameters:
 		# The traits are functionality, but not used by the package itself. Can't be helped.
 		-
 			identifier: trait.unused
-			path: src/TestListeners/TestListenerDefaultImplementationPHPUnit6.php
-		-
-			identifier: trait.unused
-			path: src/TestListeners/TestListenerSnakeCaseMethods.php
+			path: src/TestListeners/*
 
 		# Level 5
 		-
