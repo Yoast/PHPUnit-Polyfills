@@ -3,7 +3,7 @@ node_modules/
 vendor/
 /.phpcs.xml
 /phpcs.xml
-.cache/phpcs.cache
+.cache/*.cache
 /phpunit.xml
 /phpunit10.xml
 /.phpunit.result.cache
