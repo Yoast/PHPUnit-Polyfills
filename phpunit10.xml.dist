@@ -7,7 +7,7 @@
     beStrictAboutOutputDuringTests="true"
     beStrictAboutTestsThatDoNotTestAnything="true"
     colors="true"
-    cacheDirectory=".cache/phpcs.cache"
+    cacheDirectory=".cache/phpunit.cache"
     requireCoverageMetadata="true"
     displayDetailsOnTestsThatTriggerErrors="true"
     displayDetailsOnTestsThatTriggerWarnings="true"
