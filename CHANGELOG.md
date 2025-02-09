@@ -89,6 +89,17 @@ _In practical terms, the net effect of this is that tests on PHP 8.1 will run on
 [readme-on-expectuserdeprecation]: https://github.com/Yoast/PHPUnit-Polyfills/tree/3.x?tab=readme-ov-file#phpunit--1100-yoastphpunitpolyfillspolyfillsexpectuserdeprecation
 
 
+## [2.0.4] - 2025-02-09
+
+This is a maintenance release.
+
+### Changed
+* README: updated sub-section about PHPUnit version support with information about the PHPUnit Polyfills 4.x branch. PR [#249]
+* General housekeeping.
+
+<!-- Link to #249 is defined on the 1.1.4 release. -->
+
+
 ## [2.0.3] - 2025-01-08
 
 This is a maintenance release.
@@ -380,7 +391,8 @@ Initial release.
 [Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/main...HEAD
 [3.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.0.0...3.1.0
-[3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...3.0.0
+[3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.4...3.0.0
+[2.0.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.0...2.0.1
