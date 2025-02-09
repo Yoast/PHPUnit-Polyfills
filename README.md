@@ -5,7 +5,7 @@ PHPUnit Polyfills
 [![CS Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml)
 [![Lint Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml)
 [![Test Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml)
-[![Coverage Status](https://coveralls.io/repos/github/Yoast/PHPUnit-Polyfills/badge.svg?branch=3.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=3.x)
+[![Coverage Status](https://coveralls.io/repos/github/Yoast/PHPUnit-Polyfills/badge.svg?branch=4.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=4.x)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/dependency-v/yoast/phpunit-polyfills/php.svg)][Packagist]
 [![License: BSD3](https://img.shields.io/github/license/Yoast/PHPUnit-Polyfills)](https://github.com/Yoast/PHPUnit-Polyfills/blob/main/LICENSE)
@@ -34,7 +34,7 @@ Requirements
 ------------
 
 * PHP 7.1 or higher.
-* [PHPUnit] 7.5 - 9.x and 11.x (automatically required via Composer).
+* [PHPUnit] 7.5 - 9.x, 11.x and 12.x (automatically required via Composer).
 
 [PHPUnit]: https://packagist.org/packages/phpunit/phpunit
 
@@ -44,7 +44,7 @@ Installation
 
 To install this package, run:
 ```bash
-composer require --dev yoast/phpunit-polyfills:"^3.0"
+composer require --dev yoast/phpunit-polyfills:"^4.0"
 ```
 
 To update this package, run:
@@ -64,7 +64,7 @@ Why use the PHPUnit Polyfills?
 
 This library is set up to allow for creating PHPUnit cross-version compatible tests by offering a number of polyfills for functionality which was introduced, split up or renamed in PHPUnit.
 
-### Write your tests for PHPUnit 11.x and run them on PHPUnit 7.5 - 11.x
+### Write your tests for PHPUnit 12.x and run them on PHPUnit 7.5 - 12.x
 
 The polyfills have been setup to allow tests to be _forward_-compatible. What that means is, that your tests can use the assertions supported by the _latest_ PHPUnit version, even when running on older PHPUnit versions.
 
@@ -698,7 +698,7 @@ if ( defined( '\Yoast\PHPUnitPolyfills\Autoload::VERSION' ) === false
 }
 ```
 
-### Q: Why don't the PHPUnit Polyfills 3.x versions support running tests on PHPUnit 10 ?
+### Q: Why don't the PHPUnit Polyfills 3.x and 4.x versions support running tests on PHPUnit 10 ?
 
 PHPUnit 11.0 introduced the `expectUserDeprecationMessage*()` methods. To polyfill these for PHPUnit 10 would mean that the Polyfills package could no longer be a "drop-in" helper package, but would need to set extra requirements on test suites using the polyfills when used with PHPUnit 10 (like hooking into events or compulsory use of the `TestCase`s provided by this package).
 
@@ -706,7 +706,7 @@ As it was deemed desirable enough to polyfill the methods, the releases from the
 
 The impact of this compromise is minimal, as, in the most common case of running the tests with Composer installed dependencies, this just and only means that test runs on PHP 8.1 will use PHPUnit 9 instead of PHPUnit 10. There is no other impact.
 
-Keep in mind that functionality _added_ in PHPUnit 10, is still polyfilled and available in PHPUnit Polyfills 3.x.
+Keep in mind that functionality _added_ in PHPUnit 10, is still polyfilled and available in PHPUnit Polyfills 3.x/4.x.
 
 
 Contributing
