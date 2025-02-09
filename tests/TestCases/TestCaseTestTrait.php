@@ -5,7 +5,7 @@ namespace Yoast\PHPUnitPolyfills\Tests\TestCases;
 use Exception;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use stdClass;
-use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTest;
+use Yoast\PHPUnitPolyfills\Tests\Polyfills\AssertFileEqualsSpecializationsTestCase;
 use Yoast\PHPUnitPolyfills\Tests\Polyfills\Fixtures\ValueObject;
 
 /**
@@ -47,7 +47,7 @@ trait TestCaseTestTrait {
 	 */
 	final public function testAvailabilityAssertFileEqualsSpecializationsTrait() {
 		self::assertStringEqualsFileIgnoringCase(
-			AssertFileEqualsSpecializationsTest::PATH_TO_EXPECTED,
+			AssertFileEqualsSpecializationsTestCase::PATH_TO_EXPECTED,
 			"Testing 123\n"
 		);
 	}

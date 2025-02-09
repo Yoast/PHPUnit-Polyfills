@@ -167,7 +167,9 @@ jobs:
         id: phpunit_config
         run: |
           if [ "${{ matrix.phpunit == 'dev-main' }}" == "true" ]; then
-            echo 'FILE=phpunit11.xml.dist' >> "$GITHUB_OUTPUT"
+            echo 'FILE=phpunit12.xml.dist' >> "$GITHUB_OUTPUT"
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '12.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit12.xml.dist' >> "$GITHUB_OUTPUT"
           elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
             echo 'FILE=phpunit11.xml.dist' >> "$GITHUB_OUTPUT"
           else
@@ -348,7 +350,9 @@ jobs:
       - name: Determine PHPUnit config
         id: phpunit_config
         run: |
-          if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
+          if [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '12.' ) }}" == "true" ]; then
+            echo 'FILE=phpunit12.xml.dist' >> "$GITHUB_OUTPUT"
+          elif [ "${{ startsWith( steps.phpunit_version.outputs.VERSION, '11.' ) }}" == "true" ]; then
             echo 'FILE=phpunit11.xml.dist' >> "$GITHUB_OUTPUT"
           else
             echo 'FILE=phpunit.xml.dist' >> "$GITHUB_OUTPUT"

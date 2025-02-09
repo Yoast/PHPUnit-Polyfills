@@ -11,8 +11,13 @@
     forceCoversAnnotation="true">
 
     <testsuites>
-        <testsuite name="PHPUnitPolyfills">
-            <directory suffix="Test.php">./tests/</directory>
+        <testsuite name="Crossversion">
+            <directory suffix="Test.php">./tests/Exceptions/</directory>
+            <directory suffix="Test.php">./tests/TestCases/</directory>
+        </testsuite>
+        <testsuite name="PHPUnitLte9">
+            <directory suffix="Test.php">./tests/Polyfills/WrappersLte11/</directory>
+            <directory suffix="Test.php">./tests/TestListeners/</directory>
         </testsuite>
     </testsuites>
 

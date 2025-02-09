@@ -143,9 +143,10 @@
 		<exclude-pattern>/tests/*</exclude-pattern>
 	</rule>
 
-	<!-- Covers annotations are in the test classes, not the trait. -->
+	<!-- Covers annotations are in the test classes, not the trait or test cases. -->
 	<rule ref="Yoast.Commenting.TestsHaveCoversTag.Missing">
 		<exclude-pattern>/tests/TestCases/TestCaseTestTrait\.php$</exclude-pattern>
+		<exclude-pattern>/tests/Polyfills/*TestCase\.php$</exclude-pattern>
 		<exclude-pattern>/tests/Polyfills/Fixtures/*\.php$</exclude-pattern>
 	</rule>
 
