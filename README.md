@@ -77,16 +77,19 @@ By doing so, dropping support for an older PHPUnit version becomes as straight-f
 * Releases in the `1.x` series of the PHPUnit Polyfills support PHPUnit 4.8 - 9.x.
 * Releases in the `2.x` series of the PHPUnit Polyfills support PHPUnit 5.7 - 10.x.
 * Releases in the `3.x` series of the PHPUnit Polyfills support PHPUnit 6.4 - 11.x (but don't support running tests on PHPUnit 10).
+* Releases in the `4.x` series of the PHPUnit Polyfills support PHPUnit 7.5 - 12.x (but don't support running tests on PHPUnit 10).
 
 Please keep in mind that the PHPUnit Polyfills provide _forward_-compatibility.
-This means that features which PHPUnit no longer supports in PHPUnit 10.x, like expecting PHP deprecation notices or warnings, will not be supported in the PHPUnit Polyfills 2.x series and features not supported in PHPUnit 11.x, will not be supported in the PHPUnit Polyfills 3.x series.
+This means that features which PHPUnit no longer supports in PHPUnit 10.x, like expecting PHP deprecation notices or warnings, will not be supported in the PHPUnit Polyfills 2.x series and features not supported in PHPUnit 11.x, will not be supported in the PHPUnit Polyfills 3.x series etc.
 
-Please refer to the [PHPUnit 10 release notification]/[PHPUnit 10 changelog] and the [PHPUnit 11 release notification]/[PHPUnit 11 changelog] to inform your decision on whether or not to upgrade (yet).
+Please refer to the [PHPUnit 10 release notification]/[PHPUnit 10 changelog], [PHPUnit 11 release notification]/[PHPUnit 11 changelog] and/or the [PHPUnit 12 release notification]/[PHPUnit 12 changelog] to inform your decision on whether or not to upgrade (yet).
 
 [PHPUnit 10 release notification]: https://phpunit.de/announcements/phpunit-10.html
 [PHPUnit 10 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/10.0.19/ChangeLog-10.0.md
 [PHPUnit 11 release notification]: https://phpunit.de/announcements/phpunit-11.html
 [PHPUnit 11 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/11.0.10/ChangeLog-11.0.md
+[PHPUnit 12 release notification]: https://phpunit.de/announcements/phpunit-12.html
+[PHPUnit 12 changelog]:            https://github.com/sebastianbergmann/phpunit/blob/12.0.2/ChangeLog-12.0.md
 
 
 Using this library
