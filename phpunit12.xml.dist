@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.0/phpunit.xsd"
     backupGlobals="true"
     bootstrap="./tests/bootstrap.php"
     beStrictAboutOutputDuringTests="true"
@@ -13,9 +13,11 @@
     displayDetailsOnTestsThatTriggerWarnings="true"
     displayDetailsOnTestsThatTriggerNotices="true"
     displayDetailsOnTestsThatTriggerDeprecations="true"
+    displayDetailsOnPhpunitDeprecations="true"
     failOnWarning="true"
     failOnNotice="true"
     failOnDeprecation="true"
+    failOnPhpunitDeprecation="false"
     >
 
     <testsuites>
@@ -23,8 +25,8 @@
             <directory suffix="Test.php">./tests/Exceptions/</directory>
             <directory suffix="Test.php">./tests/TestCases/</directory>
         </testsuite>
-        <testsuite name="PHPUnit11">
-            <directory suffix="Test.php">./tests/Polyfills/WrappersLte11/</directory>
+        <testsuite name="PHPUnit12">
+            <directory suffix="Test.php">./tests/Polyfills/WrappersGte12/</directory>
         </testsuite>
     </testsuites>
 

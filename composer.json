@@ -27,7 +27,7 @@
 	},
 	"require": {
 		"php": ">=7.1",
-		"phpunit/phpunit": "^7.5 || ^8.0 || ^9.0 || ^11.0"
+		"phpunit/phpunit": "^7.5 || ^8.0 || ^9.0 || ^11.0 || ^12.0"
 	},
 	"require-dev": {
 		"php-parallel-lint/php-console-highlighter": "^1.0.0",
@@ -81,6 +81,12 @@
 		],
 		"coverage11": [
 			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit11.xml.dist"
+		],
+		"test12": [
+			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit12.xml.dist --no-coverage"
+		],
+		"coverage12": [
+			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit12.xml.dist"
 		]
 	},
 	"scripts-descriptions": {
@@ -91,6 +97,8 @@
 		"test": "Run the unit tests without code coverage (PHPUnit < 10).",
 		"coverage": "Run the unit tests with code coverage (PHPUnit < 10).",
 		"test11": "Run the unit tests without code coverage using the PHPUnit 11 configuration file.",
-		"coverage11": "Run the unit tests with code coverage using the PHPUnit 11 configuration file."
+		"coverage11": "Run the unit tests with code coverage using the PHPUnit 11 configuration file.",
+		"test12": "Run the unit tests without code coverage using the PHPUnit 12 configuration file.",
+		"coverage12": "Run the unit tests with code coverage using the PHPUnit 12 configuration file."
 	}
 }
