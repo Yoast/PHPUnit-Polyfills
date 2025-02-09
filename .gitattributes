@@ -17,7 +17,7 @@
 phpstan.neon.dist       export-ignore
 phpstan-bootstrap.php   export-ignore
 phpunit.xml.dist        export-ignore
-phpunit10.xml.dist      export-ignore
+phpunit11.xml.dist      export-ignore
 
 #
 # Auto detect text files and perform LF normalization

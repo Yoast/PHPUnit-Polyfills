@@ -5,7 +5,7 @@ vendor/
 /phpcs.xml
 .cache/*.cache
 /phpunit.xml
-/phpunit10.xml
+/phpunit11.xml
 /.phpunit.result.cache
 /build/
 phpstan.neon

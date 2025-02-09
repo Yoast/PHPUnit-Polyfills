@@ -79,11 +79,11 @@
 		"coverage": [
 			"@php ./vendor/phpunit/phpunit/phpunit"
 		],
-		"test10": [
-			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist --no-coverage"
+		"test11": [
+			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit11.xml.dist --no-coverage"
 		],
-		"coverage10": [
-			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit10.xml.dist"
+		"coverage11": [
+			"@php ./vendor/phpunit/phpunit/phpunit -c phpunit11.xml.dist"
 		]
 	},
 	"scripts-descriptions": {
@@ -94,7 +94,7 @@
 		"fix-cs": "Auto-fix code style violations in the PHP files.",
 		"test": "Run the unit tests without code coverage (PHPUnit < 10).",
 		"coverage": "Run the unit tests with code coverage (PHPUnit < 10).",
-		"test10": "Run the unit tests without code coverage using the PHPUnit 10/11 configuration file.",
-		"coverage10": "Run the unit tests with code coverage using the PHPUnit 10/11 configuration file."
+		"test11": "Run the unit tests without code coverage using the PHPUnit 11 configuration file.",
+		"coverage11": "Run the unit tests with code coverage using the PHPUnit 11 configuration file."
 	}
 }
