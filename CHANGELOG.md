@@ -178,6 +178,17 @@ Projects which don't use any of the new or removed functionality in their test s
 [#130]: https://github.com/Yoast/PHPUnit-Polyfills/pull/130
 
 
+## [1.1.4] - 2025-02-09
+
+This is a maintenance release.
+
+### Changed
+* README: updated sub-section about PHPUnit version support with information about the PHPUnit Polyfills 4.x branch. PR [#249]
+* General housekeeping.
+
+[#249]: https://github.com/Yoast/PHPUnit-Polyfills/pull/249
+
+
 ## [1.1.3] - 2025-01-08
 
 This is a maintenance release.
@@ -373,7 +384,8 @@ Initial release.
 [2.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.0...2.0.1
-[2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.3...2.0.0
+[2.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.4...2.0.0
+[1.1.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/1.1.0...1.1.1
