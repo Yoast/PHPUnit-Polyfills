@@ -96,8 +96,16 @@ jobs:
             phpunit: '11.0.0'
             coverage: true
             experimental: false
+          - php: '8.3'
+            phpunit: '12.0.0'
+            coverage: true
+            experimental: false
           - php: '8.4'
             phpunit: '11.3.6'
+            coverage: true
+            experimental: false
+          - php: '8.4'
+            phpunit: '12.0.0'
             coverage: true
             experimental: false
 
@@ -107,12 +115,16 @@ jobs:
             coverage: false
             experimental: true
           - php: 'nightly'
-            phpunit: 'auto' # PHPUnit 11.x.
+            phpunit: '^11.5'
+            coverage: false
+            experimental: true
+          - php: 'nightly'
+            phpunit: 'auto' # PHPUnit 12.x.
             coverage: false
             experimental: true
 
           - php: 'latest'
-            phpunit: 'dev-main' # PHPUnit 12.x.
+            phpunit: 'dev-main' # PHPUnit 12.x/13.x.
             coverage: false
             experimental: true
 
@@ -289,11 +301,25 @@ jobs:
             phpunit: '11'
             coverage: true
 
+          # PHPUnit 12 is fully supported for the officially supported PHP versions.
+          - php: '8.3'
+            phpunit: '12.0'
+          - php: '8.3'
+            phpunit: '12'
+            coverage: true
+          - php: '8.4'
+            phpunit: '12.0'
+          - php: '8.4'
+            phpunit: '12'
+            coverage: true
+
           # Experimental builds.
           - php: 'nightly'
             phpunit: '9'
           - php: 'nightly'
             phpunit: '11'
+          - php: 'nightly'
+            phpunit: '12'
 
     name: "PHAR test: PHP ${{ matrix.php }} - PHPUnit: ${{matrix.phpunit}}"
 
