@@ -32,6 +32,9 @@ jobs:
           php-version: 'latest'
           coverage: none
           tools: cs2pr
+        env:
+          fail-fast: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
@@ -70,6 +73,9 @@ jobs:
           php-version: '7.4'
           coverage: none
           tools: phpstan:2.x
+        env:
+          fail-fast: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Install dependencies and handle caching in one go.
       # Dependencies need to be installed to make sure the PHPUnit classes are recognized.
