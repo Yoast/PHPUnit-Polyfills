@@ -9,6 +9,17 @@ This projects adheres to [Keep a CHANGELOG](http://keepachangelog.com/) and uses
 
 _Nothing yet._
 
+## [2.0.4] - 2025-02-09
+
+This is a maintenance release.
+
+### Changed
+* README: updated sub-section about PHPUnit version support with information about the PHPUnit Polyfills 4.x branch. PR [#249]
+* General housekeeping.
+
+<!-- Link to #249 is defined on the 1.1.4 release. -->
+
+
 ## [2.0.3] - 2025-01-08
 
 This is a maintenance release.
@@ -297,7 +308,8 @@ As of version 2.15.0 of the `shivammathur/setup-php` action for GitHub Actions, 
 Initial release.
 
 
-[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...2.x
+[Unreleased]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.4...2.x
+[2.0.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.0...2.0.1
