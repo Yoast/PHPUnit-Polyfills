@@ -15,9 +15,9 @@ If releases for multiple branches are to be tagged, always tag the 1.x release f
     Verify that a release link at the bottom of the `CHANGELOG.md` file has been added.
 - [ ] Merge the changelog PR.
 - [ ] Make sure all CI builds are green.
-- [ ] Fast-forward the `main` branch to the latest `3.x` commit and push.
-- [ ] Tag the release on `main` (careful, GH defaults to `3.x`!).
-- [ ] Create a release from the tag (careful, GH defaults to `3.x`!) & copy & paste the changelog to it.
+- [ ] Fast-forward the `main` branch to the latest `4.x` commit and push.
+- [ ] Tag the release on `main` (careful, GH defaults to `4.x`!).
+- [ ] Create a release from the tag (careful, GH defaults to `4.x`!) & copy & paste the changelog to it.
     Make sure to copy the links to the issues and the links to the GH usernames from the bottom of the changelog!
 - [ ] Close the milestone.
 - [ ] Open a new milestone for the next release.
