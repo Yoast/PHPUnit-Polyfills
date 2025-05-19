@@ -16,5 +16,3 @@ updates:
       prefix: "GH Actions:"
     labels:
       - "Type: chores/QA"
-    reviewers:
-      - "jrfnl"
