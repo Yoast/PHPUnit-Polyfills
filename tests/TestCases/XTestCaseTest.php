@@ -99,13 +99,21 @@ final class XTestCaseTest extends XTestCase {
 	 *
 	 * @dataProvider dataHaveFixtureMethodsBeenTriggered
 	 *
-	 * @param int $expectedBeforeClass Value expected for the $beforeClass property.
-	 * @param int $expectedBefore      Value expected for the $before property.
-	 * @param int $expectedAfter       Value expected for the $after property.
+	 * @param int $expectedBeforeClass    Value expected for the $beforeClass property.
+	 * @param int $expectedBefore         Value expected for the $before property.
+	 * @param int $expectedAfter          Value expected for the $after property.
+	 * @param int $expectedPreConditions  Unused. "assertPreConditions" can not be triggered via annotations.
+	 * @param int $expectedPostConditions Unused. "assertPostConditions" can not be triggered via annotations.
 	 *
 	 * @return void
 	 */
-	public function testHaveFixtureMethodsBeenTriggered( $expectedBeforeClass, $expectedBefore, $expectedAfter ) {
+	public function testHaveFixtureMethodsBeenTriggered(
+		$expectedBeforeClass,
+		$expectedBefore,
+		$expectedAfter,
+		$expectedPreConditions, // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		$expectedPostConditions // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+	) {
 		$this->assertSame(
 			$expectedBeforeClass,
 			self::$beforeClass,
