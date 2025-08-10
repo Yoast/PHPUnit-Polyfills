@@ -289,6 +289,7 @@ jobs:
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           tools: phpunit:${{ matrix.phpunit }}
           coverage: ${{ matrix.coverage && 'xdebug' || 'none' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           fail-fast: true
 

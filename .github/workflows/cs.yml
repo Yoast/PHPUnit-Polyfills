@@ -32,6 +32,7 @@ jobs:
           php-version: 'latest'
           coverage: none
           tools: cs2pr
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           fail-fast: true
 
@@ -72,6 +73,7 @@ jobs:
           php-version: '7.4'
           coverage: none
           tools: phpstan:2.x
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           fail-fast: true
 
