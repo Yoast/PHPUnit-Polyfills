@@ -139,6 +139,17 @@ _In practical terms, the net effect of this is that tests on PHP 8.1 will run on
 [readme-on-expectuserdeprecation]: https://github.com/Yoast/PHPUnit-Polyfills/tree/3.x?tab=readme-ov-file#phpunit--1100-yoastphpunitpolyfillspolyfillsexpectuserdeprecation
 
 
+## [2.0.5] - 2025-08-10
+
+### Fixed
+* PHP 8.5 deprecation notice when using the `AssertAttributeHelper::getProperty()` and `AssertAttributeHelper::getPropertyValue()` methods. PR [#261]
+
+### Changed
+* General housekeeping.
+
+<!-- Link to #261 is defined on the 1.1.5 release. -->
+
+
 ## [2.0.4] - 2025-02-09
 
 This is a maintenance release.
@@ -454,7 +465,8 @@ Initial release.
 [3.1.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/3.0.0...3.1.0
-[3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.4...3.0.0
+[3.0.0]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.5...3.0.0
+[2.0.5]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/Yoast/PHPUnit-Polyfills/compare/2.0.1...2.0.2
