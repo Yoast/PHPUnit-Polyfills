@@ -49,7 +49,7 @@ trait AssertAttributeHelper {
 	public static function getProperty( $objInstance, $propertyName ) {
 		$reflect  = new ReflectionObject( $objInstance );
 		$property = $reflect->getProperty( $propertyName );
-		$property->setAccessible( true );
+		( \PHP_VERSION_ID < 80100 ) && $property->setAccessible( true );
 
 		return $property;
 	}
