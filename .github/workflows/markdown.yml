@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # @link https://github.com/marketplace/actions/problem-matcher-for-markdownlint-cli
       - name: Enable showing issue in PRs
@@ -45,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up node and enable caching of dependencies
         uses: actions/setup-node@v4
