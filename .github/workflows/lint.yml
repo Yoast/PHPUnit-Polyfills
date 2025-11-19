@@ -48,18 +48,11 @@ jobs:
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
-      - name: Install Composer dependencies - normal
-        if: matrix.php != 'nightly'
+      - name: Install Composer dependencies
         uses: "ramsey/composer-install@v3"
         with:
-          # Bust the cache at least once a month - output format: YYYY-MM.
-          custom-cache-suffix: $(date -u "+%Y-%m")
-
-      - name: Install Composer dependencies - ignore PHP restrictions
-        if: matrix.php == 'nightly'
-        uses: "ramsey/composer-install@v3"
-        with:
-          composer-options: --ignore-platform-req=php+
+          # For PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
+          composer-options: ${{ matrix.php == 'nightly' && '--ignore-platform-req=php+' || '' }}
           # Bust the cache at least once a month - output format: YYYY-MM.
           custom-cache-suffix: $(date -u "+%Y-%m")
 
