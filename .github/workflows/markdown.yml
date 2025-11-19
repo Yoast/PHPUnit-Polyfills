@@ -34,7 +34,7 @@ jobs:
 
       # @link https://github.com/marketplace/actions/markdownlint-cli2-action
       - name: Check markdown with CLI2
-        uses: DavidAnson/markdownlint-cli2-action@v20
+        uses: DavidAnson/markdownlint-cli2-action@v21
 
   remark:
     name: 'QA Markdown'
@@ -95,7 +95,7 @@ jobs:
         if: ${{ failure() && github.event_name == 'pull_request' }}
         uses: reviewdog/action-remark-lint@v5
         with:
-          fail_on_error: true
+          fail_level: warning
           install_deps: false
           level: info
           reporter: github-pr-check
