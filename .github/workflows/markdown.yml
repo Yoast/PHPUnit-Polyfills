@@ -95,7 +95,7 @@ jobs:
         if: ${{ failure() && github.event_name == 'pull_request' }}
         uses: reviewdog/action-remark-lint@v5
         with:
-          fail_on_error: true
+          fail_level: warning
           install_deps: false
           level: info
           reporter: github-pr-check
