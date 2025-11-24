@@ -138,6 +138,12 @@
 		<exclude-pattern>/tests/*\.php$</exclude-pattern>
 	</rule>
 
+	<!-- These tests are limited via `@requires` tags and will only run on PHP versions where
+		 the functionality was not yet deprecated. -->
+	<rule ref="Generic.PHP.DeprecatedFunctions.Deprecated">
+		<exclude-pattern>/tests/Polyfills/AssertClosedResource(Curl|Finfo|Gd|XmlParser)Test\.php$</exclude-pattern>
+	</rule>
+
 	<!-- The use of `static` in the test cases is on purpose to test support. -->
 	<rule ref="Universal.CodeAnalysis.StaticInFinalClass">
 		<exclude-pattern>/tests/*</exclude-pattern>
