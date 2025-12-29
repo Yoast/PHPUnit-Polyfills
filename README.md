@@ -2,9 +2,9 @@ PHPUnit Polyfills
 =====================================================
 
 [![Version](https://img.shields.io/packagist/v/yoast/phpunit-polyfills?label=stable)][Packagist]
-[![CS Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml)
-[![Lint Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml)
-[![Test Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml/badge.svg)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml)
+[![CS Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml/badge.svg?branch=1.x)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/cs.yml)
+[![Lint Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml/badge.svg?branch=1.x)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/lint.yml)
+[![Test Build Status](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml/badge.svg?branch=1.x)](https://github.com/Yoast/PHPUnit-Polyfills/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Yoast/PHPUnit-Polyfills/badge.svg?branch=1.x)](https://coveralls.io/github/Yoast/PHPUnit-Polyfills?branch=1.x)
 
 [![Minimum PHP Version](https://img.shields.io/packagist/dependency-v/yoast/phpunit-polyfills/php.svg)][Packagist]
