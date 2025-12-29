@@ -501,15 +501,19 @@ class MyTest extends TestCase {
 
 #### Option 2: `Yoast\PHPUnitPolyfills\TestCases\XTestCase`
 
-This `TestCase` overcomes the signature mismatch by using the PHPUnit `@before[Class]` and `@after[Class]` annotations in combination with different methods names, i.e. `setUpFixturesBeforeClass()`, `setUpFixtures()`, `tearDownFixtures()` and `tearDownFixturesAfterClass()`.
+This `TestCase` overcomes the signature mismatch by using the PHPUnit `@before[Class]` and `@after[Class]` annotations and attributes in combination with different methods names, i.e. `setUpFixturesBeforeClass()`, `setUpFixtures()`, `tearDownFixtures()` and `tearDownFixturesAfterClass()`.
 
-When using this TestCase, overloaded fixture methods need to use the [`@beforeClass`], [`@before`], [`@after`] and [`@afterClass`] annotations.
+When using this TestCase, overloaded fixture methods need to use the [`@beforeClass`]/[`#\[BeforeClass\]`][#BeforeClass], [`@before`]/[`#\[Before\]`][#Before], [`@after`]/[`#\[After\]`][#After] and [`@afterClass`]/[`#\[AfterClass\]`][#AfterClass] annotations/attributes.
 The naming of the overloaded methods is open as long as the method names don't conflict with the PHPUnit native method names.
 
 [`@beforeClass`]: https://docs.phpunit.de/en/11.5/annotations.html#beforeclass
 [`@before`]:      https://docs.phpunit.de/en/11.5/annotations.html#before
 [`@after`]:       https://docs.phpunit.de/en/11.5/annotations.html#after
 [`@afterClass`]:  https://docs.phpunit.de/en/11.5/annotations.html#afterclass
+[#BeforeClass]:   https://docs.phpunit.de/en/12.5/attributes.html#beforeclass
+[#Before]:        https://docs.phpunit.de/en/12.5/attributes.html#before
+[#After]:         https://docs.phpunit.de/en/12.5/attributes.html#after
+[#AfterClass]:    https://docs.phpunit.de/en/12.5/attributes.html#afterclass
 
 ```php
 use Yoast\PHPUnitPolyfills\TestCases\XTestCase;
