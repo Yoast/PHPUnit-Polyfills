@@ -26,15 +26,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
       # @link https://github.com/marketplace/actions/problem-matcher-for-markdownlint-cli
       - name: Enable showing issue in PRs
-        uses: xt0rted/markdownlint-problem-matcher@v3
+        uses: xt0rted/markdownlint-problem-matcher@1a5fabfb577370cfdf5af944d418e4be3ea06f27 # v3.0.0
 
       # @link https://github.com/marketplace/actions/markdownlint-cli2-action
       - name: Check markdown with CLI2
-        uses: DavidAnson/markdownlint-cli2-action@v22
+        uses: DavidAnson/markdownlint-cli2-action@07035fd053f7be764496c0f8d8f9f41f98305101 # v22.0.0
 
   remark:
     name: 'QA Markdown'
@@ -45,10 +45,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
       - name: Set up node and enable caching of dependencies
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           node-version: '20'
 
@@ -93,7 +93,7 @@ jobs:
       # @link https://github.com/reviewdog/action-remark-lint
       - name: Show Remark-lint annotations in PR
         if: ${{ failure() && github.event_name == 'pull_request' }}
-        uses: reviewdog/action-remark-lint@v5
+        uses: reviewdog/action-remark-lint@82225f7db5b4a3caaca3052733b6800fa7d109b0 # v5.18.0
         with:
           fail_level: warning
           install_deps: false
