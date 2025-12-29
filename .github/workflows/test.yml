@@ -338,6 +338,8 @@ jobs:
     needs: [test, test-phar]
     runs-on: ubuntu-latest
 
+    name: Coveralls Finish
+
     steps:
       - name: Coveralls Finished
         uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2.3.7
