@@ -59,8 +59,12 @@
 		<!-- Exclude select "modern PHP" sniffs, which conflict with the minimum supported PHP version of this package. -->
 		<exclude name="SlevomatCodingStandard.Classes.ModernClassNameReference"/><!-- PHP 5.5+ -->
 		<exclude name="Modernize.FunctionCalls.Dirname.Nested"/><!-- PHP 7.0+. -->
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/><!-- PHP 7.0+. -->
 		<exclude name="PSR12.Properties.ConstantVisibility"/><!-- PHP 7.1+. -->
 		<exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue"/><!-- PHP 7.1+. -->
+		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall"/><!-- PHP 7.3+. -->
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/><!-- PHP 7.4+. -->
+		<exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator"/><!-- PHP 7.4+. -->
 
 		<!-- As this repo is about providing assertions, "mixed" is a perfectly valid type. -->
 		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
