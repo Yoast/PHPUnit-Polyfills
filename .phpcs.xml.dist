@@ -56,6 +56,11 @@
 		<exclude name="WordPressVIPMinimum.Security.EscapingVoidReturnFunctions"/>
 		<exclude name="WordPressVIPMinimum.Security.ProperEscapingFunction"/>
 
+		<!-- Exclude select "modern PHP" sniffs, which conflict with the minimum supported PHP version of this package. -->
+		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall"/><!-- PHP 7.3+. -->
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator"/><!-- PHP 7.4+. -->
+		<exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator"/><!-- PHP 7.4+. -->
+
 		<!-- As this repo is about providing assertions, "mixed" is a perfectly valid type. -->
 		<exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint"/>
 	</rule>
