@@ -22,6 +22,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * @requires extension curl
  * @requires PHP < 8.0
+ *
+ * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.curl_closeDeprecated -- These tests are only run on PHP < 8.0, so the PHP 8.5 deprecation is a non-issue.
  */
 #[CoversClass( AssertClosedResource::class )]
 #[CoversClass( ResourceHelper::class )]

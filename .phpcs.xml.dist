@@ -79,6 +79,9 @@
 		<!-- These PHP 7.0+ classes are polyfilled for this repo. -->
 		<exclude name="PHPCompatibility.Classes.NewClasses.errorFound"/>
 		<exclude name="PHPCompatibility.Classes.NewClasses.typeerrorFound"/>
+
+		<!-- This is deliberate for this package. -->
+		<exclude name="PHPCompatibility.Attributes.NewAttributes.PHPUnitAttributeFound"/>
 	</rule>
 
 	<!-- Enforce PSR1 compatible namespaces. -->
