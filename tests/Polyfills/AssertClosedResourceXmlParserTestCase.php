@@ -10,6 +10,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * Resource type: xml
  * Extension:     libxml
+ *
+ * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.xml_parser_freeDeprecated -- These tests are only run on PHP < 8.0, so the PHP 8.5 deprecation is a non-issue.
  */
 abstract class AssertClosedResourceXmlParserTestCase extends AssertClosedResourceTestCase {
 

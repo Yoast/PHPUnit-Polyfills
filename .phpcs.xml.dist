@@ -71,6 +71,9 @@
 		 polyfilled functionality from not being flagged in this repo. -->
 	<rule ref="PHPCompatibility">
 		<severity>5</severity>
+
+		<!-- This is deliberate for this package. -->
+		<exclude name="PHPCompatibility.Attributes.NewAttributes.PHPUnitAttributeFound"/>
 	</rule>
 
 	<!-- Enforce PSR1 compatible namespaces. -->
