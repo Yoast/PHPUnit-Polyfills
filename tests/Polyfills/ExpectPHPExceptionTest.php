@@ -68,12 +68,13 @@ final class ExpectPHPExceptionTest extends TestCase {
 		$this->expectErrorMessageMatches( '/foo/' );
 
 		if ( \PHP_VERSION_ID < 80400 ) {
+			// phpcs:ignore PHPCompatibility.ParameterValues.RemovedTriggerErrorLevel.Deprecated -- Used conditionally.
 			\trigger_error( 'foo', \E_USER_ERROR );
 		}
 		else {
 			// PHP 8.4 deprecates passing `E_USER_ERROR` to `trigger_error()`.
 			// Silence the deprecation notice (but not the error itself).
-			// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+			// phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged,PHPCompatibility.ParameterValues.RemovedTriggerErrorLevel.Deprecated
 			@\trigger_error( 'foo', \E_USER_ERROR );
 		}
 	}

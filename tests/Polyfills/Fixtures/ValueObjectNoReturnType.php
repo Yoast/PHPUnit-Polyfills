@@ -6,6 +6,9 @@ use ClassWhichDoesntExist;
 
 /**
  * Fixture to test the AssertObjectEquals trait.
+ *
+ * This fixture is only used on PHP < 8.4. The `ValueObject` fixture is used for PHP 8.4+.
+ * @phpcs:disable PHPCompatibility.FunctionDeclarations.RemovedImplicitlyNullableParam.Deprecated
  */
 class ValueObjectNoReturnType {
 
