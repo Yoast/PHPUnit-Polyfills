@@ -18,6 +18,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * @requires extension finfo
  * @requires PHP < 8.1
+ *
+ * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.finfo_closeDeprecated -- These tests are only run on PHP < 8.1, so the PHP 8.5 deprecation is a non-issue.
  */
 final class AssertClosedResourceFinfoTest extends AssertClosedResourceTestCase {
 

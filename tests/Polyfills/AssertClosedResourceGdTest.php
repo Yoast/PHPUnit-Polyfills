@@ -18,6 +18,8 @@ use Yoast\PHPUnitPolyfills\Polyfills\AssertClosedResource;
  *
  * @requires extension gd
  * @requires PHP < 8.0
+ *
+ * @phpcs:disable PHPCompatibility.FunctionUse.RemovedFunctions.imagedestroyDeprecated -- These tests are only run on PHP < 8.0, so the PHP 8.5 deprecation is a non-issue.
  */
 final class AssertClosedResourceGdTest extends AssertClosedResourceTestCase {
 
