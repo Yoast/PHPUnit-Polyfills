@@ -503,7 +503,7 @@ class MyTest extends TestCase {
 
 This `TestCase` overcomes the signature mismatch by using the PHPUnit `@before[Class]` and `@after[Class]` annotations and attributes in combination with different methods names, i.e. `setUpFixturesBeforeClass()`, `setUpFixtures()`, `tearDownFixtures()` and `tearDownFixturesAfterClass()`.
 
-When using this TestCase, overloaded fixture methods need to use the [`@beforeClass`]/[`#\[BeforeClass\]`][#BeforeClass], [`@before`]/[`#\[Before\]`][#Before], [`@after`]/[`#\[After\]`][#After] and [`@afterClass`]/[`#\[AfterClass\]`][#AfterClass] annotations/attributes.
+When using this TestCase, overloaded fixture methods need to use the [`@beforeClass`]/[`#[BeforeClass]`][#BeforeClass], [`@before`]/[`#[Before]`][#Before], [`@after`]/[`#[After]`][#After] and [`@afterClass`]/[`#[AfterClass]`][#AfterClass] annotations/attributes.
 The naming of the overloaded methods is open as long as the method names don't conflict with the PHPUnit native method names.
 
 [`@beforeClass`]: https://docs.phpunit.de/en/11.5/annotations.html#beforeclass
