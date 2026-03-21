@@ -139,7 +139,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # 2.36.0
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
         with:
           php-version: ${{ matrix.php }}
           ini-values: zend.assertions=1, assert.exception=1, error_reporting=-1, display_errors=On, display_startup_errors=On
@@ -158,7 +158,7 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
+        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
         with:
           # For PHP >= 7.2, which uses Composer >= 2.9.0 (automatically runs `audit`, we need to allow installing insecure packages
           # to be able to test against older PHPUnit versions.
@@ -348,7 +348,7 @@ jobs:
           persist-credentials: false
 
       - name: Install PHP
-        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # 2.36.0
+        uses: shivammathur/setup-php@accd6127cb78bee3e8082180cb391013d204ef9f # 2.37.0
         with:
           php-version: ${{ matrix.php }}
           ini-values: zend.assertions=1, assert.exception=1, error_reporting=-1, display_errors=On, display_startup_errors=On
@@ -368,7 +368,7 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-php-dependencies-with-composer
       - name: Install Composer dependencies
-        uses: "ramsey/composer-install@3cf229dc2919194e9e36783941438d17239e8520" # 3.1.1
+        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
         with:
           # For PHP "nightly", we need to install with ignore platform reqs as not all dependencies may allow it yet.
           composer-options: ${{ matrix.php == 'nightly' && '--no-dev --ignore-platform-req=php+' || '--no-dev' }}
