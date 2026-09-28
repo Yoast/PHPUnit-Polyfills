@@ -97,7 +97,7 @@ jobs:
       # @link https://github.com/reviewdog/action-remark-lint
       - name: Show Remark-lint annotations in PR
         if: ${{ failure() && github.event_name == 'pull_request' }}
-        uses: reviewdog/action-remark-lint@82225f7db5b4a3caaca3052733b6800fa7d109b0 # v5.18.0
+        uses: reviewdog/action-remark-lint@7c4b1f5f1cf73b426e8b2c1921fb2888d84c55d5 # v5.19.0
         with:
           fail_level: warning
           install_deps: false
